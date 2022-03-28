@@ -20,11 +20,7 @@ class LocaleKeys {
       'screen_login_pass_text_field_hint';
   static const screen_login_forget_pass = 'screen_login_forget_pass';
   static const screen_login_buttons_login = 'screen_login_buttons_login';
-  static const buttons_sign_in = 'buttons_sign_in';
   static const buttons_logout = 'buttons_logout';
-  static const buttons_sign_in_fb = 'buttons_sign_in_fb';
-  static const buttons_sign_in_google = 'buttons_sign_in_google';
-  static const buttons_sign_in_apple = 'buttons_sign_in_apple';
 }
 
 class Locales {
@@ -36,11 +32,7 @@ class Locales {
     'screen_login_pass_text_field_hint': 'Password',
     'screen_login_forget_pass': 'I forgot my password',
     'screen_login_buttons_login': 'Login',
-    'buttons_sign_in': 'Sign-in',
     'buttons_logout': 'Logout',
-    'buttons_sign_in_fb': 'Sign-in with Facebook',
-    'buttons_sign_in_google': 'Sign-in with Google',
-    'buttons_sign_in_apple': 'Sign-in with Apple',
   };
   static const fa_IR = {
     'app_name': 'نرم افزار مدیریت فروشگاه حجره',
@@ -51,10 +43,6 @@ class Locales {
     'screen_login_pass_text_field_hint': 'رمز عبور',
     'screen_login_forget_pass': 'رمز عبور را فراموش کردم',
     'screen_login_buttons_login': 'ورود',
-    'buttons_sign_in': 'ورود',
     'buttons_logout': 'خروج',
-    'buttons_sign_in_fb': 'ورود با اکانت فیسبوک',
-    'buttons_sign_in_google': 'ورود با اکانت گوگل',
-    'buttons_sign_in_apple': 'ورود با اکانت اپل',
   };
 }

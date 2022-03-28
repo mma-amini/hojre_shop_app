@@ -16,10 +16,6 @@
     "home": {}
   },
   "buttons": {
-    "sign_in": "ورود",
-    "logout": "خروج",
-    "sign_in_fb": "ورود با اکانت فیسبوک",
-    "sign_in_google": "ورود با اکانت گوگل",
-    "sign_in_apple": "ورود با اکانت اپل"
+    "logout": "خروج"
   }
 }
