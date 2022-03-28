@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
+import 'generated/locales.g.dart';
 import 'infrastructure/navigation/navigation.dart';
 import 'infrastructure/navigation/routes.dart';
 
@@ -18,20 +19,22 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'نرم افزار مدیریت فروشگاه حجره',
+      title: 'app_name'.tr,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         DefaultCupertinoLocalizations.delegate,
       ],
+      translationsKeys: AppTranslation.translations,
       supportedLocales: const [
         Locale("fa", "IR"),
+        Locale("en", "US"),
       ],
       locale: const Locale("fa", "IR"),
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: "packages/package_base/Vazir Reg",
+        fontFamily: "Vazir Reg",
       ),
       defaultTransition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 500),

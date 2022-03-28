@@ -1,0 +1,25 @@
+{
+  "app": {
+    "name": "نرم افزار مدیریت فروشگاه حجره"
+  },
+  "screen": {
+    "login": {
+      "welcome": "خوش آمدید",
+      "please_login": "لطفا نام کاربری و رمز عبور خود را وارد نمایید",
+      "user_text_field_hint": "نام کاربری",
+      "pass_text_field_hint": "رمز عبور",
+      "forget_pass": "رمز عبور را فراموش کردم",
+      "buttons": {
+        "login": "ورود"
+      }
+    },
+    "home": {}
+  },
+  "buttons": {
+    "sign_in": "ورود",
+    "logout": "خروج",
+    "sign_in_fb": "ورود با اکانت فیسبوک",
+    "sign_in_google": "ورود با اکانت گوگل",
+    "sign_in_apple": "ورود با اکانت اپل"
+  }
+}

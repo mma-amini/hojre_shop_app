@@ -1,9 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +14,18 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  updateLocale() {
+    var locale = Get.locale;
+
+    print(locale);
+
+    if (locale.toString() == "fa_IR") {
+      Get.updateLocale(Locale('en', 'US'));
+    } else {
+      Get.updateLocale(Locale('fa', 'IR'));
+    }
+
+    update();
+  }
 }

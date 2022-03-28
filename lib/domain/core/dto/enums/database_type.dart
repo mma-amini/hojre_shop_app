@@ -1,0 +1,4 @@
+enum DataBaseType {
+  HIVE,
+  SQLITE,
+}

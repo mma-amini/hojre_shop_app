@@ -1,0 +1,25 @@
+{
+  "app": {
+    "name": "Hojre store management software"
+  },
+  "screen": {
+    "login": {
+      "welcome": "Welcome",
+      "please_login": "Please enter your username and password",
+      "user_text_field_hint": "User Name",
+      "pass_text_field_hint": "Password",
+      "forget_pass": "I forgot my password",
+      "buttons": {
+        "login": "Login"
+      }
+    },
+    "home": {}
+  },
+  "buttons": {
+    "sign_in": "Sign-in",
+    "logout": "Logout",
+    "sign_in_fb": "Sign-in with Facebook",
+    "sign_in_google": "Sign-in with Google",
+    "sign_in_apple": "Sign-in with Apple"
+  }
+}

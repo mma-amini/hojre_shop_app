@@ -11,7 +11,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.4
   get: ^4.6.1
   json_annotation: ^4.4.0
   equatable: ^2.0.3
@@ -29,23 +29,37 @@ dependencies:
   cached_network_image: ^3.2.0
   pull_to_refresh: ^2.0.0
   flutter_spinkit: ^5.1.0
-  share_plus: ^3.0.5
+  share_plus: ^3.1.0
   flutter_rating_bar: ^4.0.0
   focus_detector: ^2.0.1
   freezed_annotation: ^1.1.0
   flutter_breadcrumb: ^1.0.1
+  flutter_launcher_icons: ^0.9.2
+  hive: ^2.0.5
+  hive_flutter: ^1.1.0
+  path_provider: ^2.0.8
+  path: ^1.8.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   
-  flutter_lints: ^1.0.0
+  flutter_lints: ^1.0.4
   mockito: ^5.1.0
   build_runner: ^2.1.7
   freezed: ^1.1.1
   json_serializable: ^6.1.4
   connectivity_plus_platform_interface: ^1.2.0
   plugin_platform_interface: ^2.1.2
+  hive_generator: ^1.1.1
+
+flutter_icons:
+  macos: true
+  windows: true
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/media/images/hojre_shop_management_logo.png"
 
 flutter:
   uses-material-design: true
