@@ -6,8 +6,9 @@ part of 'response_dto_use_case.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ResponseDtoUseCase _$ResponseDtoUseCaseFromJson(Map<String, dynamic> json) =>
-    ResponseDtoUseCase(
+_$_ResponseDtoUseCase _$$_ResponseDtoUseCaseFromJson(
+        Map<String, dynamic> json) =>
+    _$_ResponseDtoUseCase(
       StatusCode: json['StatusCode'] as int?,
       Message: json['Message'] == null
           ? null
@@ -15,7 +16,8 @@ ResponseDtoUseCase _$ResponseDtoUseCaseFromJson(Map<String, dynamic> json) =>
       Content: json['Content'],
     );
 
-Map<String, dynamic> _$ResponseDtoUseCaseToJson(ResponseDtoUseCase instance) =>
+Map<String, dynamic> _$$_ResponseDtoUseCaseToJson(
+        _$_ResponseDtoUseCase instance) =>
     <String, dynamic>{
       'StatusCode': instance.StatusCode,
       'Message': instance.Message,

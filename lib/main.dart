@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:hojre_shop_app/injection_container.dart';
 
 import 'generated/locales.g.dart';
 import 'infrastructure/navigation/navigation.dart';
 import 'infrastructure/navigation/routes.dart';
 
 void main() async {
+  await init();
   var initialRoute = await Routes.initialRoute;
   runApp(Main(initialRoute));
 }

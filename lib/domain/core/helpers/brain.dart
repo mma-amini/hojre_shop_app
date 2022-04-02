@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-
-import '../../../infrastructure/dal/services/database/storage_service.dart';
-import '../dto/models/token_model.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/token_model.dart';
+import 'package:hojre_shop_app/infrastructure/dal/services/database/storage_service.dart';
 
 class Brain {
   static String _baseDomain = "";

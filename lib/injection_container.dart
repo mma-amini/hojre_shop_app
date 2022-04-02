@@ -1,6 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_check_user_use_case.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_login_use_case.dart';
+import 'package:hojre_shop_app/domain/core/use_cases/check_user_use_case.dart';
+import 'package:hojre_shop_app/domain/core/use_cases/login_use_case.dart';
 
 import 'domain/core/dto/enums/database_type.dart';
 import 'domain/core/helpers/base_dio.dart';
@@ -27,12 +31,26 @@ Future<void> init() async {
   Brain.dio = BaseDio().dio;
 
   // Use cases
+  sl.registerLazySingleton(() => CheckUserUseCase(repository: sl()));
+  sl.registerLazySingleton(() => LoginUseCase(repository: sl()));
   sl.registerLazySingleton(() => RefreshTokenUseCase(repository: sl()));
 
   // Repository
   sl.registerLazySingleton<Repository>(
     () => RepositoryImpl(
       baseRemoteDataSource: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<ICheckUserUseCase>(
+    () => CheckUserUseCase(
+      repository: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<ILoginUseCase>(
+    () => LoginUseCase(
+      repository: sl(),
     ),
   );
 

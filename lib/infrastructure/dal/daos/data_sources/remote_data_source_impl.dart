@@ -1,10 +1,15 @@
-import 'package:dio/dio.dart';
-import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
+import 'dart:convert';
 
-import '../../../../domain/core/dto/use_cases/responses/confirm_response_dto_use_case.dart';
-import '../../../../domain/core/dto/use_cases/responses/response_dto_use_case.dart';
-import '../../../../domain/core/helpers/log_helper.dart';
-import '../../../../domain/core/interfaces/repositories/remote_data_source.dart';
+import 'package:dio/dio.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/helpers/api.dart';
+import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
+import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/repositories/remote_data_source.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   headers() {
@@ -21,10 +26,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<ConfirmResponseDtoUseCase> refreshToken({required Dio dio}) async {
+  Future<LoginResponseDtoUseCase> refreshToken({required Dio dio}) async {
     var result = await dio
         .post(
-      "/identity/customer/refreshToken",
+      Api.REFRESH_TOKEN_API,
       options: Options(
         headers: headers(),
       ),
@@ -32,11 +37,62 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         .then((response) {
       LogHelper.printLog(data: "Refresh Token Response: $response");
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
-      ConfirmResponseDtoUseCase confirmResponseDtoUseCase = ConfirmResponseDtoUseCase.fromJson(apiResult.Content);
+      LoginResponseDtoUseCase confirmResponseDtoUseCase = LoginResponseDtoUseCase.fromJson(apiResult.Content);
       return confirmResponseDtoUseCase;
     }).catchError((error) {
       LogHelper.printLog(data: error);
-      return ConfirmResponseDtoUseCase();
+      return LoginResponseDtoUseCase();
+    });
+
+    return result;
+  }
+
+  @override
+  Future<CheckUserResponseDtoUseCase> checkUser(
+      {required CheckUserRequestDtoUseCase checkUserRequestDtoUseCase}) async {
+    var body = {"phoneNumber": checkUserRequestDtoUseCase.phoneNumber};
+    var jsonData = json.encode(body);
+
+    var result = await Brain.dio
+        .post(
+      Api.CHECK_USER_API,
+      data: jsonData,
+      options: Options(
+        headers: headers(),
+      ),
+    )
+        .then((response) {
+      var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      CheckUserResponseDtoUseCase checkUserResponseDtoUseCase = CheckUserResponseDtoUseCase.fromJson(apiResult.Content);
+      return checkUserResponseDtoUseCase;
+    }).catchError((error) {
+      LogHelper.printLog(data: error);
+      return CheckUserResponseDtoUseCase();
+    });
+
+    return result;
+  }
+
+  @override
+  Future<LoginResponseDtoUseCase> login({required LoginRequestDtoUseCase loginRequestDtoUseCase}) async {
+    var body = {"phoneNumber": loginRequestDtoUseCase.phoneNumber, "code": loginRequestDtoUseCase.Code};
+    var jsonData = json.encode(body);
+
+    var result = await Brain.dio
+        .post(
+      Api.LOGIN_API,
+      data: jsonData,
+      options: Options(
+        headers: headers(),
+      ),
+    )
+        .then((response) {
+      var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      LoginResponseDtoUseCase loginResponseDtoUseCase = LoginResponseDtoUseCase.fromJson(apiResult.Content);
+      return loginResponseDtoUseCase;
+    }).catchError((error) {
+      LogHelper.printLog(data: error);
+      return LoginResponseDtoUseCase();
     });
 
     return result;

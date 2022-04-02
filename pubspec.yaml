@@ -19,8 +19,8 @@ dependencies:
   dartz: ^0.10.1
   intl: ^0.17.0
   fluttericon: ^2.0.0
-  dio: ^4.0.4
-  synchronized: ^3.0.0
+  dio: ^4.0.5
+  synchronized: ^3.0.0+2
   get_it: ^7.2.0
   another_xlider: ^1.0.1+2
   carousel_slider: ^4.0.0
@@ -29,15 +29,15 @@ dependencies:
   cached_network_image: ^3.2.0
   pull_to_refresh: ^2.0.0
   flutter_spinkit: ^5.1.0
-  share_plus: ^3.1.0
+  share_plus: ^4.0.3
   flutter_rating_bar: ^4.0.0
   focus_detector: ^2.0.1
   freezed_annotation: ^1.1.0
   flutter_breadcrumb: ^1.0.1
   flutter_launcher_icons: ^0.9.2
-  hive: ^2.0.5
+  hive: ^2.1.0
   hive_flutter: ^1.1.0
-  path_provider: ^2.0.8
+  path_provider: ^2.0.9
   path: ^1.8.0
 
 dev_dependencies:
@@ -46,13 +46,14 @@ dev_dependencies:
   
   flutter_lints: ^1.0.4
   mockito: ^5.1.0
-  build_runner: ^2.1.7
+  build_runner: ^2.1.8
   freezed: ^1.1.1
-  json_serializable: ^6.1.4
+  json_serializable: ^6.1.5
   connectivity_plus_platform_interface: ^1.2.0
   plugin_platform_interface: ^2.1.2
-  hive_generator: ^1.1.1
-
+  hive_generator: ^1.1.2
+  
+#  flutter pub run flutter_launcher_icons:main
 flutter_icons:
   macos: true
   windows: true

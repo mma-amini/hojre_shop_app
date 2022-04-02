@@ -10,7 +10,8 @@
       "pass_text_field_hint": "Password",
       "forget_pass": "I forgot my password",
       "buttons": {
-        "login": "Login"
+        "login": "Login",
+        "check_user": "Check User"
       }
     },
     "home": {}

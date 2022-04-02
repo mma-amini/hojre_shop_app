@@ -97,13 +97,10 @@ class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
 
             var result = await RemoteDataSourceImpl().refreshToken(dio: _dio);
 
-            if (result.Token != null &&
-                result.Token!.AccessToken != null &&
-                (result.Token!.AccessToken ?? "").isNotEmpty) {
-              var newToken = result.Token;
+            if (result.AccessToken != null && (result.AccessToken ?? "").isNotEmpty) {
+              var newToken = result;
 
-              int expiresOn =
-                  new DateTime.now().add(Duration(seconds: newToken!.ExpiresIn ?? 0)).millisecondsSinceEpoch;
+              int expiresOn = new DateTime.now().add(Duration(seconds: newToken.ExpiresIn ?? 0)).millisecondsSinceEpoch;
 
               VMToken token = VMToken(
                 AccessToken: newToken.AccessToken,
