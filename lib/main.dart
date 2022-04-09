@@ -2,14 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/account_model.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/token_model.dart';
+import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:hojre_shop_app/injection_container.dart';
 
 import 'generated/locales.g.dart';
+import 'infrastructure/dal/daos/data_sources/local_data_source_impl.dart';
 import 'infrastructure/navigation/navigation.dart';
 import 'infrastructure/navigation/routes.dart';
 
 void main() async {
   await init();
+  await LocalDataSourceImpl.getAccount().then((value) {
+    Brain.account = value ?? VMAccount();
+  });
+  await LocalDataSourceImpl.getToken().then((value) {
+    Brain.token = value ?? VMToken();
+  });
   var initialRoute = await Routes.initialRoute;
   runApp(Main(initialRoute));
 }

@@ -72,7 +72,6 @@ class ShowMessage {
                                 style: TextStyle(
                                   color: textColor,
                                   fontFamily: "Vazir Reg",
-                                  package: "package_base",
                                 ),
                               ),
                               SizedBox(
@@ -86,7 +85,6 @@ class ShowMessage {
                           style: TextStyle(
                             color: textColor,
                             fontFamily: "Vazir Reg",
-                            package: "package_base",
                             fontSize: 13.0,
                           ),
                         ),

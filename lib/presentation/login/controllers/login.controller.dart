@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/account_model.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/token_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
+import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_check_user_use_case.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_login_use_case.dart';
+import 'package:hojre_shop_app/infrastructure/dal/daos/data_sources/local_data_source_impl.dart';
+import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 
 class LoginController extends GetxController {
   final isLoading = false.obs, isLogin = false.obs;
@@ -85,6 +89,25 @@ class LoginController extends GetxController {
     updateLoading(isLoading: false);
     var data = result.getOrElse(() => LoginResponseDtoUseCase());
 
-    LogHelper.printLog(data: data);
+    VMAccount account = VMAccount(
+      UserID: data.UserID,
+      FirstName: data.FirstName,
+      LastName: data.LastName,
+      Username: data.Username,
+    );
+
+    VMToken token = VMToken(
+      TokenType: data.TokenType,
+      AccessToken: data.AccessToken,
+      RefreshToken: data.RefreshToken,
+      ExpiresIn: data.ExpiresIn,
+    );
+
+    await LocalDataSourceImpl.saveAccount(account);
+    await LocalDataSourceImpl.saveToken(token);
+
+    if ((Brain.account.UserID ?? "").isNotEmpty && (Brain.token.AccessToken ?? "").isNotEmpty) {
+      Get.offAllNamed(Routes.HOME);
+    }
   }
 }

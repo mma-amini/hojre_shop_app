@@ -1,10 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/account_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/token_model.dart';
+import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
+import 'package:hojre_shop_app/infrastructure/dal/daos/data_sources/local_data_source_impl.dart';
 import 'package:hojre_shop_app/infrastructure/dal/services/database/storage_service.dart';
+import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 
 class Brain {
   static String _baseDomain = "";
   static VMToken _token = VMToken();
+  static VMAccount _account = VMAccount();
   static String _cityID = "";
   static String _addressID = "";
   static String _appVersion = "";
@@ -93,5 +99,25 @@ class Brain {
 
   static set dio(Dio value) {
     _dio = value;
+  }
+
+  static VMAccount get account => _account;
+
+  static set account(VMAccount value) {
+    _account = value;
+  }
+
+  static checkUser() {
+    if ((Brain.account.UserID ?? "").isNotEmpty && (Brain.token.AccessToken ?? "").isNotEmpty) {
+      return true;
+    }
+    return false;
+  }
+
+  static logout() async {
+    await LocalDataSourceImpl.deleteAccount();
+    await LocalDataSourceImpl.deleteToken();
+    ShowMessage.snackBar(message: "از حساب کاربری خارج شدید", context: Get.context!);
+    Get.offAllNamed(Routes.LOGIN);
   }
 }

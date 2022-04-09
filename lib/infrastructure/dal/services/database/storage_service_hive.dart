@@ -23,7 +23,7 @@ class VMDatabase extends HiveObject {
 }
 
 class StorageServiceHive extends StorageService {
-  static var dbBoxName = "alphaBox";
+  static var dbBoxName = "hojerShopBox";
 
   @override
   Future insert({required Map<dynamic, dynamic> data, required StorageServiceTables storageServiceTables}) async {

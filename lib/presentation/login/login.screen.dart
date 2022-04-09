@@ -100,6 +100,21 @@ class LoginScreen extends GetView<LoginController> {
                                 ),
                                 Visibility(
                                   visible: controller.isLogin.value,
+                                  child: Text(
+                                    'screen_login_enter_sms_code'.tr,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: controller.isLogin.value,
+                                  child: const SizedBox(
+                                    height: 16.0,
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: controller.isLogin.value,
                                   child: TextField(
                                     controller: controller.passwordTextController,
                                     textAlign: TextAlign.center,

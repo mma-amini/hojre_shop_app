@@ -1,14 +1,17 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/message_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/helpers/api.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
+import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/repositories/remote_data_source.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -23,6 +26,14 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var checkToken = (Brain.token.AccessToken ?? "").isNotEmpty;
 
     return checkToken ? Brain.token.RefreshToken : "";
+  }
+
+  checkMessage({MessageDtoUseCase? messageDtoUseCase}) {
+    if (messageDtoUseCase != null) {
+      if ((messageDtoUseCase.Text ?? "").isNotEmpty) {
+        ShowMessage.snackBar(message: messageDtoUseCase.Text!, context: Get.context!);
+      }
+    }
   }
 
   @override
@@ -63,6 +74,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     )
         .then((response) {
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      checkMessage(messageDtoUseCase: apiResult.Message);
       CheckUserResponseDtoUseCase checkUserResponseDtoUseCase = CheckUserResponseDtoUseCase.fromJson(apiResult.Content);
       return checkUserResponseDtoUseCase;
     }).catchError((error) {
@@ -75,7 +87,13 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<LoginResponseDtoUseCase> login({required LoginRequestDtoUseCase loginRequestDtoUseCase}) async {
-    var body = {"phoneNumber": loginRequestDtoUseCase.phoneNumber, "code": loginRequestDtoUseCase.Code};
+    var body = {
+      "username": loginRequestDtoUseCase.phoneNumber,
+      "password": loginRequestDtoUseCase.Code,
+      "grant_type": "password",
+      "client_id": 2,
+      "client_secret": "6xIllgWHhFimZXKGBvRdGNJNqbKJAz9HwSQMjj0q",
+    };
     var jsonData = json.encode(body);
 
     var result = await Brain.dio
@@ -88,6 +106,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     )
         .then((response) {
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      checkMessage(messageDtoUseCase: apiResult.Message);
       LoginResponseDtoUseCase loginResponseDtoUseCase = LoginResponseDtoUseCase.fromJson(apiResult.Content);
       return loginResponseDtoUseCase;
     }).catchError((error) {

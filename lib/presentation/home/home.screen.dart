@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 
 import 'controllers/home.controller.dart';
 
@@ -14,11 +15,12 @@ class HomeScreen extends GetView<HomeController> {
       body: Center(
         child: InkWell(
           onTap: () {
-            controller.updateLocale();
+            // controller.updateLocale();
+            Brain.logout();
           },
           child: Container(
             padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
-            child: Text('buttons_login'.tr),
+            child: Text('buttons_logout'.tr),
           ),
         ),
       ),
