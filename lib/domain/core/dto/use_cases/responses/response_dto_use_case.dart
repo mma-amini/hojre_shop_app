@@ -10,7 +10,7 @@ class ResponseDtoUseCase with _$ResponseDtoUseCase {
   factory ResponseDtoUseCase({
     int? StatusCode,
     MessageDtoUseCase? Message,
-    dynamic Content,
+    dynamic? Content,
   }) = _ResponseDtoUseCase;
 
   factory ResponseDtoUseCase.fromJson(Map<String, dynamic> json) => _$ResponseDtoUseCaseFromJson(json);

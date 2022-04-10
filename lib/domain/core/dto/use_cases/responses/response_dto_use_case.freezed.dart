@@ -23,7 +23,7 @@ class _$ResponseDtoUseCaseTearOff {
   const _$ResponseDtoUseCaseTearOff();
 
   _ResponseDtoUseCase call(
-      {int? StatusCode, MessageDtoUseCase? Message, dynamic Content}) {
+      {int? StatusCode, MessageDtoUseCase? Message, dynamic? Content}) {
     return _ResponseDtoUseCase(
       StatusCode: StatusCode,
       Message: Message,
@@ -43,7 +43,7 @@ const $ResponseDtoUseCase = _$ResponseDtoUseCaseTearOff();
 mixin _$ResponseDtoUseCase {
   int? get StatusCode => throw _privateConstructorUsedError;
   MessageDtoUseCase? get Message => throw _privateConstructorUsedError;
-  dynamic get Content => throw _privateConstructorUsedError;
+  dynamic? get Content => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +56,7 @@ abstract class $ResponseDtoUseCaseCopyWith<$Res> {
   factory $ResponseDtoUseCaseCopyWith(
           ResponseDtoUseCase value, $Res Function(ResponseDtoUseCase) then) =
       _$ResponseDtoUseCaseCopyWithImpl<$Res>;
-  $Res call({int? StatusCode, MessageDtoUseCase? Message, dynamic Content});
+  $Res call({int? StatusCode, MessageDtoUseCase? Message, dynamic? Content});
 
   $MessageDtoUseCaseCopyWith<$Res>? get Message;
 }
@@ -88,7 +88,7 @@ class _$ResponseDtoUseCaseCopyWithImpl<$Res>
       Content: Content == freezed
           ? _value.Content
           : Content // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as dynamic?,
     ));
   }
 
@@ -111,7 +111,7 @@ abstract class _$ResponseDtoUseCaseCopyWith<$Res>
           _ResponseDtoUseCase value, $Res Function(_ResponseDtoUseCase) then) =
       __$ResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
-  $Res call({int? StatusCode, MessageDtoUseCase? Message, dynamic Content});
+  $Res call({int? StatusCode, MessageDtoUseCase? Message, dynamic? Content});
 
   @override
   $MessageDtoUseCaseCopyWith<$Res>? get Message;
@@ -146,7 +146,7 @@ class __$ResponseDtoUseCaseCopyWithImpl<$Res>
       Content: Content == freezed
           ? _value.Content
           : Content // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as dynamic?,
     ));
   }
 }
@@ -164,7 +164,7 @@ class _$_ResponseDtoUseCase implements _ResponseDtoUseCase {
   @override
   final MessageDtoUseCase? Message;
   @override
-  final dynamic Content;
+  final dynamic? Content;
 
   @override
   String toString() {
@@ -204,7 +204,7 @@ abstract class _ResponseDtoUseCase implements ResponseDtoUseCase {
   factory _ResponseDtoUseCase(
       {int? StatusCode,
       MessageDtoUseCase? Message,
-      dynamic Content}) = _$_ResponseDtoUseCase;
+      dynamic? Content}) = _$_ResponseDtoUseCase;
 
   factory _ResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_ResponseDtoUseCase.fromJson;
@@ -214,7 +214,7 @@ abstract class _ResponseDtoUseCase implements ResponseDtoUseCase {
   @override
   MessageDtoUseCase? get Message;
   @override
-  dynamic get Content;
+  dynamic? get Content;
   @override
   @JsonKey(ignore: true)
   _$ResponseDtoUseCaseCopyWith<_ResponseDtoUseCase> get copyWith =>
