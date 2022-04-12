@@ -15,7 +15,12 @@
         "check_user": "Check User"
       }
     },
-    "home": {}
+    "home": {
+      "products_management": "Products Management",
+      "financial_management": "Financial Management",
+      "shop_management": "Shop Management",
+      "orders_management": "Orders Management"
+    }
   },
   "buttons": {
     "logout": "Logout"

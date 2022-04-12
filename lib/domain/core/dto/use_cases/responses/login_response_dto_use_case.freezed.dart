@@ -28,6 +28,8 @@ class _$LoginResponseDtoUseCaseTearOff {
       String? Username,
       String? FirstName,
       String? LastName,
+      String? ShopID,
+      String? ShopName,
       String? AccessToken,
       String? RefreshToken,
       String? TokenType,
@@ -37,6 +39,8 @@ class _$LoginResponseDtoUseCaseTearOff {
       Username: Username,
       FirstName: FirstName,
       LastName: LastName,
+      ShopID: ShopID,
+      ShopName: ShopName,
       AccessToken: AccessToken,
       RefreshToken: RefreshToken,
       TokenType: TokenType,
@@ -58,6 +62,8 @@ mixin _$LoginResponseDtoUseCase {
   String? get Username => throw _privateConstructorUsedError;
   String? get FirstName => throw _privateConstructorUsedError;
   String? get LastName => throw _privateConstructorUsedError;
+  String? get ShopID => throw _privateConstructorUsedError;
+  String? get ShopName => throw _privateConstructorUsedError;
   String? get AccessToken => throw _privateConstructorUsedError;
   String? get RefreshToken => throw _privateConstructorUsedError;
   String? get TokenType => throw _privateConstructorUsedError;
@@ -79,6 +85,8 @@ abstract class $LoginResponseDtoUseCaseCopyWith<$Res> {
       String? Username,
       String? FirstName,
       String? LastName,
+      String? ShopID,
+      String? ShopName,
       String? AccessToken,
       String? RefreshToken,
       String? TokenType,
@@ -100,6 +108,8 @@ class _$LoginResponseDtoUseCaseCopyWithImpl<$Res>
     Object? Username = freezed,
     Object? FirstName = freezed,
     Object? LastName = freezed,
+    Object? ShopID = freezed,
+    Object? ShopName = freezed,
     Object? AccessToken = freezed,
     Object? RefreshToken = freezed,
     Object? TokenType = freezed,
@@ -121,6 +131,14 @@ class _$LoginResponseDtoUseCaseCopyWithImpl<$Res>
       LastName: LastName == freezed
           ? _value.LastName
           : LastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ShopID: ShopID == freezed
+          ? _value.ShopID
+          : ShopID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ShopName: ShopName == freezed
+          ? _value.ShopName
+          : ShopName // ignore: cast_nullable_to_non_nullable
               as String?,
       AccessToken: AccessToken == freezed
           ? _value.AccessToken
@@ -154,6 +172,8 @@ abstract class _$LoginResponseDtoUseCaseCopyWith<$Res>
       String? Username,
       String? FirstName,
       String? LastName,
+      String? ShopID,
+      String? ShopName,
       String? AccessToken,
       String? RefreshToken,
       String? TokenType,
@@ -178,6 +198,8 @@ class __$LoginResponseDtoUseCaseCopyWithImpl<$Res>
     Object? Username = freezed,
     Object? FirstName = freezed,
     Object? LastName = freezed,
+    Object? ShopID = freezed,
+    Object? ShopName = freezed,
     Object? AccessToken = freezed,
     Object? RefreshToken = freezed,
     Object? TokenType = freezed,
@@ -199,6 +221,14 @@ class __$LoginResponseDtoUseCaseCopyWithImpl<$Res>
       LastName: LastName == freezed
           ? _value.LastName
           : LastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ShopID: ShopID == freezed
+          ? _value.ShopID
+          : ShopID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ShopName: ShopName == freezed
+          ? _value.ShopName
+          : ShopName // ignore: cast_nullable_to_non_nullable
               as String?,
       AccessToken: AccessToken == freezed
           ? _value.AccessToken
@@ -228,6 +258,8 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
       this.Username,
       this.FirstName,
       this.LastName,
+      this.ShopID,
+      this.ShopName,
       this.AccessToken,
       this.RefreshToken,
       this.TokenType,
@@ -245,6 +277,10 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
   @override
   final String? LastName;
   @override
+  final String? ShopID;
+  @override
+  final String? ShopName;
+  @override
   final String? AccessToken;
   @override
   final String? RefreshToken;
@@ -255,7 +291,7 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
 
   @override
   String toString() {
-    return 'LoginResponseDtoUseCase(UserID: $UserID, Username: $Username, FirstName: $FirstName, LastName: $LastName, AccessToken: $AccessToken, RefreshToken: $RefreshToken, TokenType: $TokenType, ExpiresIn: $ExpiresIn)';
+    return 'LoginResponseDtoUseCase(UserID: $UserID, Username: $Username, FirstName: $FirstName, LastName: $LastName, ShopID: $ShopID, ShopName: $ShopName, AccessToken: $AccessToken, RefreshToken: $RefreshToken, TokenType: $TokenType, ExpiresIn: $ExpiresIn)';
   }
 
   @override
@@ -267,6 +303,8 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
             const DeepCollectionEquality().equals(other.Username, Username) &&
             const DeepCollectionEquality().equals(other.FirstName, FirstName) &&
             const DeepCollectionEquality().equals(other.LastName, LastName) &&
+            const DeepCollectionEquality().equals(other.ShopID, ShopID) &&
+            const DeepCollectionEquality().equals(other.ShopName, ShopName) &&
             const DeepCollectionEquality()
                 .equals(other.AccessToken, AccessToken) &&
             const DeepCollectionEquality()
@@ -282,6 +320,8 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
       const DeepCollectionEquality().hash(Username),
       const DeepCollectionEquality().hash(FirstName),
       const DeepCollectionEquality().hash(LastName),
+      const DeepCollectionEquality().hash(ShopID),
+      const DeepCollectionEquality().hash(ShopName),
       const DeepCollectionEquality().hash(AccessToken),
       const DeepCollectionEquality().hash(RefreshToken),
       const DeepCollectionEquality().hash(TokenType),
@@ -305,6 +345,8 @@ abstract class _LoginResponseDtoUseCase implements LoginResponseDtoUseCase {
       String? Username,
       String? FirstName,
       String? LastName,
+      String? ShopID,
+      String? ShopName,
       String? AccessToken,
       String? RefreshToken,
       String? TokenType,
@@ -321,6 +363,10 @@ abstract class _LoginResponseDtoUseCase implements LoginResponseDtoUseCase {
   String? get FirstName;
   @override
   String? get LastName;
+  @override
+  String? get ShopID;
+  @override
+  String? get ShopName;
   @override
   String? get AccessToken;
   @override

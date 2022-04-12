@@ -10,6 +10,8 @@ class LoginResponseDtoUseCase with _$LoginResponseDtoUseCase {
     String? Username,
     String? FirstName,
     String? LastName,
+    String? ShopID,
+    String? ShopName,
     String? AccessToken,
     String? RefreshToken,
     String? TokenType,

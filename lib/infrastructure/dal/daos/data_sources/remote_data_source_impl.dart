@@ -31,7 +31,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   checkMessage({MessageDtoUseCase? messageDtoUseCase}) {
     if (messageDtoUseCase != null) {
       if ((messageDtoUseCase.Text ?? "").isNotEmpty) {
-        ShowMessage.snackBar(message: messageDtoUseCase.Text!, context: Get.context!);
+        ShowMessage.GetSnackBar(message: messageDtoUseCase.Text!, context: Get.context!);
       }
     }
   }
@@ -92,7 +92,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       "password": loginRequestDtoUseCase.Code,
       "grant_type": "password",
       "client_id": 2,
-      "client_secret": "6xIllgWHhFimZXKGBvRdGNJNqbKJAz9HwSQMjj0q",
+      "client_secret": "YyRU0j4oJWx9zlPTTwvJsS7WqZnVyZGrfK91ADrh",
     };
     var jsonData = json.encode(body);
 

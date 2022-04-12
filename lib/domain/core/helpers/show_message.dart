@@ -1,8 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../dto/enums/message_type.dart';
 
 class ShowMessage {
+  static GetSnackBar({
+    String? title,
+    required String message,
+    required BuildContext context,
+    MessageType type = MessageType.WARNING,
+    Color textColor = Colors.white,
+    Color backgroundColor = Colors.black,
+    SnackPosition? snackPosition = SnackPosition.TOP,
+  }) {
+    late Icon icon;
+    late Color leftBarIndicatorColor;
+    switch (type) {
+      case MessageType.WARNING:
+        icon = Icon(Icons.info_outline, color: Colors.yellow);
+        leftBarIndicatorColor = Colors.yellow;
+        break;
+      case MessageType.ERROR:
+        icon = Icon(Icons.error_outline, color: Colors.red);
+        leftBarIndicatorColor = Colors.red;
+        break;
+      case MessageType.SUCCESS:
+        icon = Icon(Icons.check_circle_outline, color: Colors.green);
+        leftBarIndicatorColor = Colors.green;
+        break;
+    }
+
+    Get.snackbar(
+      title ?? "",
+      message,
+      titleText: Container(),
+      colorText: Colors.white,
+      backgroundColor: Colors.black.withOpacity(0.7),
+      leftBarIndicatorColor: leftBarIndicatorColor,
+      margin: EdgeInsets.all(8.0),
+      borderRadius: 0,
+      barBlur: 2,
+      snackPosition: snackPosition,
+    );
+  }
+
   static snackBar(
       {String? title,
       required String message,

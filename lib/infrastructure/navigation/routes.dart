@@ -8,4 +8,5 @@ class Routes {
 
   static const HOME = '/home';
   static const LOGIN = '/login';
+  static const PRODUCT_MANAGER = '/product-manager';
 }

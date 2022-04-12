@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:hojre_shop_app/generated/locales.g.dart';
 
 import 'controllers/login.controller.dart';
 
@@ -40,7 +41,7 @@ class LoginScreen extends GetView<LoginController> {
                             height: 8.0,
                           ),
                           Text(
-                            'screen_login_welcome'.tr,
+                            LocaleKeys.screen_login_welcome.tr,
                             style: const TextStyle(
                               fontFamily: 'Vazir Med',
                               fontSize: 24.0,
@@ -51,7 +52,7 @@ class LoginScreen extends GetView<LoginController> {
                             height: 8.0,
                           ),
                           Text(
-                            'screen_login_please_login'.tr,
+                            LocaleKeys.screen_login_please_login.tr,
                             style: const TextStyle(
                               color: Colors.white,
                             ),
@@ -85,7 +86,7 @@ class LoginScreen extends GetView<LoginController> {
                                       borderRadius: BorderRadius.circular(100.0),
                                     ),
                                     label: Text(
-                                      'screen_login_user_text_field_hint'.tr,
+                                      LocaleKeys.screen_login_user_text_field_hint.tr,
                                       style: const TextStyle(
                                         color: Colors.white,
                                       ),
@@ -101,7 +102,7 @@ class LoginScreen extends GetView<LoginController> {
                                 Visibility(
                                   visible: controller.isLogin.value,
                                   child: Text(
-                                    'screen_login_enter_sms_code'.tr,
+                                    LocaleKeys.screen_login_enter_sms_code.tr,
                                     style: const TextStyle(
                                       color: Colors.white,
                                     ),
@@ -135,7 +136,7 @@ class LoginScreen extends GetView<LoginController> {
                                         borderRadius: BorderRadius.circular(100.0),
                                       ),
                                       label: Text(
-                                        'screen_login_pass_text_field_hint'.tr,
+                                        LocaleKeys.screen_login_pass_text_field_hint.tr,
                                         style: const TextStyle(
                                           color: Colors.white,
                                         ),
@@ -171,8 +172,8 @@ class LoginScreen extends GetView<LoginController> {
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
                                             controller.isLogin.value
-                                                ? 'screen_login_buttons_login'.tr
-                                                : 'screen_login_buttons_check_user'.tr,
+                                                ? LocaleKeys.screen_login_buttons_login.tr
+                                                : LocaleKeys.screen_login_buttons_check_user.tr,
                                             style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 18.0,
@@ -187,7 +188,7 @@ class LoginScreen extends GetView<LoginController> {
                                   height: 16.0,
                                 ),
                                 SelectableText(
-                                  'screen_login_forget_pass'.tr,
+                                  LocaleKeys.screen_login_forget_pass.tr,
                                   style: const TextStyle(
                                     color: Colors.white,
                                   ),

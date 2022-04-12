@@ -15,7 +15,12 @@
         "check_user": "بررسی کاربر"
       }
     },
-    "home": {}
+    "home": {
+      "products_management": "مدیریت کالاها",
+      "financial_management": "مدیریت مالی",
+      "shop_management": "مدیریت فروشگاه",
+      "orders_management": "مدیریت سفارش ها"
+    }
   },
   "buttons": {
     "logout": "خروج"

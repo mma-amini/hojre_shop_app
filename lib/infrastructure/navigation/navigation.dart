@@ -36,5 +36,10 @@ class Nav {
       page: () => LoginScreen(),
       binding: LoginControllerBinding(),
     ),
+    GetPage(
+      name: Routes.PRODUCT_MANAGER,
+      page: () => ProductManagerScreen(),
+      binding: ProductManagerControllerBinding(),
+    ),
   ];
 }

@@ -23,6 +23,12 @@ class LocaleKeys {
   static const screen_login_buttons_login = 'screen_login_buttons_login';
   static const screen_login_buttons_check_user =
       'screen_login_buttons_check_user';
+  static const screen_home_products_management =
+      'screen_home_products_management';
+  static const screen_home_financial_management =
+      'screen_home_financial_management';
+  static const screen_home_shop_management = 'screen_home_shop_management';
+  static const screen_home_orders_management = 'screen_home_orders_management';
   static const buttons_logout = 'buttons_logout';
 }
 
@@ -37,6 +43,10 @@ class Locales {
     'screen_login_enter_sms_code': 'Enter the SMS code',
     'screen_login_buttons_login': 'Login',
     'screen_login_buttons_check_user': 'Check User',
+    'screen_home_products_management': 'Products Management',
+    'screen_home_financial_management': 'Financial Management',
+    'screen_home_shop_management': 'Shop Management',
+    'screen_home_orders_management': 'Orders Management',
     'buttons_logout': 'Logout',
   };
   static const fa_IR = {
@@ -50,6 +60,10 @@ class Locales {
     'screen_login_enter_sms_code': 'کد پیامک شده را وارد نمایید',
     'screen_login_buttons_login': 'ورود',
     'screen_login_buttons_check_user': 'بررسی کاربر',
+    'screen_home_products_management': 'مدیریت کالاها',
+    'screen_home_financial_management': 'مدیریت مالی',
+    'screen_home_shop_management': 'مدیریت فروشگاه',
+    'screen_home_orders_management': 'مدیریت سفارش ها',
     'buttons_logout': 'خروج',
   };
 }
