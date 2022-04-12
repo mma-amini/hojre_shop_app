@@ -16,10 +16,10 @@
       }
     },
     "home": {
-      "products_management": "Products Management",
-      "financial_management": "Financial Management",
-      "shop_management": "Shop Management",
-      "orders_management": "Orders Management"
+      "products_management": "Products",
+      "financial_management": "Financial",
+      "shop_management": "Shop",
+      "orders_management": "Orders"
     }
   },
   "buttons": {

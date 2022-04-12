@@ -92,7 +92,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       "password": loginRequestDtoUseCase.Code,
       "grant_type": "password",
       "client_id": 2,
-      "client_secret": "YyRU0j4oJWx9zlPTTwvJsS7WqZnVyZGrfK91ADrh",
+      "client_secret": "6xIllgWHhFimZXKGBvRdGNJNqbKJAz9HwSQMjj0q",
     };
     var jsonData = json.encode(body);
 

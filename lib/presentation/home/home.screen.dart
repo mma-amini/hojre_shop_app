@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:fluttericon/linecons_icons.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
@@ -217,7 +216,8 @@ class HomeScreen extends GetView<HomeController> {
                   ),
                   child: Center(
                     child: Wrap(
-                      runSpacing: 8,
+                      runSpacing: 16,
+                      spacing: 16,
                       children: [
                         InkWell(
                           borderRadius: BorderRadius.circular(12.0),
@@ -277,7 +277,7 @@ class HomeScreen extends GetView<HomeController> {
                             child: Column(
                               children: [
                                 Icon(
-                                  Linecons.shop,
+                                  FontAwesome5.store,
                                   size: 15.0,
                                 ),
                                 SizedBox(
@@ -301,7 +301,7 @@ class HomeScreen extends GetView<HomeController> {
                             child: Column(
                               children: [
                                 Icon(
-                                  Linecons.wallet,
+                                  FontAwesome5.wallet,
                                   size: 15.0,
                                 ),
                                 SizedBox(

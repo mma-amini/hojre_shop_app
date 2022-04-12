@@ -43,10 +43,10 @@ class Locales {
     'screen_login_enter_sms_code': 'Enter the SMS code',
     'screen_login_buttons_login': 'Login',
     'screen_login_buttons_check_user': 'Check User',
-    'screen_home_products_management': 'Products Management',
-    'screen_home_financial_management': 'Financial Management',
-    'screen_home_shop_management': 'Shop Management',
-    'screen_home_orders_management': 'Orders Management',
+    'screen_home_products_management': 'Products',
+    'screen_home_financial_management': 'Financial',
+    'screen_home_shop_management': 'Shop',
+    'screen_home_orders_management': 'Orders',
     'buttons_logout': 'Logout',
   };
   static const fa_IR = {
@@ -60,10 +60,10 @@ class Locales {
     'screen_login_enter_sms_code': 'کد پیامک شده را وارد نمایید',
     'screen_login_buttons_login': 'ورود',
     'screen_login_buttons_check_user': 'بررسی کاربر',
-    'screen_home_products_management': 'مدیریت کالاها',
-    'screen_home_financial_management': 'مدیریت مالی',
-    'screen_home_shop_management': 'مدیریت فروشگاه',
-    'screen_home_orders_management': 'مدیریت سفارش ها',
+    'screen_home_products_management': 'کالاها',
+    'screen_home_financial_management': 'امور مالی',
+    'screen_home_shop_management': 'فروشگاه',
+    'screen_home_orders_management': 'سفارش ها',
     'buttons_logout': 'خروج',
   };
 }

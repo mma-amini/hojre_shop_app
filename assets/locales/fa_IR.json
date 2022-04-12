@@ -16,10 +16,10 @@
       }
     },
     "home": {
-      "products_management": "مدیریت کالاها",
-      "financial_management": "مدیریت مالی",
-      "shop_management": "مدیریت فروشگاه",
-      "orders_management": "مدیریت سفارش ها"
+      "products_management": "کالاها",
+      "financial_management": "امور مالی",
+      "shop_management": "فروشگاه",
+      "orders_management": "سفارش ها"
     }
   },
   "buttons": {
