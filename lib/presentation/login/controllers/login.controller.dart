@@ -94,6 +94,8 @@ class LoginController extends GetxController {
       FirstName: data.FirstName,
       LastName: data.LastName,
       Username: data.Username,
+      ShopID: data.ShopID,
+      ShopName: data.ShopName,
     );
 
     VMToken token = VMToken(

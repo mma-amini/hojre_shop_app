@@ -2,8 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/src/dio.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/product_groups_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/product_groups_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/helpers/exceptions.dart';
 import 'package:hojre_shop_app/domain/core/helpers/failure.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/repositories/remote_data_source.dart';
@@ -42,6 +44,19 @@ class RepositoryImpl implements Repository {
       {required LoginRequestDtoUseCase loginRequestDtoUseCase}) async {
     try {
       var result = await baseRemoteDataSource.login(loginRequestDtoUseCase: loginRequestDtoUseCase);
+
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ProductGroupsResponseDtoUseCase>>>? productCategories(
+      {required ProductGroupsRequestDtoUseCase productGroupsRequestDtoUseCase}) async {
+    try {
+      var result =
+          await baseRemoteDataSource.productCategories(productGroupsRequestDtoUseCase: productGroupsRequestDtoUseCase);
 
       return Right(result);
     } on ServerException {

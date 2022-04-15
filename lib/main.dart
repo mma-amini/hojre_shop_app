@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/account_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/token_model.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
+import 'package:hojre_shop_app/domain/core/helpers/custom_scroll_behavior.dart';
 import 'package:hojre_shop_app/injection_container.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -87,6 +88,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      scrollBehavior: CustomScrollBehavior(),
       title: LocaleKeys.app_name.tr,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

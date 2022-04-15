@@ -28,6 +28,8 @@ class LocalDataSourceImpl {
           Username: value["Username"],
           FirstName: value["FirstName"],
           LastName: value["LastName"],
+          ShopID: value['ShopID'],
+          ShopName: value['ShopName'],
         );
       }
       return account;

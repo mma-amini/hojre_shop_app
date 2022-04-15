@@ -29,7 +29,10 @@ class LocaleKeys {
       'screen_home_financial_management';
   static const screen_home_shop_management = 'screen_home_shop_management';
   static const screen_home_orders_management = 'screen_home_orders_management';
+  static const screen_product_manager_page_title =
+      'screen_product_manager_page_title';
   static const buttons_logout = 'buttons_logout';
+  static const general_search = 'general_search';
 }
 
 class Locales {
@@ -47,7 +50,9 @@ class Locales {
     'screen_home_financial_management': 'Financial',
     'screen_home_shop_management': 'Shop',
     'screen_home_orders_management': 'Orders',
+    'screen_product_manager_page_title': 'Product Manager',
     'buttons_logout': 'Logout',
+    'general_search': 'Search',
   };
   static const fa_IR = {
     'app_name': 'نرم افزار مدیریت فروشگاه حجره',
@@ -64,6 +69,8 @@ class Locales {
     'screen_home_financial_management': 'امور مالی',
     'screen_home_shop_management': 'فروشگاه',
     'screen_home_orders_management': 'سفارش ها',
+    'screen_product_manager_page_title': 'مدیریت کالاها',
     'buttons_logout': 'خروج',
+    'general_search': 'جستجو',
   };
 }

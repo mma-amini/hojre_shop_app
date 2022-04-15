@@ -3,8 +3,10 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_check_user_use_case.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_login_use_case.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups_use_case.dart';
 import 'package:hojre_shop_app/domain/core/use_cases/check_user_use_case.dart';
 import 'package:hojre_shop_app/domain/core/use_cases/login_use_case.dart';
+import 'package:hojre_shop_app/domain/core/use_cases/product_group_use_case.dart';
 
 import 'domain/core/dto/enums/database_type.dart';
 import 'domain/core/helpers/base_dio.dart';
@@ -34,6 +36,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => CheckUserUseCase(repository: sl()));
   sl.registerLazySingleton(() => LoginUseCase(repository: sl()));
   sl.registerLazySingleton(() => RefreshTokenUseCase(repository: sl()));
+  sl.registerLazySingleton(() => ProductGroupsUseCase(repository: sl()));
 
   // Repository
   sl.registerLazySingleton<Repository>(
@@ -56,6 +59,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<IRefreshTokenUseCase>(
     () => RefreshTokenUseCase(
+      repository: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<IProductGroupsUseCase>(
+    () => ProductGroupsUseCase(
       repository: sl(),
     ),
   );

@@ -4,9 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/product_groups_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/message_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/product_groups_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/helpers/api.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
@@ -112,6 +114,43 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     }).catchError((error) {
       LogHelper.printLog(data: error);
       return LoginResponseDtoUseCase();
+    });
+
+    return result;
+  }
+
+  @override
+  Future<List<ProductGroupsResponseDtoUseCase>> productCategories(
+      {required ProductGroupsRequestDtoUseCase productGroupsRequestDtoUseCase}) async {
+    var body = {"shopId": productGroupsRequestDtoUseCase.ShopID};
+    var jsonData = json.encode(body);
+
+    var result = await Brain.dio
+        .post(
+      Api.PRODUCT_GROUPS_API,
+      data: jsonData,
+      options: Options(
+        headers: headers(),
+      ),
+    )
+        .then((response) {
+      var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      checkMessage(messageDtoUseCase: apiResult.Message);
+      List<dynamic> arrayData = apiResult.Content;
+
+      List<ProductGroupsResponseDtoUseCase> dataList = List<ProductGroupsResponseDtoUseCase>.empty(growable: true);
+
+      for (var json in arrayData) {
+        ProductGroupsResponseDtoUseCase productGroupsResponseDtoUseCase =
+            ProductGroupsResponseDtoUseCase.fromJson(json);
+
+        dataList.add(productGroupsResponseDtoUseCase);
+      }
+
+      return dataList;
+    }).catchError((error) {
+      LogHelper.printLog(data: error);
+      return [];
     });
 
     return result;

@@ -20,9 +20,15 @@
       "financial_management": "امور مالی",
       "shop_management": "فروشگاه",
       "orders_management": "سفارش ها"
+    },
+    "product_manager": {
+      "page_title": "مدیریت کالاها"
     }
   },
   "buttons": {
     "logout": "خروج"
+  },
+  "general":{
+    "search": "جستجو"
   }
 }

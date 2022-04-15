@@ -20,9 +20,15 @@
       "financial_management": "Financial",
       "shop_management": "Shop",
       "orders_management": "Orders"
+    },
+    "product_manager": {
+      "page_title": "Product Manager"
     }
   },
   "buttons": {
     "logout": "Logout"
+  },
+  "general":{
+    "search": "Search"
   }
 }
