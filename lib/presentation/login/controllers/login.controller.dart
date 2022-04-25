@@ -90,11 +90,11 @@ class LoginController extends GetxController {
     var data = result.getOrElse(() => LoginResponseDtoUseCase());
 
     VMAccount account = VMAccount(
-      UserID: data.UserID,
+      UserId: data.UserId,
       FirstName: data.FirstName,
       LastName: data.LastName,
       Username: data.Username,
-      ShopID: data.ShopID,
+      ShopId: data.ShopId,
       ShopName: data.ShopName,
     );
 
@@ -108,7 +108,7 @@ class LoginController extends GetxController {
     await LocalDataSourceImpl.saveAccount(account);
     await LocalDataSourceImpl.saveToken(token);
 
-    if ((Brain.account.UserID ?? "").isNotEmpty && (Brain.token.AccessToken ?? "").isNotEmpty) {
+    if ((Brain.account.UserId ?? "").isNotEmpty && (Brain.token.AccessToken ?? "").isNotEmpty) {
       Get.offAllNamed(Routes.HOME);
     }
   }

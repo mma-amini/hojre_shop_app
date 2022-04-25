@@ -32,7 +32,7 @@ class Brain {
   static String _deviceId = "";
 
   static checkUser() {
-    if ((Brain.account.UserID ?? "").isNotEmpty && (Brain.token.AccessToken ?? "").isNotEmpty) {
+    if ((Brain.account.UserId ?? "").isNotEmpty && (Brain.token.AccessToken ?? "").isNotEmpty) {
       return true;
     }
     return false;

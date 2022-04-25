@@ -24,11 +24,11 @@ class LocalDataSourceImpl {
     return await Brain.storageService.getByProperty(StorageServiceTables.TABLE_USER).then((value) {
       if (value != null) {
         account = VMAccount(
-          UserID: value["UserID"],
+          UserId: value["UserId"],
           Username: value["Username"],
           FirstName: value["FirstName"],
           LastName: value["LastName"],
-          ShopID: value['ShopID'],
+          ShopId: value['ShopId'],
           ShopName: value['ShopName'],
         );
       }

@@ -84,7 +84,7 @@ class HomeController extends GetxController {
     if (checkUser) {
       return FadeInImage(
         placeholder: AssetImage("assets/media/images/profile_icon.png"),
-        image: NetworkImage("${Brain.baseDomain}/profile/${Brain.account.UserID}.jpg"),
+        image: NetworkImage("${Brain.baseDomain}/profile/${Brain.account.UserId}.jpg"),
         height: 60,
         width: 60,
         fit: BoxFit.cover,
@@ -100,7 +100,7 @@ class HomeController extends GetxController {
   }
 
   setUserFullName() {
-    if (Brain.account != null && (Brain.account.UserID ?? "").isNotEmpty) {
+    if (Brain.account != null && (Brain.account.UserId ?? "").isNotEmpty) {
       return Brain.account.FirstName! + " " + Brain.account.LastName!;
     } else {
       return "یار";

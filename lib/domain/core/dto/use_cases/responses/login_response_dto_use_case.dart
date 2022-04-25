@@ -6,11 +6,11 @@ part 'login_response_dto_use_case.g.dart';
 @freezed
 class LoginResponseDtoUseCase with _$LoginResponseDtoUseCase {
   factory LoginResponseDtoUseCase({
-    String? UserID,
+    String? UserId,
     String? Username,
     String? FirstName,
     String? LastName,
-    String? ShopID,
+    String? ShopId,
     String? ShopName,
     String? AccessToken,
     String? RefreshToken,

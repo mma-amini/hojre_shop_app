@@ -9,11 +9,11 @@ part of 'login_response_dto_use_case.dart';
 _$_LoginResponseDtoUseCase _$$_LoginResponseDtoUseCaseFromJson(
         Map<String, dynamic> json) =>
     _$_LoginResponseDtoUseCase(
-      UserID: json['UserID'] as String?,
+      UserId: json['UserId'] as String?,
       Username: json['Username'] as String?,
       FirstName: json['FirstName'] as String?,
       LastName: json['LastName'] as String?,
-      ShopID: json['ShopID'] as String?,
+      ShopId: json['ShopId'] as String?,
       ShopName: json['ShopName'] as String?,
       AccessToken: json['AccessToken'] as String?,
       RefreshToken: json['RefreshToken'] as String?,
@@ -24,11 +24,11 @@ _$_LoginResponseDtoUseCase _$$_LoginResponseDtoUseCaseFromJson(
 Map<String, dynamic> _$$_LoginResponseDtoUseCaseToJson(
         _$_LoginResponseDtoUseCase instance) =>
     <String, dynamic>{
-      'UserID': instance.UserID,
+      'UserId': instance.UserId,
       'Username': instance.Username,
       'FirstName': instance.FirstName,
       'LastName': instance.LastName,
-      'ShopID': instance.ShopID,
+      'ShopId': instance.ShopId,
       'ShopName': instance.ShopName,
       'AccessToken': instance.AccessToken,
       'RefreshToken': instance.RefreshToken,

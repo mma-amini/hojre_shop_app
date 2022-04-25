@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
 class ProductGroupsRequestDtoUseCase extends Equatable {
-  final String ShopID;
+  final String ShopId;
 
-  const ProductGroupsRequestDtoUseCase({required this.ShopID});
+  const ProductGroupsRequestDtoUseCase({required this.ShopId});
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-        ShopID,
+        ShopId,
       ];
 }

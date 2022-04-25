@@ -5,12 +5,12 @@ part 'product_group_model.g.dart';
 
 @JsonSerializable()
 class VMProductGroup extends Equatable {
-  String? CategoryID;
-  String? ParentID;
+  String? CategoryId;
+  String? ParentId;
   String? CategoryName;
   String? Picture;
 
-  VMProductGroup({this.CategoryID, this.ParentID, this.CategoryName, this.Picture});
+  VMProductGroup({this.CategoryId, this.ParentId, this.CategoryName, this.Picture});
 
   factory VMProductGroup.fromJson(Map<String, dynamic> json) => _$VMProductGroupFromJson(json);
 

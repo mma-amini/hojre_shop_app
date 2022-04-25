@@ -7,19 +7,19 @@ part of 'account_model.dart';
 // **************************************************************************
 
 VMAccount _$VMAccountFromJson(Map<String, dynamic> json) => VMAccount(
-      UserID: json['UserID'] as String?,
+      UserId: json['UserId'] as String?,
       Username: json['Username'] as String?,
       FirstName: json['FirstName'] as String?,
       LastName: json['LastName'] as String?,
-      ShopID: json['ShopID'] as String?,
+      ShopId: json['ShopId'] as String?,
       ShopName: json['ShopName'] as String?,
     );
 
 Map<String, dynamic> _$VMAccountToJson(VMAccount instance) => <String, dynamic>{
-      'UserID': instance.UserID,
+      'UserId': instance.UserId,
       'Username': instance.Username,
       'FirstName': instance.FirstName,
       'LastName': instance.LastName,
-      'ShopID': instance.ShopID,
+      'ShopId': instance.ShopId,
       'ShopName': instance.ShopName,
     };

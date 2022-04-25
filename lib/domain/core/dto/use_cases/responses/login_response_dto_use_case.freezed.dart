@@ -24,22 +24,22 @@ class _$LoginResponseDtoUseCaseTearOff {
   const _$LoginResponseDtoUseCaseTearOff();
 
   _LoginResponseDtoUseCase call(
-      {String? UserID,
+      {String? UserId,
       String? Username,
       String? FirstName,
       String? LastName,
-      String? ShopID,
+      String? ShopId,
       String? ShopName,
       String? AccessToken,
       String? RefreshToken,
       String? TokenType,
       int? ExpiresIn}) {
     return _LoginResponseDtoUseCase(
-      UserID: UserID,
+      UserId: UserId,
       Username: Username,
       FirstName: FirstName,
       LastName: LastName,
-      ShopID: ShopID,
+      ShopId: ShopId,
       ShopName: ShopName,
       AccessToken: AccessToken,
       RefreshToken: RefreshToken,
@@ -58,11 +58,11 @@ const $LoginResponseDtoUseCase = _$LoginResponseDtoUseCaseTearOff();
 
 /// @nodoc
 mixin _$LoginResponseDtoUseCase {
-  String? get UserID => throw _privateConstructorUsedError;
+  String? get UserId => throw _privateConstructorUsedError;
   String? get Username => throw _privateConstructorUsedError;
   String? get FirstName => throw _privateConstructorUsedError;
   String? get LastName => throw _privateConstructorUsedError;
-  String? get ShopID => throw _privateConstructorUsedError;
+  String? get ShopId => throw _privateConstructorUsedError;
   String? get ShopName => throw _privateConstructorUsedError;
   String? get AccessToken => throw _privateConstructorUsedError;
   String? get RefreshToken => throw _privateConstructorUsedError;
@@ -81,11 +81,11 @@ abstract class $LoginResponseDtoUseCaseCopyWith<$Res> {
           $Res Function(LoginResponseDtoUseCase) then) =
       _$LoginResponseDtoUseCaseCopyWithImpl<$Res>;
   $Res call(
-      {String? UserID,
+      {String? UserId,
       String? Username,
       String? FirstName,
       String? LastName,
-      String? ShopID,
+      String? ShopId,
       String? ShopName,
       String? AccessToken,
       String? RefreshToken,
@@ -104,11 +104,11 @@ class _$LoginResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? UserID = freezed,
+    Object? UserId = freezed,
     Object? Username = freezed,
     Object? FirstName = freezed,
     Object? LastName = freezed,
-    Object? ShopID = freezed,
+    Object? ShopId = freezed,
     Object? ShopName = freezed,
     Object? AccessToken = freezed,
     Object? RefreshToken = freezed,
@@ -116,9 +116,9 @@ class _$LoginResponseDtoUseCaseCopyWithImpl<$Res>
     Object? ExpiresIn = freezed,
   }) {
     return _then(_value.copyWith(
-      UserID: UserID == freezed
-          ? _value.UserID
-          : UserID // ignore: cast_nullable_to_non_nullable
+      UserId: UserId == freezed
+          ? _value.UserId
+          : UserId // ignore: cast_nullable_to_non_nullable
               as String?,
       Username: Username == freezed
           ? _value.Username
@@ -132,9 +132,9 @@ class _$LoginResponseDtoUseCaseCopyWithImpl<$Res>
           ? _value.LastName
           : LastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      ShopID: ShopID == freezed
-          ? _value.ShopID
-          : ShopID // ignore: cast_nullable_to_non_nullable
+      ShopId: ShopId == freezed
+          ? _value.ShopId
+          : ShopId // ignore: cast_nullable_to_non_nullable
               as String?,
       ShopName: ShopName == freezed
           ? _value.ShopName
@@ -168,11 +168,11 @@ abstract class _$LoginResponseDtoUseCaseCopyWith<$Res>
       __$LoginResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? UserID,
+      {String? UserId,
       String? Username,
       String? FirstName,
       String? LastName,
-      String? ShopID,
+      String? ShopId,
       String? ShopName,
       String? AccessToken,
       String? RefreshToken,
@@ -194,11 +194,11 @@ class __$LoginResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? UserID = freezed,
+    Object? UserId = freezed,
     Object? Username = freezed,
     Object? FirstName = freezed,
     Object? LastName = freezed,
-    Object? ShopID = freezed,
+    Object? ShopId = freezed,
     Object? ShopName = freezed,
     Object? AccessToken = freezed,
     Object? RefreshToken = freezed,
@@ -206,9 +206,9 @@ class __$LoginResponseDtoUseCaseCopyWithImpl<$Res>
     Object? ExpiresIn = freezed,
   }) {
     return _then(_LoginResponseDtoUseCase(
-      UserID: UserID == freezed
-          ? _value.UserID
-          : UserID // ignore: cast_nullable_to_non_nullable
+      UserId: UserId == freezed
+          ? _value.UserId
+          : UserId // ignore: cast_nullable_to_non_nullable
               as String?,
       Username: Username == freezed
           ? _value.Username
@@ -222,9 +222,9 @@ class __$LoginResponseDtoUseCaseCopyWithImpl<$Res>
           ? _value.LastName
           : LastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      ShopID: ShopID == freezed
-          ? _value.ShopID
-          : ShopID // ignore: cast_nullable_to_non_nullable
+      ShopId: ShopId == freezed
+          ? _value.ShopId
+          : ShopId // ignore: cast_nullable_to_non_nullable
               as String?,
       ShopName: ShopName == freezed
           ? _value.ShopName
@@ -254,11 +254,11 @@ class __$LoginResponseDtoUseCaseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
   _$_LoginResponseDtoUseCase(
-      {this.UserID,
+      {this.UserId,
       this.Username,
       this.FirstName,
       this.LastName,
-      this.ShopID,
+      this.ShopId,
       this.ShopName,
       this.AccessToken,
       this.RefreshToken,
@@ -269,7 +269,7 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
       _$$_LoginResponseDtoUseCaseFromJson(json);
 
   @override
-  final String? UserID;
+  final String? UserId;
   @override
   final String? Username;
   @override
@@ -277,7 +277,7 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
   @override
   final String? LastName;
   @override
-  final String? ShopID;
+  final String? ShopId;
   @override
   final String? ShopName;
   @override
@@ -291,7 +291,7 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
 
   @override
   String toString() {
-    return 'LoginResponseDtoUseCase(UserID: $UserID, Username: $Username, FirstName: $FirstName, LastName: $LastName, ShopID: $ShopID, ShopName: $ShopName, AccessToken: $AccessToken, RefreshToken: $RefreshToken, TokenType: $TokenType, ExpiresIn: $ExpiresIn)';
+    return 'LoginResponseDtoUseCase(UserId: $UserId, Username: $Username, FirstName: $FirstName, LastName: $LastName, ShopId: $ShopId, ShopName: $ShopName, AccessToken: $AccessToken, RefreshToken: $RefreshToken, TokenType: $TokenType, ExpiresIn: $ExpiresIn)';
   }
 
   @override
@@ -299,11 +299,11 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LoginResponseDtoUseCase &&
-            const DeepCollectionEquality().equals(other.UserID, UserID) &&
+            const DeepCollectionEquality().equals(other.UserId, UserId) &&
             const DeepCollectionEquality().equals(other.Username, Username) &&
             const DeepCollectionEquality().equals(other.FirstName, FirstName) &&
             const DeepCollectionEquality().equals(other.LastName, LastName) &&
-            const DeepCollectionEquality().equals(other.ShopID, ShopID) &&
+            const DeepCollectionEquality().equals(other.ShopId, ShopId) &&
             const DeepCollectionEquality().equals(other.ShopName, ShopName) &&
             const DeepCollectionEquality()
                 .equals(other.AccessToken, AccessToken) &&
@@ -316,11 +316,11 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(UserID),
+      const DeepCollectionEquality().hash(UserId),
       const DeepCollectionEquality().hash(Username),
       const DeepCollectionEquality().hash(FirstName),
       const DeepCollectionEquality().hash(LastName),
-      const DeepCollectionEquality().hash(ShopID),
+      const DeepCollectionEquality().hash(ShopId),
       const DeepCollectionEquality().hash(ShopName),
       const DeepCollectionEquality().hash(AccessToken),
       const DeepCollectionEquality().hash(RefreshToken),
@@ -341,11 +341,11 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
 
 abstract class _LoginResponseDtoUseCase implements LoginResponseDtoUseCase {
   factory _LoginResponseDtoUseCase(
-      {String? UserID,
+      {String? UserId,
       String? Username,
       String? FirstName,
       String? LastName,
-      String? ShopID,
+      String? ShopId,
       String? ShopName,
       String? AccessToken,
       String? RefreshToken,
@@ -356,7 +356,7 @@ abstract class _LoginResponseDtoUseCase implements LoginResponseDtoUseCase {
       _$_LoginResponseDtoUseCase.fromJson;
 
   @override
-  String? get UserID;
+  String? get UserId;
   @override
   String? get Username;
   @override
@@ -364,7 +364,7 @@ abstract class _LoginResponseDtoUseCase implements LoginResponseDtoUseCase {
   @override
   String? get LastName;
   @override
-  String? get ShopID;
+  String? get ShopId;
   @override
   String? get ShopName;
   @override

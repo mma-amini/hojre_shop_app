@@ -43,7 +43,7 @@ class ProductManagerController extends GetxController {
 
   startApiProductGroups() async {
     updateLoading(isLoading: true);
-    await iProductGroupsUseCase.Handler(params: ProductGroupsRequestDtoUseCase(ShopID: Brain.account.ShopID ?? ""))
+    await iProductGroupsUseCase.Handler(params: ProductGroupsRequestDtoUseCase(ShopId: Brain.account.ShopId ?? ""))
         .then((response) {
       updateLoading(isLoading: false);
       var data = response.getOrElse(() => []);
@@ -52,10 +52,10 @@ class ProductManagerController extends GetxController {
 
       data.forEach((element) {
         VMProductGroup productGroup = VMProductGroup(
-          CategoryID: element.CategoryID,
+          CategoryId: element.CategoryId,
           CategoryName: element.CategoryName,
           Picture: element.Picture,
-          ParentID: element.ParentID,
+          ParentId: element.ParentId,
         );
 
         LogHelper.printLog(data: productGroup.CategoryName);

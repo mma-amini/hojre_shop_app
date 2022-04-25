@@ -122,7 +122,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<List<ProductGroupsResponseDtoUseCase>> productCategories(
       {required ProductGroupsRequestDtoUseCase productGroupsRequestDtoUseCase}) async {
-    var body = {"shopId": productGroupsRequestDtoUseCase.ShopID};
+    var body = {"shopId": productGroupsRequestDtoUseCase.ShopId};
     var jsonData = json.encode(body);
 
     var result = await Brain.dio
