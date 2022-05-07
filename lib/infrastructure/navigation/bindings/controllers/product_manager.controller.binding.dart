@@ -9,6 +9,7 @@ class ProductManagerControllerBinding extends Bindings {
     Get.lazyPut<ProductManagerController>(
       () => ProductManagerController(
         iProductGroupsUseCase: sl(),
+        iShopProductsUseCase: sl(),
       ),
     );
   }

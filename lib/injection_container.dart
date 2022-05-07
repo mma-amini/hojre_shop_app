@@ -1,20 +1,14 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_check_user_use_case.dart';
-import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_login_use_case.dart';
-import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups_use_case.dart';
-import 'package:hojre_shop_app/domain/core/use_cases/check_user_use_case.dart';
-import 'package:hojre_shop_app/domain/core/use_cases/login_use_case.dart';
-import 'package:hojre_shop_app/domain/core/use_cases/product_group_use_case.dart';
 
 import 'domain/core/dto/enums/database_type.dart';
 import 'domain/core/helpers/base_dio.dart';
 import 'domain/core/helpers/brain.dart';
 import 'domain/core/interfaces/repositories/remote_data_source.dart';
 import 'domain/core/interfaces/repositories/repositories.dart';
-import 'domain/core/interfaces/use_cases/i_refresh_token_use_case.dart';
-import 'domain/core/use_cases/refresh_token_use_case.dart';
+import 'domain/core/interfaces/use_cases/i_use_case_exports.dart';
+import 'domain/core/use_cases/use_case_exports.dart';
 import 'infrastructure/dal/daos/data_sources/remote_data_source_impl.dart';
 import 'infrastructure/dal/daos/repositories/repository_impl.dart';
 import 'infrastructure/dal/services/database/init_database.dart';
@@ -37,6 +31,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => LoginUseCase(repository: sl()));
   sl.registerLazySingleton(() => RefreshTokenUseCase(repository: sl()));
   sl.registerLazySingleton(() => ProductGroupsUseCase(repository: sl()));
+  sl.registerLazySingleton(() => ShopProductsUseCase(repository: sl()));
 
   // Repository
   sl.registerLazySingleton<Repository>(
@@ -65,6 +60,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<IProductGroupsUseCase>(
     () => ProductGroupsUseCase(
+      repository: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<IShopProductsUseCase>(
+    () => ShopProductsUseCase(
       repository: sl(),
     ),
   );

@@ -5,11 +5,13 @@ import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/product_groups_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/shop_products_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/message_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/product_groups_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/shop_products_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/helpers/api.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
@@ -18,9 +20,7 @@ import 'package:hojre_shop_app/domain/core/interfaces/repositories/remote_data_s
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   headers() {
-    var headers = {
-      "refreshtoken": getRefreshToken(),
-    };
+    var headers = {"type": "Flutter"};
     return headers;
   }
 
@@ -40,9 +40,17 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<LoginResponseDtoUseCase> refreshToken({required Dio dio}) async {
+    var body = {
+      "grant_type": "refresh_token",
+      "refresh_token": getRefreshToken(),
+      "client_id": 2,
+      "client_secret": "6xIllgWHhFimZXKGBvRdGNJNqbKJAz9HwSQMjj0q",
+    };
+    var jsonData = json.encode(body);
     var result = await dio
         .post(
       Api.REFRESH_TOKEN_API,
+      data: jsonData,
       options: Options(
         headers: headers(),
       ),
@@ -94,7 +102,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       "password": loginRequestDtoUseCase.Code,
       "grant_type": "password",
       "client_id": 2,
-      "client_secret": "T4gur0U4Y2YrU0HaoGoKy8sawJZ0cSeGfYA0GNbd",
+      "client_secret": "6xIllgWHhFimZXKGBvRdGNJNqbKJAz9HwSQMjj0q",
     };
     var jsonData = json.encode(body);
 
@@ -122,13 +130,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<List<ProductGroupsResponseDtoUseCase>> productCategories(
       {required ProductGroupsRequestDtoUseCase productGroupsRequestDtoUseCase}) async {
-    var body = {"shopId": productGroupsRequestDtoUseCase.ShopId};
-    var jsonData = json.encode(body);
-
     var result = await Brain.dio
-        .post(
+        .get(
       Api.PRODUCT_GROUPS_API,
-      data: jsonData,
       options: Options(
         headers: headers(),
       ),
@@ -145,6 +149,40 @@ class RemoteDataSourceImpl implements RemoteDataSource {
             ProductGroupsResponseDtoUseCase.fromJson(json);
 
         dataList.add(productGroupsResponseDtoUseCase);
+      }
+
+      return dataList;
+    }).catchError((error) {
+      LogHelper.printLog(data: error);
+      return [];
+    });
+
+    return result;
+  }
+
+  @override
+  Future<List<ShopProductsResponseDtoUseCase>> shopProducts(
+      {required ShopProductsRequestDtoUseCase shopProductsRequestDtoUseCase}) async {
+    var body = {"categoryId": shopProductsRequestDtoUseCase.categoryId};
+    var result = await Brain.dio
+        .get(
+      Api.SHOP_PRODUCTS_API,
+      queryParameters: body,
+      options: Options(
+        headers: headers(),
+      ),
+    )
+        .then((response) {
+      var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      checkMessage(messageDtoUseCase: apiResult.Message);
+      List<dynamic> arrayData = apiResult.Content;
+
+      List<ShopProductsResponseDtoUseCase> dataList = List<ShopProductsResponseDtoUseCase>.empty(growable: true);
+
+      for (var json in arrayData) {
+        ShopProductsResponseDtoUseCase shopProductsResponseDtoUseCase = ShopProductsResponseDtoUseCase.fromJson(json);
+
+        dataList.add(shopProductsResponseDtoUseCase);
       }
 
       return dataList;

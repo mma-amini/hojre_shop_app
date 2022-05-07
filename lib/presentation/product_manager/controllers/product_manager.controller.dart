@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_group_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/product_groups_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/request_dto_use_case_exports.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups_use_case.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_shop_products_use_case.dart';
 
 class ProductManagerController extends GetxController {
   final isLoading = false.obs;
@@ -11,8 +13,9 @@ class ProductManagerController extends GetxController {
   final productGroupsList = List<VMProductGroup>.empty(growable: true).obs;
 
   IProductGroupsUseCase iProductGroupsUseCase;
+  IShopProductsUseCase iShopProductsUseCase;
 
-  ProductManagerController({required this.iProductGroupsUseCase});
+  ProductManagerController({required this.iProductGroupsUseCase, required this.iShopProductsUseCase});
 
   @override
   void onInit() {
@@ -24,6 +27,7 @@ class ProductManagerController extends GetxController {
     super.onReady();
 
     startApiProductGroups();
+    startApiShopProducts();
   }
 
   @override
@@ -42,10 +46,8 @@ class ProductManagerController extends GetxController {
   }
 
   startApiProductGroups() async {
-    updateLoading(isLoading: true);
     await iProductGroupsUseCase.Handler(params: ProductGroupsRequestDtoUseCase(ShopId: Brain.account.ShopId ?? ""))
         .then((response) {
-      updateLoading(isLoading: false);
       var data = response.getOrElse(() => []);
 
       List<VMProductGroup> tempProductGroupsList = List<VMProductGroup>.empty(growable: true);
@@ -66,6 +68,17 @@ class ProductManagerController extends GetxController {
       updateProductGroupsList(productGroupsList: tempProductGroupsList);
     }).catchError((error) {
       LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
+    });
+  }
+
+  startApiShopProducts() async {
+    updateLoading(isLoading: true);
+    await iShopProductsUseCase.Handler(params: ShopProductsRequestDtoUseCase(categoryId: "")).then((response) {
+      updateLoading(isLoading: false);
+      var data = response.getOrElse(() => []);
+    }).catchError((error) {
+      LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
+      updateLoading(isLoading: false);
     });
   }
 }
