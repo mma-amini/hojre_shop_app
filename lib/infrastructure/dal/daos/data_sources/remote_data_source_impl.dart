@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/product_groups_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/shop_products_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
@@ -128,8 +127,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<List<ProductGroupsResponseDtoUseCase>> productCategories(
-      {required ProductGroupsRequestDtoUseCase productGroupsRequestDtoUseCase}) async {
+  Future<List<ProductGroupsResponseDtoUseCase>> productCategories() async {
     var result = await Brain.dio
         .get(
       Api.PRODUCT_GROUPS_API,

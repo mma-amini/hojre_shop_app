@@ -49,11 +49,9 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, List<ProductGroupsResponseDtoUseCase>>>? productCategories(
-      {required ProductGroupsRequestDtoUseCase productGroupsRequestDtoUseCase}) async {
+  Future<Either<Failure, List<ProductGroupsResponseDtoUseCase>>>? productCategories() async {
     try {
-      var result =
-          await baseRemoteDataSource.productCategories(productGroupsRequestDtoUseCase: productGroupsRequestDtoUseCase);
+      var result = await baseRemoteDataSource.productCategories();
 
       return Right(result);
     } on ServerException {

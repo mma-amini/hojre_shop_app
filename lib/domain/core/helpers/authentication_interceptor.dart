@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:synchronized/synchronized.dart' as synchronized;
@@ -59,7 +57,6 @@ class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
     if (options.data != null) {
       LogHelper.printLog(data: "Body: ${options.data}");
     }
-    LogHelper.printLog(data: "All Headers: ${json.encode(options.headers)}");
     return super.onRequest(options, handler);
   }
 

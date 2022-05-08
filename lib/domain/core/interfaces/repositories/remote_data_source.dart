@@ -23,8 +23,7 @@ abstract class RemoteDataSource {
   /// Calls the method http-get https://server.com/api/v1/shop/productGroups endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
-  Future<List<ProductGroupsResponseDtoUseCase>> productCategories(
-      {required ProductGroupsRequestDtoUseCase productGroupsRequestDtoUseCase});
+  Future<List<ProductGroupsResponseDtoUseCase>> productCategories();
 
   /// Calls the method http-get https://server.com/api/v1/shop/shopProducts endpoint.
   ///
