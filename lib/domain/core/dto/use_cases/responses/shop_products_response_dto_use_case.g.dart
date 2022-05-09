@@ -9,12 +9,15 @@ part of 'shop_products_response_dto_use_case.dart';
 _$_ShopProductsResponseDtoUseCase _$$_ShopProductsResponseDtoUseCaseFromJson(
         Map<String, dynamic> json) =>
     _$_ShopProductsResponseDtoUseCase(
+      ApprovedProductDesignsCount: json['ApprovedProductDesignsCount'] as int?,
       Brand: json['Brand'] == null
           ? null
           : BrandOfShopProductsResponseDtoUseCase.fromJson(
               json['Brand'] as Map<String, dynamic>),
       Description: json['Description'] as String?,
       IsOriginal: json['IsOriginal'] as bool?,
+      NotApprovedProductDesignsCount:
+          json['NotApprovedProductDesignsCount'] as int?,
       PackingDimensions: json['PackingDimensions'] as String?,
       PackingWeight: (json['PackingWeight'] as num?)?.toDouble(),
       Pictures: (json['Pictures'] as List<dynamic>?)
@@ -31,9 +34,11 @@ _$_ShopProductsResponseDtoUseCase _$$_ShopProductsResponseDtoUseCaseFromJson(
 Map<String, dynamic> _$$_ShopProductsResponseDtoUseCaseToJson(
         _$_ShopProductsResponseDtoUseCase instance) =>
     <String, dynamic>{
+      'ApprovedProductDesignsCount': instance.ApprovedProductDesignsCount,
       'Brand': instance.Brand,
       'Description': instance.Description,
       'IsOriginal': instance.IsOriginal,
+      'NotApprovedProductDesignsCount': instance.NotApprovedProductDesignsCount,
       'PackingDimensions': instance.PackingDimensions,
       'PackingWeight': instance.PackingWeight,
       'Pictures': instance.Pictures,

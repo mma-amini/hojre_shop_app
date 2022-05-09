@@ -22,7 +22,11 @@
       "orders_management": "سفارش ها"
     },
     "product_manager": {
-      "page_title": "مدیریت کالاها"
+      "page_title": "مدیریت کالاها",
+      "add_product_button_tooltip": "ایجاد کالای جدید"
+    },
+    "add_product": {
+      "page_title": "ایجاد کالا"
     }
   },
   "buttons": {

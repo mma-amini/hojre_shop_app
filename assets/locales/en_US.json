@@ -22,7 +22,11 @@
       "orders_management": "Orders"
     },
     "product_manager": {
-      "page_title": "Product Manager"
+      "page_title": "Product Manager",
+      "add_product_button_tooltip": "Create new product"
+    },
+    "add_product": {
+      "page_title": "Create product"
     }
   },
   "buttons": {

@@ -1,8 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
+import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 
 import 'controllers/product_manager.controller.dart';
 
@@ -132,7 +134,63 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
                                     ),
                                     SizedBox(width: 8.0),
                                     Expanded(
-                                      child: Text(item.ProductName ?? ""),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          AutoSizeText(
+                                            item.ProductName ?? "",
+                                            maxLines: 2,
+                                            maxFontSize: 14.0,
+                                          ),
+                                          SizedBox(
+                                            height: 8.0,
+                                          ),
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.end,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: [
+                                                Container(
+                                                  width: 25,
+                                                  height: 25,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(color: Colors.orange, width: 1.5),
+                                                    borderRadius: BorderRadius.circular(5.0),
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      "${item.NotApprovedProductDesignsCount}",
+                                                      style: TextStyle(
+                                                        color: Colors.orange,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 8.0,
+                                                ),
+                                                Container(
+                                                  width: 25,
+                                                  height: 25,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(color: Colors.green, width: 1.5),
+                                                    borderRadius: BorderRadius.circular(5.0),
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      "${item.ApprovedProductDesignsCount}",
+                                                      style: TextStyle(
+                                                        color: Colors.green,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -162,6 +220,15 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
               ],
             );
           }),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Get.toNamed(Routes.ADD_PRODUCT);
+            },
+            child: Icon(
+              Icons.add,
+            ),
+            tooltip: LocaleKeys.screen_product_manager_add_product_button_tooltip.tr,
+          ),
         );
       },
     );

@@ -24,9 +24,11 @@ class _$ShopProductsResponseDtoUseCaseTearOff {
   const _$ShopProductsResponseDtoUseCaseTearOff();
 
   _ShopProductsResponseDtoUseCase call(
-      {BrandOfShopProductsResponseDtoUseCase? Brand,
+      {int? ApprovedProductDesignsCount,
+      BrandOfShopProductsResponseDtoUseCase? Brand,
       String? Description,
       bool? IsOriginal,
+      int? NotApprovedProductDesignsCount,
       String? PackingDimensions,
       double? PackingWeight,
       List<PictureOfShopProductsResponseDtoUseCase>? Pictures,
@@ -36,9 +38,11 @@ class _$ShopProductsResponseDtoUseCaseTearOff {
       String? ProductName,
       double? ProductWeight}) {
     return _ShopProductsResponseDtoUseCase(
+      ApprovedProductDesignsCount: ApprovedProductDesignsCount,
       Brand: Brand,
       Description: Description,
       IsOriginal: IsOriginal,
+      NotApprovedProductDesignsCount: NotApprovedProductDesignsCount,
       PackingDimensions: PackingDimensions,
       PackingWeight: PackingWeight,
       Pictures: Pictures,
@@ -61,10 +65,12 @@ const $ShopProductsResponseDtoUseCase =
 
 /// @nodoc
 mixin _$ShopProductsResponseDtoUseCase {
+  int? get ApprovedProductDesignsCount => throw _privateConstructorUsedError;
   BrandOfShopProductsResponseDtoUseCase? get Brand =>
       throw _privateConstructorUsedError;
   String? get Description => throw _privateConstructorUsedError;
   bool? get IsOriginal => throw _privateConstructorUsedError;
+  int? get NotApprovedProductDesignsCount => throw _privateConstructorUsedError;
   String? get PackingDimensions => throw _privateConstructorUsedError;
   double? get PackingWeight => throw _privateConstructorUsedError;
   List<PictureOfShopProductsResponseDtoUseCase>? get Pictures =>
@@ -88,9 +94,11 @@ abstract class $ShopProductsResponseDtoUseCaseCopyWith<$Res> {
           $Res Function(ShopProductsResponseDtoUseCase) then) =
       _$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>;
   $Res call(
-      {BrandOfShopProductsResponseDtoUseCase? Brand,
+      {int? ApprovedProductDesignsCount,
+      BrandOfShopProductsResponseDtoUseCase? Brand,
       String? Description,
       bool? IsOriginal,
+      int? NotApprovedProductDesignsCount,
       String? PackingDimensions,
       double? PackingWeight,
       List<PictureOfShopProductsResponseDtoUseCase>? Pictures,
@@ -114,9 +122,11 @@ class _$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? ApprovedProductDesignsCount = freezed,
     Object? Brand = freezed,
     Object? Description = freezed,
     Object? IsOriginal = freezed,
+    Object? NotApprovedProductDesignsCount = freezed,
     Object? PackingDimensions = freezed,
     Object? PackingWeight = freezed,
     Object? Pictures = freezed,
@@ -127,6 +137,10 @@ class _$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     Object? ProductWeight = freezed,
   }) {
     return _then(_value.copyWith(
+      ApprovedProductDesignsCount: ApprovedProductDesignsCount == freezed
+          ? _value.ApprovedProductDesignsCount
+          : ApprovedProductDesignsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       Brand: Brand == freezed
           ? _value.Brand
           : Brand // ignore: cast_nullable_to_non_nullable
@@ -139,6 +153,10 @@ class _$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
           ? _value.IsOriginal
           : IsOriginal // ignore: cast_nullable_to_non_nullable
               as bool?,
+      NotApprovedProductDesignsCount: NotApprovedProductDesignsCount == freezed
+          ? _value.NotApprovedProductDesignsCount
+          : NotApprovedProductDesignsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       PackingDimensions: PackingDimensions == freezed
           ? _value.PackingDimensions
           : PackingDimensions // ignore: cast_nullable_to_non_nullable
@@ -196,9 +214,11 @@ abstract class _$ShopProductsResponseDtoUseCaseCopyWith<$Res>
       __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {BrandOfShopProductsResponseDtoUseCase? Brand,
+      {int? ApprovedProductDesignsCount,
+      BrandOfShopProductsResponseDtoUseCase? Brand,
       String? Description,
       bool? IsOriginal,
+      int? NotApprovedProductDesignsCount,
       String? PackingDimensions,
       double? PackingWeight,
       List<PictureOfShopProductsResponseDtoUseCase>? Pictures,
@@ -227,9 +247,11 @@ class __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? ApprovedProductDesignsCount = freezed,
     Object? Brand = freezed,
     Object? Description = freezed,
     Object? IsOriginal = freezed,
+    Object? NotApprovedProductDesignsCount = freezed,
     Object? PackingDimensions = freezed,
     Object? PackingWeight = freezed,
     Object? Pictures = freezed,
@@ -240,6 +262,10 @@ class __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     Object? ProductWeight = freezed,
   }) {
     return _then(_ShopProductsResponseDtoUseCase(
+      ApprovedProductDesignsCount: ApprovedProductDesignsCount == freezed
+          ? _value.ApprovedProductDesignsCount
+          : ApprovedProductDesignsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       Brand: Brand == freezed
           ? _value.Brand
           : Brand // ignore: cast_nullable_to_non_nullable
@@ -252,6 +278,10 @@ class __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
           ? _value.IsOriginal
           : IsOriginal // ignore: cast_nullable_to_non_nullable
               as bool?,
+      NotApprovedProductDesignsCount: NotApprovedProductDesignsCount == freezed
+          ? _value.NotApprovedProductDesignsCount
+          : NotApprovedProductDesignsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       PackingDimensions: PackingDimensions == freezed
           ? _value.PackingDimensions
           : PackingDimensions // ignore: cast_nullable_to_non_nullable
@@ -293,9 +323,11 @@ class __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
 class _$_ShopProductsResponseDtoUseCase
     implements _ShopProductsResponseDtoUseCase {
   _$_ShopProductsResponseDtoUseCase(
-      {this.Brand,
+      {this.ApprovedProductDesignsCount,
+      this.Brand,
       this.Description,
       this.IsOriginal,
+      this.NotApprovedProductDesignsCount,
       this.PackingDimensions,
       this.PackingWeight,
       this.Pictures,
@@ -310,11 +342,15 @@ class _$_ShopProductsResponseDtoUseCase
       _$$_ShopProductsResponseDtoUseCaseFromJson(json);
 
   @override
+  final int? ApprovedProductDesignsCount;
+  @override
   final BrandOfShopProductsResponseDtoUseCase? Brand;
   @override
   final String? Description;
   @override
   final bool? IsOriginal;
+  @override
+  final int? NotApprovedProductDesignsCount;
   @override
   final String? PackingDimensions;
   @override
@@ -334,7 +370,7 @@ class _$_ShopProductsResponseDtoUseCase
 
   @override
   String toString() {
-    return 'ShopProductsResponseDtoUseCase(Brand: $Brand, Description: $Description, IsOriginal: $IsOriginal, PackingDimensions: $PackingDimensions, PackingWeight: $PackingWeight, Pictures: $Pictures, Picture: $Picture, ProductDimensions: $ProductDimensions, ProductId: $ProductId, ProductName: $ProductName, ProductWeight: $ProductWeight)';
+    return 'ShopProductsResponseDtoUseCase(ApprovedProductDesignsCount: $ApprovedProductDesignsCount, Brand: $Brand, Description: $Description, IsOriginal: $IsOriginal, NotApprovedProductDesignsCount: $NotApprovedProductDesignsCount, PackingDimensions: $PackingDimensions, PackingWeight: $PackingWeight, Pictures: $Pictures, Picture: $Picture, ProductDimensions: $ProductDimensions, ProductId: $ProductId, ProductName: $ProductName, ProductWeight: $ProductWeight)';
   }
 
   @override
@@ -342,11 +378,17 @@ class _$_ShopProductsResponseDtoUseCase
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ShopProductsResponseDtoUseCase &&
+            const DeepCollectionEquality().equals(
+                other.ApprovedProductDesignsCount,
+                ApprovedProductDesignsCount) &&
             const DeepCollectionEquality().equals(other.Brand, Brand) &&
             const DeepCollectionEquality()
                 .equals(other.Description, Description) &&
             const DeepCollectionEquality()
                 .equals(other.IsOriginal, IsOriginal) &&
+            const DeepCollectionEquality().equals(
+                other.NotApprovedProductDesignsCount,
+                NotApprovedProductDesignsCount) &&
             const DeepCollectionEquality()
                 .equals(other.PackingDimensions, PackingDimensions) &&
             const DeepCollectionEquality()
@@ -365,9 +407,11 @@ class _$_ShopProductsResponseDtoUseCase
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(ApprovedProductDesignsCount),
       const DeepCollectionEquality().hash(Brand),
       const DeepCollectionEquality().hash(Description),
       const DeepCollectionEquality().hash(IsOriginal),
+      const DeepCollectionEquality().hash(NotApprovedProductDesignsCount),
       const DeepCollectionEquality().hash(PackingDimensions),
       const DeepCollectionEquality().hash(PackingWeight),
       const DeepCollectionEquality().hash(Pictures),
@@ -392,9 +436,11 @@ class _$_ShopProductsResponseDtoUseCase
 abstract class _ShopProductsResponseDtoUseCase
     implements ShopProductsResponseDtoUseCase {
   factory _ShopProductsResponseDtoUseCase(
-      {BrandOfShopProductsResponseDtoUseCase? Brand,
+      {int? ApprovedProductDesignsCount,
+      BrandOfShopProductsResponseDtoUseCase? Brand,
       String? Description,
       bool? IsOriginal,
+      int? NotApprovedProductDesignsCount,
       String? PackingDimensions,
       double? PackingWeight,
       List<PictureOfShopProductsResponseDtoUseCase>? Pictures,
@@ -408,11 +454,15 @@ abstract class _ShopProductsResponseDtoUseCase
       _$_ShopProductsResponseDtoUseCase.fromJson;
 
   @override
+  int? get ApprovedProductDesignsCount;
+  @override
   BrandOfShopProductsResponseDtoUseCase? get Brand;
   @override
   String? get Description;
   @override
   bool? get IsOriginal;
+  @override
+  int? get NotApprovedProductDesignsCount;
   @override
   String? get PackingDimensions;
   @override

@@ -6,9 +6,11 @@ part 'shop_products_response_dto_use_case.g.dart';
 @freezed
 class ShopProductsResponseDtoUseCase with _$ShopProductsResponseDtoUseCase {
   factory ShopProductsResponseDtoUseCase({
+    int? ApprovedProductDesignsCount,
     BrandOfShopProductsResponseDtoUseCase? Brand,
     String? Description,
     bool? IsOriginal,
+    int? NotApprovedProductDesignsCount,
     String? PackingDimensions,
     double? PackingWeight,
     List<PictureOfShopProductsResponseDtoUseCase>? Pictures,

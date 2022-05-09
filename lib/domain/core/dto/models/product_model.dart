@@ -6,9 +6,11 @@ part 'product_model.g.dart';
 
 @JsonSerializable()
 class VMProduct extends Equatable {
+  int? ApprovedProductDesignsCount;
   VMBrand? Brand;
   String? Description;
   bool? IsOriginal;
+  int? NotApprovedProductDesignsCount;
   String? PackingDimensions;
   double? PackingWeight;
   List<VMProductPicture>? Pictures;

@@ -22,12 +22,18 @@ VMProduct _$VMProductFromJson(Map<String, dynamic> json) => VMProduct(
       ProductId: json['ProductId'] as String?,
       ProductName: json['ProductName'] as String?,
       ProductWeight: (json['ProductWeight'] as num?)?.toDouble(),
-    );
+    )
+      ..ApprovedProductDesignsCount =
+          json['ApprovedProductDesignsCount'] as int?
+      ..NotApprovedProductDesignsCount =
+          json['NotApprovedProductDesignsCount'] as int?;
 
 Map<String, dynamic> _$VMProductToJson(VMProduct instance) => <String, dynamic>{
+      'ApprovedProductDesignsCount': instance.ApprovedProductDesignsCount,
       'Brand': instance.Brand,
       'Description': instance.Description,
       'IsOriginal': instance.IsOriginal,
+      'NotApprovedProductDesignsCount': instance.NotApprovedProductDesignsCount,
       'PackingDimensions': instance.PackingDimensions,
       'PackingWeight': instance.PackingWeight,
       'Pictures': instance.Pictures,
