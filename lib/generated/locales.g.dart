@@ -34,6 +34,14 @@ class LocaleKeys {
   static const screen_product_manager_add_product_button_tooltip =
       'screen_product_manager_add_product_button_tooltip';
   static const screen_add_product_page_title = 'screen_add_product_page_title';
+  static const screen_add_product_select_the_product_group =
+      'screen_add_product_select_the_product_group';
+  static const screen_add_product_product_group =
+      'screen_add_product_product_group';
+  static const screen_add_product_fields_name_product_name =
+      'screen_add_product_fields_name_product_name';
+  static const screen_add_product_fields_error_general_error =
+      'screen_add_product_fields_error_general_error';
   static const buttons_logout = 'buttons_logout';
   static const general_search = 'general_search';
 }
@@ -56,6 +64,10 @@ class Locales {
     'screen_product_manager_page_title': 'Product Manager',
     'screen_product_manager_add_product_button_tooltip': 'Create new product',
     'screen_add_product_page_title': 'Create product',
+    'screen_add_product_select_the_product_group': 'Select the product group',
+    'screen_add_product_product_group': 'Product group',
+    'screen_add_product_fields_name_product_name': 'Product name',
+    'screen_add_product_fields_error_general_error': 'Enter the @field',
     'buttons_logout': 'Logout',
     'general_search': 'Search',
   };
@@ -77,6 +89,10 @@ class Locales {
     'screen_product_manager_page_title': 'مدیریت کالاها',
     'screen_product_manager_add_product_button_tooltip': 'ایجاد کالای جدید',
     'screen_add_product_page_title': 'ایجاد کالا',
+    'screen_add_product_select_the_product_group': 'انتخاب گروه کالا',
+    'screen_add_product_product_group': 'گروه کالا',
+    'screen_add_product_fields_name_product_name': 'نام کالا',
+    'screen_add_product_fields_error_general_error': '@field را وارد نمایید',
     'buttons_logout': 'خروج',
     'general_search': 'جستجو',
   };

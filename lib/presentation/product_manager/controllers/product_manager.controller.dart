@@ -7,16 +7,21 @@ import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/request_dto_us
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups_use_case.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_shop_products_use_case.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ProductManagerController extends GetxController {
   final isLoading = false.obs;
+  bool loadData = false;
+
+  int skip = 0;
+
+  RefreshController refreshController = RefreshController(initialRefresh: false);
+  VMProductGroup selectedCategory = VMProductGroup();
+  IProductGroupsUseCase iProductGroupsUseCase;
+  IShopProductsUseCase iShopProductsUseCase;
 
   final productGroupsList = List<VMProductGroup>.empty(growable: true).obs;
   final shopProductsList = List<VMProduct>.empty(growable: true).obs;
-  VMProductGroup selectedCategory = VMProductGroup();
-
-  IProductGroupsUseCase iProductGroupsUseCase;
-  IShopProductsUseCase iShopProductsUseCase;
 
   ProductManagerController({required this.iProductGroupsUseCase, required this.iShopProductsUseCase});
 
@@ -56,6 +61,18 @@ class ProductManagerController extends GetxController {
 
   updateSelectedCategory({required VMProductGroup selectedCategory}) {
     this.selectedCategory = selectedCategory;
+    this.shopProductsList.clear();
+
+    startApiShopProducts();
+  }
+
+  updateSkip() {
+    this.skip++;
+    update();
+  }
+
+  onRefresh() {
+    this.shopProductsList.clear();
 
     startApiShopProducts();
   }
@@ -66,7 +83,7 @@ class ProductManagerController extends GetxController {
 
       List<VMProductGroup> tempProductGroupsList = List<VMProductGroup>.empty(growable: true);
 
-      VMProductGroup emptyGroup = VMProductGroup(CategoryName: "همه", CategoryId: "");
+      VMProductGroup emptyGroup = VMProductGroup(CategoryName: "همه گروه ها", CategoryId: "");
       tempProductGroupsList.add(emptyGroup);
 
       data.forEach((element) {
@@ -92,6 +109,9 @@ class ProductManagerController extends GetxController {
             params: ShopProductsRequestDtoUseCase(categoryId: selectedCategory.CategoryId ?? ""))
         .then((response) {
       updateLoading(isLoading: false);
+      refreshController.refreshCompleted();
+      refreshController.loadComplete();
+
       var data = response.getOrElse(() => []);
 
       List<VMProduct> tempShopProductsList = List<VMProduct>.empty(growable: true);
@@ -108,6 +128,8 @@ class ProductManagerController extends GetxController {
     }).catchError((error) {
       LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
       updateLoading(isLoading: false);
+      refreshController.refreshCompleted();
+      refreshController.loadComplete();
     });
   }
 }

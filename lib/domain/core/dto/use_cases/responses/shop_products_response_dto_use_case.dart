@@ -9,6 +9,7 @@ class ShopProductsResponseDtoUseCase with _$ShopProductsResponseDtoUseCase {
     int? ApprovedProductDesignsCount,
     BrandOfShopProductsResponseDtoUseCase? Brand,
     String? Description,
+    bool? IsActive,
     bool? IsOriginal,
     int? NotApprovedProductDesignsCount,
     String? PackingDimensions,

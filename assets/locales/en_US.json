@@ -26,7 +26,15 @@
       "add_product_button_tooltip": "Create new product"
     },
     "add_product": {
-      "page_title": "Create product"
+      "page_title": "Create product",
+      "select_the_product_group": "Select the product group",
+      "product_group": "Product group",
+      "fields_name": {
+        "product_name": "Product name"
+      },
+      "fields_error": {
+        "general_error": "Enter the @field"
+      }
     }
   },
   "buttons": {

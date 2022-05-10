@@ -15,6 +15,7 @@ _$_ShopProductsResponseDtoUseCase _$$_ShopProductsResponseDtoUseCaseFromJson(
           : BrandOfShopProductsResponseDtoUseCase.fromJson(
               json['Brand'] as Map<String, dynamic>),
       Description: json['Description'] as String?,
+      IsActive: json['IsActive'] as bool?,
       IsOriginal: json['IsOriginal'] as bool?,
       NotApprovedProductDesignsCount:
           json['NotApprovedProductDesignsCount'] as int?,
@@ -37,6 +38,7 @@ Map<String, dynamic> _$$_ShopProductsResponseDtoUseCaseToJson(
       'ApprovedProductDesignsCount': instance.ApprovedProductDesignsCount,
       'Brand': instance.Brand,
       'Description': instance.Description,
+      'IsActive': instance.IsActive,
       'IsOriginal': instance.IsOriginal,
       'NotApprovedProductDesignsCount': instance.NotApprovedProductDesignsCount,
       'PackingDimensions': instance.PackingDimensions,

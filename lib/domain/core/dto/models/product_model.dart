@@ -9,6 +9,7 @@ class VMProduct extends Equatable {
   int? ApprovedProductDesignsCount;
   VMBrand? Brand;
   String? Description;
+  bool? IsActive;
   bool? IsOriginal;
   int? NotApprovedProductDesignsCount;
   String? PackingDimensions;
@@ -23,6 +24,7 @@ class VMProduct extends Equatable {
   VMProduct(
       {this.Brand,
       this.Description,
+      this.IsActive,
       this.IsOriginal,
       this.PackingDimensions,
       this.PackingWeight,

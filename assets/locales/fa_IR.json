@@ -26,7 +26,15 @@
       "add_product_button_tooltip": "ایجاد کالای جدید"
     },
     "add_product": {
-      "page_title": "ایجاد کالا"
+      "page_title": "ایجاد کالا",
+      "select_the_product_group": "انتخاب گروه کالا",
+      "product_group": "گروه کالا",
+      "fields_name": {
+        "product_name": "نام کالا"
+      },
+      "fields_error": {
+        "general_error": "@field را وارد نمایید"
+      }
     }
   },
   "buttons": {

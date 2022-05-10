@@ -11,6 +11,7 @@ VMProduct _$VMProductFromJson(Map<String, dynamic> json) => VMProduct(
           ? null
           : VMBrand.fromJson(json['Brand'] as Map<String, dynamic>),
       Description: json['Description'] as String?,
+      IsActive: json['IsActive'] as bool?,
       IsOriginal: json['IsOriginal'] as bool?,
       PackingDimensions: json['PackingDimensions'] as String?,
       PackingWeight: (json['PackingWeight'] as num?)?.toDouble(),
@@ -32,6 +33,7 @@ Map<String, dynamic> _$VMProductToJson(VMProduct instance) => <String, dynamic>{
       'ApprovedProductDesignsCount': instance.ApprovedProductDesignsCount,
       'Brand': instance.Brand,
       'Description': instance.Description,
+      'IsActive': instance.IsActive,
       'IsOriginal': instance.IsOriginal,
       'NotApprovedProductDesignsCount': instance.NotApprovedProductDesignsCount,
       'PackingDimensions': instance.PackingDimensions,

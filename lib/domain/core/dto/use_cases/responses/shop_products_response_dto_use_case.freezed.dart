@@ -27,6 +27,7 @@ class _$ShopProductsResponseDtoUseCaseTearOff {
       {int? ApprovedProductDesignsCount,
       BrandOfShopProductsResponseDtoUseCase? Brand,
       String? Description,
+      bool? IsActive,
       bool? IsOriginal,
       int? NotApprovedProductDesignsCount,
       String? PackingDimensions,
@@ -41,6 +42,7 @@ class _$ShopProductsResponseDtoUseCaseTearOff {
       ApprovedProductDesignsCount: ApprovedProductDesignsCount,
       Brand: Brand,
       Description: Description,
+      IsActive: IsActive,
       IsOriginal: IsOriginal,
       NotApprovedProductDesignsCount: NotApprovedProductDesignsCount,
       PackingDimensions: PackingDimensions,
@@ -69,6 +71,7 @@ mixin _$ShopProductsResponseDtoUseCase {
   BrandOfShopProductsResponseDtoUseCase? get Brand =>
       throw _privateConstructorUsedError;
   String? get Description => throw _privateConstructorUsedError;
+  bool? get IsActive => throw _privateConstructorUsedError;
   bool? get IsOriginal => throw _privateConstructorUsedError;
   int? get NotApprovedProductDesignsCount => throw _privateConstructorUsedError;
   String? get PackingDimensions => throw _privateConstructorUsedError;
@@ -97,6 +100,7 @@ abstract class $ShopProductsResponseDtoUseCaseCopyWith<$Res> {
       {int? ApprovedProductDesignsCount,
       BrandOfShopProductsResponseDtoUseCase? Brand,
       String? Description,
+      bool? IsActive,
       bool? IsOriginal,
       int? NotApprovedProductDesignsCount,
       String? PackingDimensions,
@@ -125,6 +129,7 @@ class _$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     Object? ApprovedProductDesignsCount = freezed,
     Object? Brand = freezed,
     Object? Description = freezed,
+    Object? IsActive = freezed,
     Object? IsOriginal = freezed,
     Object? NotApprovedProductDesignsCount = freezed,
     Object? PackingDimensions = freezed,
@@ -149,6 +154,10 @@ class _$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
           ? _value.Description
           : Description // ignore: cast_nullable_to_non_nullable
               as String?,
+      IsActive: IsActive == freezed
+          ? _value.IsActive
+          : IsActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
       IsOriginal: IsOriginal == freezed
           ? _value.IsOriginal
           : IsOriginal // ignore: cast_nullable_to_non_nullable
@@ -217,6 +226,7 @@ abstract class _$ShopProductsResponseDtoUseCaseCopyWith<$Res>
       {int? ApprovedProductDesignsCount,
       BrandOfShopProductsResponseDtoUseCase? Brand,
       String? Description,
+      bool? IsActive,
       bool? IsOriginal,
       int? NotApprovedProductDesignsCount,
       String? PackingDimensions,
@@ -250,6 +260,7 @@ class __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     Object? ApprovedProductDesignsCount = freezed,
     Object? Brand = freezed,
     Object? Description = freezed,
+    Object? IsActive = freezed,
     Object? IsOriginal = freezed,
     Object? NotApprovedProductDesignsCount = freezed,
     Object? PackingDimensions = freezed,
@@ -274,6 +285,10 @@ class __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
           ? _value.Description
           : Description // ignore: cast_nullable_to_non_nullable
               as String?,
+      IsActive: IsActive == freezed
+          ? _value.IsActive
+          : IsActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
       IsOriginal: IsOriginal == freezed
           ? _value.IsOriginal
           : IsOriginal // ignore: cast_nullable_to_non_nullable
@@ -326,6 +341,7 @@ class _$_ShopProductsResponseDtoUseCase
       {this.ApprovedProductDesignsCount,
       this.Brand,
       this.Description,
+      this.IsActive,
       this.IsOriginal,
       this.NotApprovedProductDesignsCount,
       this.PackingDimensions,
@@ -347,6 +363,8 @@ class _$_ShopProductsResponseDtoUseCase
   final BrandOfShopProductsResponseDtoUseCase? Brand;
   @override
   final String? Description;
+  @override
+  final bool? IsActive;
   @override
   final bool? IsOriginal;
   @override
@@ -370,7 +388,7 @@ class _$_ShopProductsResponseDtoUseCase
 
   @override
   String toString() {
-    return 'ShopProductsResponseDtoUseCase(ApprovedProductDesignsCount: $ApprovedProductDesignsCount, Brand: $Brand, Description: $Description, IsOriginal: $IsOriginal, NotApprovedProductDesignsCount: $NotApprovedProductDesignsCount, PackingDimensions: $PackingDimensions, PackingWeight: $PackingWeight, Pictures: $Pictures, Picture: $Picture, ProductDimensions: $ProductDimensions, ProductId: $ProductId, ProductName: $ProductName, ProductWeight: $ProductWeight)';
+    return 'ShopProductsResponseDtoUseCase(ApprovedProductDesignsCount: $ApprovedProductDesignsCount, Brand: $Brand, Description: $Description, IsActive: $IsActive, IsOriginal: $IsOriginal, NotApprovedProductDesignsCount: $NotApprovedProductDesignsCount, PackingDimensions: $PackingDimensions, PackingWeight: $PackingWeight, Pictures: $Pictures, Picture: $Picture, ProductDimensions: $ProductDimensions, ProductId: $ProductId, ProductName: $ProductName, ProductWeight: $ProductWeight)';
   }
 
   @override
@@ -384,6 +402,7 @@ class _$_ShopProductsResponseDtoUseCase
             const DeepCollectionEquality().equals(other.Brand, Brand) &&
             const DeepCollectionEquality()
                 .equals(other.Description, Description) &&
+            const DeepCollectionEquality().equals(other.IsActive, IsActive) &&
             const DeepCollectionEquality()
                 .equals(other.IsOriginal, IsOriginal) &&
             const DeepCollectionEquality().equals(
@@ -410,6 +429,7 @@ class _$_ShopProductsResponseDtoUseCase
       const DeepCollectionEquality().hash(ApprovedProductDesignsCount),
       const DeepCollectionEquality().hash(Brand),
       const DeepCollectionEquality().hash(Description),
+      const DeepCollectionEquality().hash(IsActive),
       const DeepCollectionEquality().hash(IsOriginal),
       const DeepCollectionEquality().hash(NotApprovedProductDesignsCount),
       const DeepCollectionEquality().hash(PackingDimensions),
@@ -439,6 +459,7 @@ abstract class _ShopProductsResponseDtoUseCase
       {int? ApprovedProductDesignsCount,
       BrandOfShopProductsResponseDtoUseCase? Brand,
       String? Description,
+      bool? IsActive,
       bool? IsOriginal,
       int? NotApprovedProductDesignsCount,
       String? PackingDimensions,
@@ -459,6 +480,8 @@ abstract class _ShopProductsResponseDtoUseCase
   BrandOfShopProductsResponseDtoUseCase? get Brand;
   @override
   String? get Description;
+  @override
+  bool? get IsActive;
   @override
   bool? get IsOriginal;
   @override
