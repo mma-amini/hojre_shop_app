@@ -16,7 +16,7 @@ class ProductManagerController extends GetxController {
   int skip = 0;
 
   RefreshController refreshController = RefreshController(initialRefresh: false);
-  VMProductGroup selectedCategory = VMProductGroup();
+  final selectedCategory = VMProductGroup().obs;
   IProductGroupsUseCase iProductGroupsUseCase;
   IShopProductsUseCase iShopProductsUseCase;
 
@@ -60,7 +60,7 @@ class ProductManagerController extends GetxController {
   }
 
   updateSelectedCategory({required VMProductGroup selectedCategory}) {
-    this.selectedCategory = selectedCategory;
+    this.selectedCategory.value = selectedCategory;
     this.shopProductsList.clear();
 
     startApiShopProducts();
@@ -106,7 +106,7 @@ class ProductManagerController extends GetxController {
   startApiShopProducts() async {
     updateLoading(isLoading: true);
     await iShopProductsUseCase.Handler(
-            params: ShopProductsRequestDtoUseCase(categoryId: selectedCategory.CategoryId ?? ""))
+            params: ShopProductsRequestDtoUseCase(categoryId: selectedCategory.value.CategoryId ?? ""))
         .then((response) {
       updateLoading(isLoading: false);
       refreshController.refreshCompleted();

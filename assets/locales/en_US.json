@@ -19,7 +19,8 @@
       "products_management": "Products",
       "financial_management": "Financial",
       "shop_management": "Shop",
-      "orders_management": "Orders"
+      "orders_management": "Orders",
+      "are_you_sure_you_want_to_sign_out": "Are you sure you want to sign out?"
     },
     "product_manager": {
       "page_title": "Product Manager",
@@ -29,16 +30,27 @@
       "page_title": "Create product",
       "select_the_product_group": "Select the product group",
       "product_group": "Product group",
+      "if_the_product_group_is_changed_the_entered_properties_will_be_lost": "If the product group is changed, the entered properties will be lost.",
       "fields_name": {
         "product_name": "Product name"
       },
       "fields_error": {
-        "general_error": "Enter the @field"
+        "general_error": "Enter the @field",
+        "enter_all_the_required_information": "Enter all the required information."
+      },
+      "buttons": {
+        "register_product": "Register Product"
       }
     }
   },
   "buttons": {
-    "logout": "Logout"
+    "logout": "Logout",
+    "close": "Close",
+    "ok": "Ok",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "no"
   },
   "general":{
     "search": "Search"

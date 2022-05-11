@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/enums/message_type.dart';
 import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
+import 'package:hojre_shop_app/presentation/widgets/awesom_dialog/awesome_dialog.dart';
 
 import 'controllers/add_product.controller.dart';
 
@@ -25,8 +27,42 @@ class AddProductScreen extends GetView<AddProductController> {
                   key: controller.formKey,
                   child: ListView(
                     children: [
-                      Text(
-                        "${LocaleKeys.screen_add_product_product_group.tr}: ${controller.category.value.CategoryName ?? ""}",
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "${LocaleKeys.screen_add_product_product_group.tr}: ${controller.category.value.CategoryName ?? ""}",
+                            ),
+                          ),
+                          SizedBox(
+                            width: 8.0,
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              AwesomeDialog(
+                                  context: Get.context!,
+                                  body: Container(
+                                    child: Text(
+                                      LocaleKeys
+                                          .screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost
+                                          .tr,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  dismissOnTouchOutside: false,
+                                  btnOkText: LocaleKeys.buttons_confirm.tr,
+                                  btnOkOnPress: () {
+                                    controller.openProductGroupsDialog();
+                                  },
+                                  btnCancelText: LocaleKeys.buttons_cancel.tr,
+                                  btnCancelOnPress: () {})
+                                ..show();
+                            },
+                            icon: Icon(
+                              FontAwesome.edit,
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 16.0,
@@ -72,7 +108,8 @@ class AddProductScreen extends GetView<AddProductController> {
                                 controller.onFormSaved(isMain: true);
                               } else {
                                 ShowMessage.snackBar(
-                                  message: "تمام اطلاعات مورد نظر را وارد نمائید.",
+                                  message:
+                                      LocaleKeys.screen_add_product_fields_error_enter_all_the_required_information.tr,
                                   type: MessageType.ERROR,
                                   context: context,
                                 );
@@ -100,10 +137,10 @@ class AddProductScreen extends GetView<AddProductController> {
                                     ),
                                     Container(
                                       child: Text(
-                                        "ثبت کالا",
+                                        LocaleKeys.screen_add_product_buttons_register_product.tr,
                                         style: TextStyle(color: Colors.white),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),

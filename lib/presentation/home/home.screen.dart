@@ -52,7 +52,7 @@ class HomeScreen extends GetView<HomeController> {
                               style: TextStyle(color: Colors.white),
                             ),
                             subtitle: AutoSizeText(
-                              true ? "کیف پول سیستمی فعال است" : "کیف پول سیستمی غیرفعال است",
+                              "کیف پول سیستمی فعال است",
                               style: TextStyle(fontSize: 12.0, color: Colors.white),
                             ),
                           ),
@@ -82,6 +82,7 @@ class HomeScreen extends GetView<HomeController> {
                                         child: InkWell(
                                           onTap: () {
                                             // controller.startApiApplicationUpdate(showLoading: true);
+                                            controller.updateLocale();
                                           },
                                           child: Icon(
                                             Icons.system_update_alt,
@@ -178,14 +179,14 @@ class HomeScreen extends GetView<HomeController> {
                                         animType: AnimType.SCALE,
                                         dialogType: DialogType.WARNING,
                                         body: Text(
-                                          "آیا برای خروج از حساب کاربری خود مطمئن هستید؟",
+                                          LocaleKeys.screen_home_are_you_sure_you_want_to_sign_out.tr,
                                           textAlign: TextAlign.center,
                                         ),
-                                        btnOkText: "بله",
+                                        btnOkText: LocaleKeys.buttons_yes.tr,
                                         btnOkOnPress: () {
                                           Brain.logout();
                                         },
-                                        btnCancelText: "خیر",
+                                        btnCancelText: LocaleKeys.buttons_no.tr,
                                         btnCancelOnPress: () {},
                                       )..show();
                                     },

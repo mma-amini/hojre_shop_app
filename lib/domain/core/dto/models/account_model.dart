@@ -20,5 +20,12 @@ class VMAccount extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        UserId,
+        Username,
+        FirstName,
+        LastName,
+        ShopId,
+        ShopName,
+      ];
 }

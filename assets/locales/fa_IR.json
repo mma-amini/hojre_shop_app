@@ -19,7 +19,8 @@
       "products_management": "کالاها",
       "financial_management": "امور مالی",
       "shop_management": "فروشگاه",
-      "orders_management": "سفارش ها"
+      "orders_management": "سفارش ها",
+      "are_you_sure_you_want_to_sign_out": "آیا برای خروج از حساب کاربری خود مطمئن هستید؟"
     },
     "product_manager": {
       "page_title": "مدیریت کالاها",
@@ -29,16 +30,27 @@
       "page_title": "ایجاد کالا",
       "select_the_product_group": "انتخاب گروه کالا",
       "product_group": "گروه کالا",
+      "if_the_product_group_is_changed_the_entered_properties_will_be_lost": "درصورت تغییر گروه کالا، خصوصیات وارد شده از بین خواهند رفت.",
       "fields_name": {
         "product_name": "نام کالا"
       },
       "fields_error": {
-        "general_error": "@field را وارد نمایید"
+        "general_error": "@field را وارد نمایید",
+        "enter_all_the_required_information": "تمام اطلاعات مورد نظر را وارد نمائید."
+      },
+      "buttons": {
+        "register_product": "ثبت کالا"
       }
     }
   },
   "buttons": {
-    "logout": "خروج"
+    "logout": "خروج",
+    "close": "بستن",
+    "ok": "باشه",
+    "confirm": "تایید",
+    "cancel": "لغو",
+    "yes": "بله",
+    "no": "خیر"
   },
   "general": {
     "search": "جستجو"

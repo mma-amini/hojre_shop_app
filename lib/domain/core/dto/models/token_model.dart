@@ -19,5 +19,11 @@ class VMToken extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        AccessToken,
+        AccessToken,
+        TokenType,
+        ExpiresIn,
+        ExpiresOn,
+      ];
 }

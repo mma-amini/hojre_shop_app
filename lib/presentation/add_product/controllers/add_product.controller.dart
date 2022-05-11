@@ -8,7 +8,7 @@ import 'package:hojre_shop_app/generated/locales.g.dart';
 class AddProductController extends GetxController {
   final isLoading = false.obs;
 
-  final category = VMProductGroup().obs;
+  final Rx<VMProductGroup> category = VMProductGroup().obs;
 
   TextEditingController productGroupsDialogSearchController = TextEditingController();
   TextEditingController productNameController = TextEditingController();
@@ -64,6 +64,8 @@ class AddProductController extends GetxController {
     this.category.update((val) {
       this.category.value = category;
     });
+
+    update();
   }
 
   openProductGroupsDialog() async {
@@ -165,10 +167,11 @@ class AddProductController extends GetxController {
               width: Get.context!.width,
               padding: EdgeInsets.all(8.0),
               child: Center(
-                  child: Text(
-                "بستن",
-                style: TextStyle(color: Colors.blue),
-              )),
+                child: Text(
+                  LocaleKeys.buttons_close.tr,
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
             ),
           ),
         )

@@ -41,7 +41,20 @@ class VMProduct extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        Brand,
+        Description,
+        IsActive,
+        IsOriginal,
+        PackingDimensions,
+        PackingWeight,
+        Pictures,
+        Picture,
+        ProductDimensions,
+        ProductId,
+        ProductName,
+        ProductWeight,
+      ];
 }
 
 @JsonSerializable()
@@ -57,5 +70,8 @@ class VMProductPicture extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        IsMain,
+        Picture,
+      ];
 }
