@@ -28,7 +28,7 @@ class LoginScreen extends GetView<LoginController> {
                     ),
                   ),
                   child: Center(
-                    child: Container(
+                    child: SizedBox(
                       width: Get.width * 0.8,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -165,7 +165,7 @@ class LoginScreen extends GetView<LoginController> {
                                         controller.startApiCheckUser();
                                       }
                                     },
-                                    child: Container(
+                                    child: SizedBox(
                                       width: Get.width,
                                       child: Center(
                                         child: Padding(

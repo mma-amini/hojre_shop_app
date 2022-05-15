@@ -31,16 +31,17 @@ class _AnimatedButtonState extends State<AnimatedButton> with AnimationMixin {
   }
 
   void _onTapDown(TapDownDetails details) {
-    controller.play(duration: Duration(milliseconds: 150));
+    controller.play(duration: const Duration(milliseconds: 150));
   }
 
   void _onTapUp(TapUpDetails details) {
     if (controller.isAnimating) {
       controller.addStatusListener((status) {
-        if (status == AnimationStatus.completed) controller.playReverse(duration: Duration(milliseconds: 100));
+        if (status == AnimationStatus.completed) controller.playReverse(duration: const Duration(milliseconds: 100));
       });
-    } else
-      controller.playReverse(duration: Duration(milliseconds: 100));
+    } else {
+      controller.playReverse(duration: const Duration(milliseconds: 100));
+    }
   }
 
   @override
@@ -54,7 +55,7 @@ class _AnimatedButtonState extends State<AnimatedButton> with AnimationMixin {
       onTapUp: _onTapUp,
       onTapCancel: () {
         controller.playReverse(
-          duration: Duration(milliseconds: 100),
+          duration: const Duration(milliseconds: 100),
         );
       },
       child: Transform.scale(
@@ -69,7 +70,7 @@ class _AnimatedButtonState extends State<AnimatedButton> with AnimationMixin {
         width: widget.width,
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(100)),
+            borderRadius: const BorderRadius.all(Radius.circular(100)),
             color: widget.color ?? Theme.of(context).primaryColor),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -82,8 +83,8 @@ class _AnimatedButtonState extends State<AnimatedButton> with AnimationMixin {
                       color: Colors.white,
                     ),
                   )
-                : SizedBox(),
-            SizedBox(
+                : const SizedBox(),
+            const SizedBox(
               width: 5,
             ),
             Flexible(
@@ -92,7 +93,7 @@ class _AnimatedButtonState extends State<AnimatedButton> with AnimationMixin {
                 '${widget.text}',
                 // maxLines: 1,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14),
+                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14),
               ),
             ),
           ],

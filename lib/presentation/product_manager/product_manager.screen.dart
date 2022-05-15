@@ -36,15 +36,15 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
                           scrollPadding: const EdgeInsets.all(0),
                           decoration: InputDecoration(
                               label: Text(LocaleKeys.general_search.tr),
-                              border: new OutlineInputBorder(
-                                borderSide: new BorderSide(color: Colors.green),
+                              border: OutlineInputBorder(
+                                borderSide: const BorderSide(color: Colors.green),
                                 borderRadius: BorderRadius.circular(100.0),
                               ),
                               prefixIcon: const Icon(Icons.search),
                               contentPadding: const EdgeInsets.all(8.0)),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         height: 54.0,
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
@@ -119,7 +119,7 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
                               if (mode == LoadStatus.idle) {
                                 body = const Text(
                                   "برای دریافت داده‌های بیشتر صفحه را به سمت بالا بکشید",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 13.0,
                                   ),
@@ -130,7 +130,7 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
                               } else if (mode == LoadStatus.failed) {
                                 body = const Text(
                                   "خطا در دریافت اطلاعات! مجددا تلاش کنید",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 13.0,
                                   ),
@@ -139,7 +139,7 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
                               } else if (mode == LoadStatus.canLoading) {
                                 body = const Text(
                                   "دریافت داده‌های بیشتر",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 13.0,
                                   ),
@@ -155,7 +155,7 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
                                   textAlign: TextAlign.center,
                                 );
                               }
-                              return Container(
+                              return SizedBox(
                                 height: 40.0,
                                 child: Center(child: body),
                               );
@@ -310,10 +310,10 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
             onPressed: () {
               Get.toNamed(Routes.ADD_PRODUCT);
             },
+            tooltip: LocaleKeys.screen_product_manager_add_product_button_tooltip.tr,
             child: const Icon(
               Icons.add,
             ),
-            tooltip: LocaleKeys.screen_product_manager_add_product_button_tooltip.tr,
           ),
         );
       },

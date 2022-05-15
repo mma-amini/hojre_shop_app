@@ -22,10 +22,6 @@ class HomeController extends GetxController {
     initPlatformState();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   @override
   void onClose() {}
@@ -69,9 +65,9 @@ class HomeController extends GetxController {
     var locale = Get.locale;
 
     if (locale.toString() == "fa_IR") {
-      Get.updateLocale(Locale('en', 'US'));
+      Get.updateLocale(const Locale('en', 'US'));
     } else {
-      Get.updateLocale(Locale('fa', 'IR'));
+      Get.updateLocale(const Locale('fa', 'IR'));
     }
 
     update();
@@ -83,7 +79,7 @@ class HomeController extends GetxController {
 
     if (checkUser) {
       return FadeInImage(
-        placeholder: AssetImage("assets/media/images/profile_icon.png"),
+        placeholder: const AssetImage("assets/media/images/profile_icon.png"),
         image: NetworkImage("${Brain.baseDomain}/profile/${Brain.account.UserId}.jpg"),
         height: 60,
         width: 60,
@@ -100,8 +96,8 @@ class HomeController extends GetxController {
   }
 
   setUserFullName() {
-    if (Brain.account != null && (Brain.account.UserId ?? "").isNotEmpty) {
-      return Brain.account.FirstName! + " " + Brain.account.LastName!;
+    if ((Brain.account.UserId ?? "").isNotEmpty) {
+      return "${Brain.account.FirstName!} ${Brain.account.LastName!}";
     } else {
       return "یار";
     }
@@ -109,7 +105,7 @@ class HomeController extends GetxController {
 
   setUserShopName() {
     // Conditions
-    var checkSection = Brain.account != null && (Brain.account.ShopName ?? "").isNotEmpty;
+    var checkSection = (Brain.account.ShopName ?? "").isNotEmpty;
 
     if (checkSection) {
       return Brain.account.ShopName;
@@ -129,7 +125,7 @@ class HomeController extends GetxController {
 
   /****************************************/
   /**************** Routes ****************/
-  /****************************************/
+  /// **************************************/
 
   goToProductManagerPage() {
     Get.toNamed(Routes.PRODUCT_MANAGER);

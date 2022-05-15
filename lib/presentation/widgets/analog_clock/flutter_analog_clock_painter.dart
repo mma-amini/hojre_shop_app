@@ -21,7 +21,7 @@ class FlutterAnalogClockPainter extends CustomPainter {
   final bool showNumber;
   final double hourNumberScale;
   final List<String> hourNumbers;
-  double _borderWidth;
+  final double _borderWidth;
   final TextPainter _hourTextPainter = TextPainter(
     textAlign: TextAlign.center,
     textDirection: TextDirection.ltr,
@@ -45,7 +45,7 @@ class FlutterAnalogClockPainter extends CustomPainter {
     this.hourNumberScale = 1.0,
     this.hourNumbers = defaultHourNumbers,
     double? borderWidth,
-  })  : assert(hourNumbers == null || hourNumbers.length == 12),
+  })  : assert(hourNumbers.length == 12),
         _borderWidth = borderWidth ?? 1.0;
 
   @override
@@ -59,7 +59,7 @@ class FlutterAnalogClockPainter extends CustomPainter {
     canvas.translate(size.width / 2, size.height / 2);
 
     canvas.drawCircle(
-        Offset(0, 0),
+        const Offset(0, 0),
         radius,
         Paint()
           ..style = PaintingStyle.fill
@@ -68,11 +68,11 @@ class FlutterAnalogClockPainter extends CustomPainter {
     // border style
     if (showBorder && borderWidth > 0) {
       Paint borderPaint = Paint()
-        ..color = this.borderColor
+        ..color = borderColor
         ..style = PaintingStyle.stroke
         ..strokeWidth = borderWidth
         ..isAntiAlias = true;
-      canvas.drawCircle(Offset(0, 0), radius - borderWidth / 2, borderPaint);
+      canvas.drawCircle(const Offset(0, 0), radius - borderWidth / 2, borderPaint);
     }
 
     // setup tick
@@ -102,8 +102,8 @@ class FlutterAnalogClockPainter extends CustomPainter {
     Paint centerPointPaint = Paint()
       ..strokeWidth = ((radius - borderWidth) / 10)
       ..strokeCap = StrokeCap.round
-      ..color = this.centerPointColor;
-    canvas.drawPoints(PointMode.points, [Offset(0, 0)], centerPointPaint);
+      ..color = centerPointColor;
+    canvas.drawPoints(PointMode.points, [const Offset(0, 0)], centerPointPaint);
   }
 
   /// draw ticks
@@ -111,25 +111,25 @@ class FlutterAnalogClockPainter extends CustomPainter {
     List<Offset> ticks = [];
     List<Offset> bigTicks = [];
     for (var i = 0; i < 60; i++) {
-      double _angle = i * 6.0;
+      double angle = i * 6.0;
       if (i % 5 != 0) {
-        double x = cos(getRadians(_angle)) * radius;
-        double y = sin(getRadians(_angle)) * radius;
+        double x = cos(getRadians(angle)) * radius;
+        double y = sin(getRadians(angle)) * radius;
         ticks.add(Offset(x, y));
       } else {
-        double x = cos(getRadians(_angle)) * radius;
-        double y = sin(getRadians(_angle)) * radius;
+        double x = cos(getRadians(angle)) * radius;
+        double y = sin(getRadians(angle)) * radius;
         bigTicks.add(Offset(x, y));
       }
     }
     Paint tickPaint = Paint()
-      ..color = this.tickColor
+      ..color = tickColor
       ..strokeWidth = tickWidth
       ..strokeCap = StrokeCap.round;
     canvas.drawPoints(PointMode.points, ticks, tickPaint);
 
     Paint bigTickPaint = Paint()
-      ..color = this.tickColor
+      ..color = tickColor
       ..strokeWidth = bigTickWidth
       ..strokeCap = StrokeCap.round;
     canvas.drawPoints(PointMode.points, bigTicks, bigTickPaint);
@@ -139,10 +139,10 @@ class FlutterAnalogClockPainter extends CustomPainter {
   double _paintHourText(Canvas canvas, double radius, double fontSize) {
     double maxTextHeight = 0;
     for (var i = 0; i < 12; i++) {
-      double _angle = i * 30.0;
+      double angle = i * 30.0;
       canvas.save();
-      double hourNumberX = cos(getRadians(_angle)) * radius;
-      double hourNumberY = sin(getRadians(_angle)) * radius;
+      double hourNumberX = cos(getRadians(angle)) * radius;
+      double hourNumberY = sin(getRadians(angle)) * radius;
       canvas.translate(hourNumberX, hourNumberY);
       int intHour = i + 3;
       if (intHour > 12) intHour = intHour - 12;
@@ -150,7 +150,7 @@ class FlutterAnalogClockPainter extends CustomPainter {
       String hourText = hourNumbers[intHour - 1];
       _hourTextPainter.text = TextSpan(
         text: hourText,
-        style: TextStyle(fontSize: fontSize, color: this.numberColor),
+        style: TextStyle(fontSize: fontSize, color: numberColor),
       );
       _hourTextPainter.layout();
       if (_hourTextPainter.height > maxTextHeight) maxTextHeight = _hourTextPainter.height;
@@ -165,9 +165,9 @@ class FlutterAnalogClockPainter extends CustomPainter {
     double angle = _datetime.hour % 12 + _datetime.minute / 60.0 - 3;
     Offset handOffset = Offset(cos(getRadians(angle * 30)) * radius, sin(getRadians(angle * 30)) * radius);
     final hourHandPaint = Paint()
-      ..color = this.hourHandColor
+      ..color = hourHandColor
       ..strokeWidth = strokeWidth;
-    canvas.drawLine(Offset(0, 0), handOffset, hourHandPaint);
+    canvas.drawLine(const Offset(0, 0), handOffset, hourHandPaint);
   }
 
   /// draw minute hand
@@ -175,9 +175,9 @@ class FlutterAnalogClockPainter extends CustomPainter {
     double angle = _datetime.minute - 15.0;
     Offset handOffset = Offset(cos(getRadians(angle * 6.0)) * radius, sin(getRadians(angle * 6.0)) * radius);
     final hourHandPaint = Paint()
-      ..color = this.minuteHandColor
+      ..color = minuteHandColor
       ..strokeWidth = strokeWidth;
-    canvas.drawLine(Offset(0, 0), handOffset, hourHandPaint);
+    canvas.drawLine(const Offset(0, 0), handOffset, hourHandPaint);
   }
 
   /// draw second hand
@@ -185,9 +185,9 @@ class FlutterAnalogClockPainter extends CustomPainter {
     double angle = _datetime.second - 15.0;
     Offset handOffset = Offset(cos(getRadians(angle * 6.0)) * radius, sin(getRadians(angle * 6.0)) * radius);
     final hourHandPaint = Paint()
-      ..color = this.secondHandColor
+      ..color = secondHandColor
       ..strokeWidth = strokeWidth;
-    canvas.drawLine(Offset(0, 0), handOffset, hourHandPaint);
+    canvas.drawLine(const Offset(0, 0), handOffset, hourHandPaint);
   }
 
   @override

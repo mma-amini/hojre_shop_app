@@ -30,13 +30,29 @@
       "page_title": "ایجاد کالا",
       "select_the_product_group": "انتخاب گروه کالا",
       "product_group": "گروه کالا",
+      "basic_specifications": "مشخصات پایه",
+      "packaging_dimensions": "ابعاد بسته بندی",
+      "package_weight": "وزن بسته بندی",
+      "product_description": "توضیحات کالا",
+      "specifications": "مشخصات",
+      "enter_number_between_x_and_x_cm": "عددی بین @min تا @max سانتی متر را وارد نمایید.",
+      "enter_number_between_x_and_x": "عددی بین @min تا @max را وارد نمایید.",
       "if_the_product_group_is_changed_the_entered_properties_will_be_lost": "درصورت تغییر گروه کالا، خصوصیات وارد شده از بین خواهند رفت.",
+      "also_select_the_type_of_weight": "همچنین نوع وزن را انتخاب نمایید.",
       "fields_name": {
-        "product_name": "نام کالا"
+        "product_name": "نام کالا",
+        "length_cm": "طول (cm)",
+        "width_cm": "عرض (cm)",
+        "height_cm": "ارتفاع (cm)",
+        "length": "طول",
+        "width": "عرض",
+        "height": "ارتفاع",
+        "type_of_weight": "نوع وزن"
       },
       "fields_error": {
         "general_error": "@field را وارد نمایید",
-        "enter_all_the_required_information": "تمام اطلاعات مورد نظر را وارد نمائید."
+        "enter_all_the_required_information": "تمام اطلاعات مورد نظر را وارد نمائید.",
+        "numerical_between_x_and_x": "عددی بین @min تا @max"
       },
       "buttons": {
         "register_product": "ثبت کالا"

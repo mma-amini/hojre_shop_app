@@ -9,13 +9,13 @@ import '../interfaces/use_cases/i_refresh_token_use_case.dart';
 import 'log_helper.dart';
 
 class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
-  Dio _mainDio;
+  final Dio _mainDio;
   late Dio _dio;
-  var _lock = new synchronized.Lock();
+  final _lock = synchronized.Lock();
   IRefreshTokenUseCase? iRefreshTokenUseCase;
 
   AuthenticationInterceptor(this._mainDio, {this.iRefreshTokenUseCase}) {
-    BaseOptions options = new BaseOptions(
+    BaseOptions options = BaseOptions(
       baseUrl: Brain.baseDomain,
       connectTimeout: 10000,
       receiveTimeout: 10000,
@@ -26,7 +26,7 @@ class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
         "type": "Flutter",
       },
     );
-    _dio = new Dio(options);
+    _dio = Dio(options);
 
     _dio.interceptors
         .add(QueuedInterceptorsWrapper(onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
@@ -81,7 +81,7 @@ class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
       int responseCode = error.response!.statusCode!;
       if (responseCode == 401) {
         if ((Brain.token.AccessToken ?? "").isNotEmpty) {
-          bool checkTokenTime = Brain.token.ExpiresOn! > new DateTime.now().millisecondsSinceEpoch;
+          bool checkTokenTime = Brain.token.ExpiresOn! > DateTime.now().millisecondsSinceEpoch;
 
           if (checkTokenTime) {
             RequestOptions options = error.response!.requestOptions;
@@ -97,7 +97,7 @@ class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
             if (result.AccessToken != null && (result.AccessToken ?? "").isNotEmpty) {
               var newToken = result;
 
-              int expiresOn = new DateTime.now().add(Duration(seconds: newToken.ExpiresIn ?? 0)).millisecondsSinceEpoch;
+              int expiresOn = DateTime.now().add(Duration(seconds: newToken.ExpiresIn ?? 0)).millisecondsSinceEpoch;
 
               VMToken token = VMToken(
                 AccessToken: newToken.AccessToken,

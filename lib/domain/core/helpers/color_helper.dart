@@ -22,7 +22,7 @@ extension HexColor on Color {
     buffer.write(hexString.replaceAll('#', ''));
     try {
       int integer = int.parse(buffer.toString(), radix: 16);
-      if (integer < 0) throw FormatException();
+      if (integer < 0) throw const FormatException();
       return Right(Color(integer));
     } on FormatException {
       return Left(HexColorFailure());

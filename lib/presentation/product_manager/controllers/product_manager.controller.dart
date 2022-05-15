@@ -25,10 +25,6 @@ class ProductManagerController extends GetxController {
 
   ProductManagerController({required this.iProductGroupsUseCase, required this.iShopProductsUseCase});
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   @override
   void onReady() {
@@ -61,18 +57,18 @@ class ProductManagerController extends GetxController {
 
   updateSelectedCategory({required VMProductGroup selectedCategory}) {
     this.selectedCategory.value = selectedCategory;
-    this.shopProductsList.clear();
+    shopProductsList.clear();
 
     startApiShopProducts();
   }
 
   updateSkip() {
-    this.skip++;
+    skip++;
     update();
   }
 
   onRefresh() {
-    this.shopProductsList.clear();
+    shopProductsList.clear();
 
     startApiShopProducts();
   }
@@ -86,7 +82,7 @@ class ProductManagerController extends GetxController {
       VMProductGroup emptyGroup = VMProductGroup(CategoryName: "همه گروه ها", CategoryId: "");
       tempProductGroupsList.add(emptyGroup);
 
-      data.forEach((element) {
+      for (var element in data) {
         VMProductGroup productGroup = VMProductGroup(
           CategoryId: element.CategoryId,
           CategoryName: element.CategoryName,
@@ -95,7 +91,7 @@ class ProductManagerController extends GetxController {
         );
 
         tempProductGroupsList.add(productGroup);
-      });
+      }
 
       updateProductGroupsList(productGroupsList: tempProductGroupsList);
     }).catchError((error) {
@@ -116,13 +112,13 @@ class ProductManagerController extends GetxController {
 
       List<VMProduct> tempShopProductsList = List<VMProduct>.empty(growable: true);
 
-      data.forEach((element) {
+      for (var element in data) {
         var js = json.encode(element);
         Map<String, dynamic> jsData = json.decode(js);
         VMProduct product = VMProduct.fromJson(jsData);
 
         tempShopProductsList.add(product);
-      });
+      }
 
       updateShopProductsList(shopProductsList: tempShopProductsList);
     }).catchError((error) {

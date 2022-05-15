@@ -21,11 +21,11 @@ class HomeScreen extends GetView<HomeController> {
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: ListView(
               children: [
                 Container(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     color: Get.isDarkMode ? Colors.indigo : Colors.blue,
                     borderRadius: BorderRadius.circular(12.0),
@@ -36,7 +36,7 @@ class HomeScreen extends GetView<HomeController> {
                     expanded: Container(
                       child: Column(
                         children: [
-                          Divider(
+                          const Divider(
                             color: Colors.white,
                           ),
                           CheckboxListTile(
@@ -44,19 +44,19 @@ class HomeScreen extends GetView<HomeController> {
                             onChanged: (value) {
                               // controller.startApiRequestMoneySystem();
                             },
-                            title: AutoSizeText(
+                            title: const AutoSizeText(
                               "کیف پول سیستمی فعال باشد؟",
                               maxLines: 1,
                               minFontSize: 8.0,
                               maxFontSize: 14.0,
                               style: TextStyle(color: Colors.white),
                             ),
-                            subtitle: AutoSizeText(
+                            subtitle: const AutoSizeText(
                               "کیف پول سیستمی فعال است",
                               style: TextStyle(fontSize: 12.0, color: Colors.white),
                             ),
                           ),
-                          Divider(
+                          const Divider(
                             color: Colors.white,
                           ),
                           Row(
@@ -65,7 +65,7 @@ class HomeScreen extends GetView<HomeController> {
                                 child: Container(
                                   child: Text(
                                     "حجره فروشگاه دار - نسخه: ${Brain.appVersion}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 12.0,
                                       color: Colors.white,
                                     ),
@@ -84,7 +84,7 @@ class HomeScreen extends GetView<HomeController> {
                                             // controller.startApiApplicationUpdate(showLoading: true);
                                             controller.updateLocale();
                                           },
-                                          child: Icon(
+                                          child: const Icon(
                                             Icons.system_update_alt,
                                             size: 16.0,
                                             color: Colors.white,
@@ -92,7 +92,7 @@ class HomeScreen extends GetView<HomeController> {
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    const SizedBox(
                                       height: 10.0,
                                       child: VerticalDivider(
                                         color: Colors.white,
@@ -109,7 +109,7 @@ class HomeScreen extends GetView<HomeController> {
                                       Get.changeTheme(Get.isDarkMode
                                           ? ThemeData(brightness: Brightness.light, fontFamily: "Vazir Reg")
                                           : ThemeData(brightness: Brightness.dark, fontFamily: "Vazir Reg"));
-                                      Future.delayed(Duration(milliseconds: 250)).then((value) async {
+                                      Future.delayed(const Duration(milliseconds: 250)).then((value) async {
                                         var appTheme = "";
                                         if (Get.isDarkMode) {
                                           appTheme = "DARK";
@@ -124,7 +124,7 @@ class HomeScreen extends GetView<HomeController> {
                                       controller.justUpdate();
                                     },
                                     child: Container(
-                                      child: Icon(
+                                      child: const Icon(
                                         FontAwesome5.moon,
                                         color: Colors.white,
                                         size: 16.0,
@@ -133,7 +133,7 @@ class HomeScreen extends GetView<HomeController> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              const SizedBox(
                                 height: 10.0,
                                 child: VerticalDivider(
                                   color: Colors.white,
@@ -150,7 +150,7 @@ class HomeScreen extends GetView<HomeController> {
                                           // Get.toNamed(Routes.DEVELOPER);
                                         },
                                         child: Container(
-                                          child: Icon(
+                                          child: const Icon(
                                             Icons.developer_mode,
                                             color: Colors.white,
                                             size: 16,
@@ -158,7 +158,7 @@ class HomeScreen extends GetView<HomeController> {
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    const SizedBox(
                                       height: 10.0,
                                       child: VerticalDivider(
                                         color: Colors.white,
@@ -168,7 +168,7 @@ class HomeScreen extends GetView<HomeController> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: Material(
                                   color: Colors.transparent,
                                   child: InkWell(
@@ -188,9 +188,9 @@ class HomeScreen extends GetView<HomeController> {
                                         },
                                         btnCancelText: LocaleKeys.buttons_no.tr,
                                         btnCancelOnPress: () {},
-                                      )..show();
+                                      ).show();
                                     },
-                                    child: Icon(
+                                    child: const Icon(
                                       FontAwesome.logout,
                                       color: Colors.white,
                                       size: 16.0,
@@ -206,13 +206,13 @@ class HomeScreen extends GetView<HomeController> {
                     hasIcon: false,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8.0,
                 ),
                 Container(
-                  padding: EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(4.0),
                   decoration: BoxDecoration(
-                    color: Get.isDarkMode ? Color.fromARGB(255, 17, 17, 88) : Colors.grey.withOpacity(0.5),
+                    color: Get.isDarkMode ? const Color.fromARGB(255, 17, 17, 88) : Colors.grey.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: Center(
@@ -229,16 +229,16 @@ class HomeScreen extends GetView<HomeController> {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
-                                Icon(
+                                const Icon(
                                   FontAwesome5.box,
                                   size: 15.0,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8.0,
                                 ),
                                 Text(
                                   LocaleKeys.screen_home_products_management.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 12.0,
                                   ),
                                 ),
@@ -253,16 +253,16 @@ class HomeScreen extends GetView<HomeController> {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
-                                Icon(
+                                const Icon(
                                   FontAwesome5.shopping_cart,
                                   size: 15.0,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8.0,
                                 ),
                                 Text(
                                   LocaleKeys.screen_home_orders_management.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 12.0,
                                   ),
                                 ),
@@ -277,16 +277,16 @@ class HomeScreen extends GetView<HomeController> {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
-                                Icon(
+                                const Icon(
                                   FontAwesome5.store,
                                   size: 15.0,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8.0,
                                 ),
                                 Text(
                                   LocaleKeys.screen_home_shop_management.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 12.0,
                                   ),
                                 ),
@@ -301,16 +301,16 @@ class HomeScreen extends GetView<HomeController> {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
-                                Icon(
+                                const Icon(
                                   FontAwesome5.wallet,
                                   size: 15.0,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8.0,
                                 ),
                                 Text(
                                   LocaleKeys.screen_home_financial_management.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 12.0,
                                   ),
                                 ),
@@ -322,7 +322,7 @@ class HomeScreen extends GetView<HomeController> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8.0,
                 ),
                 Wrap(),
@@ -364,7 +364,7 @@ class HomeScreen extends GetView<HomeController> {
             child: controller.setUserAvatarWidget(),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Column(
@@ -372,14 +372,14 @@ class HomeScreen extends GetView<HomeController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(controller.setUserFullName(),
-                style: TextStyle(color: Colors.white, fontFamily: "Vazir Med", fontSize: 18.0)),
+                style: const TextStyle(color: Colors.white, fontFamily: "Vazir Med", fontSize: 18.0)),
             Text(
               controller.setUserShopName(),
-              style: TextStyle(color: Colors.white, fontFamily: "Vazir Med", fontSize: 12.0),
+              style: const TextStyle(color: Colors.white, fontFamily: "Vazir Med", fontSize: 12.0),
             ),
           ],
         ),
-        Spacer(),
+        const Spacer(),
         Column(
           children: [
             FlutterAnalogClock(
@@ -399,7 +399,7 @@ class HomeScreen extends GetView<HomeController> {
               showNumber: false,
               borderWidth: 1.0,
               hourNumberScale: 1.0,
-              hourNumbers: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'],
+              hourNumbers: const ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'],
               isLive: true,
               width: 50.0,
               height: 50.0,
@@ -407,7 +407,7 @@ class HomeScreen extends GetView<HomeController> {
             ),
             Text(
               controller.setCurrentDate(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 10.0,
                 color: Colors.white,
               ),

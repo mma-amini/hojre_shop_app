@@ -62,13 +62,13 @@ class VerticalStackDialog extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context).textTheme.headline6,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10.0,
                               ),
                               Flexible(
                                 fit: FlexFit.loose,
                                 child: SingleChildScrollView(
-                                  physics: BouncingScrollPhysics(),
+                                  physics: const BouncingScrollPhysics(),
                                   child: Text(
                                     desc!,
                                     textAlign: TextAlign.center,
@@ -77,12 +77,12 @@ class VerticalStackDialog extends StatelessWidget {
                               ),
                             ],
                           ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16.0,
                       ),
                       if (btnOk != null || btnCancel != null)
                         Container(
-                          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -91,7 +91,7 @@ class VerticalStackDialog extends StatelessWidget {
                                   child: btnOk ?? Container(),
                                 ),
                               if (btnCancel != null && btnOk != null)
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                               if (btnCancel != null)
@@ -108,7 +108,7 @@ class VerticalStackDialog extends StatelessWidget {
             ),
           ),
           if (header != null)
-            Container(
+            SizedBox(
               width: width ?? MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

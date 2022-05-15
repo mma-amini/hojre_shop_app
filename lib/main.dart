@@ -28,7 +28,7 @@ void main() async {
     Brain.account = value ?? VMAccount();
   });
   await LocalDataSourceImpl.getToken().then((value) {
-    Brain.token = value ?? VMToken();
+    Brain.token = value ?? const VMToken();
   });
 
   appInfo();
@@ -83,7 +83,7 @@ Future<void> appInfo() async {
 class Main extends StatelessWidget {
   final String initialRoute;
 
-  Main(this.initialRoute);
+  const Main(this.initialRoute);
 
   @override
   Widget build(BuildContext context) {
@@ -102,16 +102,25 @@ class Main extends StatelessWidget {
         Locale("en", "US"),
       ],
       locale: const Locale("fa", "IR"),
-      darkTheme: ThemeData(brightness: Brightness.light, fontFamily: "Vazir Reg"),
+      darkTheme: ThemeData(
+        brightness: Brightness.light,
+        fontFamily: "Vazir Reg",
+        useMaterial3: true,
+      ),
       theme: Brain.appTheme == "LIGHT"
           ? ThemeData(
               brightness: Brightness.light,
               fontFamily: "Vazir Reg",
-              appBarTheme: AppBarTheme(
+              appBarTheme: const AppBarTheme(
                 color: Colors.blue,
               ),
+              useMaterial3: true,
             )
-          : ThemeData(brightness: Brightness.dark, fontFamily: "Vazir Reg"),
+          : ThemeData(
+              brightness: Brightness.dark,
+              fontFamily: "Vazir Reg",
+              useMaterial3: true,
+            ),
       defaultTransition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 500),
       initialRoute: initialRoute,

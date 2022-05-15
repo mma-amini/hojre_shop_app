@@ -30,13 +30,29 @@
       "page_title": "Create product",
       "select_the_product_group": "Select the product group",
       "product_group": "Product group",
+      "basic_specifications": "Basic specifications",
+      "packaging_dimensions": "Packaging dimensions",
+      "package_weight": "Package weight",
+      "product_description": "Product description",
+      "specifications": "Specifications",
+      "enter_number_between_x_and_x_cm": "Enter a number between @min and @max cm.",
+      "enter_number_between_x_and_x": "Enter a number between @min and @max",
       "if_the_product_group_is_changed_the_entered_properties_will_be_lost": "If the product group is changed, the entered properties will be lost.",
+      "also_select_the_type_of_weight": "Also select the type of weight.",
       "fields_name": {
-        "product_name": "Product name"
+        "product_name": "Product name",
+        "length_cm": "Length (cm)",
+        "width_cm": "Width (cm)",
+        "height_cm": "Height (cm)",
+        "length": "Length",
+        "width": "Width",
+        "height": "Height",
+        "type_of_weight": "Type of weight"
       },
       "fields_error": {
         "general_error": "Enter the @field",
-        "enter_all_the_required_information": "Enter all the required information."
+        "enter_all_the_required_information": "Enter all the required information.",
+        "numerical_between_x_and_x": "Numerical between @min and @max"
       },
       "buttons": {
         "register_product": "Register Product"

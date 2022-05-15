@@ -11,7 +11,7 @@ import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 
 class Brain {
   static String _baseDomain = "";
-  static VMToken _token = VMToken();
+  static VMToken _token = const VMToken();
   static VMAccount _account = VMAccount();
   static String _cityID = "";
   static String _addressID = "";

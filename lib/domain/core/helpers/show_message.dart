@@ -17,15 +17,15 @@ class ShowMessage {
     late Color leftBarIndicatorColor;
     switch (type) {
       case MessageType.WARNING:
-        icon = Icon(Icons.info_outline, color: Colors.yellow);
+        icon = const Icon(Icons.info_outline, color: Colors.yellow);
         leftBarIndicatorColor = Colors.yellow;
         break;
       case MessageType.ERROR:
-        icon = Icon(Icons.error_outline, color: Colors.red);
+        icon = const Icon(Icons.error_outline, color: Colors.red);
         leftBarIndicatorColor = Colors.red;
         break;
       case MessageType.SUCCESS:
-        icon = Icon(Icons.check_circle_outline, color: Colors.green);
+        icon = const Icon(Icons.check_circle_outline, color: Colors.green);
         leftBarIndicatorColor = Colors.green;
         break;
     }
@@ -37,7 +37,7 @@ class ShowMessage {
       colorText: Colors.white,
       backgroundColor: Colors.black.withOpacity(0.7),
       leftBarIndicatorColor: leftBarIndicatorColor,
-      margin: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
       borderRadius: 0,
       barBlur: 2,
       snackPosition: snackPosition,
@@ -55,15 +55,15 @@ class ShowMessage {
     late Color leftBarIndicatorColor;
     switch (type) {
       case MessageType.WARNING:
-        icon = Icon(Icons.info_outline, color: Colors.yellow);
+        icon = const Icon(Icons.info_outline, color: Colors.yellow);
         leftBarIndicatorColor = Colors.yellow;
         break;
       case MessageType.ERROR:
-        icon = Icon(Icons.error_outline, color: Colors.red);
+        icon = const Icon(Icons.error_outline, color: Colors.red);
         leftBarIndicatorColor = Colors.red;
         break;
       case MessageType.SUCCESS:
-        icon = Icon(Icons.check_circle_outline, color: Colors.green);
+        icon = const Icon(Icons.check_circle_outline, color: Colors.green);
         leftBarIndicatorColor = Colors.green;
         break;
     }
@@ -83,21 +83,21 @@ class ShowMessage {
                 width: 5.0,
                 decoration: BoxDecoration(
                   color: leftBarIndicatorColor,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     bottomRight: Radius.circular(20.0),
                     topRight: Radius.circular(20.0),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 16.0,
               ),
               Container(
-                padding: EdgeInsets.all(4.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Row(
                   children: [
                     icon,
-                    SizedBox(
+                    const SizedBox(
                       width: 8.0,
                     ),
                     Column(
@@ -115,7 +115,7 @@ class ShowMessage {
                                   fontFamily: "Vazir Reg",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 2.0,
                               ),
                             ],
@@ -137,7 +137,7 @@ class ShowMessage {
             ],
           ),
         ),
-        duration: Duration(seconds: 4),
+        duration: const Duration(seconds: 4),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),

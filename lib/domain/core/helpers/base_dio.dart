@@ -9,7 +9,7 @@ class BaseDio {
   late AuthenticationInterceptor _tokenInterceptor;
 
   Dio _initDio() {
-    BaseOptions baseOptions = new BaseOptions(
+    BaseOptions baseOptions = BaseOptions(
       baseUrl: Brain.baseDomain,
       connectTimeout: 25000,
       receiveTimeout: 25000,
@@ -17,8 +17,8 @@ class BaseDio {
       headers: headers(),
     );
 
-    Dio dio = new Dio(baseOptions);
-    _tokenInterceptor = new AuthenticationInterceptor(dio);
+    Dio dio = Dio(baseOptions);
+    _tokenInterceptor = AuthenticationInterceptor(dio);
     dio.interceptors.add(_tokenInterceptor);
 
     if (kDebugMode) {

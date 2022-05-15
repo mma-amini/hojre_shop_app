@@ -11,7 +11,7 @@ class VMToken extends Equatable {
   final int? ExpiresIn;
   final int? ExpiresOn;
 
-  VMToken({this.AccessToken, this.RefreshToken, this.TokenType, this.ExpiresIn, this.ExpiresOn});
+  const VMToken({this.AccessToken, this.RefreshToken, this.TokenType, this.ExpiresIn, this.ExpiresOn});
 
   factory VMToken.fromJson(Map<String, dynamic> json) => _$VMTokenFromJson(json);
 

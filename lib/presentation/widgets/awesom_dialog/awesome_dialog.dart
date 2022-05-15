@@ -116,14 +116,12 @@ class AwesomeDialog {
     this.keyboardAware = true,
     this.dismissOnBackKeyPress = true,
     this.width,
-  }) : assert(
-          context != null,
-        );
+  });
 
   bool isDissmisedBySystem = false;
 
   Future show() => showDialog(
-          context: this.context,
+          context: context,
           barrierDismissible: dismissOnTouchOutside,
           builder: (BuildContext context) {
             if (autoHide != null) {
@@ -158,7 +156,7 @@ class AwesomeDialog {
     if (dialogType == DialogType.NO_HEADER) return null;
     return FlareHeader(
       loop: headerAnimationLoop,
-      dialogType: this.dialogType,
+      dialogType: dialogType,
     );
   }
 
@@ -166,14 +164,14 @@ class AwesomeDialog {
         onWillPop: _onWillPop,
         child: VerticalStackDialog(
           header: _buildHeader,
-          title: this.title,
-          desc: this.desc,
-          body: this.body,
+          title: title,
+          desc: desc,
+          body: body,
           isDense: isDense,
           aligment: aligment,
           keyboardAware: keyboardAware,
           width: width,
-          padding: padding ?? EdgeInsets.only(left: 5, right: 5),
+          padding: padding ?? const EdgeInsets.only(left: 5, right: 5),
           btnCancel: btnCancel ?? (btnCancelOnPress != null ? _buildFancyButtonCancel : null),
           btnOk: btnOk ?? (btnOkOnPress != null ? _buildFancyButtonOk : null),
         ),
@@ -186,7 +184,7 @@ class AwesomeDialog {
           btnOkOnPress!();
         },
         text: btnOkText ?? 'Ok',
-        color: btnOkColor ?? Color(0xFF00CA71),
+        color: btnOkColor ?? const Color(0xFF00CA71),
         icon: btnOkIcon,
       );
 

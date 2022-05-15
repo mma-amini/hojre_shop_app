@@ -7,7 +7,7 @@ class NetworkInfoImpl {
   Future<bool> isConnected() async {
     connectionStatus = await (connectivity.checkConnectivity());
 
-    if (connectionStatus != null && connectionStatus != ConnectivityResult.none) {
+    if (connectionStatus != ConnectivityResult.none) {
       return true;
     } else {
       return false;

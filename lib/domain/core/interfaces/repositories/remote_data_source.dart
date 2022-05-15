@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 
 import '../../dto/use_cases/requests/request_dto_use_case_exports.dart';
-import '../../dto/use_cases/responses/login_response_dto_use_case.dart';
 import '../../dto/use_cases/responses/response_dto_use_case_exports.dart';
 
 abstract class RemoteDataSource {

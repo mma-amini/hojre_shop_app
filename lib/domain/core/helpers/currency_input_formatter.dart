@@ -6,6 +6,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
 
   final int? maxDigits;
 
+  @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (newValue.selection.baseOffset == 0) {
@@ -19,15 +20,15 @@ class CurrencyInputFormatter extends TextInputFormatter {
 
     try {
       value = double.parse(newValue.text);
-      if (value < 0) throw FormatException();
+      if (value < 0) throw const FormatException();
     } on FormatException {
       value = 0;
     }
 
-    final formatter = new NumberFormat("#,###");
+    final formatter = NumberFormat("#,###");
     String newText = formatter.format(value);
     return newValue.copyWith(
         text: newText,
-        selection: new TextSelection.collapsed(offset: newText.length));
+        selection: TextSelection.collapsed(offset: newText.length));
   }
 }

@@ -19,7 +19,7 @@ Offset getOffset(MultiTweenValues<AniProps> animation, SlideFrom from) {
       return Offset(animation.get(AniProps.translateX), 0);
       break;
     default:
-      return Offset(0, 0);
+      return const Offset(0, 0);
   }
 }
 
@@ -34,21 +34,19 @@ class FadeIn extends StatelessWidget {
   final bool fade;
   final Curve curve;
 
-  FadeIn(
+  const FadeIn(
       {this.delay = 0,
       this.child,
       this.fade = true,
-      this.control = CustomAnimationControl.PLAY,
+      this.control = CustomAnimationControl.play,
       this.from = SlideFrom.RIGHT,
       this.curve = Curves.ease});
 
   @override
   Widget build(BuildContext context) {
     final newTween = MultiTween<AniProps>()
-      ..add(AniProps.opacity, Tween(begin: 0.0, end: 1.0),
-          Duration(milliseconds: 500))
-      ..add(AniProps.translateX, Tween(begin: 60.0, end: 0.0),
-          Duration(milliseconds: 500), curve);
+      ..add(AniProps.opacity, Tween(begin: 0.0, end: 1.0), const Duration(milliseconds: 500))
+      ..add(AniProps.translateX, Tween(begin: 60.0, end: 0.0), const Duration(milliseconds: 500), curve);
 
     return CustomAnimation<MultiTweenValues<AniProps>>(
       delay: Duration(milliseconds: (200 * delay).round()),
@@ -76,12 +74,12 @@ class Slide extends StatelessWidget {
   final double slideDistance;
   final Curve curve;
 
-  Slide(
+  const Slide(
       {this.delay = 0,
       this.child,
       this.duration = 1,
       this.slideDistance = 60.0,
-      this.control = CustomAnimationControl.PLAY,
+      this.control = CustomAnimationControl.play,
       this.from = SlideFrom.RIGHT,
       this.curve = Curves.ease});
 
@@ -118,13 +116,13 @@ class ScaleFade extends StatelessWidget {
   final bool fade;
   final double scale;
   final Curve curve;
-  ScaleFade({
+  const ScaleFade({
     this.delay = 1,
     this.duration = 1,
     this.child,
     this.fade = true,
     this.scale = 0.7,
-    this.control = CustomAnimationControl.PLAY,
+    this.control = CustomAnimationControl.play,
     this.curve = Curves.easeIn,
   });
 
@@ -136,8 +134,7 @@ class ScaleFade extends StatelessWidget {
         fade ? Tween(begin: 0.0, end: 1.0) : Tween(begin: 1.0, end: 1.0),
         Duration(milliseconds: (500 * duration).round()),
       )
-      ..add(AniProps.scale, Tween(begin: scale, end: 1.0),
-          Duration(milliseconds: (500 * duration).round()), curve);
+      ..add(AniProps.scale, Tween(begin: scale, end: 1.0), Duration(milliseconds: (500 * duration).round()), curve);
 
     return CustomAnimation<MultiTweenValues<AniProps>>(
         delay: Duration(milliseconds: (200 * delay).round()),
@@ -162,7 +159,7 @@ class ShowHide extends StatelessWidget {
   final Widget? child;
   final double duration;
   final bool isShow;
-  ShowHide({
+  const ShowHide({
     this.delay = 1,
     this.duration = 1,
     this.child,
@@ -172,14 +169,12 @@ class ShowHide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tween = MultiTween<AniProps>()
-      ..add(AniProps.scale, Tween(begin: 0.0, end: 1.0),
-          Duration(milliseconds: (500 * duration).round()), Curves.linear);
+      ..add(
+          AniProps.scale, Tween(begin: 0.0, end: 1.0), Duration(milliseconds: (500 * duration).round()), Curves.linear);
 
     return CustomAnimation<MultiTweenValues<AniProps>>(
       delay: Duration(milliseconds: (200 * delay).round()),
-      control: isShow
-          ? CustomAnimationControl.PLAY
-          : CustomAnimationControl.PLAY_REVERSE,
+      control: isShow ? CustomAnimationControl.play : CustomAnimationControl.playReverse,
       duration: tween.duration,
       tween: tween,
       child: child!,

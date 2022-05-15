@@ -40,14 +40,46 @@ class LocaleKeys {
       'screen_add_product_select_the_product_group';
   static const screen_add_product_product_group =
       'screen_add_product_product_group';
+  static const screen_add_product_basic_specifications =
+      'screen_add_product_basic_specifications';
+  static const screen_add_product_packaging_dimensions =
+      'screen_add_product_packaging_dimensions';
+  static const screen_add_product_package_weight =
+      'screen_add_product_package_weight';
+  static const screen_add_product_product_description =
+      'screen_add_product_product_description';
+  static const screen_add_product_specifications =
+      'screen_add_product_specifications';
+  static const screen_add_product_enter_number_between_x_and_x_cm =
+      'screen_add_product_enter_number_between_x_and_x_cm';
+  static const screen_add_product_enter_number_between_x_and_x =
+      'screen_add_product_enter_number_between_x_and_x';
   static const screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost =
       'screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost';
+  static const screen_add_product_also_select_the_type_of_weight =
+      'screen_add_product_also_select_the_type_of_weight';
   static const screen_add_product_fields_name_product_name =
       'screen_add_product_fields_name_product_name';
+  static const screen_add_product_fields_name_length_cm =
+      'screen_add_product_fields_name_length_cm';
+  static const screen_add_product_fields_name_width_cm =
+      'screen_add_product_fields_name_width_cm';
+  static const screen_add_product_fields_name_height_cm =
+      'screen_add_product_fields_name_height_cm';
+  static const screen_add_product_fields_name_length =
+      'screen_add_product_fields_name_length';
+  static const screen_add_product_fields_name_width =
+      'screen_add_product_fields_name_width';
+  static const screen_add_product_fields_name_height =
+      'screen_add_product_fields_name_height';
+  static const screen_add_product_fields_name_type_of_weight =
+      'screen_add_product_fields_name_type_of_weight';
   static const screen_add_product_fields_error_general_error =
       'screen_add_product_fields_error_general_error';
   static const screen_add_product_fields_error_enter_all_the_required_information =
       'screen_add_product_fields_error_enter_all_the_required_information';
+  static const screen_add_product_fields_error_numerical_between_x_and_x =
+      'screen_add_product_fields_error_numerical_between_x_and_x';
   static const screen_add_product_buttons_register_product =
       'screen_add_product_buttons_register_product';
   static const buttons_logout = 'buttons_logout';
@@ -82,12 +114,32 @@ class Locales {
     'screen_add_product_page_title': 'Create product',
     'screen_add_product_select_the_product_group': 'Select the product group',
     'screen_add_product_product_group': 'Product group',
+    'screen_add_product_basic_specifications': 'Basic specifications',
+    'screen_add_product_packaging_dimensions': 'Packaging dimensions',
+    'screen_add_product_package_weight': 'Package weight',
+    'screen_add_product_product_description': 'Product description',
+    'screen_add_product_specifications': 'Specifications',
+    'screen_add_product_enter_number_between_x_and_x_cm':
+        'Enter a number between @min and @max cm.',
+    'screen_add_product_enter_number_between_x_and_x':
+        'Enter a number between @min and @max',
     'screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost':
         'If the product group is changed, the entered properties will be lost.',
+    'screen_add_product_also_select_the_type_of_weight':
+        'Also select the type of weight.',
     'screen_add_product_fields_name_product_name': 'Product name',
+    'screen_add_product_fields_name_length_cm': 'Length (cm)',
+    'screen_add_product_fields_name_width_cm': 'Width (cm)',
+    'screen_add_product_fields_name_height_cm': 'Height (cm)',
+    'screen_add_product_fields_name_length': 'Length',
+    'screen_add_product_fields_name_width': 'Width',
+    'screen_add_product_fields_name_height': 'Height',
+    'screen_add_product_fields_name_type_of_weight': 'Type of weight',
     'screen_add_product_fields_error_general_error': 'Enter the @field',
     'screen_add_product_fields_error_enter_all_the_required_information':
         'Enter all the required information.',
+    'screen_add_product_fields_error_numerical_between_x_and_x':
+        'Numerical between @min and @max',
     'screen_add_product_buttons_register_product': 'Register Product',
     'buttons_logout': 'Logout',
     'buttons_close': 'Close',
@@ -120,12 +172,32 @@ class Locales {
     'screen_add_product_page_title': 'ایجاد کالا',
     'screen_add_product_select_the_product_group': 'انتخاب گروه کالا',
     'screen_add_product_product_group': 'گروه کالا',
+    'screen_add_product_basic_specifications': 'مشخصات پایه',
+    'screen_add_product_packaging_dimensions': 'ابعاد بسته بندی',
+    'screen_add_product_package_weight': 'وزن بسته بندی',
+    'screen_add_product_product_description': 'توضیحات کالا',
+    'screen_add_product_specifications': 'مشخصات',
+    'screen_add_product_enter_number_between_x_and_x_cm':
+        'عددی بین @min تا @max سانتی متر را وارد نمایید.',
+    'screen_add_product_enter_number_between_x_and_x':
+        'عددی بین @min تا @max را وارد نمایید.',
     'screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost':
         'درصورت تغییر گروه کالا، خصوصیات وارد شده از بین خواهند رفت.',
+    'screen_add_product_also_select_the_type_of_weight':
+        'همچنین نوع وزن را انتخاب نمایید.',
     'screen_add_product_fields_name_product_name': 'نام کالا',
+    'screen_add_product_fields_name_length_cm': 'طول (cm)',
+    'screen_add_product_fields_name_width_cm': 'عرض (cm)',
+    'screen_add_product_fields_name_height_cm': 'ارتفاع (cm)',
+    'screen_add_product_fields_name_length': 'طول',
+    'screen_add_product_fields_name_width': 'عرض',
+    'screen_add_product_fields_name_height': 'ارتفاع',
+    'screen_add_product_fields_name_type_of_weight': 'نوع وزن',
     'screen_add_product_fields_error_general_error': '@field را وارد نمایید',
     'screen_add_product_fields_error_enter_all_the_required_information':
         'تمام اطلاعات مورد نظر را وارد نمائید.',
+    'screen_add_product_fields_error_numerical_between_x_and_x':
+        'عددی بین @min تا @max',
     'screen_add_product_buttons_register_product': 'ثبت کالا',
     'buttons_logout': 'خروج',
     'buttons_close': 'بستن',

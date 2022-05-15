@@ -54,7 +54,7 @@ class LocalDataSourceImpl {
 
   static deleteToken() async {
     await Brain.storageService.deleteByProperty(StorageServiceTables.TABLE_TOKEN).then((value) {
-      Brain.token = VMToken();
+      Brain.token = const VMToken();
     });
   }
 

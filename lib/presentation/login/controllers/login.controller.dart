@@ -25,15 +25,7 @@ class LoginController extends GetxController {
 
   LoginController({required this.iCheckUserUseCase, required this.iLoginUseCase});
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   @override
   void onClose() {}
@@ -56,9 +48,9 @@ class LoginController extends GetxController {
     print(locale);
 
     if (locale.toString() == "fa_IR") {
-      Get.updateLocale(Locale('en', 'US'));
+      Get.updateLocale(const Locale('en', 'US'));
     } else {
-      Get.updateLocale(Locale('fa', 'IR'));
+      Get.updateLocale(const Locale('fa', 'IR'));
     }
 
     update();

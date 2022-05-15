@@ -50,15 +50,15 @@ class StorageServiceSqflite extends StorageService {
 }
 
 class DatabaseHelper {
-  static final _databaseName = "alpha.db";
-  static final _databaseVersion = 1;
+  static const _databaseName = "alpha.db";
+  static const _databaseVersion = 1;
 
-  static final table = 'main_table';
+  static const table = 'main_table';
 
-  static final id = 'id';
-  static final property = 'property';
-  static final record = 'record';
-  static final value = 'value';
+  static const id = 'id';
+  static const property = 'property';
+  static const record = 'record';
+  static const value = 'value';
 
   DatabaseHelper._privateConstructor();
 
