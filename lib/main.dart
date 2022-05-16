@@ -105,7 +105,6 @@ class Main extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.light,
         fontFamily: "Vazir Reg",
-        useMaterial3: true,
       ),
       theme: Brain.appTheme == "LIGHT"
           ? ThemeData(
@@ -114,12 +113,10 @@ class Main extends StatelessWidget {
               appBarTheme: const AppBarTheme(
                 color: Colors.blue,
               ),
-              useMaterial3: true,
             )
           : ThemeData(
               brightness: Brightness.dark,
               fontFamily: "Vazir Reg",
-              useMaterial3: true,
             ),
       defaultTransition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 500),

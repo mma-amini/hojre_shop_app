@@ -9,6 +9,7 @@ class AddProductControllerBinding extends Bindings {
     Get.lazyPut<AddProductController>(
       () => AddProductController(
         iProductGroupsUseCase: sl(),
+        iGroupSpecsUseCase: sl(),
       ),
     );
   }

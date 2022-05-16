@@ -12,58 +12,12 @@ part of 'shop_products_response_dto_use_case.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ShopProductsResponseDtoUseCase _$ShopProductsResponseDtoUseCaseFromJson(
     Map<String, dynamic> json) {
   return _ShopProductsResponseDtoUseCase.fromJson(json);
 }
-
-/// @nodoc
-class _$ShopProductsResponseDtoUseCaseTearOff {
-  const _$ShopProductsResponseDtoUseCaseTearOff();
-
-  _ShopProductsResponseDtoUseCase call(
-      {int? ApprovedProductDesignsCount,
-      BrandOfShopProductsResponseDtoUseCase? Brand,
-      String? Description,
-      bool? IsActive,
-      bool? IsOriginal,
-      int? NotApprovedProductDesignsCount,
-      String? PackingDimensions,
-      double? PackingWeight,
-      List<PictureOfShopProductsResponseDtoUseCase>? Pictures,
-      String? Picture,
-      String? ProductDimensions,
-      String? ProductId,
-      String? ProductName,
-      double? ProductWeight}) {
-    return _ShopProductsResponseDtoUseCase(
-      ApprovedProductDesignsCount: ApprovedProductDesignsCount,
-      Brand: Brand,
-      Description: Description,
-      IsActive: IsActive,
-      IsOriginal: IsOriginal,
-      NotApprovedProductDesignsCount: NotApprovedProductDesignsCount,
-      PackingDimensions: PackingDimensions,
-      PackingWeight: PackingWeight,
-      Pictures: Pictures,
-      Picture: Picture,
-      ProductDimensions: ProductDimensions,
-      ProductId: ProductId,
-      ProductName: ProductName,
-      ProductWeight: ProductWeight,
-    );
-  }
-
-  ShopProductsResponseDtoUseCase fromJson(Map<String, Object?> json) {
-    return ShopProductsResponseDtoUseCase.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ShopProductsResponseDtoUseCase =
-    _$ShopProductsResponseDtoUseCaseTearOff();
 
 /// @nodoc
 mixin _$ShopProductsResponseDtoUseCase {
@@ -215,12 +169,12 @@ class _$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ShopProductsResponseDtoUseCaseCopyWith<$Res>
+abstract class _$$_ShopProductsResponseDtoUseCaseCopyWith<$Res>
     implements $ShopProductsResponseDtoUseCaseCopyWith<$Res> {
-  factory _$ShopProductsResponseDtoUseCaseCopyWith(
-          _ShopProductsResponseDtoUseCase value,
-          $Res Function(_ShopProductsResponseDtoUseCase) then) =
-      __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>;
+  factory _$$_ShopProductsResponseDtoUseCaseCopyWith(
+          _$_ShopProductsResponseDtoUseCase value,
+          $Res Function(_$_ShopProductsResponseDtoUseCase) then) =
+      __$$_ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
       {int? ApprovedProductDesignsCount,
@@ -243,17 +197,17 @@ abstract class _$ShopProductsResponseDtoUseCaseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
+class __$$_ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     extends _$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
-    implements _$ShopProductsResponseDtoUseCaseCopyWith<$Res> {
-  __$ShopProductsResponseDtoUseCaseCopyWithImpl(
-      _ShopProductsResponseDtoUseCase _value,
-      $Res Function(_ShopProductsResponseDtoUseCase) _then)
-      : super(_value, (v) => _then(v as _ShopProductsResponseDtoUseCase));
+    implements _$$_ShopProductsResponseDtoUseCaseCopyWith<$Res> {
+  __$$_ShopProductsResponseDtoUseCaseCopyWithImpl(
+      _$_ShopProductsResponseDtoUseCase _value,
+      $Res Function(_$_ShopProductsResponseDtoUseCase) _then)
+      : super(_value, (v) => _then(v as _$_ShopProductsResponseDtoUseCase));
 
   @override
-  _ShopProductsResponseDtoUseCase get _value =>
-      super._value as _ShopProductsResponseDtoUseCase;
+  _$_ShopProductsResponseDtoUseCase get _value =>
+      super._value as _$_ShopProductsResponseDtoUseCase;
 
   @override
   $Res call({
@@ -272,7 +226,7 @@ class __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     Object? ProductName = freezed,
     Object? ProductWeight = freezed,
   }) {
-    return _then(_ShopProductsResponseDtoUseCase(
+    return _then(_$_ShopProductsResponseDtoUseCase(
       ApprovedProductDesignsCount: ApprovedProductDesignsCount == freezed
           ? _value.ApprovedProductDesignsCount
           : ApprovedProductDesignsCount // ignore: cast_nullable_to_non_nullable
@@ -306,7 +260,7 @@ class __$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
           : PackingWeight // ignore: cast_nullable_to_non_nullable
               as double?,
       Pictures: Pictures == freezed
-          ? _value.Pictures
+          ? _value._Pictures
           : Pictures // ignore: cast_nullable_to_non_nullable
               as List<PictureOfShopProductsResponseDtoUseCase>?,
       Picture: Picture == freezed
@@ -346,12 +300,13 @@ class _$_ShopProductsResponseDtoUseCase
       this.NotApprovedProductDesignsCount,
       this.PackingDimensions,
       this.PackingWeight,
-      this.Pictures,
+      final List<PictureOfShopProductsResponseDtoUseCase>? Pictures,
       this.Picture,
       this.ProductDimensions,
       this.ProductId,
       this.ProductName,
-      this.ProductWeight});
+      this.ProductWeight})
+      : _Pictures = Pictures;
 
   factory _$_ShopProductsResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =>
@@ -373,8 +328,15 @@ class _$_ShopProductsResponseDtoUseCase
   final String? PackingDimensions;
   @override
   final double? PackingWeight;
+  final List<PictureOfShopProductsResponseDtoUseCase>? _Pictures;
   @override
-  final List<PictureOfShopProductsResponseDtoUseCase>? Pictures;
+  List<PictureOfShopProductsResponseDtoUseCase>? get Pictures {
+    final value = _Pictures;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? Picture;
   @override
@@ -395,7 +357,7 @@ class _$_ShopProductsResponseDtoUseCase
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ShopProductsResponseDtoUseCase &&
+            other is _$_ShopProductsResponseDtoUseCase &&
             const DeepCollectionEquality().equals(
                 other.ApprovedProductDesignsCount,
                 ApprovedProductDesignsCount) &&
@@ -412,7 +374,7 @@ class _$_ShopProductsResponseDtoUseCase
                 .equals(other.PackingDimensions, PackingDimensions) &&
             const DeepCollectionEquality()
                 .equals(other.PackingWeight, PackingWeight) &&
-            const DeepCollectionEquality().equals(other.Pictures, Pictures) &&
+            const DeepCollectionEquality().equals(other._Pictures, _Pictures) &&
             const DeepCollectionEquality().equals(other.Picture, Picture) &&
             const DeepCollectionEquality()
                 .equals(other.ProductDimensions, ProductDimensions) &&
@@ -423,6 +385,7 @@ class _$_ShopProductsResponseDtoUseCase
                 .equals(other.ProductWeight, ProductWeight));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -434,7 +397,7 @@ class _$_ShopProductsResponseDtoUseCase
       const DeepCollectionEquality().hash(NotApprovedProductDesignsCount),
       const DeepCollectionEquality().hash(PackingDimensions),
       const DeepCollectionEquality().hash(PackingWeight),
-      const DeepCollectionEquality().hash(Pictures),
+      const DeepCollectionEquality().hash(_Pictures),
       const DeepCollectionEquality().hash(Picture),
       const DeepCollectionEquality().hash(ProductDimensions),
       const DeepCollectionEquality().hash(ProductId),
@@ -443,9 +406,9 @@ class _$_ShopProductsResponseDtoUseCase
 
   @JsonKey(ignore: true)
   @override
-  _$ShopProductsResponseDtoUseCaseCopyWith<_ShopProductsResponseDtoUseCase>
-      get copyWith => __$ShopProductsResponseDtoUseCaseCopyWithImpl<
-          _ShopProductsResponseDtoUseCase>(this, _$identity);
+  _$$_ShopProductsResponseDtoUseCaseCopyWith<_$_ShopProductsResponseDtoUseCase>
+      get copyWith => __$$_ShopProductsResponseDtoUseCaseCopyWithImpl<
+          _$_ShopProductsResponseDtoUseCase>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -456,55 +419,57 @@ class _$_ShopProductsResponseDtoUseCase
 abstract class _ShopProductsResponseDtoUseCase
     implements ShopProductsResponseDtoUseCase {
   factory _ShopProductsResponseDtoUseCase(
-      {int? ApprovedProductDesignsCount,
-      BrandOfShopProductsResponseDtoUseCase? Brand,
-      String? Description,
-      bool? IsActive,
-      bool? IsOriginal,
-      int? NotApprovedProductDesignsCount,
-      String? PackingDimensions,
-      double? PackingWeight,
-      List<PictureOfShopProductsResponseDtoUseCase>? Pictures,
-      String? Picture,
-      String? ProductDimensions,
-      String? ProductId,
-      String? ProductName,
-      double? ProductWeight}) = _$_ShopProductsResponseDtoUseCase;
+      {final int? ApprovedProductDesignsCount,
+      final BrandOfShopProductsResponseDtoUseCase? Brand,
+      final String? Description,
+      final bool? IsActive,
+      final bool? IsOriginal,
+      final int? NotApprovedProductDesignsCount,
+      final String? PackingDimensions,
+      final double? PackingWeight,
+      final List<PictureOfShopProductsResponseDtoUseCase>? Pictures,
+      final String? Picture,
+      final String? ProductDimensions,
+      final String? ProductId,
+      final String? ProductName,
+      final double? ProductWeight}) = _$_ShopProductsResponseDtoUseCase;
 
   factory _ShopProductsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_ShopProductsResponseDtoUseCase.fromJson;
 
   @override
-  int? get ApprovedProductDesignsCount;
+  int? get ApprovedProductDesignsCount => throw _privateConstructorUsedError;
   @override
-  BrandOfShopProductsResponseDtoUseCase? get Brand;
+  BrandOfShopProductsResponseDtoUseCase? get Brand =>
+      throw _privateConstructorUsedError;
   @override
-  String? get Description;
+  String? get Description => throw _privateConstructorUsedError;
   @override
-  bool? get IsActive;
+  bool? get IsActive => throw _privateConstructorUsedError;
   @override
-  bool? get IsOriginal;
+  bool? get IsOriginal => throw _privateConstructorUsedError;
   @override
-  int? get NotApprovedProductDesignsCount;
+  int? get NotApprovedProductDesignsCount => throw _privateConstructorUsedError;
   @override
-  String? get PackingDimensions;
+  String? get PackingDimensions => throw _privateConstructorUsedError;
   @override
-  double? get PackingWeight;
+  double? get PackingWeight => throw _privateConstructorUsedError;
   @override
-  List<PictureOfShopProductsResponseDtoUseCase>? get Pictures;
+  List<PictureOfShopProductsResponseDtoUseCase>? get Pictures =>
+      throw _privateConstructorUsedError;
   @override
-  String? get Picture;
+  String? get Picture => throw _privateConstructorUsedError;
   @override
-  String? get ProductDimensions;
+  String? get ProductDimensions => throw _privateConstructorUsedError;
   @override
-  String? get ProductId;
+  String? get ProductId => throw _privateConstructorUsedError;
   @override
-  String? get ProductName;
+  String? get ProductName => throw _privateConstructorUsedError;
   @override
-  double? get ProductWeight;
+  double? get ProductWeight => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ShopProductsResponseDtoUseCaseCopyWith<_ShopProductsResponseDtoUseCase>
+  _$$_ShopProductsResponseDtoUseCaseCopyWith<_$_ShopProductsResponseDtoUseCase>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -512,28 +477,6 @@ BrandOfShopProductsResponseDtoUseCase
     _$BrandOfShopProductsResponseDtoUseCaseFromJson(Map<String, dynamic> json) {
   return _BrandOfShopProductsResponseDtoUseCase.fromJson(json);
 }
-
-/// @nodoc
-class _$BrandOfShopProductsResponseDtoUseCaseTearOff {
-  const _$BrandOfShopProductsResponseDtoUseCaseTearOff();
-
-  _BrandOfShopProductsResponseDtoUseCase call(
-      {String? Id, String? Name, String? Picture}) {
-    return _BrandOfShopProductsResponseDtoUseCase(
-      Id: Id,
-      Name: Name,
-      Picture: Picture,
-    );
-  }
-
-  BrandOfShopProductsResponseDtoUseCase fromJson(Map<String, Object?> json) {
-    return BrandOfShopProductsResponseDtoUseCase.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $BrandOfShopProductsResponseDtoUseCase =
-    _$BrandOfShopProductsResponseDtoUseCaseTearOff();
 
 /// @nodoc
 mixin _$BrandOfShopProductsResponseDtoUseCase {
@@ -590,29 +533,29 @@ class _$BrandOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BrandOfShopProductsResponseDtoUseCaseCopyWith<$Res>
+abstract class _$$_BrandOfShopProductsResponseDtoUseCaseCopyWith<$Res>
     implements $BrandOfShopProductsResponseDtoUseCaseCopyWith<$Res> {
-  factory _$BrandOfShopProductsResponseDtoUseCaseCopyWith(
-          _BrandOfShopProductsResponseDtoUseCase value,
-          $Res Function(_BrandOfShopProductsResponseDtoUseCase) then) =
-      __$BrandOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>;
+  factory _$$_BrandOfShopProductsResponseDtoUseCaseCopyWith(
+          _$_BrandOfShopProductsResponseDtoUseCase value,
+          $Res Function(_$_BrandOfShopProductsResponseDtoUseCase) then) =
+      __$$_BrandOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call({String? Id, String? Name, String? Picture});
 }
 
 /// @nodoc
-class __$BrandOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
+class __$$_BrandOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     extends _$BrandOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
-    implements _$BrandOfShopProductsResponseDtoUseCaseCopyWith<$Res> {
-  __$BrandOfShopProductsResponseDtoUseCaseCopyWithImpl(
-      _BrandOfShopProductsResponseDtoUseCase _value,
-      $Res Function(_BrandOfShopProductsResponseDtoUseCase) _then)
-      : super(
-            _value, (v) => _then(v as _BrandOfShopProductsResponseDtoUseCase));
+    implements _$$_BrandOfShopProductsResponseDtoUseCaseCopyWith<$Res> {
+  __$$_BrandOfShopProductsResponseDtoUseCaseCopyWithImpl(
+      _$_BrandOfShopProductsResponseDtoUseCase _value,
+      $Res Function(_$_BrandOfShopProductsResponseDtoUseCase) _then)
+      : super(_value,
+            (v) => _then(v as _$_BrandOfShopProductsResponseDtoUseCase));
 
   @override
-  _BrandOfShopProductsResponseDtoUseCase get _value =>
-      super._value as _BrandOfShopProductsResponseDtoUseCase;
+  _$_BrandOfShopProductsResponseDtoUseCase get _value =>
+      super._value as _$_BrandOfShopProductsResponseDtoUseCase;
 
   @override
   $Res call({
@@ -620,7 +563,7 @@ class __$BrandOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     Object? Name = freezed,
     Object? Picture = freezed,
   }) {
-    return _then(_BrandOfShopProductsResponseDtoUseCase(
+    return _then(_$_BrandOfShopProductsResponseDtoUseCase(
       Id: Id == freezed
           ? _value.Id
           : Id // ignore: cast_nullable_to_non_nullable
@@ -663,12 +606,13 @@ class _$_BrandOfShopProductsResponseDtoUseCase
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BrandOfShopProductsResponseDtoUseCase &&
+            other is _$_BrandOfShopProductsResponseDtoUseCase &&
             const DeepCollectionEquality().equals(other.Id, Id) &&
             const DeepCollectionEquality().equals(other.Name, Name) &&
             const DeepCollectionEquality().equals(other.Picture, Picture));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -678,10 +622,10 @@ class _$_BrandOfShopProductsResponseDtoUseCase
 
   @JsonKey(ignore: true)
   @override
-  _$BrandOfShopProductsResponseDtoUseCaseCopyWith<
-          _BrandOfShopProductsResponseDtoUseCase>
-      get copyWith => __$BrandOfShopProductsResponseDtoUseCaseCopyWithImpl<
-          _BrandOfShopProductsResponseDtoUseCase>(this, _$identity);
+  _$$_BrandOfShopProductsResponseDtoUseCaseCopyWith<
+          _$_BrandOfShopProductsResponseDtoUseCase>
+      get copyWith => __$$_BrandOfShopProductsResponseDtoUseCaseCopyWithImpl<
+          _$_BrandOfShopProductsResponseDtoUseCase>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -692,24 +636,24 @@ class _$_BrandOfShopProductsResponseDtoUseCase
 abstract class _BrandOfShopProductsResponseDtoUseCase
     implements BrandOfShopProductsResponseDtoUseCase {
   factory _BrandOfShopProductsResponseDtoUseCase(
-      {String? Id,
-      String? Name,
-      String? Picture}) = _$_BrandOfShopProductsResponseDtoUseCase;
+      {final String? Id,
+      final String? Name,
+      final String? Picture}) = _$_BrandOfShopProductsResponseDtoUseCase;
 
   factory _BrandOfShopProductsResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =
       _$_BrandOfShopProductsResponseDtoUseCase.fromJson;
 
   @override
-  String? get Id;
+  String? get Id => throw _privateConstructorUsedError;
   @override
-  String? get Name;
+  String? get Name => throw _privateConstructorUsedError;
   @override
-  String? get Picture;
+  String? get Picture => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BrandOfShopProductsResponseDtoUseCaseCopyWith<
-          _BrandOfShopProductsResponseDtoUseCase>
+  _$$_BrandOfShopProductsResponseDtoUseCaseCopyWith<
+          _$_BrandOfShopProductsResponseDtoUseCase>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -718,27 +662,6 @@ PictureOfShopProductsResponseDtoUseCase
         Map<String, dynamic> json) {
   return _PictureOfShopProductsResponseDtoUseCase.fromJson(json);
 }
-
-/// @nodoc
-class _$PictureOfShopProductsResponseDtoUseCaseTearOff {
-  const _$PictureOfShopProductsResponseDtoUseCaseTearOff();
-
-  _PictureOfShopProductsResponseDtoUseCase call(
-      {bool? IsMain, String? Picture}) {
-    return _PictureOfShopProductsResponseDtoUseCase(
-      IsMain: IsMain,
-      Picture: Picture,
-    );
-  }
-
-  PictureOfShopProductsResponseDtoUseCase fromJson(Map<String, Object?> json) {
-    return PictureOfShopProductsResponseDtoUseCase.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PictureOfShopProductsResponseDtoUseCase =
-    _$PictureOfShopProductsResponseDtoUseCaseTearOff();
 
 /// @nodoc
 mixin _$PictureOfShopProductsResponseDtoUseCase {
@@ -790,36 +713,36 @@ class _$PictureOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PictureOfShopProductsResponseDtoUseCaseCopyWith<$Res>
+abstract class _$$_PictureOfShopProductsResponseDtoUseCaseCopyWith<$Res>
     implements $PictureOfShopProductsResponseDtoUseCaseCopyWith<$Res> {
-  factory _$PictureOfShopProductsResponseDtoUseCaseCopyWith(
-          _PictureOfShopProductsResponseDtoUseCase value,
-          $Res Function(_PictureOfShopProductsResponseDtoUseCase) then) =
-      __$PictureOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>;
+  factory _$$_PictureOfShopProductsResponseDtoUseCaseCopyWith(
+          _$_PictureOfShopProductsResponseDtoUseCase value,
+          $Res Function(_$_PictureOfShopProductsResponseDtoUseCase) then) =
+      __$$_PictureOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call({bool? IsMain, String? Picture});
 }
 
 /// @nodoc
-class __$PictureOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
+class __$$_PictureOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     extends _$PictureOfShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
-    implements _$PictureOfShopProductsResponseDtoUseCaseCopyWith<$Res> {
-  __$PictureOfShopProductsResponseDtoUseCaseCopyWithImpl(
-      _PictureOfShopProductsResponseDtoUseCase _value,
-      $Res Function(_PictureOfShopProductsResponseDtoUseCase) _then)
+    implements _$$_PictureOfShopProductsResponseDtoUseCaseCopyWith<$Res> {
+  __$$_PictureOfShopProductsResponseDtoUseCaseCopyWithImpl(
+      _$_PictureOfShopProductsResponseDtoUseCase _value,
+      $Res Function(_$_PictureOfShopProductsResponseDtoUseCase) _then)
       : super(_value,
-            (v) => _then(v as _PictureOfShopProductsResponseDtoUseCase));
+            (v) => _then(v as _$_PictureOfShopProductsResponseDtoUseCase));
 
   @override
-  _PictureOfShopProductsResponseDtoUseCase get _value =>
-      super._value as _PictureOfShopProductsResponseDtoUseCase;
+  _$_PictureOfShopProductsResponseDtoUseCase get _value =>
+      super._value as _$_PictureOfShopProductsResponseDtoUseCase;
 
   @override
   $Res call({
     Object? IsMain = freezed,
     Object? Picture = freezed,
   }) {
-    return _then(_PictureOfShopProductsResponseDtoUseCase(
+    return _then(_$_PictureOfShopProductsResponseDtoUseCase(
       IsMain: IsMain == freezed
           ? _value.IsMain
           : IsMain // ignore: cast_nullable_to_non_nullable
@@ -856,11 +779,12 @@ class _$_PictureOfShopProductsResponseDtoUseCase
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PictureOfShopProductsResponseDtoUseCase &&
+            other is _$_PictureOfShopProductsResponseDtoUseCase &&
             const DeepCollectionEquality().equals(other.IsMain, IsMain) &&
             const DeepCollectionEquality().equals(other.Picture, Picture));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -869,10 +793,10 @@ class _$_PictureOfShopProductsResponseDtoUseCase
 
   @JsonKey(ignore: true)
   @override
-  _$PictureOfShopProductsResponseDtoUseCaseCopyWith<
-          _PictureOfShopProductsResponseDtoUseCase>
-      get copyWith => __$PictureOfShopProductsResponseDtoUseCaseCopyWithImpl<
-          _PictureOfShopProductsResponseDtoUseCase>(this, _$identity);
+  _$$_PictureOfShopProductsResponseDtoUseCaseCopyWith<
+          _$_PictureOfShopProductsResponseDtoUseCase>
+      get copyWith => __$$_PictureOfShopProductsResponseDtoUseCaseCopyWithImpl<
+          _$_PictureOfShopProductsResponseDtoUseCase>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -883,20 +807,20 @@ class _$_PictureOfShopProductsResponseDtoUseCase
 abstract class _PictureOfShopProductsResponseDtoUseCase
     implements PictureOfShopProductsResponseDtoUseCase {
   factory _PictureOfShopProductsResponseDtoUseCase(
-      {bool? IsMain,
-      String? Picture}) = _$_PictureOfShopProductsResponseDtoUseCase;
+      {final bool? IsMain,
+      final String? Picture}) = _$_PictureOfShopProductsResponseDtoUseCase;
 
   factory _PictureOfShopProductsResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =
       _$_PictureOfShopProductsResponseDtoUseCase.fromJson;
 
   @override
-  bool? get IsMain;
+  bool? get IsMain => throw _privateConstructorUsedError;
   @override
-  String? get Picture;
+  String? get Picture => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PictureOfShopProductsResponseDtoUseCaseCopyWith<
-          _PictureOfShopProductsResponseDtoUseCase>
+  _$$_PictureOfShopProductsResponseDtoUseCaseCopyWith<
+          _$_PictureOfShopProductsResponseDtoUseCase>
       get copyWith => throw _privateConstructorUsedError;
 }

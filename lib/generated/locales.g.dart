@@ -82,6 +82,8 @@ class LocaleKeys {
       'screen_add_product_fields_error_numerical_between_x_and_x';
   static const screen_add_product_buttons_register_product =
       'screen_add_product_buttons_register_product';
+  static const screen_add_product_buttons_add_product_specification =
+      'screen_add_product_buttons_add_product_specification';
   static const buttons_logout = 'buttons_logout';
   static const buttons_close = 'buttons_close';
   static const buttons_ok = 'buttons_ok';
@@ -141,6 +143,8 @@ class Locales {
     'screen_add_product_fields_error_numerical_between_x_and_x':
         'Numerical between @min and @max',
     'screen_add_product_buttons_register_product': 'Register Product',
+    'screen_add_product_buttons_add_product_specification':
+        'Add product specification',
     'buttons_logout': 'Logout',
     'buttons_close': 'Close',
     'buttons_ok': 'Ok',
@@ -199,6 +203,8 @@ class Locales {
     'screen_add_product_fields_error_numerical_between_x_and_x':
         'عددی بین @min تا @max',
     'screen_add_product_buttons_register_product': 'ثبت کالا',
+    'screen_add_product_buttons_add_product_specification':
+        'افزودن مشخصات کالا',
     'buttons_logout': 'خروج',
     'buttons_close': 'بستن',
     'buttons_ok': 'باشه',

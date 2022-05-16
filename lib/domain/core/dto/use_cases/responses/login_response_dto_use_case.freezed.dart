@@ -12,49 +12,12 @@ part of 'login_response_dto_use_case.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 LoginResponseDtoUseCase _$LoginResponseDtoUseCaseFromJson(
     Map<String, dynamic> json) {
   return _LoginResponseDtoUseCase.fromJson(json);
 }
-
-/// @nodoc
-class _$LoginResponseDtoUseCaseTearOff {
-  const _$LoginResponseDtoUseCaseTearOff();
-
-  _LoginResponseDtoUseCase call(
-      {String? UserId,
-      String? Username,
-      String? FirstName,
-      String? LastName,
-      String? ShopId,
-      String? ShopName,
-      String? AccessToken,
-      String? RefreshToken,
-      String? TokenType,
-      int? ExpiresIn}) {
-    return _LoginResponseDtoUseCase(
-      UserId: UserId,
-      Username: Username,
-      FirstName: FirstName,
-      LastName: LastName,
-      ShopId: ShopId,
-      ShopName: ShopName,
-      AccessToken: AccessToken,
-      RefreshToken: RefreshToken,
-      TokenType: TokenType,
-      ExpiresIn: ExpiresIn,
-    );
-  }
-
-  LoginResponseDtoUseCase fromJson(Map<String, Object?> json) {
-    return LoginResponseDtoUseCase.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $LoginResponseDtoUseCase = _$LoginResponseDtoUseCaseTearOff();
 
 /// @nodoc
 mixin _$LoginResponseDtoUseCase {
@@ -161,11 +124,11 @@ class _$LoginResponseDtoUseCaseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$LoginResponseDtoUseCaseCopyWith<$Res>
+abstract class _$$_LoginResponseDtoUseCaseCopyWith<$Res>
     implements $LoginResponseDtoUseCaseCopyWith<$Res> {
-  factory _$LoginResponseDtoUseCaseCopyWith(_LoginResponseDtoUseCase value,
-          $Res Function(_LoginResponseDtoUseCase) then) =
-      __$LoginResponseDtoUseCaseCopyWithImpl<$Res>;
+  factory _$$_LoginResponseDtoUseCaseCopyWith(_$_LoginResponseDtoUseCase value,
+          $Res Function(_$_LoginResponseDtoUseCase) then) =
+      __$$_LoginResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? UserId,
@@ -181,16 +144,16 @@ abstract class _$LoginResponseDtoUseCaseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$LoginResponseDtoUseCaseCopyWithImpl<$Res>
+class __$$_LoginResponseDtoUseCaseCopyWithImpl<$Res>
     extends _$LoginResponseDtoUseCaseCopyWithImpl<$Res>
-    implements _$LoginResponseDtoUseCaseCopyWith<$Res> {
-  __$LoginResponseDtoUseCaseCopyWithImpl(_LoginResponseDtoUseCase _value,
-      $Res Function(_LoginResponseDtoUseCase) _then)
-      : super(_value, (v) => _then(v as _LoginResponseDtoUseCase));
+    implements _$$_LoginResponseDtoUseCaseCopyWith<$Res> {
+  __$$_LoginResponseDtoUseCaseCopyWithImpl(_$_LoginResponseDtoUseCase _value,
+      $Res Function(_$_LoginResponseDtoUseCase) _then)
+      : super(_value, (v) => _then(v as _$_LoginResponseDtoUseCase));
 
   @override
-  _LoginResponseDtoUseCase get _value =>
-      super._value as _LoginResponseDtoUseCase;
+  _$_LoginResponseDtoUseCase get _value =>
+      super._value as _$_LoginResponseDtoUseCase;
 
   @override
   $Res call({
@@ -205,7 +168,7 @@ class __$LoginResponseDtoUseCaseCopyWithImpl<$Res>
     Object? TokenType = freezed,
     Object? ExpiresIn = freezed,
   }) {
-    return _then(_LoginResponseDtoUseCase(
+    return _then(_$_LoginResponseDtoUseCase(
       UserId: UserId == freezed
           ? _value.UserId
           : UserId // ignore: cast_nullable_to_non_nullable
@@ -298,7 +261,7 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LoginResponseDtoUseCase &&
+            other is _$_LoginResponseDtoUseCase &&
             const DeepCollectionEquality().equals(other.UserId, UserId) &&
             const DeepCollectionEquality().equals(other.Username, Username) &&
             const DeepCollectionEquality().equals(other.FirstName, FirstName) &&
@@ -313,6 +276,7 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
             const DeepCollectionEquality().equals(other.ExpiresIn, ExpiresIn));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -329,9 +293,10 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
 
   @JsonKey(ignore: true)
   @override
-  _$LoginResponseDtoUseCaseCopyWith<_LoginResponseDtoUseCase> get copyWith =>
-      __$LoginResponseDtoUseCaseCopyWithImpl<_LoginResponseDtoUseCase>(
-          this, _$identity);
+  _$$_LoginResponseDtoUseCaseCopyWith<_$_LoginResponseDtoUseCase>
+      get copyWith =>
+          __$$_LoginResponseDtoUseCaseCopyWithImpl<_$_LoginResponseDtoUseCase>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -341,42 +306,42 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
 
 abstract class _LoginResponseDtoUseCase implements LoginResponseDtoUseCase {
   factory _LoginResponseDtoUseCase(
-      {String? UserId,
-      String? Username,
-      String? FirstName,
-      String? LastName,
-      String? ShopId,
-      String? ShopName,
-      String? AccessToken,
-      String? RefreshToken,
-      String? TokenType,
-      int? ExpiresIn}) = _$_LoginResponseDtoUseCase;
+      {final String? UserId,
+      final String? Username,
+      final String? FirstName,
+      final String? LastName,
+      final String? ShopId,
+      final String? ShopName,
+      final String? AccessToken,
+      final String? RefreshToken,
+      final String? TokenType,
+      final int? ExpiresIn}) = _$_LoginResponseDtoUseCase;
 
   factory _LoginResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_LoginResponseDtoUseCase.fromJson;
 
   @override
-  String? get UserId;
+  String? get UserId => throw _privateConstructorUsedError;
   @override
-  String? get Username;
+  String? get Username => throw _privateConstructorUsedError;
   @override
-  String? get FirstName;
+  String? get FirstName => throw _privateConstructorUsedError;
   @override
-  String? get LastName;
+  String? get LastName => throw _privateConstructorUsedError;
   @override
-  String? get ShopId;
+  String? get ShopId => throw _privateConstructorUsedError;
   @override
-  String? get ShopName;
+  String? get ShopName => throw _privateConstructorUsedError;
   @override
-  String? get AccessToken;
+  String? get AccessToken => throw _privateConstructorUsedError;
   @override
-  String? get RefreshToken;
+  String? get RefreshToken => throw _privateConstructorUsedError;
   @override
-  String? get TokenType;
+  String? get TokenType => throw _privateConstructorUsedError;
   @override
-  int? get ExpiresIn;
+  int? get ExpiresIn => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LoginResponseDtoUseCaseCopyWith<_LoginResponseDtoUseCase> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_LoginResponseDtoUseCaseCopyWith<_$_LoginResponseDtoUseCase>
+      get copyWith => throw _privateConstructorUsedError;
 }

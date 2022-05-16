@@ -12,38 +12,12 @@ part of 'product_groups_response_dto_use_case.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ProductGroupsResponseDtoUseCase _$ProductGroupsResponseDtoUseCaseFromJson(
     Map<String, dynamic> json) {
   return _ProductGroupsResponseDtoUseCase.fromJson(json);
 }
-
-/// @nodoc
-class _$ProductGroupsResponseDtoUseCaseTearOff {
-  const _$ProductGroupsResponseDtoUseCaseTearOff();
-
-  _ProductGroupsResponseDtoUseCase call(
-      {String? CategoryId,
-      String? ParentId,
-      String? CategoryName,
-      String? Picture}) {
-    return _ProductGroupsResponseDtoUseCase(
-      CategoryId: CategoryId,
-      ParentId: ParentId,
-      CategoryName: CategoryName,
-      Picture: Picture,
-    );
-  }
-
-  ProductGroupsResponseDtoUseCase fromJson(Map<String, Object?> json) {
-    return ProductGroupsResponseDtoUseCase.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ProductGroupsResponseDtoUseCase =
-    _$ProductGroupsResponseDtoUseCaseTearOff();
 
 /// @nodoc
 mixin _$ProductGroupsResponseDtoUseCase {
@@ -109,12 +83,12 @@ class _$ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ProductGroupsResponseDtoUseCaseCopyWith<$Res>
+abstract class _$$_ProductGroupsResponseDtoUseCaseCopyWith<$Res>
     implements $ProductGroupsResponseDtoUseCaseCopyWith<$Res> {
-  factory _$ProductGroupsResponseDtoUseCaseCopyWith(
-          _ProductGroupsResponseDtoUseCase value,
-          $Res Function(_ProductGroupsResponseDtoUseCase) then) =
-      __$ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>;
+  factory _$$_ProductGroupsResponseDtoUseCaseCopyWith(
+          _$_ProductGroupsResponseDtoUseCase value,
+          $Res Function(_$_ProductGroupsResponseDtoUseCase) then) =
+      __$$_ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? CategoryId,
@@ -124,17 +98,17 @@ abstract class _$ProductGroupsResponseDtoUseCaseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
+class __$$_ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
     extends _$ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
-    implements _$ProductGroupsResponseDtoUseCaseCopyWith<$Res> {
-  __$ProductGroupsResponseDtoUseCaseCopyWithImpl(
-      _ProductGroupsResponseDtoUseCase _value,
-      $Res Function(_ProductGroupsResponseDtoUseCase) _then)
-      : super(_value, (v) => _then(v as _ProductGroupsResponseDtoUseCase));
+    implements _$$_ProductGroupsResponseDtoUseCaseCopyWith<$Res> {
+  __$$_ProductGroupsResponseDtoUseCaseCopyWithImpl(
+      _$_ProductGroupsResponseDtoUseCase _value,
+      $Res Function(_$_ProductGroupsResponseDtoUseCase) _then)
+      : super(_value, (v) => _then(v as _$_ProductGroupsResponseDtoUseCase));
 
   @override
-  _ProductGroupsResponseDtoUseCase get _value =>
-      super._value as _ProductGroupsResponseDtoUseCase;
+  _$_ProductGroupsResponseDtoUseCase get _value =>
+      super._value as _$_ProductGroupsResponseDtoUseCase;
 
   @override
   $Res call({
@@ -143,7 +117,7 @@ class __$ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
     Object? CategoryName = freezed,
     Object? Picture = freezed,
   }) {
-    return _then(_ProductGroupsResponseDtoUseCase(
+    return _then(_$_ProductGroupsResponseDtoUseCase(
       CategoryId: CategoryId == freezed
           ? _value.CategoryId
           : CategoryId // ignore: cast_nullable_to_non_nullable
@@ -193,7 +167,7 @@ class _$_ProductGroupsResponseDtoUseCase
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ProductGroupsResponseDtoUseCase &&
+            other is _$_ProductGroupsResponseDtoUseCase &&
             const DeepCollectionEquality()
                 .equals(other.CategoryId, CategoryId) &&
             const DeepCollectionEquality().equals(other.ParentId, ParentId) &&
@@ -202,6 +176,7 @@ class _$_ProductGroupsResponseDtoUseCase
             const DeepCollectionEquality().equals(other.Picture, Picture));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -212,9 +187,10 @@ class _$_ProductGroupsResponseDtoUseCase
 
   @JsonKey(ignore: true)
   @override
-  _$ProductGroupsResponseDtoUseCaseCopyWith<_ProductGroupsResponseDtoUseCase>
-      get copyWith => __$ProductGroupsResponseDtoUseCaseCopyWithImpl<
-          _ProductGroupsResponseDtoUseCase>(this, _$identity);
+  _$$_ProductGroupsResponseDtoUseCaseCopyWith<
+          _$_ProductGroupsResponseDtoUseCase>
+      get copyWith => __$$_ProductGroupsResponseDtoUseCaseCopyWithImpl<
+          _$_ProductGroupsResponseDtoUseCase>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -225,24 +201,25 @@ class _$_ProductGroupsResponseDtoUseCase
 abstract class _ProductGroupsResponseDtoUseCase
     implements ProductGroupsResponseDtoUseCase {
   factory _ProductGroupsResponseDtoUseCase(
-      {String? CategoryId,
-      String? ParentId,
-      String? CategoryName,
-      String? Picture}) = _$_ProductGroupsResponseDtoUseCase;
+      {final String? CategoryId,
+      final String? ParentId,
+      final String? CategoryName,
+      final String? Picture}) = _$_ProductGroupsResponseDtoUseCase;
 
   factory _ProductGroupsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_ProductGroupsResponseDtoUseCase.fromJson;
 
   @override
-  String? get CategoryId;
+  String? get CategoryId => throw _privateConstructorUsedError;
   @override
-  String? get ParentId;
+  String? get ParentId => throw _privateConstructorUsedError;
   @override
-  String? get CategoryName;
+  String? get CategoryName => throw _privateConstructorUsedError;
   @override
-  String? get Picture;
+  String? get Picture => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ProductGroupsResponseDtoUseCaseCopyWith<_ProductGroupsResponseDtoUseCase>
+  _$$_ProductGroupsResponseDtoUseCaseCopyWith<
+          _$_ProductGroupsResponseDtoUseCase>
       get copyWith => throw _privateConstructorUsedError;
 }

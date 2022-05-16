@@ -55,7 +55,8 @@
         "numerical_between_x_and_x": "عددی بین @min تا @max"
       },
       "buttons": {
-        "register_product": "ثبت کالا"
+        "register_product": "ثبت کالا",
+        "add_product_specification": "افزودن مشخصات کالا"
       }
     }
   },

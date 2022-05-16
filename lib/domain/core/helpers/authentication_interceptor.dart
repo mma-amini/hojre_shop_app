@@ -81,7 +81,7 @@ class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
       int responseCode = error.response!.statusCode!;
       if (responseCode == 401) {
         if ((Brain.token.AccessToken ?? "").isNotEmpty) {
-          bool checkTokenTime = Brain.token.ExpiresOn! > DateTime.now().millisecondsSinceEpoch;
+          bool checkTokenTime = (Brain.token.ExpiresOn ?? 0) > DateTime.now().millisecondsSinceEpoch;
 
           if (checkTokenTime) {
             RequestOptions options = error.response!.requestOptions;

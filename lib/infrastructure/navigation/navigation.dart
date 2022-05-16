@@ -46,5 +46,10 @@ class Nav {
       page: () => AddProductScreen(),
       binding: AddProductControllerBinding(),
     ),
+    GetPage(
+      name: Routes.ADD_PRODUCT_SPECIFICATIONS,
+      page: () => AddProductSpecificationsScreen(),
+      binding: AddProductSpecificationsControllerBinding(),
+    ),
   ];
 }

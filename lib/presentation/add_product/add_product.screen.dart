@@ -202,7 +202,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                   LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
                                 ],
                                 decoration: InputDecoration(
-                                  labelText: 'عرض (cm)',
+                                  labelText: LocaleKeys.screen_add_product_fields_name_width_cm.tr,
                                   hintText: "0",
                                   alignLabelWithHint: true,
                                   border: new OutlineInputBorder(
@@ -273,7 +273,7 @@ class AddProductScreen extends GetView<AddProductController> {
                               "min": "1",
                               "max": "1000",
                             },
-                          )}. ${LocaleKeys.screen_add_product_also_select_the_type_of_weight.tr}",
+                          )} ${LocaleKeys.screen_add_product_also_select_the_type_of_weight.tr}",
                           style: TextStyle(fontSize: 12.0, color: Colors.blue),
                         ),
                       ),
@@ -379,6 +379,24 @@ class AddProductScreen extends GetView<AddProductController> {
                       ),
                       const SizedBox(
                         height: 16.0,
+                      ),
+                      InkWell(
+                        borderRadius: BorderRadius.circular(8.0),
+                        onTap: () {
+                          controller.goToAddProductSpecificationsPage();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(color: Colors.blueAccent, width: 2.0),
+                          ),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Text(
+                              LocaleKeys.screen_add_product_buttons_add_product_specification.tr,
+                            ),
+                          ),
+                        ),
                       ),
                       const SizedBox(
                         height: 16.0,

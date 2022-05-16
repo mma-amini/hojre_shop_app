@@ -106,9 +106,17 @@ class HomeScreen extends GetView<HomeController> {
                                   color: Colors.transparent,
                                   child: InkWell(
                                     onTap: () {
-                                      Get.changeTheme(Get.isDarkMode
-                                          ? ThemeData(brightness: Brightness.light, fontFamily: "Vazir Reg")
-                                          : ThemeData(brightness: Brightness.dark, fontFamily: "Vazir Reg"));
+                                      Get.changeTheme(
+                                        Get.isDarkMode
+                                            ? ThemeData(
+                                                brightness: Brightness.light,
+                                                fontFamily: "Vazir Reg",
+                                              )
+                                            : ThemeData(
+                                                brightness: Brightness.dark,
+                                                fontFamily: "Vazir Reg",
+                                              ),
+                                      );
                                       Future.delayed(const Duration(milliseconds: 250)).then((value) async {
                                         var appTheme = "";
                                         if (Get.isDarkMode) {

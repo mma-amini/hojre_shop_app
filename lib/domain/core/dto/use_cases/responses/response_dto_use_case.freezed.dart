@@ -12,32 +12,11 @@ part of 'response_dto_use_case.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ResponseDtoUseCase _$ResponseDtoUseCaseFromJson(Map<String, dynamic> json) {
   return _ResponseDtoUseCase.fromJson(json);
 }
-
-/// @nodoc
-class _$ResponseDtoUseCaseTearOff {
-  const _$ResponseDtoUseCaseTearOff();
-
-  _ResponseDtoUseCase call(
-      {int? StatusCode, MessageDtoUseCase? Message, dynamic? Content}) {
-    return _ResponseDtoUseCase(
-      StatusCode: StatusCode,
-      Message: Message,
-      Content: Content,
-    );
-  }
-
-  ResponseDtoUseCase fromJson(Map<String, Object?> json) {
-    return ResponseDtoUseCase.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ResponseDtoUseCase = _$ResponseDtoUseCaseTearOff();
 
 /// @nodoc
 mixin _$ResponseDtoUseCase {
@@ -105,11 +84,11 @@ class _$ResponseDtoUseCaseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ResponseDtoUseCaseCopyWith<$Res>
+abstract class _$$_ResponseDtoUseCaseCopyWith<$Res>
     implements $ResponseDtoUseCaseCopyWith<$Res> {
-  factory _$ResponseDtoUseCaseCopyWith(
-          _ResponseDtoUseCase value, $Res Function(_ResponseDtoUseCase) then) =
-      __$ResponseDtoUseCaseCopyWithImpl<$Res>;
+  factory _$$_ResponseDtoUseCaseCopyWith(_$_ResponseDtoUseCase value,
+          $Res Function(_$_ResponseDtoUseCase) then) =
+      __$$_ResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call({int? StatusCode, MessageDtoUseCase? Message, dynamic? Content});
 
@@ -118,15 +97,15 @@ abstract class _$ResponseDtoUseCaseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ResponseDtoUseCaseCopyWithImpl<$Res>
+class __$$_ResponseDtoUseCaseCopyWithImpl<$Res>
     extends _$ResponseDtoUseCaseCopyWithImpl<$Res>
-    implements _$ResponseDtoUseCaseCopyWith<$Res> {
-  __$ResponseDtoUseCaseCopyWithImpl(
-      _ResponseDtoUseCase _value, $Res Function(_ResponseDtoUseCase) _then)
-      : super(_value, (v) => _then(v as _ResponseDtoUseCase));
+    implements _$$_ResponseDtoUseCaseCopyWith<$Res> {
+  __$$_ResponseDtoUseCaseCopyWithImpl(
+      _$_ResponseDtoUseCase _value, $Res Function(_$_ResponseDtoUseCase) _then)
+      : super(_value, (v) => _then(v as _$_ResponseDtoUseCase));
 
   @override
-  _ResponseDtoUseCase get _value => super._value as _ResponseDtoUseCase;
+  _$_ResponseDtoUseCase get _value => super._value as _$_ResponseDtoUseCase;
 
   @override
   $Res call({
@@ -134,7 +113,7 @@ class __$ResponseDtoUseCaseCopyWithImpl<$Res>
     Object? Message = freezed,
     Object? Content = freezed,
   }) {
-    return _then(_ResponseDtoUseCase(
+    return _then(_$_ResponseDtoUseCase(
       StatusCode: StatusCode == freezed
           ? _value.StatusCode
           : StatusCode // ignore: cast_nullable_to_non_nullable
@@ -175,13 +154,14 @@ class _$_ResponseDtoUseCase implements _ResponseDtoUseCase {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ResponseDtoUseCase &&
+            other is _$_ResponseDtoUseCase &&
             const DeepCollectionEquality()
                 .equals(other.StatusCode, StatusCode) &&
             const DeepCollectionEquality().equals(other.Message, Message) &&
             const DeepCollectionEquality().equals(other.Content, Content));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -191,8 +171,9 @@ class _$_ResponseDtoUseCase implements _ResponseDtoUseCase {
 
   @JsonKey(ignore: true)
   @override
-  _$ResponseDtoUseCaseCopyWith<_ResponseDtoUseCase> get copyWith =>
-      __$ResponseDtoUseCaseCopyWithImpl<_ResponseDtoUseCase>(this, _$identity);
+  _$$_ResponseDtoUseCaseCopyWith<_$_ResponseDtoUseCase> get copyWith =>
+      __$$_ResponseDtoUseCaseCopyWithImpl<_$_ResponseDtoUseCase>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -202,21 +183,21 @@ class _$_ResponseDtoUseCase implements _ResponseDtoUseCase {
 
 abstract class _ResponseDtoUseCase implements ResponseDtoUseCase {
   factory _ResponseDtoUseCase(
-      {int? StatusCode,
-      MessageDtoUseCase? Message,
-      dynamic? Content}) = _$_ResponseDtoUseCase;
+      {final int? StatusCode,
+      final MessageDtoUseCase? Message,
+      final dynamic? Content}) = _$_ResponseDtoUseCase;
 
   factory _ResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_ResponseDtoUseCase.fromJson;
 
   @override
-  int? get StatusCode;
+  int? get StatusCode => throw _privateConstructorUsedError;
   @override
-  MessageDtoUseCase? get Message;
+  MessageDtoUseCase? get Message => throw _privateConstructorUsedError;
   @override
-  dynamic? get Content;
+  dynamic? get Content => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ResponseDtoUseCaseCopyWith<_ResponseDtoUseCase> get copyWith =>
+  _$$_ResponseDtoUseCaseCopyWith<_$_ResponseDtoUseCase> get copyWith =>
       throw _privateConstructorUsedError;
 }

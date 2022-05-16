@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/group_specs_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/shop_products_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/group_specs_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/message_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/product_groups_response_dto_use_case.dart';
@@ -43,7 +45,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       "grant_type": "refresh_token",
       "refresh_token": getRefreshToken(),
       "client_id": 2,
-      "client_secret": "RiYTMh6IUvBktcbxANWVBh9EeXWwTqycQpVdJD7B",
+      "client_secret": "hb4qzLzx4bB409deOtWWEAfYRCifE4coY242uHzt",
     };
     var jsonData = json.encode(body);
     var result = await dio
@@ -101,7 +103,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       "password": loginRequestDtoUseCase.Code,
       "grant_type": "password",
       "client_id": 2,
-      "client_secret": "RiYTMh6IUvBktcbxANWVBh9EeXWwTqycQpVdJD7B",
+      "client_secret": "hb4qzLzx4bB409deOtWWEAfYRCifE4coY242uHzt",
     };
     var jsonData = json.encode(body);
 
@@ -181,6 +183,40 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         ShopProductsResponseDtoUseCase shopProductsResponseDtoUseCase = ShopProductsResponseDtoUseCase.fromJson(json);
 
         dataList.add(shopProductsResponseDtoUseCase);
+      }
+
+      return dataList;
+    }).catchError((error) {
+      LogHelper.printLog(data: error);
+      return [];
+    });
+
+    return result;
+  }
+
+  @override
+  Future<List<GroupSpecsResponseDtoUseCase>> groupSpecs(
+      {required GroupSpecsRequestDtoUseCase groupSpecsRequestDtoUseCase}) async {
+    var body = {"categoryId": groupSpecsRequestDtoUseCase.categoryId};
+    var result = await Brain.dio
+        .get(
+      Api.GROUP_SPECS_API,
+      queryParameters: body,
+      options: Options(
+        headers: headers(),
+      ),
+    )
+        .then((response) {
+      var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      checkMessage(messageDtoUseCase: apiResult.Message);
+      List<dynamic> arrayData = apiResult.Content;
+
+      List<GroupSpecsResponseDtoUseCase> dataList = List<GroupSpecsResponseDtoUseCase>.empty(growable: true);
+
+      for (var json in arrayData) {
+        GroupSpecsResponseDtoUseCase groupSpecsResponseDtoUseCase = GroupSpecsResponseDtoUseCase.fromJson(json);
+
+        dataList.add(groupSpecsResponseDtoUseCase);
       }
 
       return dataList;

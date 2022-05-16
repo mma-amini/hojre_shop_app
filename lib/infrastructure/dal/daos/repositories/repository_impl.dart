@@ -71,4 +71,16 @@ class RepositoryImpl implements Repository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<GroupSpecsResponseDtoUseCase>>>? groupSpecs(
+      {required GroupSpecsRequestDtoUseCase groupSpecsRequestDtoUseCase}) async {
+    try {
+      var result = await baseRemoteDataSource.groupSpecs(groupSpecsRequestDtoUseCase: groupSpecsRequestDtoUseCase);
+
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 }

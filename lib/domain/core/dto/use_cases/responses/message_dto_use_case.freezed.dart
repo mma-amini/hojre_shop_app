@@ -12,30 +12,11 @@ part of 'message_dto_use_case.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MessageDtoUseCase _$MessageDtoUseCaseFromJson(Map<String, dynamic> json) {
   return _MessageDtoUseCase.fromJson(json);
 }
-
-/// @nodoc
-class _$MessageDtoUseCaseTearOff {
-  const _$MessageDtoUseCaseTearOff();
-
-  _MessageDtoUseCase call({String? Text, String? ShowType}) {
-    return _MessageDtoUseCase(
-      Text: Text,
-      ShowType: ShowType,
-    );
-  }
-
-  MessageDtoUseCase fromJson(Map<String, Object?> json) {
-    return MessageDtoUseCase.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $MessageDtoUseCase = _$MessageDtoUseCaseTearOff();
 
 /// @nodoc
 mixin _$MessageDtoUseCase {
@@ -84,32 +65,32 @@ class _$MessageDtoUseCaseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$MessageDtoUseCaseCopyWith<$Res>
+abstract class _$$_MessageDtoUseCaseCopyWith<$Res>
     implements $MessageDtoUseCaseCopyWith<$Res> {
-  factory _$MessageDtoUseCaseCopyWith(
-          _MessageDtoUseCase value, $Res Function(_MessageDtoUseCase) then) =
-      __$MessageDtoUseCaseCopyWithImpl<$Res>;
+  factory _$$_MessageDtoUseCaseCopyWith(_$_MessageDtoUseCase value,
+          $Res Function(_$_MessageDtoUseCase) then) =
+      __$$_MessageDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call({String? Text, String? ShowType});
 }
 
 /// @nodoc
-class __$MessageDtoUseCaseCopyWithImpl<$Res>
+class __$$_MessageDtoUseCaseCopyWithImpl<$Res>
     extends _$MessageDtoUseCaseCopyWithImpl<$Res>
-    implements _$MessageDtoUseCaseCopyWith<$Res> {
-  __$MessageDtoUseCaseCopyWithImpl(
-      _MessageDtoUseCase _value, $Res Function(_MessageDtoUseCase) _then)
-      : super(_value, (v) => _then(v as _MessageDtoUseCase));
+    implements _$$_MessageDtoUseCaseCopyWith<$Res> {
+  __$$_MessageDtoUseCaseCopyWithImpl(
+      _$_MessageDtoUseCase _value, $Res Function(_$_MessageDtoUseCase) _then)
+      : super(_value, (v) => _then(v as _$_MessageDtoUseCase));
 
   @override
-  _MessageDtoUseCase get _value => super._value as _MessageDtoUseCase;
+  _$_MessageDtoUseCase get _value => super._value as _$_MessageDtoUseCase;
 
   @override
   $Res call({
     Object? Text = freezed,
     Object? ShowType = freezed,
   }) {
-    return _then(_MessageDtoUseCase(
+    return _then(_$_MessageDtoUseCase(
       Text: Text == freezed
           ? _value.Text
           : Text // ignore: cast_nullable_to_non_nullable
@@ -144,11 +125,12 @@ class _$_MessageDtoUseCase implements _MessageDtoUseCase {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MessageDtoUseCase &&
+            other is _$_MessageDtoUseCase &&
             const DeepCollectionEquality().equals(other.Text, Text) &&
             const DeepCollectionEquality().equals(other.ShowType, ShowType));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -157,8 +139,9 @@ class _$_MessageDtoUseCase implements _MessageDtoUseCase {
 
   @JsonKey(ignore: true)
   @override
-  _$MessageDtoUseCaseCopyWith<_MessageDtoUseCase> get copyWith =>
-      __$MessageDtoUseCaseCopyWithImpl<_MessageDtoUseCase>(this, _$identity);
+  _$$_MessageDtoUseCaseCopyWith<_$_MessageDtoUseCase> get copyWith =>
+      __$$_MessageDtoUseCaseCopyWithImpl<_$_MessageDtoUseCase>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -167,18 +150,18 @@ class _$_MessageDtoUseCase implements _MessageDtoUseCase {
 }
 
 abstract class _MessageDtoUseCase implements MessageDtoUseCase {
-  factory _MessageDtoUseCase({String? Text, String? ShowType}) =
+  factory _MessageDtoUseCase({final String? Text, final String? ShowType}) =
       _$_MessageDtoUseCase;
 
   factory _MessageDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_MessageDtoUseCase.fromJson;
 
   @override
-  String? get Text;
+  String? get Text => throw _privateConstructorUsedError;
   @override
-  String? get ShowType;
+  String? get ShowType => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MessageDtoUseCaseCopyWith<_MessageDtoUseCase> get copyWith =>
+  _$$_MessageDtoUseCaseCopyWith<_$_MessageDtoUseCase> get copyWith =>
       throw _privateConstructorUsedError;
 }

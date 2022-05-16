@@ -1,9 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/group_spec_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_group_model.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/request_dto_use_case_exports.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups_use_case.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case_exports.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
+import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 
 class AddProductController extends GetxController {
   final isLoading = false.obs;
@@ -32,14 +38,16 @@ class AddProductController extends GetxController {
   TextEditingController productPackHeightController = TextEditingController();
 
   IProductGroupsUseCase iProductGroupsUseCase;
+  IGroupSpecsUseCase iGroupSpecsUseCase;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   List<FocusNode> focusNodesList = List<FocusNode>.empty(growable: true);
   List<VMProductGroup> tempProductGroupsList = List<VMProductGroup>.empty(growable: true);
   final productGroupsList = List<VMProductGroup>.empty(growable: true).obs;
+  final groupSpecsList = List<VMGroupSpec>.empty(growable: true).obs;
 
-  AddProductController({required this.iProductGroupsUseCase});
+  AddProductController({required this.iProductGroupsUseCase, required this.iGroupSpecsUseCase});
 
   @override
   void onInit() {
@@ -87,6 +95,12 @@ class AddProductController extends GetxController {
       }
     }
     update();
+  }
+
+  updateGroupSpecsList({required List<VMGroupSpec> groupSpecsList}) {
+    this.groupSpecsList.obs.update((val) {
+      this.groupSpecsList.addAll(groupSpecsList);
+    });
   }
 
   updateCategory({required VMProductGroup category}) {
@@ -167,7 +181,7 @@ class AddProductController extends GetxController {
                                 onTap: () {
                                   updateCategory(category: item);
                                   productGroupsDialogSearchController.text = "";
-                                  // Get.offNamed(Routes.ADD_PRODUCT, arguments: {"productGroup": item});
+                                  startApiGroupSpecs();
                                   Get.back();
                                 },
                                 child: Container(
@@ -232,6 +246,13 @@ class AddProductController extends GetxController {
     update();
   }
 
+  goToAddProductSpecificationsPage() {
+    Get.toNamed(
+      Routes.ADD_PRODUCT_SPECIFICATIONS,
+      arguments: {"specifications": groupSpecsList.value},
+    );
+  }
+
   startApiProductGroups() async {
     updateLoading(isLoading: true);
     await iProductGroupsUseCase.Handler().then((response) {
@@ -252,6 +273,31 @@ class AddProductController extends GetxController {
       }
 
       updateProductGroupsList(productGroupsList: tempProductGroupsList);
+    }).catchError((error) {
+      updateLoading(isLoading: false);
+      LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
+    });
+  }
+
+  startApiGroupSpecs() async {
+    updateLoading(isLoading: true);
+
+    await iGroupSpecsUseCase.Handler(params: GroupSpecsRequestDtoUseCase(categoryId: category.value.CategoryId ?? ""))
+        .then((response) {
+      updateLoading(isLoading: false);
+      var data = response.getOrElse(() => []);
+
+      List<VMGroupSpec> tempGroupSpecsList = List<VMGroupSpec>.empty(growable: true);
+
+      for (var element in data) {
+        var js = json.encode(element);
+        Map<String, dynamic> jsData = json.decode(js);
+        VMGroupSpec groupSpec = VMGroupSpec.fromJson(jsData);
+
+        tempGroupSpecsList.add(groupSpec);
+      }
+
+      updateGroupSpecsList(groupSpecsList: tempGroupSpecsList);
     }).catchError((error) {
       updateLoading(isLoading: false);
       LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);

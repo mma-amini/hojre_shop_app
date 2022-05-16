@@ -55,7 +55,8 @@
         "numerical_between_x_and_x": "Numerical between @min and @max"
       },
       "buttons": {
-        "register_product": "Register Product"
+        "register_product": "Register Product",
+        "add_product_specification": "Add product specification"
       }
     }
   },
