@@ -132,5 +132,7 @@ class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
   void logout() {
     _mainDio.options.headers["authorization"] = "";
     _mainDio.unlock();
+
+    Brain.logout();
   }
 }

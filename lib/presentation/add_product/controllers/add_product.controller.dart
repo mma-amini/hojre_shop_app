@@ -4,17 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/group_spec_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_group_model.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/product_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/request_dto_use_case_exports.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups_use_case.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case_exports.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
 import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AddProductController extends GetxController {
   final isLoading = false.obs;
 
   final Rxn<int> weightType = Rxn<int>();
+  final currentStpe = 0.obs;
 
   final category = VMProductGroup().obs;
 
@@ -40,12 +43,15 @@ class AddProductController extends GetxController {
   IProductGroupsUseCase iProductGroupsUseCase;
   IGroupSpecsUseCase iGroupSpecsUseCase;
 
+  VMSendProductPicture? image;
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   List<FocusNode> focusNodesList = List<FocusNode>.empty(growable: true);
   List<VMProductGroup> tempProductGroupsList = List<VMProductGroup>.empty(growable: true);
   final productGroupsList = List<VMProductGroup>.empty(growable: true).obs;
   final groupSpecsList = List<VMGroupSpec>.empty(growable: true).obs;
+  List<VMSendProductPicture> imagesList = List<VMSendProductPicture>.empty(growable: true);
 
   AddProductController({required this.iProductGroupsUseCase, required this.iGroupSpecsUseCase});
 
@@ -97,6 +103,12 @@ class AddProductController extends GetxController {
     update();
   }
 
+  updateCurrentStep({required int step}) {
+    this.currentStpe.update((val) {
+      this.currentStpe.value = step;
+    });
+  }
+
   updateGroupSpecsList({required List<VMGroupSpec> groupSpecsList}) {
     this.groupSpecsList.obs.update((val) {
       this.groupSpecsList.addAll(groupSpecsList);
@@ -117,6 +129,15 @@ class AddProductController extends GetxController {
     });
 
     update();
+  }
+
+  launchCameraHelpURL() async {
+    const url = 'https://3soot.ir/Guide/ShopProductPhoto';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   openProductGroupsDialog() async {

@@ -57,3 +57,11 @@ Map<String, dynamic> _$VMProductPictureToJson(VMProductPicture instance) =>
       'IsMain': instance.IsMain,
       'Picture': instance.Picture,
     };
+
+VMSendProductPicture _$VMSendProductPictureFromJson(
+        Map<String, dynamic> json) =>
+    VMSendProductPicture();
+
+Map<String, dynamic> _$VMSendProductPictureToJson(
+        VMSendProductPicture instance) =>
+    <String, dynamic>{};

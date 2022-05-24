@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:equatable/equatable.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/brand_model.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -73,5 +76,26 @@ class VMProductPicture extends Equatable {
   List<Object?> get props => [
         IsMain,
         Picture,
+      ];
+}
+
+@JsonSerializable()
+class VMSendProductPicture extends Equatable {
+  @JsonKey(ignore: true)
+  File? file;
+
+  @JsonKey(ignore: true)
+  Uint8List? pickedFile;
+
+  VMSendProductPicture({this.file, this.pickedFile});
+
+  factory VMSendProductPicture.fromJson(Map<String, dynamic> json) => _$VMSendProductPictureFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VMSendProductPictureToJson(this);
+
+  @override
+  List<Object?> get props => [
+        file,
+        pickedFile,
       ];
 }
