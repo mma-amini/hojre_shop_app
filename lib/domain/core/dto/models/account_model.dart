@@ -11,8 +11,9 @@ class VMAccount extends Equatable {
   String? LastName;
   String? ShopId;
   String? ShopName;
+  String? ClientSecret;
 
-  VMAccount({this.UserId, this.Username, this.FirstName, this.LastName, this.ShopId, this.ShopName});
+  VMAccount({this.UserId, this.Username, this.FirstName, this.LastName, this.ShopId, this.ShopName, this.ClientSecret});
 
   factory VMAccount.fromJson(Map<String, dynamic> json) => _$VMAccountFromJson(json);
 
@@ -27,5 +28,6 @@ class VMAccount extends Equatable {
         LastName,
         ShopId,
         ShopName,
+        ClientSecret,
       ];
 }

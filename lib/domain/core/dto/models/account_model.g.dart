@@ -13,6 +13,7 @@ VMAccount _$VMAccountFromJson(Map<String, dynamic> json) => VMAccount(
       LastName: json['LastName'] as String?,
       ShopId: json['ShopId'] as String?,
       ShopName: json['ShopName'] as String?,
+      ClientSecret: json['ClientSecret'] as String?,
     );
 
 Map<String, dynamic> _$VMAccountToJson(VMAccount instance) => <String, dynamic>{
@@ -22,4 +23,5 @@ Map<String, dynamic> _$VMAccountToJson(VMAccount instance) => <String, dynamic>{
       'LastName': instance.LastName,
       'ShopId': instance.ShopId,
       'ShopName': instance.ShopName,
+      'ClientSecret': instance.ClientSecret,
     };

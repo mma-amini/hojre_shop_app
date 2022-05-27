@@ -15,6 +15,8 @@ import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 class LoginController extends GetxController {
   final isLoading = false.obs, isLogin = false.obs;
 
+  final clientSecret = "".obs;
+
   final formKey = GlobalKey<FormState>();
 
   TextEditingController userTextController = TextEditingController();
@@ -24,8 +26,6 @@ class LoginController extends GetxController {
   ILoginUseCase iLoginUseCase;
 
   LoginController({required this.iCheckUserUseCase, required this.iLoginUseCase});
-
-
 
   @override
   void onClose() {}
@@ -67,14 +67,15 @@ class LoginController extends GetxController {
     var data = result.getOrElse(() => CheckUserResponseDtoUseCase());
 
     if ((data.Code ?? "").isNotEmpty) {
+      clientSecret.value = data.ClientSecret ?? "";
       updateIsLogin(isLogin: true);
     }
   }
 
   startApiLogin() async {
     updateLoading(isLoading: true);
-    LoginRequestDtoUseCase loginResponseDtoUseCase =
-        LoginRequestDtoUseCase(phoneNumber: userTextController.text, Code: passwordTextController.text);
+    LoginRequestDtoUseCase loginResponseDtoUseCase = LoginRequestDtoUseCase(
+        phoneNumber: userTextController.text, Code: passwordTextController.text, ClientSecret: clientSecret.value);
 
     var result = await iLoginUseCase.Handler(params: loginResponseDtoUseCase);
 
@@ -88,6 +89,7 @@ class LoginController extends GetxController {
       Username: data.Username,
       ShopId: data.ShopId,
       ShopName: data.ShopName,
+      ClientSecret: clientSecret.value,
     );
 
     VMToken token = VMToken(

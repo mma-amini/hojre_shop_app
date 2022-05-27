@@ -1,0 +1,10 @@
+enum SpecificationType {
+  COLOR,
+  SELECTABLE,
+  INPUT,
+  HAS_OR_NOT,
+  INPUT_NUMBER,
+  MULTI_SELECT,
+  WEIGHT,
+  DIMENSION,
+}

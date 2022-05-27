@@ -5,10 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/enums/message_type.dart';
+import 'package:hojre_shop_app/domain/core/dto/enums/spec_type.dart';
 import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
 import 'package:hojre_shop_app/presentation/widgets/awesom_dialog/awesome_dialog.dart';
 import 'package:hojre_shop_app/presentation/widgets/custom_input_format.dart';
+import 'package:hojre_shop_app/presentation/widgets/expandable.dart';
 
 import 'controllers/add_product.controller.dart';
 
@@ -79,7 +81,7 @@ class AddProductScreen extends GetView<AddProductController> {
                         child: Stepper(
                           type: StepperType.vertical,
                           physics: ScrollPhysics(),
-                          currentStep: controller.currentStpe.value,
+                          currentStep: controller.currentStep.value,
                           onStepTapped: (step) {
                             controller.updateCurrentStep(step: step);
                           },
@@ -87,8 +89,8 @@ class AddProductScreen extends GetView<AddProductController> {
                             Get.back();
                           },
                           onStepContinue: () {
-                            if (controller.currentStpe.value < 2) {
-                              controller.currentStpe.value++;
+                            if (controller.currentStep.value < 2) {
+                              controller.currentStep.value++;
                             }
                           },
                           // controlsBuilder: (context, controlDetail) {
@@ -419,161 +421,145 @@ class AddProductScreen extends GetView<AddProductController> {
                                       style: TextStyle(fontSize: 12.0, color: Colors.blue),
                                     ),
                                   ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: TextFormField(
-                                            validator: (value) {
-                                              // Conditions
-                                              var checkValue = value == null || value.isEmpty;
-                                              var checkWeight = !checkValue &&
-                                                  (int.parse(controller.productPackLengthController.text) < 1 ||
-                                                      int.parse(controller.productPackLengthController.text) > 1000);
+                                  Container(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: TextFormField(
+                                      validator: (value) {
+                                        // Conditions
+                                        var checkValue = value == null || value.isEmpty;
+                                        var checkWeight = !checkValue &&
+                                            (int.parse(controller.productPackLengthController.text) < 1 ||
+                                                int.parse(controller.productPackLengthController.text) > 1000);
 
-                                              if (checkValue) {
-                                                return LocaleKeys.screen_add_product_fields_error_general_error
-                                                    .trParams(
-                                                  {
-                                                    "field": LocaleKeys.screen_add_product_fields_name_length.tr,
-                                                  },
-                                                );
-                                              } else if (checkWeight) {
-                                                return LocaleKeys
-                                                    .screen_add_product_fields_error_numerical_between_x_and_x
-                                                    .trParams(
-                                                  {
-                                                    "min": "1",
-                                                    "max": "1000",
-                                                  },
-                                                );
-                                              }
-                                              return null;
+                                        if (checkValue) {
+                                          return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
+                                            {
+                                              "field": LocaleKeys.screen_add_product_fields_name_length.tr,
                                             },
-                                            controller: controller.productPackLengthController,
-                                            textAlignVertical: TextAlignVertical.center,
-                                            textAlign: TextAlign.left,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[
-                                              FilteringTextInputFormatter.digitsOnly,
-                                              LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                            ],
-                                            decoration: InputDecoration(
-                                              labelText: LocaleKeys.screen_add_product_fields_name_length_cm.tr,
-                                              hintText: "0",
-                                              alignLabelWithHint: true,
-                                              border: new OutlineInputBorder(
-                                                borderSide: new BorderSide(color: Colors.grey),
-                                                borderRadius: BorderRadius.circular(8.0),
-                                              ),
-                                            ),
-                                          ),
+                                          );
+                                        } else if (checkWeight) {
+                                          return LocaleKeys.screen_add_product_fields_error_numerical_between_x_and_x
+                                              .trParams(
+                                            {
+                                              "min": "1",
+                                              "max": "1000",
+                                            },
+                                          );
+                                        }
+                                        return null;
+                                      },
+                                      controller: controller.productPackLengthController,
+                                      textAlignVertical: TextAlignVertical.center,
+                                      textAlign: TextAlign.left,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                      ],
+                                      decoration: InputDecoration(
+                                        labelText: LocaleKeys.screen_add_product_fields_name_length_cm.tr,
+                                        hintText: "0",
+                                        alignLabelWithHint: true,
+                                        border: new OutlineInputBorder(
+                                          borderSide: new BorderSide(color: Colors.grey),
+                                          borderRadius: BorderRadius.circular(8.0),
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Container(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: TextFormField(
-                                            validator: (value) {
-                                              // Conditions
-                                              var checkValue = value == null || value.isEmpty;
-                                              var checkWeight = !checkValue &&
-                                                  (int.parse(controller.productPackWidthController.text) < 1 ||
-                                                      int.parse(controller.productPackWidthController.text) > 1000);
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: TextFormField(
+                                      validator: (value) {
+                                        // Conditions
+                                        var checkValue = value == null || value.isEmpty;
+                                        var checkWeight = !checkValue &&
+                                            (int.parse(controller.productPackWidthController.text) < 1 ||
+                                                int.parse(controller.productPackWidthController.text) > 1000);
 
-                                              if (checkValue) {
-                                                return LocaleKeys.screen_add_product_fields_error_general_error
-                                                    .trParams(
-                                                  {
-                                                    "field": LocaleKeys.screen_add_product_fields_name_width.tr,
-                                                  },
-                                                );
-                                              } else if (checkWeight) {
-                                                return LocaleKeys
-                                                    .screen_add_product_fields_error_numerical_between_x_and_x
-                                                    .trParams(
-                                                  {
-                                                    "min": "1",
-                                                    "max": "1000",
-                                                  },
-                                                );
-                                              }
-                                              return null;
+                                        if (checkValue) {
+                                          return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
+                                            {
+                                              "field": LocaleKeys.screen_add_product_fields_name_width.tr,
                                             },
-                                            controller: controller.productPackWidthController,
-                                            focusNode: GetPlatform.isMobile ? controller.productPackWidthNode : null,
-                                            textAlignVertical: TextAlignVertical.center,
-                                            textAlign: TextAlign.left,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[
-                                              FilteringTextInputFormatter.digitsOnly,
-                                              LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                            ],
-                                            decoration: InputDecoration(
-                                              labelText: LocaleKeys.screen_add_product_fields_name_width_cm.tr,
-                                              hintText: "0",
-                                              alignLabelWithHint: true,
-                                              border: new OutlineInputBorder(
-                                                borderSide: new BorderSide(color: Colors.grey),
-                                                borderRadius: BorderRadius.circular(8.0),
-                                              ),
-                                            ),
-                                          ),
+                                          );
+                                        } else if (checkWeight) {
+                                          return LocaleKeys.screen_add_product_fields_error_numerical_between_x_and_x
+                                              .trParams(
+                                            {
+                                              "min": "1",
+                                              "max": "1000",
+                                            },
+                                          );
+                                        }
+                                        return null;
+                                      },
+                                      controller: controller.productPackWidthController,
+                                      focusNode: GetPlatform.isMobile ? controller.productPackWidthNode : null,
+                                      textAlignVertical: TextAlignVertical.center,
+                                      textAlign: TextAlign.left,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                      ],
+                                      decoration: InputDecoration(
+                                        labelText: LocaleKeys.screen_add_product_fields_name_width_cm.tr,
+                                        hintText: "0",
+                                        alignLabelWithHint: true,
+                                        border: new OutlineInputBorder(
+                                          borderSide: new BorderSide(color: Colors.grey),
+                                          borderRadius: BorderRadius.circular(8.0),
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Container(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: TextFormField(
-                                            validator: (value) {
-                                              // Conditions
-                                              var checkValue = value == null || value.isEmpty;
-                                              var checkWeight = !checkValue &&
-                                                  (int.parse(controller.productPackHeightController.text) < 1 ||
-                                                      int.parse(controller.productPackHeightController.text) > 1000);
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: TextFormField(
+                                      validator: (value) {
+                                        // Conditions
+                                        var checkValue = value == null || value.isEmpty;
+                                        var checkWeight = !checkValue &&
+                                            (int.parse(controller.productPackHeightController.text) < 1 ||
+                                                int.parse(controller.productPackHeightController.text) > 1000);
 
-                                              if (checkValue) {
-                                                return LocaleKeys.screen_add_product_fields_error_general_error
-                                                    .trParams(
-                                                  {
-                                                    "field": LocaleKeys.screen_add_product_fields_name_height.tr,
-                                                  },
-                                                );
-                                              } else if (checkWeight) {
-                                                return LocaleKeys
-                                                    .screen_add_product_fields_error_numerical_between_x_and_x
-                                                    .trParams(
-                                                  {
-                                                    "min": "1",
-                                                    "max": "1000",
-                                                  },
-                                                );
-                                              }
-                                              return null;
+                                        if (checkValue) {
+                                          return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
+                                            {
+                                              "field": LocaleKeys.screen_add_product_fields_name_height.tr,
                                             },
-                                            controller: controller.productPackHeightController,
-                                            focusNode: GetPlatform.isMobile ? controller.productPackHeightNode : null,
-                                            textAlignVertical: TextAlignVertical.center,
-                                            textAlign: TextAlign.left,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[
-                                              FilteringTextInputFormatter.digitsOnly,
-                                              LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                            ],
-                                            decoration: InputDecoration(
-                                              labelText: LocaleKeys.screen_add_product_fields_name_height_cm.tr,
-                                              hintText: "0",
-                                              alignLabelWithHint: true,
-                                              border: new OutlineInputBorder(
-                                                borderSide: new BorderSide(color: Colors.grey),
-                                                borderRadius: BorderRadius.circular(8.0),
-                                              ),
-                                            ),
-                                          ),
+                                          );
+                                        } else if (checkWeight) {
+                                          return LocaleKeys.screen_add_product_fields_error_numerical_between_x_and_x
+                                              .trParams(
+                                            {
+                                              "min": "1",
+                                              "max": "1000",
+                                            },
+                                          );
+                                        }
+                                        return null;
+                                      },
+                                      controller: controller.productPackHeightController,
+                                      focusNode: GetPlatform.isMobile ? controller.productPackHeightNode : null,
+                                      textAlignVertical: TextAlignVertical.center,
+                                      textAlign: TextAlign.left,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                      ],
+                                      decoration: InputDecoration(
+                                        labelText: LocaleKeys.screen_add_product_fields_name_height_cm.tr,
+                                        hintText: "0",
+                                        alignLabelWithHint: true,
+                                        border: new OutlineInputBorder(
+                                          borderSide: new BorderSide(color: Colors.grey),
+                                          borderRadius: BorderRadius.circular(8.0),
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
                                   setTitleWidget(title: LocaleKeys.screen_add_product_package_weight.tr),
                                   Container(
@@ -589,106 +575,94 @@ class AddProductScreen extends GetView<AddProductController> {
                                     ),
                                   ),
                                   Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: TextFormField(
-                                            validator: (value) {
-                                              // Conditions
-                                              var checkValue = value == null || value.isEmpty;
-                                              var checkWeight = !checkValue &&
-                                                  (int.parse(controller.productWeightController.text) < 1 ||
-                                                      int.parse(controller.productWeightController.text) > 1000);
-
-                                              if (checkValue) {
-                                                return LocaleKeys.screen_add_product_fields_error_general_error
-                                                    .trParams(
-                                                  {
-                                                    "field": LocaleKeys.screen_add_product_package_weight.tr,
-                                                  },
-                                                );
-                                              } else if (checkWeight) {
-                                                return LocaleKeys
-                                                    .screen_add_product_fields_error_numerical_between_x_and_x
-                                                    .trParams(
-                                                  {
-                                                    "min": "1",
-                                                    "max": "1000",
-                                                  },
-                                                );
-                                              }
-                                              return null;
-                                            },
-                                            controller: controller.productWeightController,
-                                            focusNode: GetPlatform.isMobile ? controller.productWeightNode : null,
-                                            textAlignVertical: TextAlignVertical.center,
-                                            textAlign: TextAlign.left,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[
-                                              FilteringTextInputFormatter.digitsOnly,
-                                              LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                            ],
-                                            decoration: InputDecoration(
-                                              labelText: LocaleKeys.screen_add_product_package_weight.tr,
-                                              hintText: "0",
-                                              alignLabelWithHint: true,
-                                              border: new OutlineInputBorder(
-                                                borderSide: new BorderSide(color: Colors.grey),
-                                                borderRadius: BorderRadius.circular(8.0),
-                                              ),
-                                            ),
-                                            onChanged: (value) {
-                                              controller.justUpdate();
-                                            },
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 8.0,
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            padding: EdgeInsets.fromLTRB(16.0, 0.0, 15.0, 0.0),
-                                            height: 52.0,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(8.0),
-                                              border: Border.all(
-                                                color: Colors.grey,
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                            child: DropdownButtonHideUnderline(
-                                              child: DropdownButton<int>(
-                                                items: [
-                                                  DropdownMenuItem<int>(
-                                                    value: 0,
-                                                    child: Text(
-                                                      "گرم",
-                                                    ),
-                                                  ),
-                                                  DropdownMenuItem<int>(
-                                                    value: 1,
-                                                    child: Text(
-                                                      "کیلوگرم",
-                                                    ),
-                                                  ),
-                                                ],
-                                                onChanged: (int? value) {
-                                                  controller.updateWeightType(weightType: value!);
-                                                },
-                                                hint: Text(
-                                                  LocaleKeys.screen_add_product_fields_name_type_of_weight.tr,
-                                                ),
-                                                value: controller.weightType.value,
-                                                onTap: () {
-                                                  controller.unFocus();
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                    padding: EdgeInsets.fromLTRB(16.0, 0.0, 15.0, 0.0),
+                                    width: Get.width,
+                                    height: 52.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 1.0,
+                                      ),
                                     ),
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton<int>(
+                                        items: [
+                                          DropdownMenuItem<int>(
+                                            value: 0,
+                                            child: Text(
+                                              "گرم",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<int>(
+                                            value: 1,
+                                            child: Text(
+                                              "کیلوگرم",
+                                            ),
+                                          ),
+                                        ],
+                                        onChanged: (int? value) {
+                                          controller.updateWeightType(weightType: value!);
+                                        },
+                                        hint: Text(
+                                          LocaleKeys.screen_add_product_fields_name_type_of_weight.tr,
+                                        ),
+                                        value: controller.packWeightType.value,
+                                        onTap: () {
+                                          controller.unFocus();
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 16.0,
+                                  ),
+                                  TextFormField(
+                                    validator: (value) {
+                                      // Conditions
+                                      var checkValue = value == null || value.isEmpty;
+                                      var checkWeight = !checkValue &&
+                                          (int.parse(controller.productWeightController.text) < 1 ||
+                                              int.parse(controller.productWeightController.text) > 1000);
+
+                                      if (checkValue) {
+                                        return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
+                                          {
+                                            "field": LocaleKeys.screen_add_product_package_weight.tr,
+                                          },
+                                        );
+                                      } else if (checkWeight) {
+                                        return LocaleKeys.screen_add_product_fields_error_numerical_between_x_and_x
+                                            .trParams(
+                                          {
+                                            "min": "1",
+                                            "max": "1000",
+                                          },
+                                        );
+                                      }
+                                      return null;
+                                    },
+                                    controller: controller.productWeightController,
+                                    focusNode: GetPlatform.isMobile ? controller.productPackWeightNode : null,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    textAlign: TextAlign.left,
+                                    keyboardType: TextInputType.number,
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.digitsOnly,
+                                      LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                    ],
+                                    decoration: InputDecoration(
+                                      labelText: LocaleKeys.screen_add_product_package_weight.tr,
+                                      hintText: "0",
+                                      alignLabelWithHint: true,
+                                      border: new OutlineInputBorder(
+                                        borderSide: new BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                    onChanged: (value) {
+                                      controller.justUpdate();
+                                    },
                                   ),
                                 ],
                               ),
@@ -700,10 +674,868 @@ class AddProductScreen extends GetView<AddProductController> {
                                   fontSize: 14.0,
                                 ),
                               ),
-                              content: Container(
-                                height: 30,
-                                width: 30,
-                                color: Colors.green,
+                              content: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: controller.groupSpecsList.length,
+                                itemBuilder: (context, index) {
+                                  var item = controller.groupSpecsList[index];
+                                  return Container(
+                                    child: Column(
+                                      children: [
+                                        ExpandablePanel(
+                                          header: Container(
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(3.0),
+                                                    color: Colors.blueAccent,
+                                                  ),
+                                                  width: 10.0,
+                                                  height: 25.0,
+                                                ),
+                                                SizedBox(
+                                                  width: 8.0,
+                                                ),
+                                                Container(
+                                                  child: Text(
+                                                    item.Name!,
+                                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          expanded: Column(
+                                            children: [
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                              TextField(
+                                                controller: item.searchTextController,
+                                                decoration: InputDecoration(
+                                                    labelText: "جستجو",
+                                                    alignLabelWithHint: true,
+                                                    border: new OutlineInputBorder(
+                                                      borderSide: new BorderSide(color: Colors.green),
+                                                      borderRadius: BorderRadius.circular(100.0),
+                                                    ),
+                                                    contentPadding: EdgeInsets.all(8.0),
+                                                    prefixIcon: IconButton(
+                                                      onPressed: () {
+                                                        if (item.searchTextController!.text.isNotEmpty) {
+                                                          item.searchResult!.clear();
+                                                          for (var spcItem in item.Items!) {
+                                                            if (spcItem.Name!
+                                                                .contains(item.searchTextController!.text)) {
+                                                              item.searchResult!.add(spcItem);
+                                                            }
+                                                          }
+                                                          controller.justUpdate();
+                                                        }
+                                                      },
+                                                      icon: Icon(Icons.search),
+                                                    ),
+                                                    suffixIcon: item.searchTextController!.text.isNotEmpty
+                                                        ? IconButton(
+                                                            onPressed: () {
+                                                              item.searchTextController!.text = "";
+                                                              item.searchResult!.clear();
+                                                              controller.justUpdate();
+                                                            },
+                                                            icon: Icon(Icons.close),
+                                                          )
+                                                        : null),
+                                                onEditingComplete: () {
+                                                  item.searchResult!.clear();
+                                                  for (var spcItem in item.Items!) {
+                                                    if (spcItem.Name!.contains(item.searchTextController!.text)) {
+                                                      item.searchResult!.add(spcItem);
+                                                    }
+                                                  }
+                                                  controller.justUpdate();
+                                                },
+                                                onChanged: (value) {
+                                                  if (!kIsWeb) {
+                                                    item.searchResult!.clear();
+                                                    for (var spcItem in item.Items!) {
+                                                      if (spcItem.Name!.contains(item.searchTextController!.text)) {
+                                                        item.searchResult!.add(spcItem);
+                                                      }
+                                                    }
+                                                    controller.justUpdate();
+                                                  }
+                                                },
+                                              ),
+                                              Divider(),
+                                              Container(
+                                                padding: EdgeInsets.only(top: 8.0),
+                                                child: ListView.builder(
+                                                  shrinkWrap: true,
+                                                  physics: NeverScrollableScrollPhysics(),
+                                                  itemCount: item.searchResult!.isNotEmpty
+                                                      ? item.searchResult!.length
+                                                      : item.Items!.length,
+                                                  itemBuilder: (context, ind) {
+                                                    var spcItem = item.searchResult!.isNotEmpty
+                                                        ? item.searchResult![ind]
+                                                        : item.Items![ind];
+
+                                                    // Conditions
+                                                    var checkSpcItemSelectedItem = spcItem.SelectedItem != null &&
+                                                        spcItem.SelectedItem!.Value != null;
+
+                                                    switch (spcItem.type) {
+                                                      case SpecificationType.COLOR:
+                                                        return Container();
+                                                      case SpecificationType.SELECTABLE:
+                                                        return Container(
+                                                          child: Column(
+                                                            children: [
+                                                              TextField(
+                                                                focusNode: spcItem.textNode,
+                                                                controller: spcItem.textController,
+                                                                readOnly: true,
+                                                                decoration: InputDecoration(
+                                                                  labelText: spcItem.SpecificationName,
+                                                                  alignLabelWithHint: true,
+                                                                  border: new OutlineInputBorder(
+                                                                    borderSide: new BorderSide(color: Colors.grey),
+                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                  ),
+                                                                ),
+                                                                onTap: () {
+                                                                  List<VMSpecificationData> tempData =
+                                                                      List<VMSpecificationData>.empty(growable: true);
+
+                                                                  if (Brain.isRestaurant()) {
+                                                                    VMSpecificationData noUnit = VMSpecificationData(
+                                                                      Value: "بدون واحد",
+                                                                      Name: "بدون واحد",
+                                                                      isNew: false,
+                                                                      SpecificationTypeItemId:
+                                                                          "00000000-0000-0000-0000-000000000000",
+                                                                    );
+
+                                                                    tempData.add(noUnit);
+                                                                  }
+
+                                                                  tempData.addAll(spcItem.Items!);
+
+                                                                  Get.defaultDialog(
+                                                                      title: spcItem.SpecificationName!,
+                                                                      content: WillPopScope(
+                                                                        onWillPop: () {
+                                                                          spcItem.searchTextController.text = "";
+                                                                          spcItem.searchTextNode.unfocus();
+                                                                          Get.back();
+                                                                          return Future.delayed(Duration(seconds: 0))
+                                                                              .then((value) {
+                                                                            return true;
+                                                                          });
+                                                                        },
+                                                                        child: GetBuilder(
+                                                                          init: this.controller,
+                                                                          builder: (dynamic _) {
+                                                                            return Container(
+                                                                              child: Column(
+                                                                                children: [
+                                                                                  Row(
+                                                                                    children: [
+                                                                                      Expanded(
+                                                                                        child: Container(
+                                                                                          height: 40.0,
+                                                                                          child: TextField(
+                                                                                            focusNode:
+                                                                                                spcItem.searchTextNode,
+                                                                                            controller: spcItem
+                                                                                                .searchTextController,
+                                                                                            decoration: InputDecoration(
+                                                                                              labelText: "جستجو",
+                                                                                              alignLabelWithHint: true,
+                                                                                              border:
+                                                                                                  new OutlineInputBorder(
+                                                                                                borderSide:
+                                                                                                    new BorderSide(
+                                                                                                        color: Colors
+                                                                                                            .grey),
+                                                                                                borderRadius:
+                                                                                                    BorderRadius
+                                                                                                        .circular(8.0),
+                                                                                              ),
+                                                                                              contentPadding:
+                                                                                                  EdgeInsets.all(8.0),
+                                                                                            ),
+                                                                                            onChanged: (value) {
+                                                                                              tempData.clear();
+                                                                                              if (value.isNotEmpty) {
+                                                                                                spcItem.Items!
+                                                                                                    .forEach((element) {
+                                                                                                  if (element.Name!
+                                                                                                      .contains(
+                                                                                                          value)) {
+                                                                                                    tempData
+                                                                                                        .add(element);
+                                                                                                  }
+                                                                                                });
+                                                                                              } else {
+                                                                                                tempData.addAll(
+                                                                                                    spcItem.Items!);
+                                                                                              }
+                                                                                              controller.justUpdate();
+                                                                                            },
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                      Visibility(
+                                                                                        visible: tempData.length == 0,
+                                                                                        child: Container(
+                                                                                          child: IconButton(
+                                                                                            icon: Icon(Icons.add),
+                                                                                            onPressed: () {
+                                                                                              VMSpecificationData
+                                                                                                  spcData =
+                                                                                                  VMSpecificationData(
+                                                                                                      Name: spcItem
+                                                                                                          .searchTextController
+                                                                                                          .text,
+                                                                                                      SpecificationTypeItemId:
+                                                                                                          null,
+                                                                                                      Value: spcItem
+                                                                                                          .searchTextController
+                                                                                                          .text);
+                                                                                              spcItem
+                                                                                                  .searchTextController
+                                                                                                  .text = "";
+                                                                                              spcItem.searchTextNode
+                                                                                                  .unfocus();
+                                                                                              spcItem.textController
+                                                                                                      .text =
+                                                                                                  spcData.Value!;
+                                                                                              spcItem.SelectedItem =
+                                                                                                  spcData;
+                                                                                              Get.back();
+                                                                                            },
+                                                                                          ),
+                                                                                        ),
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                  Divider(),
+                                                                                  Container(
+                                                                                    width: Get.width,
+                                                                                    height: 200.0,
+                                                                                    child: ListView.builder(
+                                                                                      itemCount: tempData.length,
+                                                                                      itemBuilder: (context, index) {
+                                                                                        var item = tempData[index];
+                                                                                        return Column(
+                                                                                          children: [
+                                                                                            InkWell(
+                                                                                              borderRadius:
+                                                                                                  BorderRadius.circular(
+                                                                                                      8.0),
+                                                                                              onTap: () {
+                                                                                                spcItem
+                                                                                                    .searchTextController
+                                                                                                    .text = "";
+                                                                                                spcItem.searchTextNode
+                                                                                                    .unfocus();
+                                                                                                spcItem.textController
+                                                                                                    .text = item.Value!;
+                                                                                                spcItem.SelectedItem =
+                                                                                                    item;
+                                                                                                Get.back();
+                                                                                              },
+                                                                                              child: Container(
+                                                                                                padding:
+                                                                                                    EdgeInsets.all(8.0),
+                                                                                                child: Center(
+                                                                                                  child:
+                                                                                                      Text(item.Name!),
+                                                                                                ),
+                                                                                              ),
+                                                                                            ),
+                                                                                            Divider(),
+                                                                                          ],
+                                                                                        );
+                                                                                      },
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      actions: [
+                                                                        Container(
+                                                                          child: InkWell(
+                                                                            onTap: () {
+                                                                              spcItem.searchTextController.text = "";
+                                                                              spcItem.searchTextNode.unfocus();
+                                                                              Get.back();
+                                                                            },
+                                                                            child: Container(
+                                                                              padding: EdgeInsets.all(8.0),
+                                                                              child: Center(
+                                                                                child: Text(
+                                                                                  "بستن",
+                                                                                  style: TextStyle(fontSize: 13.0),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ]);
+                                                                },
+                                                              ),
+                                                              Divider(),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      case SpecificationType.INPUT:
+                                                        return Container(
+                                                          child: Column(
+                                                            children: [
+                                                              TextField(
+                                                                focusNode: spcItem.textNode,
+                                                                controller: spcItem.textController,
+                                                                decoration: InputDecoration(
+                                                                  labelText: spcItem.SpecificationName,
+                                                                  alignLabelWithHint: true,
+                                                                  border: new OutlineInputBorder(
+                                                                    borderSide: new BorderSide(color: Colors.grey),
+                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                  ),
+                                                                ),
+                                                                onChanged: (value) {
+                                                                  spcItem.TypedText = spcItem.textController.text;
+                                                                },
+                                                              ),
+                                                              Divider(),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      case SpecificationType.HAS_OR_NOT:
+                                                        return Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            Text(spcItem.SpecificationName!),
+                                                            SizedBox(
+                                                              height: 8.0,
+                                                            ),
+                                                            Container(
+                                                              padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
+                                                              decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.circular(8.0),
+                                                                border: Border.all(
+                                                                  color: Colors.grey,
+                                                                  width: 1.0,
+                                                                ),
+                                                              ),
+                                                              child: DropdownButtonHideUnderline(
+                                                                child: DropdownButton<String>(
+                                                                  isExpanded: true,
+                                                                  items: List.generate(
+                                                                    spcItem.Items!.length,
+                                                                    (indexItem) => DropdownMenuItem<String>(
+                                                                      value: spcItem.Items![indexItem].Value,
+                                                                      child: Text(
+                                                                        "${spcItem.Items![indexItem].Name}",
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  onChanged: (String? value) async {
+                                                                    for (var item in spcItem.Items!) {
+                                                                      // Conditions
+                                                                      var checkItem = item.Value!.toLowerCase() ==
+                                                                          value!.toLowerCase();
+
+                                                                      if (checkItem) {
+                                                                        spcItem.SelectedItem = item;
+                                                                      }
+                                                                    }
+                                                                    controller.justUpdate();
+                                                                  },
+                                                                  hint: Text(
+                                                                    'انتخاب کنید...',
+                                                                  ),
+                                                                  onTap: () {
+                                                                    controller.unFocus();
+                                                                  },
+                                                                  value: checkSpcItemSelectedItem
+                                                                      ? spcItem.SelectedItem!.Value
+                                                                      : null,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Divider(),
+                                                          ],
+                                                        );
+                                                      case SpecificationType.INPUT_NUMBER:
+                                                        return Container(
+                                                          child: Column(
+                                                            children: [
+                                                              TextField(
+                                                                focusNode: spcItem.textNode,
+                                                                controller: spcItem.textController,
+                                                                textAlign: TextAlign.left,
+                                                                keyboardType:
+                                                                    TextInputType.numberWithOptions(decimal: true),
+                                                                inputFormatters: <TextInputFormatter>[
+                                                                  FilteringTextInputFormatter.allow(
+                                                                      RegExp(r'^\d+\.?\d{0,1}')),
+                                                                ],
+                                                                decoration: InputDecoration(
+                                                                  labelText: spcItem.SpecificationName,
+                                                                  hintText: "0",
+                                                                  alignLabelWithHint: true,
+                                                                  border: new OutlineInputBorder(
+                                                                    borderSide: new BorderSide(color: Colors.grey),
+                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                  ),
+                                                                ),
+                                                                onChanged: (value) {
+                                                                  spcItem.TypedText = spcItem.textController.text;
+                                                                },
+                                                              ),
+                                                              Divider(),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      case SpecificationType.MULTI_SELECT:
+                                                        return Container(
+                                                          child: Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Container(
+                                                                child: MultiSelect(
+                                                                  autovalidate: spcItem.IsRequired!,
+                                                                  addedData: true,
+                                                                  addedDataFunction: (value) {
+                                                                    VMSpecificationData spcData = VMSpecificationData(
+                                                                        SpecificationTypeItemId: value["value"],
+                                                                        Name: value["text"],
+                                                                        Value: value["value"],
+                                                                        isNew: true);
+                                                                    spcItem.Items!.add(spcData);
+                                                                    if (spcItem.SelectedItems == null) {
+                                                                      spcItem.SelectedItems =
+                                                                          List<VMSpecificationData>.empty(
+                                                                              growable: true);
+                                                                    }
+
+                                                                    spcItem.SelectedItems!.add(spcData);
+                                                                    controller.justSetState();
+                                                                  },
+                                                                  titleText: spcItem.SpecificationName,
+                                                                  validator: (value) {
+                                                                    if (value == null) {
+                                                                      return 'یک یا چند مورد را انتخاب نمائید.';
+                                                                    }
+                                                                    return null;
+                                                                  },
+                                                                  dataSource: List.generate(
+                                                                      spcItem.Items!.length,
+                                                                      (muIndex) => {
+                                                                            "Name": spcItem.Items![muIndex].Name,
+                                                                            "Value": spcItem.Items![muIndex].Value,
+                                                                            "SpecificationTypeItemId": spcItem
+                                                                                .Items![muIndex].SpecificationTypeItemId
+                                                                          }).toList(),
+                                                                  textField: "Name",
+                                                                  valueField: "SpecificationTypeItemId",
+                                                                  filterable: true,
+                                                                  required: spcItem.IsRequired,
+                                                                  initialValue: spcItem.SelectedItems != null
+                                                                      ? List.generate(
+                                                                          spcItem.SelectedItems!.length,
+                                                                          (muIndex) => spcItem.SelectedItems![muIndex]
+                                                                              .SpecificationTypeItemId).toList()
+                                                                      : null,
+                                                                  saveButtonText: "تائید",
+                                                                  cancelButtonText: "لغو",
+                                                                  hintText: "یک یا چند مورد را انتخاب نمائید...",
+                                                                  cancelButtonColor: Colors.red,
+                                                                  onSaved: (value) {},
+                                                                  open: () {
+                                                                    controller.unFocus();
+                                                                  },
+                                                                  change: (value) {
+                                                                    List<String?> tempList =
+                                                                        List<String?>.empty(growable: true);
+                                                                    if (value != null) {
+                                                                      for (var i in value) {
+                                                                        tempList.add(i);
+                                                                      }
+                                                                    }
+
+                                                                    spcItem.SelectedItems =
+                                                                        List<VMSpecificationData>.empty(growable: true);
+
+                                                                    for (String? val in tempList) {
+                                                                      for (var item in spcItem.Items!) {
+                                                                        // Conditions
+                                                                        var checkSpecificationTypeItemId = val!
+                                                                                .toLowerCase() ==
+                                                                            item.SpecificationTypeItemId!.toLowerCase();
+                                                                        if (checkSpecificationTypeItemId) {
+                                                                          spcItem.SelectedItems!.add(item);
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                    controller.justUpdate();
+                                                                  },
+                                                                ),
+                                                              ),
+                                                              Divider(),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      case SpecificationType.WEIGHT:
+                                                        return Container(
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text("وزن کالا"),
+                                                              Container(
+                                                                padding: EdgeInsets.all(8.0),
+                                                                child: Text(
+                                                                  "عددی بین ۱ تا ۱۰۰۰ وارد نمایید. همچنین نوع وزن (گرم یا کیلوگرم) را انتخاب نمایید.",
+                                                                  style: TextStyle(fontSize: 12.0, color: Colors.blue),
+                                                                ),
+                                                              ),
+                                                              Row(
+                                                                children: [
+                                                                  Expanded(
+                                                                    child: Container(
+                                                                      padding:
+                                                                          EdgeInsets.fromLTRB(16.0, 0.0, 15.0, 0.0),
+                                                                      height: 52.0,
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(8.0),
+                                                                        border: Border.all(
+                                                                          color: Colors.grey,
+                                                                          width: 1.0,
+                                                                        ),
+                                                                      ),
+                                                                      child: DropdownButtonHideUnderline(
+                                                                        child: DropdownButton<int>(
+                                                                          items: [
+                                                                            DropdownMenuItem<int>(
+                                                                              value: 0,
+                                                                              child: Text(
+                                                                                "گرم",
+                                                                              ),
+                                                                            ),
+                                                                            DropdownMenuItem<int>(
+                                                                              value: 1,
+                                                                              child: Text(
+                                                                                "کیلوگرم",
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                          onChanged: (int? value) {
+                                                                            controller.updateWeightType(
+                                                                                weightType: value);
+                                                                            var weight = 0;
+                                                                            if (spcItem
+                                                                                .textController.text.isNotEmpty) {
+                                                                              weight = int.parse(
+                                                                                  spcItem.textController.text);
+                                                                              if (value == 0 && weight > 1000) {
+                                                                                weight = (weight / 1000).round();
+                                                                              }
+
+                                                                              if (value == 1 && weight < 1000) {
+                                                                                weight = (weight * 1000);
+                                                                              }
+
+                                                                              Brain.printLog(data: weight);
+
+                                                                              spcItem.textController.text =
+                                                                                  weight.toString();
+                                                                              controller.weightText =
+                                                                                  spcItem.textController.text;
+                                                                            }
+                                                                          },
+                                                                          hint: Text(
+                                                                            'نوع وزن',
+                                                                          ),
+                                                                          value: controller.weightType,
+                                                                          onTap: () {
+                                                                            controller.unFocus();
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 8.0,
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: TextFormField(
+                                                                      controller: spcItem.textController,
+                                                                      focusNode: GetPlatform.isMobile
+                                                                          ? spcItem.textNode
+                                                                          : null,
+                                                                      textAlignVertical: TextAlignVertical.center,
+                                                                      textAlign: TextAlign.left,
+                                                                      keyboardType: TextInputType.number,
+                                                                      inputFormatters: <TextInputFormatter>[
+                                                                        FilteringTextInputFormatter.digitsOnly,
+                                                                        LimitNumberInputFormatter(
+                                                                            minNumber: 1, maxNumber: 1000)
+                                                                      ],
+                                                                      readOnly:
+                                                                          controller.weightType == null ? true : false,
+                                                                      decoration: InputDecoration(
+                                                                        labelText: 'وزن کالا',
+                                                                        hintText: "0",
+                                                                        alignLabelWithHint: true,
+                                                                        border: new OutlineInputBorder(
+                                                                          borderSide:
+                                                                              new BorderSide(color: Colors.grey),
+                                                                          borderRadius: BorderRadius.circular(8.0),
+                                                                        ),
+                                                                      ),
+                                                                      onTap: () {
+                                                                        if (controller.weightType == null) {
+                                                                          Brain.getSnackBar(
+                                                                              message: "ابتدا نوع وزن را مشخص نمائید.",
+                                                                              type: SnackBarType.INFO);
+                                                                        }
+                                                                      },
+                                                                      onChanged: (value) {
+                                                                        controller.justUpdate();
+                                                                        if (spcItem.textController.text.isNotEmpty) {
+                                                                          var weight =
+                                                                              int.parse(spcItem.textController.text);
+                                                                          weight = controller.weightType == 0
+                                                                              ? weight
+                                                                              : weight * 1000;
+                                                                          spcItem.TypedText = weight.toString();
+                                                                        } else {
+                                                                          spcItem.TypedText = "";
+                                                                        }
+
+                                                                        controller.weightText = spcItem.TypedText;
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              Divider(),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      case SpecificationType.DIMENSION:
+                                                        return Container(
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text("ابعاد کالا"),
+                                                              Container(
+                                                                padding: EdgeInsets.all(8.0),
+                                                                child: Text(
+                                                                  "عددی بین ۱ تا ۱۰۰۰ سانتی متر را وارد نمایید.",
+                                                                  style: TextStyle(fontSize: 12.0, color: Colors.blue),
+                                                                ),
+                                                              ),
+                                                              Row(
+                                                                children: [
+                                                                  Expanded(
+                                                                    child: TextField(
+                                                                      focusNode: controller.lengthNode,
+                                                                      controller: controller.lengthController,
+                                                                      textAlign: TextAlign.left,
+                                                                      keyboardType: TextInputType.number,
+                                                                      inputFormatters: <TextInputFormatter>[
+                                                                        FilteringTextInputFormatter.digitsOnly,
+                                                                        LimitNumberInputFormatter(
+                                                                            minNumber: 1, maxNumber: 1000)
+                                                                      ],
+                                                                      decoration: InputDecoration(
+                                                                        labelText: "طول (cm)",
+                                                                        hintText: "0",
+                                                                        alignLabelWithHint: true,
+                                                                        border: new OutlineInputBorder(
+                                                                          borderSide:
+                                                                              new BorderSide(color: Colors.grey),
+                                                                          borderRadius: BorderRadius.circular(8.0),
+                                                                        ),
+                                                                      ),
+                                                                      onChanged: (value) {
+                                                                        var length =
+                                                                            controller.lengthController.text.isNotEmpty
+                                                                                ? controller.lengthController.text
+                                                                                : "";
+                                                                        var width =
+                                                                            controller.withController.text.isNotEmpty
+                                                                                ? controller.withController.text
+                                                                                : "";
+                                                                        var height =
+                                                                            controller.heightController.text.isNotEmpty
+                                                                                ? controller.heightController.text
+                                                                                : "";
+
+                                                                        var lengthString =
+                                                                            length.isNotEmpty ? length : "";
+                                                                        var widthString = width.isNotEmpty
+                                                                            ? length.isNotEmpty
+                                                                                ? "x$width"
+                                                                                : "$width"
+                                                                            : "";
+                                                                        var heightString = height.isNotEmpty
+                                                                            ? length.isNotEmpty || width.isNotEmpty
+                                                                                ? "x$height"
+                                                                                : "$height"
+                                                                            : "";
+
+                                                                        spcItem.TypedText =
+                                                                            "$lengthString$widthString$heightString";
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 8.0,
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: TextField(
+                                                                      focusNode: controller.widthNode,
+                                                                      controller: controller.withController,
+                                                                      textAlign: TextAlign.left,
+                                                                      keyboardType: TextInputType.number,
+                                                                      inputFormatters: <TextInputFormatter>[
+                                                                        FilteringTextInputFormatter.digitsOnly,
+                                                                        LimitNumberInputFormatter(
+                                                                            minNumber: 1, maxNumber: 1000)
+                                                                      ],
+                                                                      decoration: InputDecoration(
+                                                                        labelText: "عرض (cm)",
+                                                                        hintText: "0",
+                                                                        alignLabelWithHint: true,
+                                                                        border: new OutlineInputBorder(
+                                                                          borderSide:
+                                                                              new BorderSide(color: Colors.grey),
+                                                                          borderRadius: BorderRadius.circular(8.0),
+                                                                        ),
+                                                                      ),
+                                                                      onChanged: (value) {
+                                                                        var length =
+                                                                            controller.lengthController.text.isNotEmpty
+                                                                                ? controller.lengthController.text
+                                                                                : "";
+                                                                        var width =
+                                                                            controller.withController.text.isNotEmpty
+                                                                                ? controller.withController.text
+                                                                                : "";
+                                                                        var height =
+                                                                            controller.heightController.text.isNotEmpty
+                                                                                ? controller.heightController.text
+                                                                                : "";
+
+                                                                        var lengthString =
+                                                                            length.isNotEmpty ? length : "";
+                                                                        var widthString = width.isNotEmpty
+                                                                            ? length.isNotEmpty
+                                                                                ? "x$width"
+                                                                                : "$width"
+                                                                            : "";
+                                                                        var heightString = height.isNotEmpty
+                                                                            ? length.isNotEmpty || width.isNotEmpty
+                                                                                ? "x$height"
+                                                                                : "$height"
+                                                                            : "";
+
+                                                                        spcItem.TypedText =
+                                                                            "$lengthString$widthString$heightString";
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 8.0,
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: TextField(
+                                                                      focusNode: controller.heightNode,
+                                                                      controller: controller.heightController,
+                                                                      textAlign: TextAlign.left,
+                                                                      keyboardType: TextInputType.number,
+                                                                      inputFormatters: <TextInputFormatter>[
+                                                                        FilteringTextInputFormatter.digitsOnly,
+                                                                        LimitNumberInputFormatter(
+                                                                            minNumber: 1, maxNumber: 1000)
+                                                                      ],
+                                                                      decoration: InputDecoration(
+                                                                        labelText: "ارتفاع (cm)",
+                                                                        hintText: "0",
+                                                                        alignLabelWithHint: true,
+                                                                        border: new OutlineInputBorder(
+                                                                          borderSide:
+                                                                              new BorderSide(color: Colors.grey),
+                                                                          borderRadius: BorderRadius.circular(8.0),
+                                                                        ),
+                                                                      ),
+                                                                      onChanged: (value) {
+                                                                        var length =
+                                                                            controller.lengthController.text.isNotEmpty
+                                                                                ? controller.lengthController.text
+                                                                                : "";
+                                                                        var width =
+                                                                            controller.withController.text.isNotEmpty
+                                                                                ? controller.withController.text
+                                                                                : "";
+                                                                        var height =
+                                                                            controller.heightController.text.isNotEmpty
+                                                                                ? controller.heightController.text
+                                                                                : "";
+
+                                                                        var lengthString =
+                                                                            length.isNotEmpty ? length : "";
+                                                                        var widthString = width.isNotEmpty
+                                                                            ? length.isNotEmpty
+                                                                                ? "x$width"
+                                                                                : "$width"
+                                                                            : "";
+                                                                        var heightString = height.isNotEmpty
+                                                                            ? length.isNotEmpty || width.isNotEmpty
+                                                                                ? "x$height"
+                                                                                : "$height"
+                                                                            : "";
+
+                                                                        spcItem.TypedText =
+                                                                            "$lengthString$widthString$heightString";
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              Divider(),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      default:
+                                                        return Container();
+                                                    }
+                                                  },
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Divider(
+                                          color: Colors.blue,
+                                          thickness: 2.0,
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ],

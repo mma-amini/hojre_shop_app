@@ -30,6 +30,7 @@ class LocalDataSourceImpl {
           LastName: value["LastName"],
           ShopId: value['ShopId'],
           ShopName: value['ShopName'],
+          ClientSecret: value['ClientSecret'],
         );
       }
       return account;

@@ -29,6 +29,14 @@ VMSpecItem _$VMSpecItemFromJson(Map<String, dynamic> json) => VMSpecItem(
       Values: (json['Values'] as List<dynamic>?)
           ?.map((e) => VMSpecValue.fromJson(e as Map<String, dynamic>))
           .toList(),
+      SelectedItem: json['SelectedItem'] == null
+          ? null
+          : VMSpecValue.fromJson(json['SelectedItem'] as Map<String, dynamic>),
+      SelectedItems: (json['SelectedItems'] as List<dynamic>?)
+          ?.map((e) => VMSpecValue.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      TypedText: json['TypedText'] as String?,
+      BooleanValue: json['BooleanValue'] as bool?,
     );
 
 Map<String, dynamic> _$VMSpecItemToJson(VMSpecItem instance) =>
@@ -38,6 +46,10 @@ Map<String, dynamic> _$VMSpecItemToJson(VMSpecItem instance) =>
       'Name': instance.Name,
       'SpecItemId': instance.SpecItemId,
       'Values': instance.Values,
+      'SelectedItem': instance.SelectedItem,
+      'SelectedItems': instance.SelectedItems,
+      'TypedText': instance.TypedText,
+      'BooleanValue': instance.BooleanValue,
     };
 
 VMSpecValue _$VMSpecValueFromJson(Map<String, dynamic> json) => VMSpecValue(

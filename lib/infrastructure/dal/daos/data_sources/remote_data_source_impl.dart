@@ -45,7 +45,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       "grant_type": "refresh_token",
       "refresh_token": getRefreshToken(),
       "client_id": 2,
-      "client_secret": "XgVAAUkGhnKb5Bx2FlvlBnDsgBuIloOfU5XiZOOK",
+      "client_secret": Brain.account.ClientSecret,
     };
     var jsonData = json.encode(body);
     var result = await dio
@@ -103,7 +103,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       "password": loginRequestDtoUseCase.Code,
       "grant_type": "password",
       "client_id": 2,
-      "client_secret": "XgVAAUkGhnKb5Bx2FlvlBnDsgBuIloOfU5XiZOOK",
+      "client_secret": loginRequestDtoUseCase.ClientSecret,
     };
     var jsonData = json.encode(body);
 

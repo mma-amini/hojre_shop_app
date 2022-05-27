@@ -16,19 +16,24 @@ import 'package:url_launcher/url_launcher.dart';
 class AddProductController extends GetxController {
   final isLoading = false.obs;
 
-  final Rxn<int> weightType = Rxn<int>();
-  final currentStpe = 0.obs;
+  final Rxn<int> packWeightType = Rxn<int>();
+  final Rxn<int> productWeightType = Rxn<int>();
+  final currentStep = 0.obs;
 
   final category = VMProductGroup().obs;
 
   FocusNode productNameNode = FocusNode();
   FocusNode productDescriptionNode = FocusNode();
-  FocusNode productWeightNode = FocusNode();
+  FocusNode productPackWeightNode = FocusNode();
   FocusNode productPackLengthNode = FocusNode();
   FocusNode productPackWidthNode = FocusNode();
   FocusNode productPackHeightNode = FocusNode();
   FocusNode brandNode = FocusNode();
   FocusNode searchBrandNode = FocusNode();
+  FocusNode productWeightNode = FocusNode();
+  FocusNode productLengthNode = FocusNode();
+  FocusNode productWidthNode = FocusNode();
+  FocusNode productHeightNode = FocusNode();
 
   TextEditingController productGroupsDialogSearchController = TextEditingController();
   TextEditingController productNameController = TextEditingController();
@@ -39,6 +44,9 @@ class AddProductController extends GetxController {
   TextEditingController productPackLengthController = TextEditingController();
   TextEditingController productPackWidthController = TextEditingController();
   TextEditingController productPackHeightController = TextEditingController();
+  TextEditingController productLengthController = TextEditingController();
+  TextEditingController productWidthController = TextEditingController();
+  TextEditingController productHeightController = TextEditingController();
 
   IProductGroupsUseCase iProductGroupsUseCase;
   IGroupSpecsUseCase iGroupSpecsUseCase;
@@ -51,7 +59,8 @@ class AddProductController extends GetxController {
   List<VMProductGroup> tempProductGroupsList = List<VMProductGroup>.empty(growable: true);
   final productGroupsList = List<VMProductGroup>.empty(growable: true).obs;
   final groupSpecsList = List<VMGroupSpec>.empty(growable: true).obs;
-  List<VMSendProductPicture> imagesList = List<VMSendProductPicture>.empty(growable: true);
+  final allSpc = List<VMSpecItem>.empty(growable: true).obs;
+  final imagesList = List<VMSendProductPicture>.empty(growable: true).obs;
 
   AddProductController({required this.iProductGroupsUseCase, required this.iGroupSpecsUseCase});
 
@@ -61,7 +70,7 @@ class AddProductController extends GetxController {
 
     focusNodesList.add(productNameNode);
     focusNodesList.add(productDescriptionNode);
-    focusNodesList.add(productWeightNode);
+    focusNodesList.add(productPackWeightNode);
     focusNodesList.add(productPackLengthNode);
     focusNodesList.add(productPackWidthNode);
     focusNodesList.add(productPackHeightNode);
@@ -104,8 +113,8 @@ class AddProductController extends GetxController {
   }
 
   updateCurrentStep({required int step}) {
-    this.currentStpe.update((val) {
-      this.currentStpe.value = step;
+    this.currentStep.update((val) {
+      this.currentStep.value = step;
     });
   }
 
@@ -124,8 +133,8 @@ class AddProductController extends GetxController {
   }
 
   updateWeightType({required int weightType}) {
-    this.weightType.update((val) {
-      this.weightType.value = weightType;
+    this.packWeightType.update((val) {
+      this.packWeightType.value = weightType;
     });
 
     update();

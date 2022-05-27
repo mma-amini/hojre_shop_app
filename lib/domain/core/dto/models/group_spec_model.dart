@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:hojre_shop_app/domain/core/dto/enums/spec_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'group_spec_model.g.dart';
@@ -9,7 +11,19 @@ class VMGroupSpec extends Equatable {
   String? Name;
   String? SpecId;
 
-  VMGroupSpec({this.Items, this.Name, this.SpecId});
+  @JsonKey(ignore: true)
+  TextEditingController? searchTextController = TextEditingController();
+
+  @JsonKey(ignore: true)
+  List<VMSpecItem>? searchResult = List<VMSpecItem>.empty(growable: true);
+
+  VMGroupSpec({
+    this.Items,
+    this.Name,
+    this.SpecId,
+    this.searchResult,
+    this.searchTextController,
+  });
 
   factory VMGroupSpec.fromJson(Map<String, dynamic> json) => _$VMGroupSpecFromJson(json);
 
@@ -32,7 +46,43 @@ class VMSpecItem extends Equatable {
   String? SpecItemId;
   List<VMSpecValue>? Values;
 
-  VMSpecItem({this.InputName, this.InputTitle, this.Name, this.SpecItemId, this.Values});
+  VMSpecValue? SelectedItem;
+  List<VMSpecValue>? SelectedItems;
+  String? TypedText;
+  bool? BooleanValue;
+
+  get type {
+    switch (InputName) {
+      case "1":
+        return SpecificationType.COLOR;
+      case "2":
+        return SpecificationType.SELECTABLE;
+      case "3":
+        return SpecificationType.INPUT;
+      case "4":
+        return SpecificationType.INPUT_NUMBER;
+      case "5":
+        return SpecificationType.HAS_OR_NOT;
+      case "6":
+        return SpecificationType.MULTI_SELECT;
+      case "7":
+        return SpecificationType.WEIGHT;
+      case "8":
+        return SpecificationType.DIMENSION;
+    }
+  }
+
+  VMSpecItem({
+    this.InputName,
+    this.InputTitle,
+    this.Name,
+    this.SpecItemId,
+    this.Values,
+    this.SelectedItem,
+    this.SelectedItems,
+    this.TypedText,
+    this.BooleanValue,
+  });
 
   factory VMSpecItem.fromJson(Map<String, dynamic> json) => _$VMSpecItemFromJson(json);
 
@@ -53,6 +103,9 @@ class VMSpecItem extends Equatable {
 class VMSpecValue extends Equatable {
   String? SpecValueId;
   String? Title;
+
+  @JsonKey(ignore: true)
+  bool isNew = false;
 
   VMSpecValue({this.SpecValueId, this.Title});
 

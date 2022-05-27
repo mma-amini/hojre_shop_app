@@ -21,6 +21,7 @@ CheckUserResponseDtoUseCase _$CheckUserResponseDtoUseCaseFromJson(
 
 /// @nodoc
 mixin _$CheckUserResponseDtoUseCase {
+  String? get ClientSecret => throw _privateConstructorUsedError;
   String? get Code => throw _privateConstructorUsedError;
   int? get Minutes => throw _privateConstructorUsedError;
 
@@ -36,7 +37,7 @@ abstract class $CheckUserResponseDtoUseCaseCopyWith<$Res> {
           CheckUserResponseDtoUseCase value,
           $Res Function(CheckUserResponseDtoUseCase) then) =
       _$CheckUserResponseDtoUseCaseCopyWithImpl<$Res>;
-  $Res call({String? Code, int? Minutes});
+  $Res call({String? ClientSecret, String? Code, int? Minutes});
 }
 
 /// @nodoc
@@ -50,10 +51,15 @@ class _$CheckUserResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? ClientSecret = freezed,
     Object? Code = freezed,
     Object? Minutes = freezed,
   }) {
     return _then(_value.copyWith(
+      ClientSecret: ClientSecret == freezed
+          ? _value.ClientSecret
+          : ClientSecret // ignore: cast_nullable_to_non_nullable
+              as String?,
       Code: Code == freezed
           ? _value.Code
           : Code // ignore: cast_nullable_to_non_nullable
@@ -74,7 +80,7 @@ abstract class _$$_CheckUserResponseDtoUseCaseCopyWith<$Res>
           $Res Function(_$_CheckUserResponseDtoUseCase) then) =
       __$$_CheckUserResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
-  $Res call({String? Code, int? Minutes});
+  $Res call({String? ClientSecret, String? Code, int? Minutes});
 }
 
 /// @nodoc
@@ -92,10 +98,15 @@ class __$$_CheckUserResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? ClientSecret = freezed,
     Object? Code = freezed,
     Object? Minutes = freezed,
   }) {
     return _then(_$_CheckUserResponseDtoUseCase(
+      ClientSecret: ClientSecret == freezed
+          ? _value.ClientSecret
+          : ClientSecret // ignore: cast_nullable_to_non_nullable
+              as String?,
       Code: Code == freezed
           ? _value.Code
           : Code // ignore: cast_nullable_to_non_nullable
@@ -111,11 +122,13 @@ class __$$_CheckUserResponseDtoUseCaseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CheckUserResponseDtoUseCase implements _CheckUserResponseDtoUseCase {
-  _$_CheckUserResponseDtoUseCase({this.Code, this.Minutes});
+  _$_CheckUserResponseDtoUseCase({this.ClientSecret, this.Code, this.Minutes});
 
   factory _$_CheckUserResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>
       _$$_CheckUserResponseDtoUseCaseFromJson(json);
 
+  @override
+  final String? ClientSecret;
   @override
   final String? Code;
   @override
@@ -123,7 +136,7 @@ class _$_CheckUserResponseDtoUseCase implements _CheckUserResponseDtoUseCase {
 
   @override
   String toString() {
-    return 'CheckUserResponseDtoUseCase(Code: $Code, Minutes: $Minutes)';
+    return 'CheckUserResponseDtoUseCase(ClientSecret: $ClientSecret, Code: $Code, Minutes: $Minutes)';
   }
 
   @override
@@ -131,6 +144,8 @@ class _$_CheckUserResponseDtoUseCase implements _CheckUserResponseDtoUseCase {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CheckUserResponseDtoUseCase &&
+            const DeepCollectionEquality()
+                .equals(other.ClientSecret, ClientSecret) &&
             const DeepCollectionEquality().equals(other.Code, Code) &&
             const DeepCollectionEquality().equals(other.Minutes, Minutes));
   }
@@ -139,6 +154,7 @@ class _$_CheckUserResponseDtoUseCase implements _CheckUserResponseDtoUseCase {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(ClientSecret),
       const DeepCollectionEquality().hash(Code),
       const DeepCollectionEquality().hash(Minutes));
 
@@ -157,12 +173,15 @@ class _$_CheckUserResponseDtoUseCase implements _CheckUserResponseDtoUseCase {
 abstract class _CheckUserResponseDtoUseCase
     implements CheckUserResponseDtoUseCase {
   factory _CheckUserResponseDtoUseCase(
-      {final String? Code,
+      {final String? ClientSecret,
+      final String? Code,
       final int? Minutes}) = _$_CheckUserResponseDtoUseCase;
 
   factory _CheckUserResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_CheckUserResponseDtoUseCase.fromJson;
 
+  @override
+  String? get ClientSecret => throw _privateConstructorUsedError;
   @override
   String? get Code => throw _privateConstructorUsedError;
   @override
