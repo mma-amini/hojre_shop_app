@@ -6,6 +6,7 @@ import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/enums/message_type.dart';
 import 'package:hojre_shop_app/domain/core/dto/enums/spec_type.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/group_spec_model.dart';
 import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
 import 'package:hojre_shop_app/presentation/widgets/awesom_dialog/awesome_dialog.dart';
@@ -138,17 +139,18 @@ class AddProductScreen extends GetView<AddProductController> {
                           steps: [
                             Step(
                               title: Text(
-                                "انتخاب تصاویر کالا",
+                                LocaleKeys.screen_add_product_choose_product_pictures.tr,
                                 style: TextStyle(
                                   fontSize: 14.0,
                                 ),
                               ),
                               content: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     child: Row(
                                       children: [
-                                        setTitleWidget(title: "تصاویر"),
+                                        setTitleWidget(title: LocaleKeys.screen_add_product_pics.tr),
                                         SizedBox(
                                           width: 8,
                                         ),
@@ -167,6 +169,9 @@ class AddProductScreen extends GetView<AddProductController> {
                                         )
                                       ],
                                     ),
+                                  ),
+                                  SizedBox(
+                                    height: 16.0,
                                   ),
                                   Container(
                                     height: 170,
@@ -217,16 +222,18 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                       padding: const EdgeInsets.all(3.0),
                                                                       child: Center(
                                                                           child: Text(
-                                                                        "از حذف این تصویر مطمئن هستید؟",
+                                                                        LocaleKeys
+                                                                            .screen_add_product_are_you_sure_you_want_to_delete_this_image
+                                                                            .tr,
                                                                         style: TextStyle(fontSize: 14.0),
                                                                         textAlign: TextAlign.center,
                                                                       )),
                                                                     ),
-                                                                    btnOkText: "بلی",
+                                                                    btnOkText: LocaleKeys.buttons_yes.tr,
                                                                     btnOkOnPress: () {
                                                                       // controller.removeMainImage();
                                                                     },
-                                                                    btnCancelText: "خیر",
+                                                                    btnCancelText: LocaleKeys.buttons_no.tr,
                                                                     btnCancelOnPress: () {})
                                                                   ..show();
                                                               },
@@ -254,7 +261,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                           ),
                                                           Container(
                                                             child: Text(
-                                                              "انتخاب تصویر اصلی",
+                                                              LocaleKeys.screen_add_product_choose_main_picture.tr,
                                                               style: TextStyle(fontSize: 12.0),
                                                             ),
                                                           ),
@@ -303,17 +310,19 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                         padding: const EdgeInsets.all(3.0),
                                                                         child: Center(
                                                                             child: Text(
-                                                                          "از حذف این تصویر مطمئن هستید؟",
+                                                                          LocaleKeys
+                                                                              .screen_add_product_are_you_sure_you_want_to_delete_this_image
+                                                                              .tr,
                                                                           style: TextStyle(fontSize: 14.0),
                                                                           textAlign: TextAlign.center,
                                                                         )),
                                                                       ),
-                                                                      btnOkText: "بلی",
+                                                                      btnOkText: LocaleKeys.buttons_yes.tr,
                                                                       btnOkOnPress: () {
                                                                         // controller.removeImageFromImagesList(
                                                                         //     image: image);
                                                                       },
-                                                                      btnCancelText: "خیر",
+                                                                      btnCancelText: LocaleKeys.buttons_no.tr,
                                                                       btnCancelOnPress: () {})
                                                                     ..show();
                                                                 },
@@ -370,17 +379,13 @@ class AddProductScreen extends GetView<AddProductController> {
                             ),
                             Step(
                               title: Text(
-                                "ثبت مشخصات پایه",
+                                LocaleKeys.screen_add_product_registration_basic_specifications.tr,
                                 style: TextStyle(
                                   fontSize: 14.0,
                                 ),
                               ),
                               content: Column(
                                 children: [
-                                  setTitleWidget(title: LocaleKeys.screen_add_product_basic_specifications.tr),
-                                  const SizedBox(
-                                    height: 16.0,
-                                  ),
                                   TextFormField(
                                     validator: (value) {
                                       // Conditions
@@ -602,7 +607,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                           ),
                                         ],
                                         onChanged: (int? value) {
-                                          controller.updateWeightType(weightType: value!);
+                                          controller.updatePackWeightType(packWeightType: value!);
                                         },
                                         hint: Text(
                                           LocaleKeys.screen_add_product_fields_name_type_of_weight.tr,
@@ -669,7 +674,7 @@ class AddProductScreen extends GetView<AddProductController> {
                             ),
                             Step(
                               title: Text(
-                                "ثبت سایر مشخصات",
+                                LocaleKeys.screen_add_product_registration_other_specification.tr,
                                 style: TextStyle(
                                   fontSize: 14.0,
                                 ),
@@ -685,15 +690,17 @@ class AddProductScreen extends GetView<AddProductController> {
                                       children: [
                                         ExpandablePanel(
                                           header: Container(
+                                            padding: EdgeInsets.only(top: 8.0),
                                             child: Row(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Container(
                                                   decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(3.0),
+                                                    borderRadius: BorderRadius.circular(10.0),
                                                     color: Colors.blueAccent,
                                                   ),
-                                                  width: 10.0,
-                                                  height: 25.0,
+                                                  width: 20.0,
+                                                  height: 20.0,
                                                 ),
                                                 SizedBox(
                                                   width: 8.0,
@@ -701,7 +708,9 @@ class AddProductScreen extends GetView<AddProductController> {
                                                 Container(
                                                   child: Text(
                                                     item.Name!,
-                                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -715,7 +724,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                               TextField(
                                                 controller: item.searchTextController,
                                                 decoration: InputDecoration(
-                                                    labelText: "جستجو",
+                                                    labelText: LocaleKeys.general_search.tr,
                                                     alignLabelWithHint: true,
                                                     border: new OutlineInputBorder(
                                                       borderSide: new BorderSide(color: Colors.green),
@@ -798,7 +807,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                 controller: spcItem.textController,
                                                                 readOnly: true,
                                                                 decoration: InputDecoration(
-                                                                  labelText: spcItem.SpecificationName,
+                                                                  labelText: spcItem.Name,
                                                                   alignLabelWithHint: true,
                                                                   border: new OutlineInputBorder(
                                                                     borderSide: new BorderSide(color: Colors.grey),
@@ -806,25 +815,13 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                   ),
                                                                 ),
                                                                 onTap: () {
-                                                                  List<VMSpecificationData> tempData =
-                                                                      List<VMSpecificationData>.empty(growable: true);
+                                                                  List<VMSpecValue> tempData =
+                                                                      List<VMSpecValue>.empty(growable: true);
 
-                                                                  if (Brain.isRestaurant()) {
-                                                                    VMSpecificationData noUnit = VMSpecificationData(
-                                                                      Value: "بدون واحد",
-                                                                      Name: "بدون واحد",
-                                                                      isNew: false,
-                                                                      SpecificationTypeItemId:
-                                                                          "00000000-0000-0000-0000-000000000000",
-                                                                    );
-
-                                                                    tempData.add(noUnit);
-                                                                  }
-
-                                                                  tempData.addAll(spcItem.Items!);
+                                                                  tempData.addAll(spcItem.Values!);
 
                                                                   Get.defaultDialog(
-                                                                      title: spcItem.SpecificationName!,
+                                                                      title: spcItem.Name!,
                                                                       content: WillPopScope(
                                                                         onWillPop: () {
                                                                           spcItem.searchTextController.text = "";
@@ -852,7 +849,8 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                                             controller: spcItem
                                                                                                 .searchTextController,
                                                                                             decoration: InputDecoration(
-                                                                                              labelText: "جستجو",
+                                                                                              labelText: LocaleKeys
+                                                                                                  .general_search.tr,
                                                                                               alignLabelWithHint: true,
                                                                                               border:
                                                                                                   new OutlineInputBorder(
@@ -870,9 +868,9 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                                             onChanged: (value) {
                                                                                               tempData.clear();
                                                                                               if (value.isNotEmpty) {
-                                                                                                spcItem.Items!
+                                                                                                spcItem.Values!
                                                                                                     .forEach((element) {
-                                                                                                  if (element.Name!
+                                                                                                  if (element.Title!
                                                                                                       .contains(
                                                                                                           value)) {
                                                                                                     tempData
@@ -881,7 +879,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                                                 });
                                                                                               } else {
                                                                                                 tempData.addAll(
-                                                                                                    spcItem.Items!);
+                                                                                                    spcItem.Values!);
                                                                                               }
                                                                                               controller.justUpdate();
                                                                                             },
@@ -894,17 +892,14 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                                           child: IconButton(
                                                                                             icon: Icon(Icons.add),
                                                                                             onPressed: () {
-                                                                                              VMSpecificationData
-                                                                                                  spcData =
-                                                                                                  VMSpecificationData(
-                                                                                                      Name: spcItem
-                                                                                                          .searchTextController
-                                                                                                          .text,
-                                                                                                      SpecificationTypeItemId:
-                                                                                                          null,
-                                                                                                      Value: spcItem
-                                                                                                          .searchTextController
-                                                                                                          .text);
+                                                                                              VMSpecValue spcData = VMSpecValue(
+                                                                                                  Title: spcItem
+                                                                                                      .searchTextController
+                                                                                                      .text,
+                                                                                                  SpecValueId: null,
+                                                                                                  Value: spcItem
+                                                                                                      .searchTextController
+                                                                                                      .text);
                                                                                               spcItem
                                                                                                   .searchTextController
                                                                                                   .text = "";
@@ -953,7 +948,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                                                     EdgeInsets.all(8.0),
                                                                                                 child: Center(
                                                                                                   child:
-                                                                                                      Text(item.Name!),
+                                                                                                      Text(item.Title!),
                                                                                                 ),
                                                                                               ),
                                                                                             ),
@@ -981,7 +976,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                               padding: EdgeInsets.all(8.0),
                                                                               child: Center(
                                                                                 child: Text(
-                                                                                  "بستن",
+                                                                                  LocaleKeys.buttons_close.tr,
                                                                                   style: TextStyle(fontSize: 13.0),
                                                                                 ),
                                                                               ),
@@ -995,7 +990,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                             ],
                                                           ),
                                                         );
-                                                      case SpecificationType.INPUT:
+                                                      case SpecificationType.TEXT_INPUT:
                                                         return Container(
                                                           child: Column(
                                                             children: [
@@ -1003,7 +998,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                 focusNode: spcItem.textNode,
                                                                 controller: spcItem.textController,
                                                                 decoration: InputDecoration(
-                                                                  labelText: spcItem.SpecificationName,
+                                                                  labelText: spcItem.Name,
                                                                   alignLabelWithHint: true,
                                                                   border: new OutlineInputBorder(
                                                                     borderSide: new BorderSide(color: Colors.grey),
@@ -1018,11 +1013,11 @@ class AddProductScreen extends GetView<AddProductController> {
                                                             ],
                                                           ),
                                                         );
-                                                      case SpecificationType.HAS_OR_NOT:
+                                                      case SpecificationType.BOOL:
                                                         return Column(
                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: [
-                                                            Text(spcItem.SpecificationName!),
+                                                            Text(spcItem.Name!),
                                                             SizedBox(
                                                               height: 8.0,
                                                             ),
@@ -1039,16 +1034,16 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                 child: DropdownButton<String>(
                                                                   isExpanded: true,
                                                                   items: List.generate(
-                                                                    spcItem.Items!.length,
+                                                                    spcItem.Values!.length,
                                                                     (indexItem) => DropdownMenuItem<String>(
-                                                                      value: spcItem.Items![indexItem].Value,
+                                                                      value: spcItem.Values![indexItem].Value,
                                                                       child: Text(
-                                                                        "${spcItem.Items![indexItem].Name}",
+                                                                        "${spcItem.Values![indexItem].Title}",
                                                                       ),
                                                                     ),
                                                                   ),
                                                                   onChanged: (String? value) async {
-                                                                    for (var item in spcItem.Items!) {
+                                                                    for (var item in spcItem.Values!) {
                                                                       // Conditions
                                                                       var checkItem = item.Value!.toLowerCase() ==
                                                                           value!.toLowerCase();
@@ -1060,7 +1055,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                     controller.justUpdate();
                                                                   },
                                                                   hint: Text(
-                                                                    'انتخاب کنید...',
+                                                                    LocaleKeys.screen_add_product_specs_select.tr,
                                                                   ),
                                                                   onTap: () {
                                                                     controller.unFocus();
@@ -1074,7 +1069,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                             Divider(),
                                                           ],
                                                         );
-                                                      case SpecificationType.INPUT_NUMBER:
+                                                      case SpecificationType.NUMBER_INPUT:
                                                         return Container(
                                                           child: Column(
                                                             children: [
@@ -1089,7 +1084,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                       RegExp(r'^\d+\.?\d{0,1}')),
                                                                 ],
                                                                 decoration: InputDecoration(
-                                                                  labelText: spcItem.SpecificationName,
+                                                                  labelText: spcItem.Name,
                                                                   hintText: "0",
                                                                   alignLabelWithHint: true,
                                                                   border: new OutlineInputBorder(
@@ -1110,86 +1105,86 @@ class AddProductScreen extends GetView<AddProductController> {
                                                           child: Column(
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-                                                              Container(
-                                                                child: MultiSelect(
-                                                                  autovalidate: spcItem.IsRequired!,
-                                                                  addedData: true,
-                                                                  addedDataFunction: (value) {
-                                                                    VMSpecificationData spcData = VMSpecificationData(
-                                                                        SpecificationTypeItemId: value["value"],
-                                                                        Name: value["text"],
-                                                                        Value: value["value"],
-                                                                        isNew: true);
-                                                                    spcItem.Items!.add(spcData);
-                                                                    if (spcItem.SelectedItems == null) {
-                                                                      spcItem.SelectedItems =
-                                                                          List<VMSpecificationData>.empty(
-                                                                              growable: true);
-                                                                    }
-
-                                                                    spcItem.SelectedItems!.add(spcData);
-                                                                    controller.justSetState();
-                                                                  },
-                                                                  titleText: spcItem.SpecificationName,
-                                                                  validator: (value) {
-                                                                    if (value == null) {
-                                                                      return 'یک یا چند مورد را انتخاب نمائید.';
-                                                                    }
-                                                                    return null;
-                                                                  },
-                                                                  dataSource: List.generate(
-                                                                      spcItem.Items!.length,
-                                                                      (muIndex) => {
-                                                                            "Name": spcItem.Items![muIndex].Name,
-                                                                            "Value": spcItem.Items![muIndex].Value,
-                                                                            "SpecificationTypeItemId": spcItem
-                                                                                .Items![muIndex].SpecificationTypeItemId
-                                                                          }).toList(),
-                                                                  textField: "Name",
-                                                                  valueField: "SpecificationTypeItemId",
-                                                                  filterable: true,
-                                                                  required: spcItem.IsRequired,
-                                                                  initialValue: spcItem.SelectedItems != null
-                                                                      ? List.generate(
-                                                                          spcItem.SelectedItems!.length,
-                                                                          (muIndex) => spcItem.SelectedItems![muIndex]
-                                                                              .SpecificationTypeItemId).toList()
-                                                                      : null,
-                                                                  saveButtonText: "تائید",
-                                                                  cancelButtonText: "لغو",
-                                                                  hintText: "یک یا چند مورد را انتخاب نمائید...",
-                                                                  cancelButtonColor: Colors.red,
-                                                                  onSaved: (value) {},
-                                                                  open: () {
-                                                                    controller.unFocus();
-                                                                  },
-                                                                  change: (value) {
-                                                                    List<String?> tempList =
-                                                                        List<String?>.empty(growable: true);
-                                                                    if (value != null) {
-                                                                      for (var i in value) {
-                                                                        tempList.add(i);
-                                                                      }
-                                                                    }
-
-                                                                    spcItem.SelectedItems =
-                                                                        List<VMSpecificationData>.empty(growable: true);
-
-                                                                    for (String? val in tempList) {
-                                                                      for (var item in spcItem.Items!) {
-                                                                        // Conditions
-                                                                        var checkSpecificationTypeItemId = val!
-                                                                                .toLowerCase() ==
-                                                                            item.SpecificationTypeItemId!.toLowerCase();
-                                                                        if (checkSpecificationTypeItemId) {
-                                                                          spcItem.SelectedItems!.add(item);
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                    controller.justUpdate();
-                                                                  },
-                                                                ),
-                                                              ),
+                                                              // Container(
+                                                              //   child: MultiSelect(
+                                                              //     autovalidate: spcItem.IsRequired!,
+                                                              //     addedData: true,
+                                                              //     addedDataFunction: (value) {
+                                                              //       VMSpecificationData spcData = VMSpecificationData(
+                                                              //           SpecificationTypeItemId: value["value"],
+                                                              //           Name: value["text"],
+                                                              //           Value: value["value"],
+                                                              //           isNew: true);
+                                                              //       spcItem.Items!.add(spcData);
+                                                              //       if (spcItem.SelectedItems == null) {
+                                                              //         spcItem.SelectedItems =
+                                                              //             List<VMSpecificationData>.empty(
+                                                              //                 growable: true);
+                                                              //       }
+                                                              //
+                                                              //       spcItem.SelectedItems!.add(spcData);
+                                                              //       controller.justSetState();
+                                                              //     },
+                                                              //     titleText: spcItem.SpecificationName,
+                                                              //     validator: (value) {
+                                                              //       if (value == null) {
+                                                              //         return 'یک یا چند مورد را انتخاب نمائید.';
+                                                              //       }
+                                                              //       return null;
+                                                              //     },
+                                                              //     dataSource: List.generate(
+                                                              //         spcItem.Items!.length,
+                                                              //         (muIndex) => {
+                                                              //               "Name": spcItem.Items![muIndex].Name,
+                                                              //               "Value": spcItem.Items![muIndex].Value,
+                                                              //               "SpecificationTypeItemId": spcItem
+                                                              //                   .Items![muIndex].SpecificationTypeItemId
+                                                              //             }).toList(),
+                                                              //     textField: "Name",
+                                                              //     valueField: "SpecificationTypeItemId",
+                                                              //     filterable: true,
+                                                              //     required: spcItem.IsRequired,
+                                                              //     initialValue: spcItem.SelectedItems != null
+                                                              //         ? List.generate(
+                                                              //             spcItem.SelectedItems!.length,
+                                                              //             (muIndex) => spcItem.SelectedItems![muIndex]
+                                                              //                 .SpecificationTypeItemId).toList()
+                                                              //         : null,
+                                                              //     saveButtonText: "تائید",
+                                                              //     cancelButtonText: "لغو",
+                                                              //     hintText: "یک یا چند مورد را انتخاب نمائید...",
+                                                              //     cancelButtonColor: Colors.red,
+                                                              //     onSaved: (value) {},
+                                                              //     open: () {
+                                                              //       controller.unFocus();
+                                                              //     },
+                                                              //     change: (value) {
+                                                              //       List<String?> tempList =
+                                                              //           List<String?>.empty(growable: true);
+                                                              //       if (value != null) {
+                                                              //         for (var i in value) {
+                                                              //           tempList.add(i);
+                                                              //         }
+                                                              //       }
+                                                              //
+                                                              //       spcItem.SelectedItems =
+                                                              //           List<VMSpecificationData>.empty(growable: true);
+                                                              //
+                                                              //       for (String? val in tempList) {
+                                                              //         for (var item in spcItem.Items!) {
+                                                              //           // Conditions
+                                                              //           var checkSpecificationTypeItemId = val!
+                                                              //                   .toLowerCase() ==
+                                                              //               item.SpecificationTypeItemId!.toLowerCase();
+                                                              //           if (checkSpecificationTypeItemId) {
+                                                              //             spcItem.SelectedItems!.add(item);
+                                                              //           }
+                                                              //         }
+                                                              //       }
+                                                              //       controller.justUpdate();
+                                                              //     },
+                                                              //   ),
+                                                              // ),
                                                               Divider(),
                                                             ],
                                                           ),
@@ -1200,11 +1195,17 @@ class AddProductScreen extends GetView<AddProductController> {
                                                             mainAxisAlignment: MainAxisAlignment.center,
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-                                                              Text("وزن کالا"),
+                                                              Text(LocaleKeys
+                                                                  .screen_add_product_specs_product_weight.tr),
                                                               Container(
                                                                 padding: EdgeInsets.all(8.0),
                                                                 child: Text(
-                                                                  "عددی بین ۱ تا ۱۰۰۰ وارد نمایید. همچنین نوع وزن (گرم یا کیلوگرم) را انتخاب نمایید.",
+                                                                  "${LocaleKeys.screen_add_product_enter_number_between_x_and_x.trParams(
+                                                                    {
+                                                                      "min": "1",
+                                                                      "max": "1000",
+                                                                    },
+                                                                  )} ${LocaleKeys.screen_add_product_also_select_the_type_of_weight.tr}",
                                                                   style: TextStyle(fontSize: 12.0, color: Colors.blue),
                                                                 ),
                                                               ),
@@ -1239,8 +1240,8 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                             ),
                                                                           ],
                                                                           onChanged: (int? value) {
-                                                                            controller.updateWeightType(
-                                                                                weightType: value);
+                                                                            controller.updateProductWeightType(
+                                                                                productWeightType: value!);
                                                                             var weight = 0;
                                                                             if (spcItem
                                                                                 .textController.text.isNotEmpty) {
@@ -1254,18 +1255,17 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                                 weight = (weight * 1000);
                                                                               }
 
-                                                                              Brain.printLog(data: weight);
-
                                                                               spcItem.textController.text =
                                                                                   weight.toString();
-                                                                              controller.weightText =
+                                                                              controller.productWeightText.value =
                                                                                   spcItem.textController.text;
                                                                             }
                                                                           },
                                                                           hint: Text(
-                                                                            'نوع وزن',
+                                                                            LocaleKeys
+                                                                                .screen_add_product_fields_name_type_of_weight,
                                                                           ),
-                                                                          value: controller.weightType,
+                                                                          value: controller.productWeightType.value,
                                                                           onTap: () {
                                                                             controller.unFocus();
                                                                           },
@@ -1291,9 +1291,12 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                             minNumber: 1, maxNumber: 1000)
                                                                       ],
                                                                       readOnly:
-                                                                          controller.weightType == null ? true : false,
+                                                                          controller.productWeightType.value == null
+                                                                              ? true
+                                                                              : false,
                                                                       decoration: InputDecoration(
-                                                                        labelText: 'وزن کالا',
+                                                                        labelText: LocaleKeys
+                                                                            .screen_add_product_specs_product_weight.tr,
                                                                         hintText: "0",
                                                                         alignLabelWithHint: true,
                                                                         border: new OutlineInputBorder(
@@ -1303,10 +1306,14 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                         ),
                                                                       ),
                                                                       onTap: () {
-                                                                        if (controller.weightType == null) {
-                                                                          Brain.getSnackBar(
-                                                                              message: "ابتدا نوع وزن را مشخص نمائید.",
-                                                                              type: SnackBarType.INFO);
+                                                                        if (controller.productWeightType.value ==
+                                                                            null) {
+                                                                          ShowMessage.getSnackBar(
+                                                                            message: LocaleKeys
+                                                                                .screen_add_product_fields_error_first_determine_the_type_of_weight
+                                                                                .tr,
+                                                                            type: MessageType.WARNING,
+                                                                          );
                                                                         }
                                                                       },
                                                                       onChanged: (value) {
@@ -1314,7 +1321,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                         if (spcItem.textController.text.isNotEmpty) {
                                                                           var weight =
                                                                               int.parse(spcItem.textController.text);
-                                                                          weight = controller.weightType == 0
+                                                                          weight = controller.productWeightType == 0
                                                                               ? weight
                                                                               : weight * 1000;
                                                                           spcItem.TypedText = weight.toString();
@@ -1322,7 +1329,8 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                           spcItem.TypedText = "";
                                                                         }
 
-                                                                        controller.weightText = spcItem.TypedText;
+                                                                        controller.productWeightText.value =
+                                                                            spcItem.TypedText ?? "";
                                                                       },
                                                                     ),
                                                                   ),
@@ -1338,11 +1346,19 @@ class AddProductScreen extends GetView<AddProductController> {
                                                             mainAxisAlignment: MainAxisAlignment.center,
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-                                                              Text("ابعاد کالا"),
+                                                              Text(LocaleKeys
+                                                                  .screen_add_product_specs_product_dimension.tr),
                                                               Container(
                                                                 padding: EdgeInsets.all(8.0),
                                                                 child: Text(
-                                                                  "عددی بین ۱ تا ۱۰۰۰ سانتی متر را وارد نمایید.",
+                                                                  LocaleKeys
+                                                                      .screen_add_product_enter_number_between_x_and_x_cm
+                                                                      .trParams(
+                                                                    {
+                                                                      "min": "1",
+                                                                      "max": "1000",
+                                                                    },
+                                                                  ),
                                                                   style: TextStyle(fontSize: 12.0, color: Colors.blue),
                                                                 ),
                                                               ),
@@ -1350,8 +1366,8 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                 children: [
                                                                   Expanded(
                                                                     child: TextField(
-                                                                      focusNode: controller.lengthNode,
-                                                                      controller: controller.lengthController,
+                                                                      focusNode: controller.productLengthNode,
+                                                                      controller: controller.productLengthController,
                                                                       textAlign: TextAlign.left,
                                                                       keyboardType: TextInputType.number,
                                                                       inputFormatters: <TextInputFormatter>[
@@ -1360,7 +1376,9 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                             minNumber: 1, maxNumber: 1000)
                                                                       ],
                                                                       decoration: InputDecoration(
-                                                                        labelText: "طول (cm)",
+                                                                        labelText: LocaleKeys
+                                                                            .screen_add_product_fields_name_length_cm
+                                                                            .tr,
                                                                         hintText: "0",
                                                                         alignLabelWithHint: true,
                                                                         border: new OutlineInputBorder(
@@ -1370,18 +1388,18 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                         ),
                                                                       ),
                                                                       onChanged: (value) {
-                                                                        var length =
-                                                                            controller.lengthController.text.isNotEmpty
-                                                                                ? controller.lengthController.text
-                                                                                : "";
-                                                                        var width =
-                                                                            controller.withController.text.isNotEmpty
-                                                                                ? controller.withController.text
-                                                                                : "";
-                                                                        var height =
-                                                                            controller.heightController.text.isNotEmpty
-                                                                                ? controller.heightController.text
-                                                                                : "";
+                                                                        var length = controller
+                                                                                .productLengthController.text.isNotEmpty
+                                                                            ? controller.productLengthController.text
+                                                                            : "";
+                                                                        var width = controller
+                                                                                .productWidthController.text.isNotEmpty
+                                                                            ? controller.productWidthController.text
+                                                                            : "";
+                                                                        var height = controller
+                                                                                .productHeightController.text.isNotEmpty
+                                                                            ? controller.productHeightController.text
+                                                                            : "";
 
                                                                         var lengthString =
                                                                             length.isNotEmpty ? length : "";
@@ -1406,8 +1424,8 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                   ),
                                                                   Expanded(
                                                                     child: TextField(
-                                                                      focusNode: controller.widthNode,
-                                                                      controller: controller.withController,
+                                                                      focusNode: controller.productWidthNode,
+                                                                      controller: controller.productWidthController,
                                                                       textAlign: TextAlign.left,
                                                                       keyboardType: TextInputType.number,
                                                                       inputFormatters: <TextInputFormatter>[
@@ -1416,7 +1434,8 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                             minNumber: 1, maxNumber: 1000)
                                                                       ],
                                                                       decoration: InputDecoration(
-                                                                        labelText: "عرض (cm)",
+                                                                        labelText: LocaleKeys
+                                                                            .screen_add_product_fields_name_width_cm.tr,
                                                                         hintText: "0",
                                                                         alignLabelWithHint: true,
                                                                         border: new OutlineInputBorder(
@@ -1426,18 +1445,18 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                         ),
                                                                       ),
                                                                       onChanged: (value) {
-                                                                        var length =
-                                                                            controller.lengthController.text.isNotEmpty
-                                                                                ? controller.lengthController.text
-                                                                                : "";
-                                                                        var width =
-                                                                            controller.withController.text.isNotEmpty
-                                                                                ? controller.withController.text
-                                                                                : "";
-                                                                        var height =
-                                                                            controller.heightController.text.isNotEmpty
-                                                                                ? controller.heightController.text
-                                                                                : "";
+                                                                        var length = controller
+                                                                                .productLengthController.text.isNotEmpty
+                                                                            ? controller.productLengthController.text
+                                                                            : "";
+                                                                        var width = controller
+                                                                                .productWidthController.text.isNotEmpty
+                                                                            ? controller.productWidthController.text
+                                                                            : "";
+                                                                        var height = controller
+                                                                                .productHeightController.text.isNotEmpty
+                                                                            ? controller.productHeightController.text
+                                                                            : "";
 
                                                                         var lengthString =
                                                                             length.isNotEmpty ? length : "";
@@ -1462,8 +1481,8 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                   ),
                                                                   Expanded(
                                                                     child: TextField(
-                                                                      focusNode: controller.heightNode,
-                                                                      controller: controller.heightController,
+                                                                      focusNode: controller.productHeightNode,
+                                                                      controller: controller.productHeightController,
                                                                       textAlign: TextAlign.left,
                                                                       keyboardType: TextInputType.number,
                                                                       inputFormatters: <TextInputFormatter>[
@@ -1472,7 +1491,9 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                             minNumber: 1, maxNumber: 1000)
                                                                       ],
                                                                       decoration: InputDecoration(
-                                                                        labelText: "ارتفاع (cm)",
+                                                                        labelText: LocaleKeys
+                                                                            .screen_add_product_fields_name_height_cm
+                                                                            .tr,
                                                                         hintText: "0",
                                                                         alignLabelWithHint: true,
                                                                         border: new OutlineInputBorder(
@@ -1482,18 +1503,18 @@ class AddProductScreen extends GetView<AddProductController> {
                                                                         ),
                                                                       ),
                                                                       onChanged: (value) {
-                                                                        var length =
-                                                                            controller.lengthController.text.isNotEmpty
-                                                                                ? controller.lengthController.text
-                                                                                : "";
-                                                                        var width =
-                                                                            controller.withController.text.isNotEmpty
-                                                                                ? controller.withController.text
-                                                                                : "";
-                                                                        var height =
-                                                                            controller.heightController.text.isNotEmpty
-                                                                                ? controller.heightController.text
-                                                                                : "";
+                                                                        var length = controller
+                                                                                .productLengthController.text.isNotEmpty
+                                                                            ? controller.productLengthController.text
+                                                                            : "";
+                                                                        var width = controller
+                                                                                .productWidthController.text.isNotEmpty
+                                                                            ? controller.productWidthController.text
+                                                                            : "";
+                                                                        var height = controller
+                                                                                .productHeightController.text.isNotEmpty
+                                                                            ? controller.productHeightController.text
+                                                                            : "";
 
                                                                         var lengthString =
                                                                             length.isNotEmpty ? length : "";
@@ -1519,6 +1540,10 @@ class AddProductScreen extends GetView<AddProductController> {
                                                             ],
                                                           ),
                                                         );
+                                                      case SpecificationType.FILE_DOC:
+                                                        return Container();
+                                                      case SpecificationType.FILE_PIC:
+                                                        return Container();
                                                       default:
                                                         return Container();
                                                     }
@@ -1539,27 +1564,6 @@ class AddProductScreen extends GetView<AddProductController> {
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 16.0,
-                      ),
-                      InkWell(
-                        borderRadius: BorderRadius.circular(8.0),
-                        onTap: () {
-                          controller.goToAddProductSpecificationsPage();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(color: Colors.blueAccent, width: 2.0),
-                          ),
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              LocaleKeys.screen_add_product_buttons_add_product_specification.tr,
-                            ),
-                          ),
                         ),
                       ),
                       const SizedBox(

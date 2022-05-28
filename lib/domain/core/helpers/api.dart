@@ -6,4 +6,5 @@ class Api {
   static const String PRODUCT_GROUPS_API = "$BASE_API/api/v1/shop/productGroups";
   static const String GROUP_SPECS_API = "$BASE_API/api/v1/shop/groupSpecs";
   static const String SHOP_PRODUCTS_API = "$BASE_API/api/v1/shop/shopProducts";
+  static const String PRODUCT_DESIGNS_API = "$BASE_API/api/v1/shop/productDesigns";
 }

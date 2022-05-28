@@ -30,7 +30,7 @@
       "page_title": "ایجاد کالا",
       "select_the_product_group": "انتخاب گروه کالا",
       "product_group": "گروه کالا",
-      "basic_specifications": "مشخصات پایه",
+      "registration_basic_specifications": "ثبت مشخصات پایه",
       "packaging_dimensions": "ابعاد بسته بندی",
       "package_weight": "وزن بسته بندی",
       "product_description": "توضیحات کالا",
@@ -39,6 +39,11 @@
       "enter_number_between_x_and_x": "عددی بین @min تا @max را وارد نمایید.",
       "if_the_product_group_is_changed_the_entered_properties_will_be_lost": "درصورت تغییر گروه کالا، خصوصیات وارد شده از بین خواهند رفت.",
       "also_select_the_type_of_weight": "همچنین نوع وزن را انتخاب نمایید.",
+      "choose_product_pictures": "انتخاب تصاویر کالا",
+      "pics": "تصاویر",
+      "choose_main_picture": "انتخاب تصویر اصلی",
+      "registration_other_specification": "ثبت سایر مشخصات",
+      "are_you_sure_you_want_to_delete_this_image": "از حذف این تصویر مطمئن هستید؟",
       "fields_name": {
         "product_name": "نام کالا",
         "length_cm": "طول (cm)",
@@ -52,12 +57,22 @@
       "fields_error": {
         "general_error": "@field را وارد نمایید",
         "enter_all_the_required_information": "تمام اطلاعات مورد نظر را وارد نمائید.",
-        "numerical_between_x_and_x": "عددی بین @min تا @max"
+        "numerical_between_x_and_x": "عددی بین @min تا @max",
+        "first_determine_the_type_of_weight": "ابتدا نوع وزن را مشخص نمایید."
+      },
+      "specs": {
+        "select": "انتخاب کنید...",
+        "product_weight": "وزن کالا",
+        "product_dimension": "ابعاد کالا"
       },
       "buttons": {
         "register_product": "ثبت کالا",
         "add_product_specification": "افزودن مشخصات کالا"
       }
+    },
+    "product_design_manager": {
+      "page_title": "مدیریت طرح ها",
+      "add_product_design_button_tooltip": "ایجاد طرح کالا"
     }
   },
   "buttons": {
@@ -67,7 +82,8 @@
     "confirm": "تایید",
     "cancel": "لغو",
     "yes": "بله",
-    "no": "خیر"
+    "no": "خیر",
+    "continue": "ادامه"
   },
   "general": {
     "search": "جستجو"

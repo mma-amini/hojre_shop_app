@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 import '../dto/enums/message_type.dart';
 
 class ShowMessage {
-  static GetSnackBar({
+  static getSnackBar({
     String? title,
     required String message,
-    required BuildContext context,
     MessageType type = MessageType.WARNING,
     Color textColor = Colors.white,
     Color backgroundColor = Colors.black,
@@ -17,16 +16,24 @@ class ShowMessage {
     late Color leftBarIndicatorColor;
     switch (type) {
       case MessageType.WARNING:
-        icon = const Icon(Icons.info_outline, color: Colors.yellow);
+        icon = Icon(Icons.warning_outlined, color: Colors.yellow);
         leftBarIndicatorColor = Colors.yellow;
         break;
       case MessageType.ERROR:
-        icon = const Icon(Icons.error_outline, color: Colors.red);
+        icon = Icon(Icons.error_outline, color: Colors.red);
         leftBarIndicatorColor = Colors.red;
         break;
       case MessageType.SUCCESS:
-        icon = const Icon(Icons.check_circle_outline, color: Colors.green);
+        icon = Icon(Icons.check_circle_outline, color: Colors.green);
         leftBarIndicatorColor = Colors.green;
+        break;
+      case MessageType.INFO:
+        icon = Icon(Icons.info_outline, color: Colors.orange);
+        leftBarIndicatorColor = Colors.orange;
+        break;
+      case MessageType.CONNECTION_ERROR:
+        icon = Icon(Icons.error_outline, color: Colors.red);
+        leftBarIndicatorColor = Colors.red;
         break;
     }
 
@@ -41,6 +48,7 @@ class ShowMessage {
       borderRadius: 0,
       barBlur: 2,
       snackPosition: snackPosition,
+      icon: icon,
     );
   }
 
@@ -55,16 +63,24 @@ class ShowMessage {
     late Color leftBarIndicatorColor;
     switch (type) {
       case MessageType.WARNING:
-        icon = const Icon(Icons.info_outline, color: Colors.yellow);
+        icon = Icon(Icons.warning_outlined, color: Colors.yellow);
         leftBarIndicatorColor = Colors.yellow;
         break;
       case MessageType.ERROR:
-        icon = const Icon(Icons.error_outline, color: Colors.red);
+        icon = Icon(Icons.error_outline, color: Colors.red);
         leftBarIndicatorColor = Colors.red;
         break;
       case MessageType.SUCCESS:
-        icon = const Icon(Icons.check_circle_outline, color: Colors.green);
+        icon = Icon(Icons.check_circle_outline, color: Colors.green);
         leftBarIndicatorColor = Colors.green;
+        break;
+      case MessageType.INFO:
+        icon = Icon(Icons.info_outline, color: Colors.orange);
+        leftBarIndicatorColor = Colors.orange;
+        break;
+      case MessageType.CONNECTION_ERROR:
+        icon = Icon(Icons.error_outline, color: Colors.red);
+        leftBarIndicatorColor = Colors.red;
         break;
     }
 

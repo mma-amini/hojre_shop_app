@@ -23,7 +23,10 @@ class VMGroupSpec extends Equatable {
     this.SpecId,
     this.searchResult,
     this.searchTextController,
-  });
+  }) {
+    searchTextController = TextEditingController();
+    searchResult = List<VMSpecItem>.empty(growable: true);
+  }
 
   factory VMGroupSpec.fromJson(Map<String, dynamic> json) => _$VMGroupSpecFromJson(json);
 
@@ -51,24 +54,37 @@ class VMSpecItem extends Equatable {
   String? TypedText;
   bool? BooleanValue;
 
+  @JsonKey(ignore: true)
+  FocusNode textNode = FocusNode();
+  @JsonKey(ignore: true)
+  FocusNode searchTextNode = FocusNode();
+  @JsonKey(ignore: true)
+  TextEditingController textController = TextEditingController();
+  @JsonKey(ignore: true)
+  TextEditingController searchTextController = TextEditingController();
+
   get type {
     switch (InputName) {
-      case "1":
+      case "COLOR":
         return SpecificationType.COLOR;
-      case "2":
+      case "SELECTABLE":
         return SpecificationType.SELECTABLE;
-      case "3":
-        return SpecificationType.INPUT;
-      case "4":
-        return SpecificationType.INPUT_NUMBER;
-      case "5":
-        return SpecificationType.HAS_OR_NOT;
-      case "6":
+      case "TEXT_INPUT":
+        return SpecificationType.TEXT_INPUT;
+      case "NUMBER_INPUT":
+        return SpecificationType.NUMBER_INPUT;
+      case "BOOL":
+        return SpecificationType.BOOL;
+      case "MULTI_SELECT":
         return SpecificationType.MULTI_SELECT;
-      case "7":
+      case "WEIGHT":
         return SpecificationType.WEIGHT;
-      case "8":
+      case "DIMENSION":
         return SpecificationType.DIMENSION;
+      case "FILE_DOC":
+        return SpecificationType.FILE_DOC;
+      case "FILE_PIC":
+        return SpecificationType.FILE_PIC;
     }
   }
 
@@ -103,11 +119,12 @@ class VMSpecItem extends Equatable {
 class VMSpecValue extends Equatable {
   String? SpecValueId;
   String? Title;
+  String? Value;
 
   @JsonKey(ignore: true)
-  bool isNew = false;
+  bool isNew;
 
-  VMSpecValue({this.SpecValueId, this.Title});
+  VMSpecValue({this.SpecValueId, this.Title, this.Value, this.isNew = false});
 
   factory VMSpecValue.fromJson(Map<String, dynamic> json) => _$VMSpecValueFromJson(json);
 

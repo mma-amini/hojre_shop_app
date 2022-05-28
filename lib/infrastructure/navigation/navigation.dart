@@ -47,9 +47,9 @@ class Nav {
       binding: AddProductControllerBinding(),
     ),
     GetPage(
-      name: Routes.ADD_PRODUCT_SPECIFICATIONS,
-      page: () => AddProductSpecificationsScreen(),
-      binding: AddProductSpecificationsControllerBinding(),
+      name: Routes.PRODUCT_DESIGN_MANAGER,
+      page: () => ProductDesignManagerScreen(),
+      binding: ProductDesignManagerControllerBinding(),
     ),
   ];
 }

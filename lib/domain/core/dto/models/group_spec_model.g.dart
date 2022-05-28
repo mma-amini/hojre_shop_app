@@ -55,10 +55,12 @@ Map<String, dynamic> _$VMSpecItemToJson(VMSpecItem instance) =>
 VMSpecValue _$VMSpecValueFromJson(Map<String, dynamic> json) => VMSpecValue(
       SpecValueId: json['SpecValueId'] as String?,
       Title: json['Title'] as String?,
+      Value: json['Value'] as String?,
     );
 
 Map<String, dynamic> _$VMSpecValueToJson(VMSpecValue instance) =>
     <String, dynamic>{
       'SpecValueId': instance.SpecValueId,
       'Title': instance.Title,
+      'Value': instance.Value,
     };

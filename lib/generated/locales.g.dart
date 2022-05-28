@@ -40,8 +40,8 @@ class LocaleKeys {
       'screen_add_product_select_the_product_group';
   static const screen_add_product_product_group =
       'screen_add_product_product_group';
-  static const screen_add_product_basic_specifications =
-      'screen_add_product_basic_specifications';
+  static const screen_add_product_registration_basic_specifications =
+      'screen_add_product_registration_basic_specifications';
   static const screen_add_product_packaging_dimensions =
       'screen_add_product_packaging_dimensions';
   static const screen_add_product_package_weight =
@@ -58,6 +58,15 @@ class LocaleKeys {
       'screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost';
   static const screen_add_product_also_select_the_type_of_weight =
       'screen_add_product_also_select_the_type_of_weight';
+  static const screen_add_product_choose_product_pictures =
+      'screen_add_product_choose_product_pictures';
+  static const screen_add_product_pics = 'screen_add_product_pics';
+  static const screen_add_product_choose_main_picture =
+      'screen_add_product_choose_main_picture';
+  static const screen_add_product_registration_other_specification =
+      'screen_add_product_registration_other_specification';
+  static const screen_add_product_are_you_sure_you_want_to_delete_this_image =
+      'screen_add_product_are_you_sure_you_want_to_delete_this_image';
   static const screen_add_product_fields_name_product_name =
       'screen_add_product_fields_name_product_name';
   static const screen_add_product_fields_name_length_cm =
@@ -80,10 +89,22 @@ class LocaleKeys {
       'screen_add_product_fields_error_enter_all_the_required_information';
   static const screen_add_product_fields_error_numerical_between_x_and_x =
       'screen_add_product_fields_error_numerical_between_x_and_x';
+  static const screen_add_product_fields_error_first_determine_the_type_of_weight =
+      'screen_add_product_fields_error_first_determine_the_type_of_weight';
+  static const screen_add_product_specs_select =
+      'screen_add_product_specs_select';
+  static const screen_add_product_specs_product_weight =
+      'screen_add_product_specs_product_weight';
+  static const screen_add_product_specs_product_dimension =
+      'screen_add_product_specs_product_dimension';
   static const screen_add_product_buttons_register_product =
       'screen_add_product_buttons_register_product';
   static const screen_add_product_buttons_add_product_specification =
       'screen_add_product_buttons_add_product_specification';
+  static const screen_product_design_manager_page_title =
+      'screen_product_design_manager_page_title';
+  static const screen_product_design_manager_add_product_design_button_tooltip =
+      'screen_product_design_manager_add_product_design_button_tooltip';
   static const buttons_logout = 'buttons_logout';
   static const buttons_close = 'buttons_close';
   static const buttons_ok = 'buttons_ok';
@@ -91,6 +112,7 @@ class LocaleKeys {
   static const buttons_cancel = 'buttons_cancel';
   static const buttons_yes = 'buttons_yes';
   static const buttons_no = 'buttons_no';
+  static const buttons_continue = 'buttons_continue';
   static const general_search = 'general_search';
 }
 
@@ -116,7 +138,8 @@ class Locales {
     'screen_add_product_page_title': 'Create product',
     'screen_add_product_select_the_product_group': 'Select the product group',
     'screen_add_product_product_group': 'Product group',
-    'screen_add_product_basic_specifications': 'Basic specifications',
+    'screen_add_product_registration_basic_specifications':
+        'Registration of basic specifications',
     'screen_add_product_packaging_dimensions': 'Packaging dimensions',
     'screen_add_product_package_weight': 'Package weight',
     'screen_add_product_product_description': 'Product description',
@@ -129,6 +152,13 @@ class Locales {
         'If the product group is changed, the entered properties will be lost.',
     'screen_add_product_also_select_the_type_of_weight':
         'Also select the type of weight.',
+    'screen_add_product_choose_product_pictures': 'Select product images',
+    'screen_add_product_pics': 'Pictures',
+    'screen_add_product_choose_main_picture': 'Select the original image',
+    'screen_add_product_registration_other_specification':
+        'Register other specifications',
+    'screen_add_product_are_you_sure_you_want_to_delete_this_image':
+        'Are you sure you want to delete this image?',
     'screen_add_product_fields_name_product_name': 'Product name',
     'screen_add_product_fields_name_length_cm': 'Length (cm)',
     'screen_add_product_fields_name_width_cm': 'Width (cm)',
@@ -142,9 +172,17 @@ class Locales {
         'Enter all the required information.',
     'screen_add_product_fields_error_numerical_between_x_and_x':
         'Numerical between @min and @max',
+    'screen_add_product_fields_error_first_determine_the_type_of_weight':
+        'First determine the type of weight.',
+    'screen_add_product_specs_select': 'Select...',
+    'screen_add_product_specs_product_weight': 'Weight of products',
+    'screen_add_product_specs_product_dimension': 'Dimensions of products',
     'screen_add_product_buttons_register_product': 'Register Product',
     'screen_add_product_buttons_add_product_specification':
         'Add product specification',
+    'screen_product_design_manager_page_title': 'Product Designs',
+    'screen_product_design_manager_add_product_design_button_tooltip':
+        'Create new product Design',
     'buttons_logout': 'Logout',
     'buttons_close': 'Close',
     'buttons_ok': 'Ok',
@@ -152,6 +190,7 @@ class Locales {
     'buttons_cancel': 'Cancel',
     'buttons_yes': 'Yes',
     'buttons_no': 'no',
+    'buttons_continue': 'Continue',
     'general_search': 'Search',
   };
   static const fa_IR = {
@@ -176,7 +215,7 @@ class Locales {
     'screen_add_product_page_title': 'ایجاد کالا',
     'screen_add_product_select_the_product_group': 'انتخاب گروه کالا',
     'screen_add_product_product_group': 'گروه کالا',
-    'screen_add_product_basic_specifications': 'مشخصات پایه',
+    'screen_add_product_registration_basic_specifications': 'ثبت مشخصات پایه',
     'screen_add_product_packaging_dimensions': 'ابعاد بسته بندی',
     'screen_add_product_package_weight': 'وزن بسته بندی',
     'screen_add_product_product_description': 'توضیحات کالا',
@@ -189,6 +228,12 @@ class Locales {
         'درصورت تغییر گروه کالا، خصوصیات وارد شده از بین خواهند رفت.',
     'screen_add_product_also_select_the_type_of_weight':
         'همچنین نوع وزن را انتخاب نمایید.',
+    'screen_add_product_choose_product_pictures': 'انتخاب تصاویر کالا',
+    'screen_add_product_pics': 'تصاویر',
+    'screen_add_product_choose_main_picture': 'انتخاب تصویر اصلی',
+    'screen_add_product_registration_other_specification': 'ثبت سایر مشخصات',
+    'screen_add_product_are_you_sure_you_want_to_delete_this_image':
+        'از حذف این تصویر مطمئن هستید؟',
     'screen_add_product_fields_name_product_name': 'نام کالا',
     'screen_add_product_fields_name_length_cm': 'طول (cm)',
     'screen_add_product_fields_name_width_cm': 'عرض (cm)',
@@ -202,9 +247,17 @@ class Locales {
         'تمام اطلاعات مورد نظر را وارد نمائید.',
     'screen_add_product_fields_error_numerical_between_x_and_x':
         'عددی بین @min تا @max',
+    'screen_add_product_fields_error_first_determine_the_type_of_weight':
+        'ابتدا نوع وزن را مشخص نمایید.',
+    'screen_add_product_specs_select': 'انتخاب کنید...',
+    'screen_add_product_specs_product_weight': 'وزن کالا',
+    'screen_add_product_specs_product_dimension': 'ابعاد کالا',
     'screen_add_product_buttons_register_product': 'ثبت کالا',
     'screen_add_product_buttons_add_product_specification':
         'افزودن مشخصات کالا',
+    'screen_product_design_manager_page_title': 'مدیریت طرح ها',
+    'screen_product_design_manager_add_product_design_button_tooltip':
+        'ایجاد طرح کالا',
     'buttons_logout': 'خروج',
     'buttons_close': 'بستن',
     'buttons_ok': 'باشه',
@@ -212,6 +265,7 @@ class Locales {
     'buttons_cancel': 'لغو',
     'buttons_yes': 'بله',
     'buttons_no': 'خیر',
+    'buttons_continue': 'ادامه',
     'general_search': 'جستجو',
   };
 }

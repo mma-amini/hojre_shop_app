@@ -41,7 +41,7 @@ class Brain {
   static logout() async {
     await LocalDataSourceImpl.deleteAccount();
     await LocalDataSourceImpl.deleteToken();
-    ShowMessage.GetSnackBar(message: "از حساب کاربری خارج شدید", context: Get.context!);
+    ShowMessage.getSnackBar(message: "از حساب کاربری خارج شدید");
     Get.offAllNamed(Routes.LOGIN);
   }
 

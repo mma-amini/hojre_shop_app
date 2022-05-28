@@ -178,7 +178,14 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
 
                               return InkWell(
                                 borderRadius: BorderRadius.circular(8.0),
-                                onTap: () {},
+                                onTap: () {
+                                  Get.toNamed(
+                                    Routes.PRODUCT_DESIGN_MANAGER,
+                                    parameters: {
+                                      "productId": item.ProductId ?? "",
+                                    },
+                                  );
+                                },
                                 child: Stack(
                                   children: [
                                     Positioned(

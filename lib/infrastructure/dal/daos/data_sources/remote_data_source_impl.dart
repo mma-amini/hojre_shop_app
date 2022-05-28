@@ -1,15 +1,16 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/group_specs_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/product_design_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/shop_products_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/group_specs_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/message_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/product_desing_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/product_groups_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/shop_products_response_dto_use_case.dart';
@@ -34,7 +35,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   checkMessage({MessageDtoUseCase? messageDtoUseCase}) {
     if (messageDtoUseCase != null) {
       if ((messageDtoUseCase.Text ?? "").isNotEmpty) {
-        ShowMessage.GetSnackBar(message: messageDtoUseCase.Text!, context: Get.context!);
+        ShowMessage.getSnackBar(
+          message: messageDtoUseCase.Text!,
+        );
       }
     }
   }
@@ -217,6 +220,41 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         GroupSpecsResponseDtoUseCase groupSpecsResponseDtoUseCase = GroupSpecsResponseDtoUseCase.fromJson(json);
 
         dataList.add(groupSpecsResponseDtoUseCase);
+      }
+
+      return dataList;
+    }).catchError((error) {
+      LogHelper.printLog(data: error);
+      return [];
+    });
+
+    return result;
+  }
+
+  @override
+  Future<List<ProductDesignResponseDtoUseCase>> productDesigns(
+      {required ProductDesignRequestDtoUseCase productDesignRequestDtoUseCase}) async {
+    var body = {"productId": productDesignRequestDtoUseCase.ProductId};
+    var result = await Brain.dio
+        .get(
+      Api.PRODUCT_DESIGNS_API,
+      queryParameters: body,
+      options: Options(
+        headers: headers(),
+      ),
+    )
+        .then((response) {
+      var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      checkMessage(messageDtoUseCase: apiResult.Message);
+      List<dynamic> arrayData = apiResult.Content;
+
+      List<ProductDesignResponseDtoUseCase> dataList = List<ProductDesignResponseDtoUseCase>.empty(growable: true);
+
+      for (var json in arrayData) {
+        ProductDesignResponseDtoUseCase productDesignResponseDtoUseCase =
+            ProductDesignResponseDtoUseCase.fromJson(json);
+
+        dataList.add(productDesignResponseDtoUseCase);
       }
 
       return dataList;

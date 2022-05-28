@@ -19,4 +19,7 @@ abstract class Repository {
 
   Future<Either<Failure, List<GroupSpecsResponseDtoUseCase>>>? groupSpecs(
       {required GroupSpecsRequestDtoUseCase groupSpecsRequestDtoUseCase});
+
+  Future<Either<Failure, List<ProductDesignResponseDtoUseCase>>>? productDesigns(
+      {required ProductDesignRequestDtoUseCase productDesignRequestDtoUseCase});
 }

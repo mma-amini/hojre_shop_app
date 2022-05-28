@@ -30,7 +30,7 @@
       "page_title": "Create product",
       "select_the_product_group": "Select the product group",
       "product_group": "Product group",
-      "basic_specifications": "Basic specifications",
+      "registration_basic_specifications": "Registration of basic specifications",
       "packaging_dimensions": "Packaging dimensions",
       "package_weight": "Package weight",
       "product_description": "Product description",
@@ -39,6 +39,11 @@
       "enter_number_between_x_and_x": "Enter a number between @min and @max",
       "if_the_product_group_is_changed_the_entered_properties_will_be_lost": "If the product group is changed, the entered properties will be lost.",
       "also_select_the_type_of_weight": "Also select the type of weight.",
+      "choose_product_pictures": "Select product images",
+      "pics": "Pictures",
+      "choose_main_picture": "Select the original image",
+      "registration_other_specification": "Register other specifications",
+      "are_you_sure_you_want_to_delete_this_image": "Are you sure you want to delete this image?",
       "fields_name": {
         "product_name": "Product name",
         "length_cm": "Length (cm)",
@@ -52,12 +57,22 @@
       "fields_error": {
         "general_error": "Enter the @field",
         "enter_all_the_required_information": "Enter all the required information.",
-        "numerical_between_x_and_x": "Numerical between @min and @max"
+        "numerical_between_x_and_x": "Numerical between @min and @max",
+        "first_determine_the_type_of_weight": "First determine the type of weight."
+      },
+      "specs": {
+        "select": "Select...",
+        "product_weight": "Weight of products",
+        "product_dimension": "Dimensions of products"
       },
       "buttons": {
         "register_product": "Register Product",
         "add_product_specification": "Add product specification"
       }
+    },
+    "product_design_manager": {
+      "page_title": "Product Designs",
+      "add_product_design_button_tooltip": "Create new product Design"
     }
   },
   "buttons": {
@@ -67,7 +82,8 @@
     "confirm": "Confirm",
     "cancel": "Cancel",
     "yes": "Yes",
-    "no": "no"
+    "no": "no",
+    "continue": "Continue"
   },
   "general":{
     "search": "Search"

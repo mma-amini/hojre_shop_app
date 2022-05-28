@@ -16,6 +16,8 @@ import 'package:url_launcher/url_launcher.dart';
 class AddProductController extends GetxController {
   final isLoading = false.obs;
 
+  final productWeightText = "".obs;
+
   final Rxn<int> packWeightType = Rxn<int>();
   final Rxn<int> productWeightType = Rxn<int>();
   final currentStep = 0.obs;
@@ -132,9 +134,17 @@ class AddProductController extends GetxController {
     update();
   }
 
-  updateWeightType({required int weightType}) {
+  updatePackWeightType({required int packWeightType}) {
     this.packWeightType.update((val) {
-      this.packWeightType.value = weightType;
+      this.packWeightType.value = packWeightType;
+    });
+
+    update();
+  }
+
+  updateProductWeightType({required int productWeightType}) {
+    this.productWeightType.update((val) {
+      this.productWeightType.value = productWeightType;
     });
 
     update();
