@@ -44,6 +44,7 @@
       "choose_main_picture": "Select the original image",
       "registration_other_specification": "Register other specifications",
       "are_you_sure_you_want_to_delete_this_image": "Are you sure you want to delete this image?",
+      "image_selection": "Image selection",
       "fields_name": {
         "product_name": "Product name",
         "length_cm": "Length (cm)",
@@ -63,7 +64,8 @@
       "specs": {
         "select": "Select...",
         "product_weight": "Weight of products",
-        "product_dimension": "Dimensions of products"
+        "product_dimension": "Dimensions of products",
+        "select_one_or_more_items": "Select one or more items."
       },
       "buttons": {
         "register_product": "Register Product",

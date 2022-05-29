@@ -1,4 +1,5 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +13,7 @@ import 'package:hojre_shop_app/generated/locales.g.dart';
 import 'package:hojre_shop_app/presentation/widgets/awesom_dialog/awesome_dialog.dart';
 import 'package:hojre_shop_app/presentation/widgets/custom_input_format.dart';
 import 'package:hojre_shop_app/presentation/widgets/expandable.dart';
+import 'package:hojre_shop_app/presentation/widgets/multi_select_drop_down/flutter_multiselect.dart';
 
 import 'controllers/add_product.controller.dart';
 
@@ -21,7 +23,7 @@ class AddProductScreen extends GetView<AddProductController> {
     return GetBuilder(
       init: controller,
       builder: (_) {
-        var checkImage = controller.image != null;
+        var checkImage = controller.image.value.pickedFile != null;
         var checkImageList = controller.imagesList.isEmpty;
 
         return Scaffold(
@@ -185,10 +187,11 @@ class AddProductScreen extends GetView<AddProductController> {
                                           InkWell(
                                             borderRadius: BorderRadius.circular(8.0),
                                             onTap: () {
+                                              controller.openCameraDialog(isMainImage: true);
                                               if (checkImage) {
                                                 // controller.goToPhotoPreview(isMainImage: true);
                                               } else {
-                                                // controller.openCameraDialog(mainImage: true);
+                                                controller.openCameraDialog(isMainImage: true);
                                               }
                                             },
                                             child: ClipRRect(
@@ -205,9 +208,11 @@ class AddProductScreen extends GetView<AddProductController> {
                                                         children: [
                                                           ClipRRect(
                                                             borderRadius: BorderRadius.circular(8.0),
-                                                            child: kIsWeb
-                                                                ? Image.network(controller.image!.file!.path)
-                                                                : Image.file(controller.image!.file!),
+                                                            child: ExtendedImage.memory(
+                                                              controller.image.value.pickedFile!,
+                                                              fit: BoxFit.contain,
+                                                              enableLoadState: true,
+                                                            ),
                                                           ),
                                                           Positioned(
                                                             bottom: 5.0,
@@ -294,9 +299,11 @@ class AddProductScreen extends GetView<AddProductController> {
                                                         width: 83,
                                                         child: Stack(
                                                           children: [
-                                                            kIsWeb
-                                                                ? Image.network(image.file!.path)
-                                                                : Image.file(image.file!),
+                                                            ExtendedImage.memory(
+                                                              image.pickedFile!,
+                                                              fit: BoxFit.contain,
+                                                              enableLoadState: true,
+                                                            ),
                                                             Positioned(
                                                               bottom: 2.0,
                                                               left: 2.0,
@@ -340,7 +347,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                                 InkWell(
                                                   borderRadius: BorderRadius.circular(8.0),
                                                   onTap: () {
-                                                    // controller.openCameraDialog(mainImage: false);
+                                                    controller.openCameraDialog(isMainImage: false);
                                                   },
                                                   child: DottedBorder(
                                                     color: Colors.grey,
@@ -426,143 +433,140 @@ class AddProductScreen extends GetView<AddProductController> {
                                       style: TextStyle(fontSize: 12.0, color: Colors.blue),
                                     ),
                                   ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: TextFormField(
-                                      validator: (value) {
-                                        // Conditions
-                                        var checkValue = value == null || value.isEmpty;
-                                        var checkWeight = !checkValue &&
-                                            (int.parse(controller.productPackLengthController.text) < 1 ||
-                                                int.parse(controller.productPackLengthController.text) > 1000);
+                                  TextFormField(
+                                    validator: (value) {
+                                      // Conditions
+                                      var checkValue = value == null || value.isEmpty;
+                                      var checkWeight = !checkValue &&
+                                          (int.parse(controller.productPackLengthController.text) < 1 ||
+                                              int.parse(controller.productPackLengthController.text) > 1000);
 
-                                        if (checkValue) {
-                                          return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
-                                            {
-                                              "field": LocaleKeys.screen_add_product_fields_name_length.tr,
-                                            },
-                                          );
-                                        } else if (checkWeight) {
-                                          return LocaleKeys.screen_add_product_fields_error_numerical_between_x_and_x
-                                              .trParams(
-                                            {
-                                              "min": "1",
-                                              "max": "1000",
-                                            },
-                                          );
-                                        }
-                                        return null;
-                                      },
-                                      controller: controller.productPackLengthController,
-                                      textAlignVertical: TextAlignVertical.center,
-                                      textAlign: TextAlign.left,
-                                      keyboardType: TextInputType.number,
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.digitsOnly,
-                                        LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                      ],
-                                      decoration: InputDecoration(
-                                        labelText: LocaleKeys.screen_add_product_fields_name_length_cm.tr,
-                                        hintText: "0",
-                                        alignLabelWithHint: true,
-                                        border: new OutlineInputBorder(
-                                          borderSide: new BorderSide(color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(8.0),
-                                        ),
+                                      if (checkValue) {
+                                        return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
+                                          {
+                                            "field": LocaleKeys.screen_add_product_fields_name_length.tr,
+                                          },
+                                        );
+                                      } else if (checkWeight) {
+                                        return LocaleKeys.screen_add_product_fields_error_numerical_between_x_and_x
+                                            .trParams(
+                                          {
+                                            "min": "1",
+                                            "max": "1000",
+                                          },
+                                        );
+                                      }
+                                      return null;
+                                    },
+                                    controller: controller.productPackLengthController,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    textAlign: TextAlign.left,
+                                    keyboardType: TextInputType.number,
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.digitsOnly,
+                                      LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                    ],
+                                    decoration: InputDecoration(
+                                      labelText: LocaleKeys.screen_add_product_fields_name_length_cm.tr,
+                                      hintText: "0",
+                                      alignLabelWithHint: true,
+                                      border: new OutlineInputBorder(
+                                        borderSide: new BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: TextFormField(
-                                      validator: (value) {
-                                        // Conditions
-                                        var checkValue = value == null || value.isEmpty;
-                                        var checkWeight = !checkValue &&
-                                            (int.parse(controller.productPackWidthController.text) < 1 ||
-                                                int.parse(controller.productPackWidthController.text) > 1000);
+                                  SizedBox(
+                                    height: 16.0,
+                                  ),
+                                  TextFormField(
+                                    validator: (value) {
+                                      // Conditions
+                                      var checkValue = value == null || value.isEmpty;
+                                      var checkWeight = !checkValue &&
+                                          (int.parse(controller.productPackWidthController.text) < 1 ||
+                                              int.parse(controller.productPackWidthController.text) > 1000);
 
-                                        if (checkValue) {
-                                          return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
-                                            {
-                                              "field": LocaleKeys.screen_add_product_fields_name_width.tr,
-                                            },
-                                          );
-                                        } else if (checkWeight) {
-                                          return LocaleKeys.screen_add_product_fields_error_numerical_between_x_and_x
-                                              .trParams(
-                                            {
-                                              "min": "1",
-                                              "max": "1000",
-                                            },
-                                          );
-                                        }
-                                        return null;
-                                      },
-                                      controller: controller.productPackWidthController,
-                                      focusNode: GetPlatform.isMobile ? controller.productPackWidthNode : null,
-                                      textAlignVertical: TextAlignVertical.center,
-                                      textAlign: TextAlign.left,
-                                      keyboardType: TextInputType.number,
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.digitsOnly,
-                                        LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                      ],
-                                      decoration: InputDecoration(
-                                        labelText: LocaleKeys.screen_add_product_fields_name_width_cm.tr,
-                                        hintText: "0",
-                                        alignLabelWithHint: true,
-                                        border: new OutlineInputBorder(
-                                          borderSide: new BorderSide(color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(8.0),
-                                        ),
+                                      if (checkValue) {
+                                        return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
+                                          {
+                                            "field": LocaleKeys.screen_add_product_fields_name_width.tr,
+                                          },
+                                        );
+                                      } else if (checkWeight) {
+                                        return LocaleKeys.screen_add_product_fields_error_numerical_between_x_and_x
+                                            .trParams(
+                                          {
+                                            "min": "1",
+                                            "max": "1000",
+                                          },
+                                        );
+                                      }
+                                      return null;
+                                    },
+                                    controller: controller.productPackWidthController,
+                                    focusNode: GetPlatform.isMobile ? controller.productPackWidthNode : null,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    textAlign: TextAlign.left,
+                                    keyboardType: TextInputType.number,
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.digitsOnly,
+                                      LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                    ],
+                                    decoration: InputDecoration(
+                                      labelText: LocaleKeys.screen_add_product_fields_name_width_cm.tr,
+                                      hintText: "0",
+                                      alignLabelWithHint: true,
+                                      border: new OutlineInputBorder(
+                                        borderSide: new BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: TextFormField(
-                                      validator: (value) {
-                                        // Conditions
-                                        var checkValue = value == null || value.isEmpty;
-                                        var checkWeight = !checkValue &&
-                                            (int.parse(controller.productPackHeightController.text) < 1 ||
-                                                int.parse(controller.productPackHeightController.text) > 1000);
+                                  SizedBox(
+                                    height: 16.0,
+                                  ),
+                                  TextFormField(
+                                    validator: (value) {
+                                      // Conditions
+                                      var checkValue = value == null || value.isEmpty;
+                                      var checkWeight = !checkValue &&
+                                          (int.parse(controller.productPackHeightController.text) < 1 ||
+                                              int.parse(controller.productPackHeightController.text) > 1000);
 
-                                        if (checkValue) {
-                                          return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
-                                            {
-                                              "field": LocaleKeys.screen_add_product_fields_name_height.tr,
-                                            },
-                                          );
-                                        } else if (checkWeight) {
-                                          return LocaleKeys.screen_add_product_fields_error_numerical_between_x_and_x
-                                              .trParams(
-                                            {
-                                              "min": "1",
-                                              "max": "1000",
-                                            },
-                                          );
-                                        }
-                                        return null;
-                                      },
-                                      controller: controller.productPackHeightController,
-                                      focusNode: GetPlatform.isMobile ? controller.productPackHeightNode : null,
-                                      textAlignVertical: TextAlignVertical.center,
-                                      textAlign: TextAlign.left,
-                                      keyboardType: TextInputType.number,
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.digitsOnly,
-                                        LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                      ],
-                                      decoration: InputDecoration(
-                                        labelText: LocaleKeys.screen_add_product_fields_name_height_cm.tr,
-                                        hintText: "0",
-                                        alignLabelWithHint: true,
-                                        border: new OutlineInputBorder(
-                                          borderSide: new BorderSide(color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(8.0),
-                                        ),
+                                      if (checkValue) {
+                                        return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
+                                          {
+                                            "field": LocaleKeys.screen_add_product_fields_name_height.tr,
+                                          },
+                                        );
+                                      } else if (checkWeight) {
+                                        return LocaleKeys.screen_add_product_fields_error_numerical_between_x_and_x
+                                            .trParams(
+                                          {
+                                            "min": "1",
+                                            "max": "1000",
+                                          },
+                                        );
+                                      }
+                                      return null;
+                                    },
+                                    controller: controller.productPackHeightController,
+                                    focusNode: GetPlatform.isMobile ? controller.productPackHeightNode : null,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    textAlign: TextAlign.left,
+                                    keyboardType: TextInputType.number,
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.digitsOnly,
+                                      LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                    ],
+                                    decoration: InputDecoration(
+                                      labelText: LocaleKeys.screen_add_product_fields_name_height_cm.tr,
+                                      hintText: "0",
+                                      alignLabelWithHint: true,
+                                      border: new OutlineInputBorder(
+                                        borderSide: new BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   ),
@@ -1105,86 +1109,89 @@ class AddProductScreen extends GetView<AddProductController> {
                                                           child: Column(
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-                                                              // Container(
-                                                              //   child: MultiSelect(
-                                                              //     autovalidate: spcItem.IsRequired!,
-                                                              //     addedData: true,
-                                                              //     addedDataFunction: (value) {
-                                                              //       VMSpecificationData spcData = VMSpecificationData(
-                                                              //           SpecificationTypeItemId: value["value"],
-                                                              //           Name: value["text"],
-                                                              //           Value: value["value"],
-                                                              //           isNew: true);
-                                                              //       spcItem.Items!.add(spcData);
-                                                              //       if (spcItem.SelectedItems == null) {
-                                                              //         spcItem.SelectedItems =
-                                                              //             List<VMSpecificationData>.empty(
-                                                              //                 growable: true);
-                                                              //       }
-                                                              //
-                                                              //       spcItem.SelectedItems!.add(spcData);
-                                                              //       controller.justSetState();
-                                                              //     },
-                                                              //     titleText: spcItem.SpecificationName,
-                                                              //     validator: (value) {
-                                                              //       if (value == null) {
-                                                              //         return 'یک یا چند مورد را انتخاب نمائید.';
-                                                              //       }
-                                                              //       return null;
-                                                              //     },
-                                                              //     dataSource: List.generate(
-                                                              //         spcItem.Items!.length,
-                                                              //         (muIndex) => {
-                                                              //               "Name": spcItem.Items![muIndex].Name,
-                                                              //               "Value": spcItem.Items![muIndex].Value,
-                                                              //               "SpecificationTypeItemId": spcItem
-                                                              //                   .Items![muIndex].SpecificationTypeItemId
-                                                              //             }).toList(),
-                                                              //     textField: "Name",
-                                                              //     valueField: "SpecificationTypeItemId",
-                                                              //     filterable: true,
-                                                              //     required: spcItem.IsRequired,
-                                                              //     initialValue: spcItem.SelectedItems != null
-                                                              //         ? List.generate(
-                                                              //             spcItem.SelectedItems!.length,
-                                                              //             (muIndex) => spcItem.SelectedItems![muIndex]
-                                                              //                 .SpecificationTypeItemId).toList()
-                                                              //         : null,
-                                                              //     saveButtonText: "تائید",
-                                                              //     cancelButtonText: "لغو",
-                                                              //     hintText: "یک یا چند مورد را انتخاب نمائید...",
-                                                              //     cancelButtonColor: Colors.red,
-                                                              //     onSaved: (value) {},
-                                                              //     open: () {
-                                                              //       controller.unFocus();
-                                                              //     },
-                                                              //     change: (value) {
-                                                              //       List<String?> tempList =
-                                                              //           List<String?>.empty(growable: true);
-                                                              //       if (value != null) {
-                                                              //         for (var i in value) {
-                                                              //           tempList.add(i);
-                                                              //         }
-                                                              //       }
-                                                              //
-                                                              //       spcItem.SelectedItems =
-                                                              //           List<VMSpecificationData>.empty(growable: true);
-                                                              //
-                                                              //       for (String? val in tempList) {
-                                                              //         for (var item in spcItem.Items!) {
-                                                              //           // Conditions
-                                                              //           var checkSpecificationTypeItemId = val!
-                                                              //                   .toLowerCase() ==
-                                                              //               item.SpecificationTypeItemId!.toLowerCase();
-                                                              //           if (checkSpecificationTypeItemId) {
-                                                              //             spcItem.SelectedItems!.add(item);
-                                                              //           }
-                                                              //         }
-                                                              //       }
-                                                              //       controller.justUpdate();
-                                                              //     },
-                                                              //   ),
-                                                              // ),
+                                                              Container(
+                                                                child: MultiSelect(
+                                                                  autovalidate: spcItem.IsRequired!,
+                                                                  addedData: true,
+                                                                  addedDataFunction: (value) {
+                                                                    VMSpecValue spcData = VMSpecValue(
+                                                                        SpecValueId: value["value"],
+                                                                        Title: value["text"],
+                                                                        Value: value["value"],
+                                                                        isNew: true);
+                                                                    spcItem.Values!.add(spcData);
+                                                                    if (spcItem.SelectedItems == null) {
+                                                                      spcItem.SelectedItems =
+                                                                          List<VMSpecValue>.empty(growable: true);
+                                                                    }
+
+                                                                    spcItem.SelectedItems!.add(spcData);
+                                                                    controller.justUpdate();
+                                                                  },
+                                                                  titleText: spcItem.Name,
+                                                                  validator: (value) {
+                                                                    if (value == null) {
+                                                                      return LocaleKeys
+                                                                          .screen_add_product_specs_select_one_or_more_items
+                                                                          .tr;
+                                                                    }
+                                                                    return null;
+                                                                  },
+                                                                  dataSource: List.generate(
+                                                                      spcItem.Values!.length,
+                                                                      (muIndex) => {
+                                                                            "Title": spcItem.Values![muIndex].Title,
+                                                                            "Value": spcItem.Values![muIndex].Value,
+                                                                            "SpecValueId":
+                                                                                spcItem.Values![muIndex].SpecValueId
+                                                                          }).toList(),
+                                                                  textField: "Title",
+                                                                  valueField: "SpecValueId",
+                                                                  filterable: true,
+                                                                  required: spcItem.IsRequired,
+                                                                  initialValue: spcItem.SelectedItems != null
+                                                                      ? List.generate(
+                                                                          spcItem.SelectedItems!.length,
+                                                                          (muIndex) => spcItem.SelectedItems![muIndex]
+                                                                              .SpecValueId).toList()
+                                                                      : null,
+                                                                  saveButtonText: LocaleKeys.buttons_confirm.tr,
+                                                                  cancelButtonText: LocaleKeys.buttons_cancel.tr,
+                                                                  hintText: LocaleKeys
+                                                                      .screen_add_product_specs_select_one_or_more_items
+                                                                      .tr,
+                                                                  cancelButtonColor: Colors.red,
+                                                                  onSaved: (value) {},
+                                                                  open: () {
+                                                                    controller.unFocus();
+                                                                  },
+                                                                  change: (value) {
+                                                                    List<String?> tempList =
+                                                                        List<String?>.empty(growable: true);
+                                                                    if (value != null) {
+                                                                      for (var i in value) {
+                                                                        tempList.add(i);
+                                                                      }
+                                                                    }
+
+                                                                    spcItem.SelectedItems =
+                                                                        List<VMSpecValue>.empty(growable: true);
+
+                                                                    for (String? val in tempList) {
+                                                                      for (var item in spcItem.Values!) {
+                                                                        // Conditions
+                                                                        var checkSpecificationTypeItemId =
+                                                                            val!.toLowerCase() ==
+                                                                                item.SpecValueId!.toLowerCase();
+                                                                        if (checkSpecificationTypeItemId) {
+                                                                          spcItem.SelectedItems!.add(item);
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                    controller.justUpdate();
+                                                                  },
+                                                                ),
+                                                              ),
                                                               Divider(),
                                                             ],
                                                           ),

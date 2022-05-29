@@ -1,5 +1,9 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/group_spec_model.dart';
@@ -11,6 +15,7 @@ import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case_exports.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
 import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AddProductController extends GetxController {
@@ -53,7 +58,8 @@ class AddProductController extends GetxController {
   IProductGroupsUseCase iProductGroupsUseCase;
   IGroupSpecsUseCase iGroupSpecsUseCase;
 
-  VMSendProductPicture? image;
+  final image = VMSendProductPicture().obs;
+  ImagePicker imagePicker = ImagePicker();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -134,6 +140,18 @@ class AddProductController extends GetxController {
     update();
   }
 
+  updateImage({required VMSendProductPicture image}) {
+    this.image.update((val) {
+      this.image.value = image;
+    });
+  }
+
+  updateImagesList({required VMSendProductPicture image}) {
+    this.imagesList.obs.update((val) {
+      this.imagesList.add(image);
+    });
+  }
+
   updatePackWeightType({required int packWeightType}) {
     this.packWeightType.update((val) {
       this.packWeightType.value = packWeightType;
@@ -157,6 +175,182 @@ class AddProductController extends GetxController {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  openCameraDialog({bool isMainImage = false}) async {
+    // Conditions
+    // var checkProductID = sendProduct.ProductID != null && sendProduct.ProductID!.isNotEmpty;
+    //
+    // if (checkProductID) {
+    //   Brain.getSnackBar(
+    //       message: "امکان تغییر در تصاویر وجود ندارد.", title: "کالای شما ثبت شده است.", type: SnackBarType.ERROR);
+    //   return;
+    // }
+
+    if (kIsWeb || GetPlatform.isDesktop) {
+      getImage(imageSource: ImageSource.gallery, isMainImage: isMainImage);
+    } else {
+      showGeneralDialog(
+        barrierLabel: "Barrier",
+        barrierDismissible: true,
+        barrierColor: Colors.black.withOpacity(0.5),
+        transitionDuration: Duration(milliseconds: 270),
+        context: Get.context!,
+        pageBuilder: (_, __, ___) {
+          return Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: 250,
+              height: 120,
+              child: SizedBox.expand(
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  body: SizedBox.expand(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 8.0),
+                          Text(
+                            "انتخاب ورودی",
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "IRANSans"),
+                          ),
+                          SizedBox(height: 20.0),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                  getImage(imageSource: ImageSource.camera, isMainImage: isMainImage);
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Icon(
+                                        Icons.camera_alt,
+                                        size: 35.0,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: AutoSizeText(
+                                        "دوربین",
+                                        minFontSize: 8.0,
+                                        maxLines: 2,
+                                        wrapWords: true,
+                                        style: TextStyle(
+                                            fontSize: 12.0, color: Colors.black87, fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 50.0,
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  Get.back();
+                                  getImage(imageSource: ImageSource.gallery, isMainImage: isMainImage);
+                                  // imageFilePicker(mainImage: mainImage);
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Icon(
+                                        Icons.photo,
+                                        size: 35.0,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: AutoSizeText(
+                                        "گالری",
+                                        minFontSize: 8.0,
+                                        maxLines: 2,
+                                        wrapWords: true,
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
+            ),
+          );
+        },
+        transitionBuilder: (_, anim, __, child) {
+          var curve = Curves.easeInOutCirc;
+          return SlideTransition(
+            position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).chain(CurveTween(curve: curve)).animate(anim),
+            child: child,
+          );
+        },
+      );
+    }
+  }
+
+  getImage({required ImageSource imageSource, bool? isMainImage = false}) async {
+    Uint8List pickedImage;
+    if (imageSource == ImageSource.camera) {
+      PickedFile? pickedFile = await imagePicker.getImage(source: imageSource);
+      pickedImage = await pickedFile!.readAsBytes();
+    } else {
+      FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+        allowedExtensions: ['jpg', 'jpeg'],
+        allowCompression: true,
+        dialogTitle: LocaleKeys.screen_add_product_image_selection.tr,
+        withData: true,
+        lockParentWindow: false,
+      );
+
+      pickedImage = pickedFile!.files[0].bytes!;
+    }
+
+    var data = await Get.toNamed(
+      Routes.PHOTO_EDIT,
+      arguments: {
+        "image": VMSendProductPicture(
+          pickedFile: pickedImage,
+        ),
+      },
+    );
+
+    if (data != null) {
+      if (isMainImage ?? false) {
+        updateImage(image: data['image']);
+      } else {
+        updateImagesList(image: data['image']);
+      }
+    }
+
+    update();
   }
 
   openProductGroupsDialog() async {

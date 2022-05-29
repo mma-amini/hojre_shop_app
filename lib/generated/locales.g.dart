@@ -67,6 +67,8 @@ class LocaleKeys {
       'screen_add_product_registration_other_specification';
   static const screen_add_product_are_you_sure_you_want_to_delete_this_image =
       'screen_add_product_are_you_sure_you_want_to_delete_this_image';
+  static const screen_add_product_image_selection =
+      'screen_add_product_image_selection';
   static const screen_add_product_fields_name_product_name =
       'screen_add_product_fields_name_product_name';
   static const screen_add_product_fields_name_length_cm =
@@ -97,6 +99,8 @@ class LocaleKeys {
       'screen_add_product_specs_product_weight';
   static const screen_add_product_specs_product_dimension =
       'screen_add_product_specs_product_dimension';
+  static const screen_add_product_specs_select_one_or_more_items =
+      'screen_add_product_specs_select_one_or_more_items';
   static const screen_add_product_buttons_register_product =
       'screen_add_product_buttons_register_product';
   static const screen_add_product_buttons_add_product_specification =
@@ -159,6 +163,7 @@ class Locales {
         'Register other specifications',
     'screen_add_product_are_you_sure_you_want_to_delete_this_image':
         'Are you sure you want to delete this image?',
+    'screen_add_product_image_selection': 'Image selection',
     'screen_add_product_fields_name_product_name': 'Product name',
     'screen_add_product_fields_name_length_cm': 'Length (cm)',
     'screen_add_product_fields_name_width_cm': 'Width (cm)',
@@ -177,6 +182,8 @@ class Locales {
     'screen_add_product_specs_select': 'Select...',
     'screen_add_product_specs_product_weight': 'Weight of products',
     'screen_add_product_specs_product_dimension': 'Dimensions of products',
+    'screen_add_product_specs_select_one_or_more_items':
+        'Select one or more items.',
     'screen_add_product_buttons_register_product': 'Register Product',
     'screen_add_product_buttons_add_product_specification':
         'Add product specification',
@@ -234,6 +241,7 @@ class Locales {
     'screen_add_product_registration_other_specification': 'ثبت سایر مشخصات',
     'screen_add_product_are_you_sure_you_want_to_delete_this_image':
         'از حذف این تصویر مطمئن هستید؟',
+    'screen_add_product_image_selection': 'انتخاب تصویر',
     'screen_add_product_fields_name_product_name': 'نام کالا',
     'screen_add_product_fields_name_length_cm': 'طول (cm)',
     'screen_add_product_fields_name_width_cm': 'عرض (cm)',
@@ -252,6 +260,8 @@ class Locales {
     'screen_add_product_specs_select': 'انتخاب کنید...',
     'screen_add_product_specs_product_weight': 'وزن کالا',
     'screen_add_product_specs_product_dimension': 'ابعاد کالا',
+    'screen_add_product_specs_select_one_or_more_items':
+        'یک یا چند مورد را انتخاب نمائید.',
     'screen_add_product_buttons_register_product': 'ثبت کالا',
     'screen_add_product_buttons_add_product_specification':
         'افزودن مشخصات کالا',

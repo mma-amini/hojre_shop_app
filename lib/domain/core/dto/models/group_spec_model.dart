@@ -48,11 +48,11 @@ class VMSpecItem extends Equatable {
   String? Name;
   String? SpecItemId;
   List<VMSpecValue>? Values;
-
   VMSpecValue? SelectedItem;
   List<VMSpecValue>? SelectedItems;
   String? TypedText;
   bool? BooleanValue;
+  bool? IsRequired = false;
 
   @JsonKey(ignore: true)
   FocusNode textNode = FocusNode();
@@ -98,6 +98,7 @@ class VMSpecItem extends Equatable {
     this.SelectedItems,
     this.TypedText,
     this.BooleanValue,
+    this.IsRequired,
   });
 
   factory VMSpecItem.fromJson(Map<String, dynamic> json) => _$VMSpecItemFromJson(json);

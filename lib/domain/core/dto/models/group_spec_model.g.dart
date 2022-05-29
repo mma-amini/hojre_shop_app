@@ -37,6 +37,7 @@ VMSpecItem _$VMSpecItemFromJson(Map<String, dynamic> json) => VMSpecItem(
           .toList(),
       TypedText: json['TypedText'] as String?,
       BooleanValue: json['BooleanValue'] as bool?,
+      IsRequired: json['IsRequired'] as bool?,
     );
 
 Map<String, dynamic> _$VMSpecItemToJson(VMSpecItem instance) =>
@@ -50,6 +51,7 @@ Map<String, dynamic> _$VMSpecItemToJson(VMSpecItem instance) =>
       'SelectedItems': instance.SelectedItems,
       'TypedText': instance.TypedText,
       'BooleanValue': instance.BooleanValue,
+      'IsRequired': instance.IsRequired,
     };
 
 VMSpecValue _$VMSpecValueFromJson(Map<String, dynamic> json) => VMSpecValue(
