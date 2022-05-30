@@ -22,4 +22,7 @@ abstract class Repository {
 
   Future<Either<Failure, List<ProductDesignResponseDtoUseCase>>>? productDesigns(
       {required ProductDesignRequestDtoUseCase productDesignRequestDtoUseCase});
+
+  Future<Either<Failure, List<BrandResponseDtoUseCase>>>? brands(
+      {required BrandsRequestDtoUseCase brandsRequestDtoUseCase});
 }

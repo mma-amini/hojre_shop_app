@@ -1,6 +1,6 @@
 {
-    "name": "hojre_shop_app",
-    "short_name": "hojre_shop_app",
+    "name": "Hojre - Shop Management",
+    "short_name": "Hojre - Shop Management",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/brands_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/group_specs_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/product_design_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/shop_products_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/brand_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/group_specs_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
@@ -22,7 +24,10 @@ import 'package:hojre_shop_app/domain/core/interfaces/repositories/remote_data_s
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   headers() {
-    var headers = {"type": "Flutter"};
+    var headers = {
+      "type": "Flutter",
+      "Access-Control-Allow-Origin": "*",
+    };
     return headers;
   }
 
@@ -255,6 +260,39 @@ class RemoteDataSourceImpl implements RemoteDataSource {
             ProductDesignResponseDtoUseCase.fromJson(json);
 
         dataList.add(productDesignResponseDtoUseCase);
+      }
+
+      return dataList;
+    }).catchError((error) {
+      LogHelper.printLog(data: error);
+      return [];
+    });
+
+    return result;
+  }
+
+  @override
+  Future<List<BrandResponseDtoUseCase>> brands({required BrandsRequestDtoUseCase brandsRequestDtoUseCase}) async {
+    var body = {"keyword": brandsRequestDtoUseCase.keyword};
+    var result = await Brain.dio
+        .get(
+      Api.BRANDS_API,
+      queryParameters: body,
+      options: Options(
+        headers: headers(),
+      ),
+    )
+        .then((response) {
+      var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      checkMessage(messageDtoUseCase: apiResult.Message);
+      List<dynamic> arrayData = apiResult.Content;
+
+      List<BrandResponseDtoUseCase> dataList = List<BrandResponseDtoUseCase>.empty(growable: true);
+
+      for (var json in arrayData) {
+        BrandResponseDtoUseCase brandResponseDtoUseCase = BrandResponseDtoUseCase.fromJson(json);
+
+        dataList.add(brandResponseDtoUseCase);
       }
 
       return dataList;

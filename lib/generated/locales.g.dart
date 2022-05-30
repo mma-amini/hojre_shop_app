@@ -69,8 +69,17 @@ class LocaleKeys {
       'screen_add_product_are_you_sure_you_want_to_delete_this_image';
   static const screen_add_product_image_selection =
       'screen_add_product_image_selection';
+  static const screen_add_product_select_input =
+      'screen_add_product_select_input';
+  static const screen_add_product_camera = 'screen_add_product_camera';
+  static const screen_add_product_gallery = 'screen_add_product_gallery';
+  static const screen_add_product_brand = 'screen_add_product_brand';
+  static const screen_add_product_brand_selection =
+      'screen_add_product_brand_selection';
   static const screen_add_product_fields_name_product_name =
       'screen_add_product_fields_name_product_name';
+  static const screen_add_product_fields_name_product_description =
+      'screen_add_product_fields_name_product_description';
   static const screen_add_product_fields_name_length_cm =
       'screen_add_product_fields_name_length_cm';
   static const screen_add_product_fields_name_width_cm =
@@ -164,7 +173,13 @@ class Locales {
     'screen_add_product_are_you_sure_you_want_to_delete_this_image':
         'Are you sure you want to delete this image?',
     'screen_add_product_image_selection': 'Image selection',
+    'screen_add_product_select_input': 'Select input',
+    'screen_add_product_camera': 'Camera',
+    'screen_add_product_gallery': 'Gallery',
+    'screen_add_product_brand': 'Brand',
+    'screen_add_product_brand_selection': 'Brand selection',
     'screen_add_product_fields_name_product_name': 'Product name',
+    'screen_add_product_fields_name_product_description': 'Product description',
     'screen_add_product_fields_name_length_cm': 'Length (cm)',
     'screen_add_product_fields_name_width_cm': 'Width (cm)',
     'screen_add_product_fields_name_height_cm': 'Height (cm)',
@@ -242,7 +257,13 @@ class Locales {
     'screen_add_product_are_you_sure_you_want_to_delete_this_image':
         'از حذف این تصویر مطمئن هستید؟',
     'screen_add_product_image_selection': 'انتخاب تصویر',
+    'screen_add_product_select_input': 'انتخاب ورودی',
+    'screen_add_product_camera': 'دوربین',
+    'screen_add_product_gallery': 'گالری',
+    'screen_add_product_brand': 'برند',
+    'screen_add_product_brand_selection': 'انتخاب برند',
     'screen_add_product_fields_name_product_name': 'نام کالا',
+    'screen_add_product_fields_name_product_description': 'توضیحات کالا',
     'screen_add_product_fields_name_length_cm': 'طول (cm)',
     'screen_add_product_fields_name_width_cm': 'عرض (cm)',
     'screen_add_product_fields_name_height_cm': 'ارتفاع (cm)',

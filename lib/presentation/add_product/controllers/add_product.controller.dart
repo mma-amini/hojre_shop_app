@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/brand_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/group_spec_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_group_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_model.dart';
@@ -20,6 +21,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class AddProductController extends GetxController {
   final isLoading = false.obs;
+  final isBrandLoading = false.obs;
 
   final productWeightText = "".obs;
 
@@ -57,7 +59,9 @@ class AddProductController extends GetxController {
 
   IProductGroupsUseCase iProductGroupsUseCase;
   IGroupSpecsUseCase iGroupSpecsUseCase;
+  IBrandsUseCase iBrandsUseCase;
 
+  final selectedBrand = VMBrand().obs;
   final image = VMSendProductPicture().obs;
   ImagePicker imagePicker = ImagePicker();
 
@@ -68,9 +72,14 @@ class AddProductController extends GetxController {
   final productGroupsList = List<VMProductGroup>.empty(growable: true).obs;
   final groupSpecsList = List<VMGroupSpec>.empty(growable: true).obs;
   final allSpc = List<VMSpecItem>.empty(growable: true).obs;
+  final brandsList = List<VMBrand>.empty(growable: true).obs;
   final imagesList = List<VMSendProductPicture>.empty(growable: true).obs;
 
-  AddProductController({required this.iProductGroupsUseCase, required this.iGroupSpecsUseCase});
+  AddProductController({
+    required this.iProductGroupsUseCase,
+    required this.iGroupSpecsUseCase,
+    required this.iBrandsUseCase,
+  });
 
   @override
   void onInit() {
@@ -102,6 +111,12 @@ class AddProductController extends GetxController {
     });
   }
 
+  updateBrandLoading({required bool isBrandLoading}) {
+    this.isBrandLoading.update((val) {
+      this.isBrandLoading.value = isBrandLoading;
+    });
+  }
+
   updateProductGroupsList({required List<VMProductGroup> productGroupsList}) {
     this.productGroupsList.obs.update((val) {
       this.productGroupsList.addAll(productGroupsList);
@@ -129,6 +144,13 @@ class AddProductController extends GetxController {
   updateGroupSpecsList({required List<VMGroupSpec> groupSpecsList}) {
     this.groupSpecsList.obs.update((val) {
       this.groupSpecsList.addAll(groupSpecsList);
+    });
+  }
+
+  updateBrandsList({required List<VMBrand> brandsList}) {
+    this.brandsList.clear();
+    this.brandsList.obs.update((val) {
+      this.brandsList.addAll(brandsList);
     });
   }
 
@@ -165,6 +187,13 @@ class AddProductController extends GetxController {
       this.productWeightType.value = productWeightType;
     });
 
+    update();
+  }
+
+  removeBrand() {
+    selectedBrand.value = VMBrand();
+    productBrandController.text = "";
+    unFocus();
     update();
   }
 
@@ -215,12 +244,11 @@ class AddProductController extends GetxController {
                         children: [
                           SizedBox(height: 8.0),
                           Text(
-                            "انتخاب ورودی",
+                            LocaleKeys.screen_add_product_select_input.tr,
                             style: TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.black87,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "IRANSans"),
+                              fontSize: 14.0,
+                              fontFamily: 'Vazir Bold',
+                            ),
                           ),
                           SizedBox(height: 20.0),
                           Row(
@@ -244,12 +272,14 @@ class AddProductController extends GetxController {
                                     Padding(
                                       padding: const EdgeInsets.all(4.0),
                                       child: AutoSizeText(
-                                        "دوربین",
+                                        LocaleKeys.screen_add_product_camera.tr,
                                         minFontSize: 8.0,
                                         maxLines: 2,
                                         wrapWords: true,
                                         style: TextStyle(
-                                            fontSize: 12.0, color: Colors.black87, fontWeight: FontWeight.bold),
+                                          fontSize: 12.0,
+                                          fontFamily: 'Vazir Bold',
+                                        ),
                                         textAlign: TextAlign.center,
                                       ),
                                     )
@@ -263,7 +293,6 @@ class AddProductController extends GetxController {
                                 onTap: () async {
                                   Get.back();
                                   getImage(imageSource: ImageSource.gallery, isMainImage: isMainImage);
-                                  // imageFilePicker(mainImage: mainImage);
                                 },
                                 child: Column(
                                   children: [
@@ -277,14 +306,13 @@ class AddProductController extends GetxController {
                                     Padding(
                                       padding: const EdgeInsets.all(4.0),
                                       child: AutoSizeText(
-                                        "گالری",
+                                        LocaleKeys.screen_add_product_gallery.tr,
                                         minFontSize: 8.0,
                                         maxLines: 2,
                                         wrapWords: true,
                                         style: TextStyle(
                                           fontSize: 12.0,
-                                          color: Colors.black87,
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Vazir Bold',
                                         ),
                                         textAlign: TextAlign.center,
                                       ),
@@ -300,7 +328,11 @@ class AddProductController extends GetxController {
                   ),
                 ),
               ),
-              margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
+              margin: EdgeInsets.only(
+                bottom: 50,
+                left: 12,
+                right: 12,
+              ),
             ),
           );
         },
@@ -322,8 +354,8 @@ class AddProductController extends GetxController {
       pickedImage = await pickedFile!.readAsBytes();
     } else {
       FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
-        type: FileType.image,
-        allowedExtensions: ['jpg', 'jpeg'],
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'jpeg', 'bmp'],
         allowCompression: true,
         dialogTitle: LocaleKeys.screen_add_product_image_selection.tr,
         withData: true,
@@ -446,7 +478,9 @@ class AddProductController extends GetxController {
           child: InkWell(
             onTap: () {
               productGroupsDialogSearchController.text = "";
-              Get.back();
+              Get.back(
+                closeOverlays: true,
+              );
             },
             child: Container(
               width: Get.context!.width,
@@ -461,6 +495,7 @@ class AddProductController extends GetxController {
           ),
         )
       ],
+      barrierDismissible: false,
     );
   }
 
@@ -534,6 +569,29 @@ class AddProductController extends GetxController {
       updateGroupSpecsList(groupSpecsList: tempGroupSpecsList);
     }).catchError((error) {
       updateLoading(isLoading: false);
+      LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
+    });
+  }
+
+  startApiGetBrands({required String keyword}) async {
+    updateBrandLoading(isBrandLoading: true);
+    await iBrandsUseCase.Handler(params: BrandsRequestDtoUseCase(keyword: keyword)).then((response) {
+      updateBrandLoading(isBrandLoading: false);
+      var data = response.getOrElse(() => []);
+
+      List<VMBrand> tempBrandsList = List<VMBrand>.empty(growable: true);
+
+      for (var element in data) {
+        var js = json.encode(element);
+        Map<String, dynamic> jsData = json.decode(js);
+        VMBrand brand = VMBrand.fromJson(jsData);
+
+        tempBrandsList.add(brand);
+      }
+
+      updateBrandsList(brandsList: tempBrandsList);
+    }).catchError((error) {
+      updateBrandLoading(isBrandLoading: false);
       LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
     });
   }

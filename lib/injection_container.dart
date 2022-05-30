@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hojre_shop_app/domain/core/use_cases/brand_use_case.dart';
 import 'package:hojre_shop_app/domain/core/use_cases/product_designs_use_case.dart';
 
 import 'domain/core/dto/enums/database_type.dart';
@@ -34,6 +35,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => ShopProductsUseCase(repository: sl()));
   sl.registerLazySingleton(() => GroupSpecsUseCase(repository: sl()));
   sl.registerLazySingleton(() => ProductDesignsUseCase(repository: sl()));
+  sl.registerLazySingleton(() => BrandsUseCase(repository: sl()));
 
   // Repository
   sl.registerLazySingleton<Repository>(
@@ -80,6 +82,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<IProductDesignsUseCase>(
     () => ProductDesignsUseCase(
+      repository: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<IBrandsUseCase>(
+    () => BrandsUseCase(
       repository: sl(),
     ),
   );

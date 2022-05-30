@@ -41,4 +41,9 @@ abstract class RemoteDataSource {
   /// Throws a [ServerException] for all error codes.
   Future<List<ProductDesignResponseDtoUseCase>> productDesigns(
       {required ProductDesignRequestDtoUseCase productDesignRequestDtoUseCase});
+
+  /// Calls the method http-get https://server.com/api/v1/shop/brands endpoint.
+  ///
+  /// Throws a [ServerException] for all error codes.
+  Future<List<BrandResponseDtoUseCase>> brands({required BrandsRequestDtoUseCase brandsRequestDtoUseCase});
 }

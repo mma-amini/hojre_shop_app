@@ -96,4 +96,16 @@ class RepositoryImpl implements Repository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<BrandResponseDtoUseCase>>>? brands(
+      {required BrandsRequestDtoUseCase brandsRequestDtoUseCase}) async {
+    try {
+      var result = await baseRemoteDataSource.brands(brandsRequestDtoUseCase: brandsRequestDtoUseCase);
+
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 }
