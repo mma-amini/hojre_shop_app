@@ -56,5 +56,10 @@ class Nav {
       page: () => PhotoEditScreen(),
       binding: PhotoEditControllerBinding(),
     ),
+    GetPage(
+      name: Routes.DEVELOPER,
+      page: () => DeveloperScreen(),
+      binding: DeveloperControllerBinding(),
+    ),
   ];
 }

@@ -1,4 +1,5 @@
 export 'package:hojre_shop_app/infrastructure/navigation/bindings/controllers/add_product.controller.binding.dart';
+export 'package:hojre_shop_app/infrastructure/navigation/bindings/controllers/developer.controller.binding.dart'; 
 export 'package:hojre_shop_app/infrastructure/navigation/bindings/controllers/home.controller.binding.dart';
 export 'package:hojre_shop_app/infrastructure/navigation/bindings/controllers/login.controller.binding.dart';
 export 'package:hojre_shop_app/infrastructure/navigation/bindings/controllers/photo_edit.controller.binding.dart'; 

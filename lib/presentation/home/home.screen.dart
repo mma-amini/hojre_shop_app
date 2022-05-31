@@ -7,6 +7,7 @@ import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
+import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 import 'package:hojre_shop_app/presentation/widgets/analog_clock/flutter_analog_clock.dart';
 import 'package:hojre_shop_app/presentation/widgets/awesom_dialog/awesome_dialog.dart';
 import 'package:hojre_shop_app/presentation/widgets/expandable.dart';
@@ -155,7 +156,7 @@ class HomeScreen extends GetView<HomeController> {
                                       color: Colors.transparent,
                                       child: InkWell(
                                         onTap: () {
-                                          // Get.toNamed(Routes.DEVELOPER);
+                                          Get.toNamed(Routes.DEVELOPER);
                                         },
                                         child: Container(
                                           child: const Icon(

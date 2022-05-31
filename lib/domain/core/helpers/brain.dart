@@ -10,7 +10,7 @@ import 'package:hojre_shop_app/infrastructure/dal/services/database/storage_serv
 import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 
 class Brain {
-  static String _baseDomain = "";
+  static String _baseDomain = "http://localhost:8000";
   static VMToken _token = const VMToken();
   static VMAccount _account = VMAccount();
   static String _cityID = "";

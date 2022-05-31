@@ -35,189 +35,178 @@ class AddProductScreen extends GetView<AddProductController> {
             },
           ),
           body: Obx(() {
-            return WillPopScope(
-              onWillPop: () async {
-                ShowMessage.getSnackBar(message: "message");
-
-                if (Navigator.of(context).userGestureInProgress) {
-                  return false;
-                } else {
-                  return true;
-                }
-              },
-              child: Visibility(
-                visible: (controller.category.value.CategoryId ?? "").isNotEmpty,
-                child: Container(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Form(
-                    key: controller.formKey,
-                    child: ListView(
-                      children: [
-                        Row(
-                          children: [
-                            _setTitleWidget(title: "${LocaleKeys.screen_add_product_product_group.tr}:"),
-                            Expanded(
-                              child: Text(
-                                "${controller.category.value.CategoryName ?? ""}",
-                              ),
+            return Visibility(
+              visible: (controller.category.value.CategoryId ?? "").isNotEmpty,
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                child: Form(
+                  key: controller.formKey,
+                  child: ListView(
+                    children: [
+                      Row(
+                        children: [
+                          _setTitleWidget(title: "${LocaleKeys.screen_add_product_product_group.tr}:"),
+                          Expanded(
+                            child: Text(
+                              "${controller.category.value.CategoryName ?? ""}",
                             ),
-                            const SizedBox(
-                              width: 8.0,
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                AwesomeDialog(
-                                  context: Get.context!,
-                                  body: Container(
-                                    child: Text(
-                                      LocaleKeys
-                                          .screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost
-                                          .tr,
-                                      textAlign: TextAlign.center,
-                                    ),
+                          ),
+                          const SizedBox(
+                            width: 8.0,
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              AwesomeDialog(
+                                context: Get.context!,
+                                body: Container(
+                                  child: Text(
+                                    LocaleKeys
+                                        .screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost
+                                        .tr,
+                                    textAlign: TextAlign.center,
                                   ),
-                                  dismissOnTouchOutside: false,
-                                  btnOkText: LocaleKeys.buttons_confirm.tr,
-                                  btnOkOnPress: () {
-                                    controller.openProductGroupsDialog();
-                                  },
-                                  btnCancelText: LocaleKeys.buttons_cancel.tr,
-                                  btnCancelOnPress: () {},
-                                ).show();
-                              },
-                              icon: const Icon(
-                                FontAwesome.edit,
-                              ),
+                                ),
+                                dismissOnTouchOutside: false,
+                                btnOkText: LocaleKeys.buttons_confirm.tr,
+                                btnOkOnPress: () {
+                                  controller.openProductGroupsDialog();
+                                },
+                                btnCancelText: LocaleKeys.buttons_cancel.tr,
+                                btnCancelOnPress: () {},
+                              ).show();
+                            },
+                            icon: const Icon(
+                              FontAwesome.edit,
                             ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16.0,
+                      ),
+                      Container(
+                        child: Stepper(
+                          type: StepperType.vertical,
+                          physics: ScrollPhysics(),
+                          currentStep: controller.currentStep.value,
+                          onStepTapped: (step) {
+                            controller.updateCurrentStep(step: step);
+                          },
+                          onStepCancel: () {
+                            Get.back();
+                          },
+                          onStepContinue: () {
+                            if (controller.currentStep.value < 2) {
+                              controller.currentStep.value++;
+                            }
+                          },
+                          // controlsBuilder: (context, controlDetail) {
+                          //   return Column(
+                          //     children: [
+                          //       SizedBox(
+                          //         height: 16.0,
+                          //       ),
+                          //       Row(
+                          //         children: [
+                          //           InkWell(
+                          //             borderRadius: BorderRadius.circular(8.0),
+                          //             onTap: () {},
+                          //             child: Container(
+                          //               decoration: BoxDecoration(
+                          //                 borderRadius: BorderRadius.circular(8.0),
+                          //                 color: Colors.green,
+                          //               ),
+                          //               width: 75.0,
+                          //               padding: EdgeInsets.all(8.0),
+                          //               child: Center(child: Text("ادامه")),
+                          //             ),
+                          //           ),
+                          //           SizedBox(
+                          //             width: 24.0,
+                          //           ),
+                          //           InkWell(
+                          //             borderRadius: BorderRadius.circular(8.0),
+                          //             onTap: () {},
+                          //             child: Container(
+                          //               decoration: BoxDecoration(
+                          //                 borderRadius: BorderRadius.circular(8.0),
+                          //                 color: Colors.red,
+                          //               ),
+                          //               width: 75.0,
+                          //               padding: EdgeInsets.all(8.0),
+                          //               child: Center(child: Text("لغو")),
+                          //             ),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ],
+                          //   );
+                          // },
+                          steps: [
+                            _imageStep(),
+                            _basicSpecificationStep(),
+                            _otherSpecificationStep(),
                           ],
                         ),
-                        const SizedBox(
-                          height: 16.0,
-                        ),
-                        Container(
-                          child: Stepper(
-                            type: StepperType.vertical,
-                            physics: ScrollPhysics(),
-                            currentStep: controller.currentStep.value,
-                            onStepTapped: (step) {
-                              controller.updateCurrentStep(step: step);
-                            },
-                            onStepCancel: () {
-                              Get.back();
-                            },
-                            onStepContinue: () {
-                              if (controller.currentStep.value < 2) {
-                                controller.currentStep.value++;
+                      ),
+                      const SizedBox(
+                        height: 16.0,
+                      ),
+                      Container(
+                        child: Material(
+                          borderRadius: BorderRadius.circular(8.0),
+                          elevation: 3.0,
+                          color: Colors.blueAccent,
+                          child: InkWell(
+                            onTap: () {
+                              // Conditions
+                              var checkFormValidate = controller.formKey.currentState!.validate();
+
+                              if (checkFormValidate) {
+                                controller.onFormSaved(isMain: true);
+                              } else {
+                                ShowMessage.snackBar(
+                                  message:
+                                      LocaleKeys.screen_add_product_fields_error_enter_all_the_required_information.tr,
+                                  type: MessageType.ERROR,
+                                  context: context,
+                                );
                               }
                             },
-                            // controlsBuilder: (context, controlDetail) {
-                            //   return Column(
-                            //     children: [
-                            //       SizedBox(
-                            //         height: 16.0,
-                            //       ),
-                            //       Row(
-                            //         children: [
-                            //           InkWell(
-                            //             borderRadius: BorderRadius.circular(8.0),
-                            //             onTap: () {},
-                            //             child: Container(
-                            //               decoration: BoxDecoration(
-                            //                 borderRadius: BorderRadius.circular(8.0),
-                            //                 color: Colors.green,
-                            //               ),
-                            //               width: 75.0,
-                            //               padding: EdgeInsets.all(8.0),
-                            //               child: Center(child: Text("ادامه")),
-                            //             ),
-                            //           ),
-                            //           SizedBox(
-                            //             width: 24.0,
-                            //           ),
-                            //           InkWell(
-                            //             borderRadius: BorderRadius.circular(8.0),
-                            //             onTap: () {},
-                            //             child: Container(
-                            //               decoration: BoxDecoration(
-                            //                 borderRadius: BorderRadius.circular(8.0),
-                            //                 color: Colors.red,
-                            //               ),
-                            //               width: 75.0,
-                            //               padding: EdgeInsets.all(8.0),
-                            //               child: Center(child: Text("لغو")),
-                            //             ),
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ],
-                            //   );
-                            // },
-                            steps: [
-                              _imageStep(),
-                              _basicSpecificationStep(),
-                              _otherSpecificationStep(),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 16.0,
-                        ),
-                        Container(
-                          child: Material(
-                            borderRadius: BorderRadius.circular(8.0),
-                            elevation: 3.0,
-                            color: Colors.blueAccent,
-                            child: InkWell(
-                              onTap: () {
-                                // Conditions
-                                var checkFormValidate = controller.formKey.currentState!.validate();
-
-                                if (checkFormValidate) {
-                                  controller.onFormSaved(isMain: true);
-                                } else {
-                                  ShowMessage.snackBar(
-                                    message: LocaleKeys
-                                        .screen_add_product_fields_error_enter_all_the_required_information.tr,
-                                    type: MessageType.ERROR,
-                                    context: context,
-                                  );
-                                }
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  border: Border.all(color: Colors.blueAccent, width: 2.0),
-                                ),
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        child: const Icon(
-                                          Icons.check,
-                                          color: Colors.white,
-                                        ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(color: Colors.blueAccent, width: 2.0),
+                              ),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      child: const Icon(
+                                        Icons.check,
+                                        color: Colors.white,
                                       ),
-                                      const SizedBox(
-                                        width: 8.0,
+                                    ),
+                                    const SizedBox(
+                                      width: 8.0,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        LocaleKeys.screen_add_product_buttons_register_product.tr,
+                                        style: const TextStyle(color: Colors.white),
                                       ),
-                                      Container(
-                                        child: Text(
-                                          LocaleKeys.screen_add_product_buttons_register_product.tr,
-                                          style: const TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -513,6 +502,33 @@ class AddProductScreen extends GetView<AddProductController> {
       ),
       content: Column(
         children: [
+          _setTitleWidget(title: "اصالت"),
+          SizedBox(
+            height: 8.0,
+          ),
+          Text(
+            "در صورت ثبت کالا به عنوان اصل و تحویل کالای غیر اصل به مشتری، فروشنده تا ۱۰ برابر قیمت کالای اصلی آن جریمه خواهد شد.",
+            style: TextStyle(color: Colors.red, fontSize: 12.0),
+          ),
+          SizedBox(
+            height: 16.0,
+          ),
+          Container(
+            height: 35.0,
+            child: Center(
+              child: ToggleButtons(
+                isSelected: controller.isOriginalList,
+                borderRadius: BorderRadius.circular(10.0),
+                onPressed: (index) {
+                  controller.updateIsOriginal(index: index);
+                },
+                children: [
+                  Container(width: 150, child: Center(child: Text("کالا اصلی است"))),
+                  Container(width: 150, child: Center(child: Text("کالا اصلی نیست"))),
+                ],
+              ),
+            ),
+          ),
           const SizedBox(
             height: 16.0,
           ),
@@ -558,162 +574,190 @@ class AddProductScreen extends GetView<AddProductController> {
           const SizedBox(
             height: 16.0,
           ),
-          TextField(
-            focusNode: controller.brandNode,
-            controller: controller.productBrandController,
-            readOnly: true,
-            decoration: InputDecoration(
-              labelText: LocaleKeys.screen_add_product_brand.tr,
-              alignLabelWithHint: true,
-              border: new OutlineInputBorder(
-                borderSide: new BorderSide(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8.0),
+          Container(
+            height: 35.0,
+            child: Center(
+              child: ToggleButtons(
+                isSelected: controller.isBrandList,
+                borderRadius: BorderRadius.circular(10.0),
+                onPressed: (index) {
+                  controller.updateIsBrand(index: index);
+                },
+                children: [
+                  Container(width: 150, child: Center(child: Text("برند دارد"))),
+                  Container(width: 150, child: Center(child: Text("برند ندارد"))),
+                ],
               ),
-              suffixIcon: controller.productBrandController.text.isNotEmpty
-                  ? IconButton(
-                      onPressed: () {
-                        controller.removeBrand();
-                      },
-                      icon: Icon(
-                        Icons.clear,
-                      ),
-                    )
-                  : SizedBox(),
             ),
-            onTap: () {
-              List<VMBrand> tempData = List<VMBrand>.empty(growable: true);
-
-              Get.defaultDialog(
-                  title: LocaleKeys.screen_add_product_brand_selection.tr,
-                  content: GetBuilder(
-                    init: this.controller,
-                    builder: (dynamic _) {
-                      return Container(
-                        width: Get.width,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    height: 40.0,
-                                    child: TextField(
-                                      controller: controller.searchBrandController,
-                                      decoration: InputDecoration(
-                                        labelText: LocaleKeys.general_search.tr,
-                                        alignLabelWithHint: true,
-                                        border: new OutlineInputBorder(
-                                          borderSide: new BorderSide(color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(8.0),
-                                        ),
-                                        contentPadding: EdgeInsets.all(8.0),
-                                      ),
-                                      onChanged: (value) async {
-                                        await controller.startApiGetBrands(keyword: value);
-                                        tempData.clear();
-                                        tempData.addAll(controller.brandsList);
-                                        controller.justUpdate();
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Visibility(
-                                  visible: tempData.length == 0 && controller.searchBrandController.text.isNotEmpty,
-                                  child: Container(
-                                    child: IconButton(
-                                      icon: Icon(Icons.add),
-                                      onPressed: () {
-                                        VMBrand brand = VMBrand(Id: null, Name: controller.searchBrandController.text);
-                                        controller.selectedBrand.value = brand;
-                                        controller.productBrandController.text = brand.Name!;
-                                        controller.searchBrandController.text = "";
-                                        controller.unFocus();
-                                        Get.back();
-                                      },
-                                    ),
-                                  ),
-                                )
-                              ],
+          ),
+          Visibility(
+            visible: controller.isBrand.value == 1,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 16.0,
+                ),
+                TextField(
+                  focusNode: controller.brandNode,
+                  controller: controller.productBrandController,
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    labelText: LocaleKeys.screen_add_product_brand.tr,
+                    alignLabelWithHint: true,
+                    border: new OutlineInputBorder(
+                      borderSide: new BorderSide(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    suffixIcon: controller.productBrandController.text.isNotEmpty
+                        ? IconButton(
+                            onPressed: () {
+                              controller.removeBrand();
+                            },
+                            icon: Icon(
+                              Icons.clear,
                             ),
-                            Divider(),
-                            Container(
+                          )
+                        : SizedBox(),
+                  ),
+                  onTap: () {
+                    List<VMBrand> tempData = List<VMBrand>.empty(growable: true);
+
+                    Get.defaultDialog(
+                        title: LocaleKeys.screen_add_product_brand_selection.tr,
+                        content: GetBuilder(
+                          init: this.controller,
+                          builder: (dynamic _) {
+                            return Container(
                               width: Get.width,
-                              height: 200.0,
-                              child: Stack(
+                              child: Column(
                                 children: [
-                                  ListView.builder(
-                                    itemCount: tempData.length,
-                                    itemBuilder: (context, index) {
-                                      var item = tempData[index];
-                                      return Column(
-                                        children: [
-                                          InkWell(
-                                            borderRadius: BorderRadius.circular(8.0),
-                                            onTap: () {
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          height: 40.0,
+                                          child: TextField(
+                                            controller: controller.searchBrandController,
+                                            decoration: InputDecoration(
+                                              labelText: LocaleKeys.general_search.tr,
+                                              alignLabelWithHint: true,
+                                              border: new OutlineInputBorder(
+                                                borderSide: new BorderSide(color: Colors.grey),
+                                                borderRadius: BorderRadius.circular(8.0),
+                                              ),
+                                              contentPadding: EdgeInsets.all(8.0),
+                                            ),
+                                            onChanged: (value) async {
+                                              await controller.startApiGetBrands(keyword: value);
+                                              tempData.clear();
+                                              tempData.addAll(controller.brandsList);
+                                              controller.justUpdate();
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                      Visibility(
+                                        visible:
+                                            tempData.length == 0 && controller.searchBrandController.text.isNotEmpty,
+                                        child: Container(
+                                          child: IconButton(
+                                            icon: Icon(Icons.add),
+                                            onPressed: () {
+                                              VMBrand brand =
+                                                  VMBrand(Id: null, Name: controller.searchBrandController.text);
+                                              controller.selectedBrand.value = brand;
+                                              controller.productBrandController.text = brand.Name!;
                                               controller.searchBrandController.text = "";
-                                              controller.selectedBrand.value = item;
-                                              controller.productBrandController.text = item.Name!;
                                               controller.unFocus();
                                               Get.back();
                                             },
-                                            child: Container(
-                                              padding: EdgeInsets.all(8.0),
-                                              child: Center(
-                                                child: Text(item.Name!),
-                                              ),
-                                            ),
                                           ),
-                                          Divider(),
-                                        ],
-                                      );
-                                    },
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  controller.isBrandLoading.value
-                                      ? Container(
-                                          height: 200.0,
-                                          color: Color.fromARGB(150, 0, 0, 0),
-                                          child: SpinKitCircle(
-                                            itemBuilder: (BuildContext context, int index) {
-                                              return DecoratedBox(
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: index.isEven ? Colors.lightBlueAccent : Colors.yellow,
+                                  Divider(),
+                                  Container(
+                                    width: Get.width,
+                                    height: 200.0,
+                                    child: Stack(
+                                      children: [
+                                        ListView.builder(
+                                          itemCount: tempData.length,
+                                          itemBuilder: (context, index) {
+                                            var item = tempData[index];
+                                            return Column(
+                                              children: [
+                                                InkWell(
+                                                  borderRadius: BorderRadius.circular(8.0),
+                                                  onTap: () {
+                                                    controller.searchBrandController.text = "";
+                                                    controller.selectedBrand.value = item;
+                                                    controller.productBrandController.text = item.Name!;
+                                                    controller.unFocus();
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                    padding: EdgeInsets.all(8.0),
+                                                    child: Center(
+                                                      child: Text(item.Name!),
+                                                    ),
+                                                  ),
                                                 ),
-                                              );
-                                            },
-                                          ),
-                                        )
-                                      : Container()
+                                                Divider(),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                        controller.isBrandLoading.value
+                                            ? Container(
+                                                height: 200.0,
+                                                color: Color.fromARGB(150, 0, 0, 0),
+                                                child: SpinKitCircle(
+                                                  itemBuilder: (BuildContext context, int index) {
+                                                    return DecoratedBox(
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color: index.isEven ? Colors.lightBlueAccent : Colors.yellow,
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              )
+                                            : Container()
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
-                            ),
-                          ],
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
-                  actions: [
-                    Container(
-                      width: Get.width,
-                      child: InkWell(
-                        onTap: () {
-                          controller.searchBrandController.text = "";
-                          controller.unFocus();
-                          Get.back();
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              "بستن",
-                              style: TextStyle(fontSize: 13.0),
+                        actions: [
+                          Container(
+                            width: Get.width,
+                            child: InkWell(
+                              onTap: () {
+                                controller.searchBrandController.text = "";
+                                controller.unFocus();
+                                Get.back();
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Text(
+                                    "بستن",
+                                    style: TextStyle(fontSize: 13.0),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ]);
-            },
+                        ]);
+                  },
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 16.0,

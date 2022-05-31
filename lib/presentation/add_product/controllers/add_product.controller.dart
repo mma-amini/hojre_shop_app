@@ -6,12 +6,15 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hojre_shop_app/domain/core/dto/enums/message_type.dart';
+import 'package:hojre_shop_app/domain/core/dto/enums/spec_type.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/brand_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/group_spec_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_group_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/request_dto_use_case_exports.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
+import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups_use_case.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case_exports.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
@@ -24,10 +27,13 @@ class AddProductController extends GetxController {
   final isBrandLoading = false.obs;
 
   final productWeightText = "".obs;
+  final productId = "".obs;
 
   final Rxn<int> packWeightType = Rxn<int>();
   final Rxn<int> productWeightType = Rxn<int>();
   final currentStep = 0.obs;
+  final isBrand = 2.obs;
+  final isOriginal = 2.obs;
 
   final category = VMProductGroup().obs;
 
@@ -74,6 +80,8 @@ class AddProductController extends GetxController {
   final allSpc = List<VMSpecItem>.empty(growable: true).obs;
   final brandsList = List<VMBrand>.empty(growable: true).obs;
   final imagesList = List<VMSendProductPicture>.empty(growable: true).obs;
+  final isBrandList = List<bool>.empty(growable: true).obs;
+  final isOriginalList = List<bool>.empty(growable: true).obs;
 
   AddProductController({
     required this.iProductGroupsUseCase,
@@ -83,6 +91,11 @@ class AddProductController extends GetxController {
 
   @override
   void onInit() {
+    isOriginalList.add(false);
+    isOriginalList.add(false);
+    isBrandList.add(false);
+    isBrandList.add(false);
+
     super.onInit();
 
     focusNodesList.add(productNameNode);
@@ -195,6 +208,42 @@ class AddProductController extends GetxController {
     productBrandController.text = "";
     unFocus();
     update();
+  }
+
+  updateIsOriginal({required int index}) {
+    isOriginalList.clear();
+    isOriginalList.obs.update((val) {
+      if (index == 0) {
+        isOriginalList.add(true);
+        isOriginalList.add(false);
+        isOriginal.value = 1;
+      } else {
+        isOriginalList.add(false);
+        isOriginalList.add(true);
+        isOriginal.value = 0;
+      }
+    });
+  }
+
+  updateIsBrand({required int index}) {
+    isBrandList.clear();
+    isBrandList.obs.update((val) {
+      if (index == 0) {
+        isBrandList.add(true);
+        isBrandList.add(false);
+      } else {
+        isBrandList.add(false);
+        isBrandList.add(true);
+      }
+    });
+
+    isBrand.obs.update((val) {
+      if (index == 0) {
+        isBrand.value = 1;
+      } else {
+        isBrand.value = 0;
+      }
+    });
   }
 
   launchCameraHelpURL() async {
@@ -499,11 +548,6 @@ class AddProductController extends GetxController {
     );
   }
 
-  void onFormSaved({bool isMain = true}) {
-    final FormState form = formKey.currentState!;
-    form.save();
-  }
-
   unFocus() {
     focusNodesList.forEach((element) {
       element.unfocus();
@@ -515,11 +559,165 @@ class AddProductController extends GetxController {
     update();
   }
 
-  goToAddProductSpecificationsPage() {
-    Get.toNamed(
-      Routes.ADD_PRODUCT_SPECIFICATIONS,
-      arguments: {"specifications": groupSpecsList.value},
-    );
+  void onFormSaved({bool isMain = true}) {
+    final FormState form = formKey.currentState!;
+    form.save();
+
+    // Conditions
+    var checkProductID = productId.value.isNotEmpty;
+    ;
+    var checkPackageDimensions = productPackLengthController.text.isEmpty ||
+        productPackWidthController.text.isEmpty ||
+        productPackHeightController.text.isEmpty;
+    var checkPackageWeight = productWeightController.text.isEmpty || int.parse(productWeightController.text) < 0;
+
+    if (image == null && isMain) {
+      ShowMessage.getSnackBar(message: "تصویر اصلی انتخاب نشده است", type: MessageType.ERROR);
+      return;
+    }
+
+    if (isBrand == 2) {
+      ShowMessage.getSnackBar(message: "وضعیت برند را مشخص نمایید", type: MessageType.ERROR);
+      return;
+    } else if (isBrand == 0) {
+      if (selectedBrand.value.Name == null || selectedBrand.value.Name!.isEmpty) {
+        ShowMessage.getSnackBar(message: "برند را انتخاب نمایید", type: MessageType.ERROR);
+        return;
+      }
+
+      sendProduct.BrandName = selectedBrand.value.Name != null ? selectedBrand.value.Name : null;
+      sendProduct.BrandID = selectedBrand.value.Id != null ? selectedBrand.value.Id : null;
+    }
+
+    if (isOriginal == 2) {
+      ShowMessage.getSnackBar(message: "وضعیت اصالت کالا را مشخص نمایید", type: MessageType.ERROR);
+      return;
+    } else {
+      sendProduct.Original = isOriginal == 0 ? true : false;
+    }
+
+    if (checkPackageWeight) {
+      ShowMessage.getSnackBar(message: "وزن کالا وارد نشده است.", type: MessageType.ERROR);
+      return;
+    } else {
+      if (packWeightType == null) {
+        ShowMessage.getSnackBar(message: "نوع وزن کالا انتخاب نشده است.", type: MessageType.ERROR);
+        return;
+      }
+      sendProduct.Weight = packWeightType == 0
+          ? int.parse(productWeightController.text)
+          : int.parse(productWeightController.text) * 1000;
+    }
+
+    if (checkPackageDimensions) {
+      ShowMessage.getSnackBar(message: "ابعاد کالا وارد نشده است.", type: MessageType.ERROR);
+      return;
+    } else {
+      sendProduct.Length = int.parse(productPackLengthController.text);
+      sendProduct.Width = int.parse(productPackWidthController.text);
+      sendProduct.Height = int.parse(productPackHeightController.text);
+    }
+
+    sendProduct.ProductName = productNameController.text;
+    sendProduct.Description = productDescriptionController.text;
+    sendProduct.ProductGroupID = category.value.CategoryId;
+
+    List<VMSection> sectionsList = List<VMSection>.empty(growable: true);
+
+    for (var schema in productSchema.value.SpecificationSchema!) {
+      VMSection section = VMSection();
+      section.SpecificationTypeGroupID = schema.SpecificationSchemaGroupId;
+      List<VMSendSpecification> sendSpecificationsList = List<VMSendSpecification>.empty(growable: true);
+      for (var specification in schema.SpecificationSchemas!) {
+        VMSendSpecification sendSpecification = VMSendSpecification();
+
+        // Conditions
+        var checkValue = specification.IsRequired! && sendSpecification.Value == null;
+
+        sendSpecification.InputType = specification.InputType;
+        sendSpecification.SpecificationTypeID = specification.SpecificationTypeId;
+
+        switch (specification.type) {
+          case SpecificationType.COLOR:
+            break;
+
+          case SpecificationType.SELECTABLE:
+            // Conditions
+            var checkSelectedItem = specification.SelectedItem == null;
+
+            if (checkSelectedItem) {
+              sendSpecification.Value = null;
+            } else {
+              sendSpecification.Value = specification.SelectedItem;
+            }
+            break;
+
+          case SpecificationType.TEXT_INPUT:
+            sendSpecification.Value = specification.TypedText;
+            break;
+
+          case SpecificationType.NUMBER_INPUT:
+            sendSpecification.Value = specification.TypedText;
+            break;
+
+          case SpecificationType.BOOL:
+            sendSpecification.Value = specification.BooleanValue != null ? specification.BooleanValue : null;
+            break;
+
+          case SpecificationType.MULTI_SELECT:
+            // Conditions
+            var checkSelectedItems = specification.SelectedItems == null || specification.SelectedItems!.isEmpty;
+
+            if (checkSelectedItems) {
+              sendSpecification.Value = null;
+            } else {
+              List<VMSpecValue> valuesList = List<VMSpecValue>.empty(growable: true);
+              for (var item in specification.SelectedItems!) {
+                if (item.isNew) {
+                  item.SpecificationTypeItemId = null;
+                }
+                valuesList.add(item);
+              }
+              sendSpecification.Value = valuesList;
+            }
+            break;
+
+          case SpecificationType.WEIGHT:
+            sendSpecification.Value = specification.TypedText;
+            break;
+
+          case SpecificationType.DIMENSION:
+            sendSpecification.Value = specification.TypedText;
+            break;
+        }
+
+        if (checkValue) {
+          ShowMessage.getSnackBar(
+              message: "مشخصه ${specification.SpecificationName} در افزودن مشخصات تعیین نشده است.",
+              type: MessageType.ERROR);
+          return;
+        }
+
+        sendSpecificationsList.add(sendSpecification);
+      }
+      section.Specifications = List<VMSendSpecification>.empty(growable: true);
+      section.Specifications!.addAll(sendSpecificationsList);
+      sectionsList.add(section);
+    }
+
+    sendProduct.Sections = List<VMSection>.empty(growable: true);
+    sendProduct.Sections!.addAll(sectionsList);
+
+    if (checkProductID) {
+      if (isMain) {
+        startApiInsertProduct();
+      } else {
+        saveDrafts();
+      }
+    } else {
+      cancelToken = CancelToken();
+      startUploadImagesApi();
+    }
   }
 
   startApiProductGroups() async {

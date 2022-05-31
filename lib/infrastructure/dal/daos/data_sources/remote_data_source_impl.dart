@@ -58,7 +58,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var jsonData = json.encode(body);
     var result = await dio
         .post(
-      Api.REFRESH_TOKEN_API,
+      "${Brain.baseDomain}${Api.REFRESH_TOKEN_API}",
       data: jsonData,
       options: Options(
         headers: headers(),
@@ -85,7 +85,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
     var result = await Brain.dio
         .post(
-      Api.CHECK_USER_API,
+      "${Brain.baseDomain}${Api.CHECK_USER_API}",
       data: jsonData,
       options: Options(
         headers: headers(),
@@ -117,7 +117,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
     var result = await Brain.dio
         .post(
-      Api.LOGIN_API,
+      "${Brain.baseDomain}${Api.LOGIN_API}",
       data: jsonData,
       options: Options(
         headers: headers(),
@@ -140,7 +140,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<List<ProductGroupsResponseDtoUseCase>> productCategories() async {
     var result = await Brain.dio
         .get(
-      Api.PRODUCT_GROUPS_API,
+      "${Brain.baseDomain}${Api.PRODUCT_GROUPS_API}",
       options: Options(
         headers: headers(),
       ),
@@ -174,7 +174,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var body = {"categoryId": shopProductsRequestDtoUseCase.categoryId};
     var result = await Brain.dio
         .get(
-      Api.SHOP_PRODUCTS_API,
+      "${Brain.baseDomain}${Api.SHOP_PRODUCTS_API}",
       queryParameters: body,
       options: Options(
         headers: headers(),
@@ -208,7 +208,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var body = {"categoryId": groupSpecsRequestDtoUseCase.categoryId};
     var result = await Brain.dio
         .get(
-      Api.GROUP_SPECS_API,
+      "${Brain.baseDomain}${Api.GROUP_SPECS_API}",
       queryParameters: body,
       options: Options(
         headers: headers(),
@@ -242,7 +242,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var body = {"productId": productDesignRequestDtoUseCase.ProductId};
     var result = await Brain.dio
         .get(
-      Api.PRODUCT_DESIGNS_API,
+      "${Brain.baseDomain}${Api.PRODUCT_DESIGNS_API}",
       queryParameters: body,
       options: Options(
         headers: headers(),
@@ -276,7 +276,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     var body = {"keyword": brandsRequestDtoUseCase.keyword};
     var result = await Brain.dio
         .get(
-      Api.BRANDS_API,
+      "${Brain.baseDomain}${Api.BRANDS_API}",
       queryParameters: body,
       options: Options(
         headers: headers(),
