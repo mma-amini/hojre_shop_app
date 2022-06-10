@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/brands_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/group_specs_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/insert_product_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/product_design_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/shop_products_request_dto_use_case.dart';
@@ -21,6 +22,7 @@ import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
 import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/repositories/remote_data_source.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   headers() {
@@ -299,6 +301,27 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     }).catchError((error) {
       LogHelper.printLog(data: error);
       return [];
+    });
+
+    return result;
+  }
+
+  @override
+  Future<NoParams> insertProduct({required InsertProductRequestDtoUseCase insertProductRequestDtoUseCase}) async {
+    var jsonBody = json.encode(insertProductRequestDtoUseCase.toJson());
+    var result = await Brain.dio
+        .post(
+      "${Brain.baseDomain}${Api.INSERT_PRODUCT_API}",
+      data: jsonBody,
+      options: Options(
+        headers: headers(),
+      ),
+    )
+        .then((response) {
+      return NoParams();
+    }).catchError((error) {
+      LogHelper.printLog(data: error);
+      return NoParams();
     });
 
     return result;

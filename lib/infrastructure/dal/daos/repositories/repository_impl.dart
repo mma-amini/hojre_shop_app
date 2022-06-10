@@ -4,6 +4,7 @@ import 'package:hojre_shop_app/domain/core/helpers/exceptions.dart';
 import 'package:hojre_shop_app/domain/core/helpers/failure.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/repositories/remote_data_source.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/repositories/repositories.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case.dart';
 
 import '../../../../domain/core/dto/use_cases/requests/request_dto_use_case_exports.dart';
 import '../../../../domain/core/dto/use_cases/responses/response_dto_use_case_exports.dart';
@@ -102,6 +103,19 @@ class RepositoryImpl implements Repository {
       {required BrandsRequestDtoUseCase brandsRequestDtoUseCase}) async {
     try {
       var result = await baseRemoteDataSource.brands(brandsRequestDtoUseCase: brandsRequestDtoUseCase);
+
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, NoParams>>? insertProduct(
+      {required InsertProductRequestDtoUseCase insertProductRequestDtoUseCase}) async {
+    try {
+      var result =
+          await baseRemoteDataSource.insertProduct(insertProductRequestDtoUseCase: insertProductRequestDtoUseCase);
 
       return Right(result);
     } on ServerException {

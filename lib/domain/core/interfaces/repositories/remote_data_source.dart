@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case.dart';
 
 import '../../dto/use_cases/requests/request_dto_use_case_exports.dart';
 import '../../dto/use_cases/responses/response_dto_use_case_exports.dart';
@@ -46,4 +47,9 @@ abstract class RemoteDataSource {
   ///
   /// Throws a [ServerException] for all error codes.
   Future<List<BrandResponseDtoUseCase>> brands({required BrandsRequestDtoUseCase brandsRequestDtoUseCase});
+
+  /// Calls the method http-get https://server.com/api/v1/shop/insertProduct endpoint.
+  ///
+  /// Throws a [ServerException] for all error codes.
+  Future<NoParams> insertProduct({required InsertProductRequestDtoUseCase insertProductRequestDtoUseCase});
 }

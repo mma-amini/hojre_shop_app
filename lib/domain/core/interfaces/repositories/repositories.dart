@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/request_dto_use_case_exports.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case_exports.dart';
 import 'package:hojre_shop_app/domain/core/helpers/failure.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case.dart';
 
 abstract class Repository {
   Future<Either<Failure, CheckUserResponseDtoUseCase>>? checkUser(
@@ -25,4 +26,7 @@ abstract class Repository {
 
   Future<Either<Failure, List<BrandResponseDtoUseCase>>>? brands(
       {required BrandsRequestDtoUseCase brandsRequestDtoUseCase});
+
+  Future<Either<Failure, NoParams>>? insertProduct(
+      {required InsertProductRequestDtoUseCase insertProductRequestDtoUseCase});
 }

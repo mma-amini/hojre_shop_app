@@ -176,117 +176,124 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
                             itemBuilder: (context, index) {
                               var item = controller.shopProductsList[index];
 
-                              return InkWell(
-                                borderRadius: BorderRadius.circular(8.0),
-                                onTap: () {
-                                  Get.toNamed(
-                                    Routes.PRODUCT_DESIGN_MANAGER,
-                                    parameters: {
-                                      "productId": item.ProductId ?? "",
+                              return Column(
+                                children: [
+                                  InkWell(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    onTap: () {
+                                      Get.toNamed(
+                                        Routes.PRODUCT_DESIGN_MANAGER,
+                                        parameters: {
+                                          "productId": item.ProductId ?? "",
+                                        },
+                                      );
                                     },
-                                  );
-                                },
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      top: 4.0,
-                                      left: 4.0,
-                                      child: Container(
-                                        width: 10.0,
-                                        height: 10.0,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: (item.IsActive ?? false) ? Colors.green : Colors.orange,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 90.0,
-                                      padding: const EdgeInsets.all(8.0),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey.withOpacity(0.5), width: 1.0),
-                                        borderRadius: BorderRadius.circular(8.0),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                                            child: AspectRatio(
-                                              aspectRatio: 1.0,
-                                              child: CachedNetworkImage(
-                                                placeholder: (context, url) => Image.asset(
-                                                  "assets/media/images/product.jpg",
-                                                ),
-                                                imageUrl: item.Picture ?? "",
-                                                fit: BoxFit.fitHeight,
-                                              ),
+                                    child: Stack(
+                                      children: [
+                                        Positioned(
+                                          top: 4.0,
+                                          left: 4.0,
+                                          child: Container(
+                                            width: 10.0,
+                                            height: 10.0,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: (item.IsActive ?? false) ? Colors.green : Colors.orange,
                                             ),
                                           ),
-                                          const SizedBox(width: 8.0),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                AutoSizeText(
-                                                  item.ProductName ?? "",
-                                                  maxLines: 2,
-                                                  maxFontSize: 14.0,
-                                                ),
-                                                const SizedBox(
-                                                  height: 8.0,
-                                                ),
-                                                Expanded(
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.end,
-                                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                                    children: [
-                                                      Container(
-                                                        width: 25,
-                                                        height: 25,
-                                                        decoration: BoxDecoration(
-                                                          border: Border.all(color: Colors.orange, width: 1.5),
-                                                          borderRadius: BorderRadius.circular(5.0),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "${item.NotApprovedProductDesignsCount}",
-                                                            style: const TextStyle(
-                                                              color: Colors.orange,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 8.0,
-                                                      ),
-                                                      Container(
-                                                        width: 25,
-                                                        height: 25,
-                                                        decoration: BoxDecoration(
-                                                          border: Border.all(color: Colors.green, width: 1.5),
-                                                          borderRadius: BorderRadius.circular(5.0),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "${item.ApprovedProductDesignsCount}",
-                                                            style: const TextStyle(
-                                                              color: Colors.green,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
+                                        ),
+                                        Container(
+                                          height: 90.0,
+                                          padding: const EdgeInsets.all(8.0),
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.grey.withOpacity(0.5), width: 1.0),
+                                            borderRadius: BorderRadius.circular(8.0),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                                                child: AspectRatio(
+                                                  aspectRatio: 1.0,
+                                                  child: CachedNetworkImage(
+                                                    placeholder: (context, url) => Image.asset(
+                                                      "assets/media/images/product.jpg",
+                                                    ),
+                                                    imageUrl: item.Picture ?? "",
+                                                    fit: BoxFit.fitHeight,
                                                   ),
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                              const SizedBox(width: 8.0),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    AutoSizeText(
+                                                      item.ProductName ?? "",
+                                                      maxLines: 2,
+                                                      maxFontSize: 14.0,
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 8.0,
+                                                    ),
+                                                    Expanded(
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.end,
+                                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                                        children: [
+                                                          Container(
+                                                            width: 25,
+                                                            height: 25,
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(color: Colors.orange, width: 1.5),
+                                                              borderRadius: BorderRadius.circular(5.0),
+                                                            ),
+                                                            child: Center(
+                                                              child: Text(
+                                                                "${item.NotApprovedProductDesignsCount}",
+                                                                style: const TextStyle(
+                                                                  color: Colors.orange,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 8.0,
+                                                          ),
+                                                          Container(
+                                                            width: 25,
+                                                            height: 25,
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(color: Colors.green, width: 1.5),
+                                                              borderRadius: BorderRadius.circular(5.0),
+                                                            ),
+                                                            child: Center(
+                                                              child: Text(
+                                                                "${item.ApprovedProductDesignsCount}",
+                                                                style: const TextStyle(
+                                                                  color: Colors.green,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(
+                                    height: 16.0,
+                                  ),
+                                ],
                               );
                             },
                           ),

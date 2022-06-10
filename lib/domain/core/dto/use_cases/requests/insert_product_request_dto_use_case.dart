@@ -1,55 +1,99 @@
 import 'package:equatable/equatable.dart';
-import 'package:hojre_shop_app/domain/core/dto/models/product_group_model.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'insert_product_request_dto_use_case.g.dart';
+
+@JsonSerializable()
 class InsertProductRequestDtoUseCase extends Equatable {
-  final String ProductName;
-  final String ProductGroupID;
-  final String? BrandID;
-  final String? BrandName;
-  final int Weight;
-  final int Length;
-  final int Width;
-  final int Height;
-  final int WeightType;
-  final String? Description;
-  final bool? Original;
-  final VMProductGroup ProductGroup;
-  final List<SectionOfInsertProductRequestDtoUseCase>? Sections;
+  String? ProductName;
+  String? ProductId;
+  String? ProductGroupId;
+  String? BrandId;
+  String? BrandName;
+  int? ProductPackWeight;
+  int? ProductPackLength;
+  int? ProductPackWidth;
+  int? ProductPackHeight;
+  int? ProductPackWeightType;
+  String? Description;
+  bool? Original;
+  List<SectionOfInsertProductRequestDtoUseCase>? Sections;
 
   InsertProductRequestDtoUseCase(
-      {required this.ProductName,
-      required this.ProductGroupID,
-      this.BrandID,
+      {this.ProductName,
+      this.ProductId,
+      this.ProductGroupId,
+      this.BrandId,
       this.BrandName,
-      required this.Weight,
-      required this.Length,
-      required this.Width,
-      required this.Height,
-      required this.WeightType,
+      this.ProductPackWeight,
+      this.ProductPackLength,
+      this.ProductPackWidth,
+      this.ProductPackHeight,
+      this.ProductPackWeightType,
       this.Description,
       this.Original = false,
-      required this.ProductGroup,
       this.Sections});
+
+  factory InsertProductRequestDtoUseCase.fromJson(Map<String, dynamic> json) =>
+      _$InsertProductRequestDtoUseCaseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$InsertProductRequestDtoUseCaseToJson(this);
 
   @override
   List<Object?> get props => [
         ProductName,
-        ProductGroupID,
-        BrandID,
+        ProductId,
+        ProductGroupId,
+        BrandId,
         BrandName,
-        Weight,
-        Length,
-        Width,
-        Height,
-        WeightType,
+        ProductPackWeight,
+        ProductPackLength,
+        ProductPackWidth,
+        ProductPackHeight,
+        ProductPackWeightType,
         Description,
         Original,
-        ProductGroup,
         Sections,
       ];
 }
 
+@JsonSerializable()
 class SectionOfInsertProductRequestDtoUseCase extends Equatable {
+  String? SpecId;
+  List<DataOfSectionOfInsertProductRequestDtoUseCase>? Specs;
+
+  SectionOfInsertProductRequestDtoUseCase({this.SpecId, this.Specs});
+
+  factory SectionOfInsertProductRequestDtoUseCase.fromJson(Map<String, dynamic> json) =>
+      _$SectionOfInsertProductRequestDtoUseCaseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SectionOfInsertProductRequestDtoUseCaseToJson(this);
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        SpecId,
+        Specs,
+      ];
+}
+
+@JsonSerializable()
+class DataOfSectionOfInsertProductRequestDtoUseCase extends Equatable {
+  String? InputType;
+  String? SpecItemId;
+  dynamic Value;
+
+  DataOfSectionOfInsertProductRequestDtoUseCase({this.InputType, this.SpecItemId, this.Value});
+
+  factory DataOfSectionOfInsertProductRequestDtoUseCase.fromJson(Map<String, dynamic> json) =>
+      _$DataOfSectionOfInsertProductRequestDtoUseCaseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DataOfSectionOfInsertProductRequestDtoUseCaseToJson(this);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+        InputType,
+        SpecItemId,
+        Value,
+      ];
 }

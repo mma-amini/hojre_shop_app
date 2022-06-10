@@ -11,6 +11,7 @@ class AddProductControllerBinding extends Bindings {
         iProductGroupsUseCase: sl(),
         iGroupSpecsUseCase: sl(),
         iBrandsUseCase: sl(),
+        iInsertProductUseCase: sl(),
       ),
     );
   }

@@ -15,6 +15,7 @@ import 'package:hojre_shop_app/domain/core/dto/models/product_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/request_dto_use_case_exports.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
 import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_insert_product_use_case.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups_use_case.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case_exports.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
@@ -27,7 +28,6 @@ class AddProductController extends GetxController {
   final isBrandLoading = false.obs;
 
   final productWeightText = "".obs;
-  final productId = "".obs;
 
   final Rxn<int> packWeightType = Rxn<int>();
   final Rxn<int> productWeightType = Rxn<int>();
@@ -36,6 +36,7 @@ class AddProductController extends GetxController {
   final isOriginal = 2.obs;
 
   final category = VMProductGroup().obs;
+  final sendProduct = InsertProductRequestDtoUseCase().obs;
 
   FocusNode productNameNode = FocusNode();
   FocusNode productDescriptionNode = FocusNode();
@@ -66,6 +67,7 @@ class AddProductController extends GetxController {
   IProductGroupsUseCase iProductGroupsUseCase;
   IGroupSpecsUseCase iGroupSpecsUseCase;
   IBrandsUseCase iBrandsUseCase;
+  IInsertProductUseCase iInsertProductUseCase;
 
   final selectedBrand = VMBrand().obs;
   final image = VMSendProductPicture().obs;
@@ -87,6 +89,7 @@ class AddProductController extends GetxController {
     required this.iProductGroupsUseCase,
     required this.iGroupSpecsUseCase,
     required this.iBrandsUseCase,
+    required this.iInsertProductUseCase,
   });
 
   @override
@@ -237,7 +240,7 @@ class AddProductController extends GetxController {
       }
     });
 
-    isBrand.obs.update((val) {
+    isBrand.update((val) {
       if (index == 0) {
         isBrand.value = 1;
       } else {
@@ -256,14 +259,14 @@ class AddProductController extends GetxController {
   }
 
   openCameraDialog({bool isMainImage = false}) async {
-    // Conditions
-    // var checkProductID = sendProduct.ProductID != null && sendProduct.ProductID!.isNotEmpty;
-    //
-    // if (checkProductID) {
-    //   Brain.getSnackBar(
-    //       message: "امکان تغییر در تصاویر وجود ندارد.", title: "کالای شما ثبت شده است.", type: SnackBarType.ERROR);
-    //   return;
-    // }
+    //Conditions
+    var checkProductID = (sendProduct.value.ProductId ?? "").isNotEmpty;
+
+    if (checkProductID) {
+      ShowMessage.getSnackBar(
+          message: "امکان تغییر در تصاویر وجود ندارد.", title: "کالای شما ثبت شده است.", type: MessageType.ERROR);
+      return;
+    }
 
     if (kIsWeb || GetPlatform.isDesktop) {
       getImage(imageSource: ImageSource.gallery, isMainImage: isMainImage);
@@ -564,8 +567,8 @@ class AddProductController extends GetxController {
     form.save();
 
     // Conditions
-    var checkProductID = productId.value.isNotEmpty;
-    ;
+    var checkProductID = (sendProduct.value.ProductId ?? "").isNotEmpty;
+
     var checkPackageDimensions = productPackLengthController.text.isEmpty ||
         productPackWidthController.text.isEmpty ||
         productPackHeightController.text.isEmpty;
@@ -576,24 +579,25 @@ class AddProductController extends GetxController {
       return;
     }
 
-    if (isBrand == 2) {
+    if (isBrand.value == 2) {
       ShowMessage.getSnackBar(message: "وضعیت برند را مشخص نمایید", type: MessageType.ERROR);
       return;
-    } else if (isBrand == 0) {
+    } else if (isBrand.value == 1) {
+      LogHelper.printLog(data: "Brand: B");
       if (selectedBrand.value.Name == null || selectedBrand.value.Name!.isEmpty) {
         ShowMessage.getSnackBar(message: "برند را انتخاب نمایید", type: MessageType.ERROR);
         return;
       }
 
-      sendProduct.BrandName = selectedBrand.value.Name != null ? selectedBrand.value.Name : null;
-      sendProduct.BrandID = selectedBrand.value.Id != null ? selectedBrand.value.Id : null;
+      sendProduct.value.BrandName = selectedBrand.value.Name != null ? selectedBrand.value.Name : null;
+      sendProduct.value.BrandId = selectedBrand.value.Id != null ? selectedBrand.value.Id : null;
     }
 
-    if (isOriginal == 2) {
+    if (isOriginal.value == 2) {
       ShowMessage.getSnackBar(message: "وضعیت اصالت کالا را مشخص نمایید", type: MessageType.ERROR);
       return;
     } else {
-      sendProduct.Original = isOriginal == 0 ? true : false;
+      sendProduct.value.Original = isOriginal.value == 1 ? true : false;
     }
 
     if (checkPackageWeight) {
@@ -604,7 +608,7 @@ class AddProductController extends GetxController {
         ShowMessage.getSnackBar(message: "نوع وزن کالا انتخاب نشده است.", type: MessageType.ERROR);
         return;
       }
-      sendProduct.Weight = packWeightType == 0
+      sendProduct.value.ProductPackWeight = packWeightType == 0
           ? int.parse(productWeightController.text)
           : int.parse(productWeightController.text) * 1000;
     }
@@ -613,29 +617,32 @@ class AddProductController extends GetxController {
       ShowMessage.getSnackBar(message: "ابعاد کالا وارد نشده است.", type: MessageType.ERROR);
       return;
     } else {
-      sendProduct.Length = int.parse(productPackLengthController.text);
-      sendProduct.Width = int.parse(productPackWidthController.text);
-      sendProduct.Height = int.parse(productPackHeightController.text);
+      sendProduct.value.ProductPackLength = int.parse(productPackLengthController.text);
+      sendProduct.value.ProductPackWidth = int.parse(productPackWidthController.text);
+      sendProduct.value.ProductPackHeight = int.parse(productPackHeightController.text);
     }
 
-    sendProduct.ProductName = productNameController.text;
-    sendProduct.Description = productDescriptionController.text;
-    sendProduct.ProductGroupID = category.value.CategoryId;
+    sendProduct.value.ProductName = productNameController.text;
+    sendProduct.value.Description = productDescriptionController.text;
+    sendProduct.value.ProductGroupId = category.value.CategoryId;
 
-    List<VMSection> sectionsList = List<VMSection>.empty(growable: true);
+    List<SectionOfInsertProductRequestDtoUseCase> sectionsList =
+        List<SectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
 
-    for (var schema in productSchema.value.SpecificationSchema!) {
-      VMSection section = VMSection();
-      section.SpecificationTypeGroupID = schema.SpecificationSchemaGroupId;
-      List<VMSendSpecification> sendSpecificationsList = List<VMSendSpecification>.empty(growable: true);
-      for (var specification in schema.SpecificationSchemas!) {
-        VMSendSpecification sendSpecification = VMSendSpecification();
+    for (var schema in groupSpecsList) {
+      SectionOfInsertProductRequestDtoUseCase section = SectionOfInsertProductRequestDtoUseCase();
+      section.SpecId = schema.SpecId;
+      List<DataOfSectionOfInsertProductRequestDtoUseCase> sendSpecificationsList =
+          List<DataOfSectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
+      for (var specification in schema.Items!) {
+        DataOfSectionOfInsertProductRequestDtoUseCase sendSpecification =
+            DataOfSectionOfInsertProductRequestDtoUseCase();
 
         // Conditions
-        var checkValue = specification.IsRequired! && sendSpecification.Value == null;
+        var checkValue = (specification.IsRequired ?? false) && sendSpecification.Value == null;
 
-        sendSpecification.InputType = specification.InputType;
-        sendSpecification.SpecificationTypeID = specification.SpecificationTypeId;
+        sendSpecification.InputType = specification.InputTitle;
+        sendSpecification.SpecItemId = specification.SpecItemId;
 
         switch (specification.type) {
           case SpecificationType.COLOR:
@@ -674,7 +681,7 @@ class AddProductController extends GetxController {
               List<VMSpecValue> valuesList = List<VMSpecValue>.empty(growable: true);
               for (var item in specification.SelectedItems!) {
                 if (item.isNew) {
-                  item.SpecificationTypeItemId = null;
+                  item.SpecValueId = null;
                 }
                 valuesList.add(item);
               }
@@ -693,30 +700,35 @@ class AddProductController extends GetxController {
 
         if (checkValue) {
           ShowMessage.getSnackBar(
-              message: "مشخصه ${specification.SpecificationName} در افزودن مشخصات تعیین نشده است.",
-              type: MessageType.ERROR);
+              message: "مشخصه ${specification.Name} در افزودن مشخصات تعیین نشده است.", type: MessageType.ERROR);
           return;
         }
 
         sendSpecificationsList.add(sendSpecification);
       }
-      section.Specifications = List<VMSendSpecification>.empty(growable: true);
-      section.Specifications!.addAll(sendSpecificationsList);
+      section.Specs = List<DataOfSectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
+      section.Specs!.addAll(sendSpecificationsList);
       sectionsList.add(section);
     }
 
-    sendProduct.Sections = List<VMSection>.empty(growable: true);
-    sendProduct.Sections!.addAll(sectionsList);
+    sendProduct.value.Sections = List<SectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
+    sendProduct.value.Sections!.addAll(sectionsList);
 
-    if (checkProductID) {
-      if (isMain) {
-        startApiInsertProduct();
-      } else {
-        saveDrafts();
-      }
+    sendProduct.value.Sections!.forEach((element) {
+      LogHelper.printLog(data: "element: ${element.SpecId}");
+
+      element.Specs!.forEach((element2) {
+        LogHelper.printLog(data: "element 2: ${element2.InputType}");
+
+        LogHelper.printLog(data: "Value: ${element2.Value}");
+      });
+    });
+
+    if (!checkProductID) {
+      startApiInsertProduct();
     } else {
-      cancelToken = CancelToken();
-      startUploadImagesApi();
+      // cancelToken = CancelToken();
+      // startUploadImagesApi();
     }
   }
 
@@ -792,5 +804,9 @@ class AddProductController extends GetxController {
       updateBrandLoading(isBrandLoading: false);
       LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
     });
+  }
+
+  startApiInsertProduct() async {
+    await iInsertProductUseCase.Handler(params: sendProduct.value).then((response) {});
   }
 }
