@@ -81,13 +81,24 @@ class VMProductPicture extends Equatable {
 
 @JsonSerializable()
 class VMSendProductPicture extends Equatable {
+  String? id;
+
   @JsonKey(ignore: true)
   File? file;
 
   @JsonKey(ignore: true)
   Uint8List? pickedFile;
 
-  VMSendProductPicture({this.file, this.pickedFile});
+  bool? isUploaded;
+  bool? isMain;
+
+  VMSendProductPicture({
+    this.id,
+    this.file,
+    this.pickedFile,
+    this.isUploaded,
+    this.isMain,
+  });
 
   factory VMSendProductPicture.fromJson(Map<String, dynamic> json) => _$VMSendProductPictureFromJson(json);
 
@@ -95,7 +106,9 @@ class VMSendProductPicture extends Equatable {
 
   @override
   List<Object?> get props => [
+        id,
         file,
         pickedFile,
+        isUploaded,
       ];
 }

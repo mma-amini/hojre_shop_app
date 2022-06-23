@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import 'package:hojre_shop_app/domain/core/dto/models/group_spec_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_group_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/request_dto_use_case_exports.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case_exports.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
 import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_insert_product_use_case.dart';
@@ -22,12 +24,14 @@ import 'package:hojre_shop_app/generated/locales.g.dart';
 import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:uuid/uuid.dart';
 
 class AddProductController extends GetxController {
   final isLoading = false.obs;
   final isBrandLoading = false.obs;
 
   final productWeightText = "".obs;
+  final productId = "".obs;
 
   final Rxn<int> packWeightType = Rxn<int>();
   final Rxn<int> productWeightType = Rxn<int>();
@@ -37,6 +41,8 @@ class AddProductController extends GetxController {
 
   final category = VMProductGroup().obs;
   final sendProduct = InsertProductRequestDtoUseCase().obs;
+
+  CancelToken cancelToken = CancelToken();
 
   FocusNode productNameNode = FocusNode();
   FocusNode productDescriptionNode = FocusNode();
@@ -68,6 +74,7 @@ class AddProductController extends GetxController {
   IGroupSpecsUseCase iGroupSpecsUseCase;
   IBrandsUseCase iBrandsUseCase;
   IInsertProductUseCase iInsertProductUseCase;
+  IInsertProductPictureUseCase iInsertProductPictureUseCase;
 
   final selectedBrand = VMBrand().obs;
   final image = VMSendProductPicture().obs;
@@ -82,6 +89,7 @@ class AddProductController extends GetxController {
   final allSpc = List<VMSpecItem>.empty(growable: true).obs;
   final brandsList = List<VMBrand>.empty(growable: true).obs;
   final imagesList = List<VMSendProductPicture>.empty(growable: true).obs;
+  final picturesList = List<InsertProductPictureRequestDtoUseCase>.empty(growable: true).obs;
   final isBrandList = List<bool>.empty(growable: true).obs;
   final isOriginalList = List<bool>.empty(growable: true).obs;
 
@@ -90,6 +98,7 @@ class AddProductController extends GetxController {
     required this.iGroupSpecsUseCase,
     required this.iBrandsUseCase,
     required this.iInsertProductUseCase,
+    required this.iInsertProductPictureUseCase,
   });
 
   @override
@@ -732,6 +741,39 @@ class AddProductController extends GetxController {
     }
   }
 
+  startUploadImagesApi() async {
+    if (cancelToken.isCancelled) {
+      ShowMessage.getSnackBar(message: "ارسال تصاویر با مشکل مواجه شد.", type: MessageType.ERROR);
+      return;
+    }
+
+    var allPicturesIsUploaded = true;
+
+    for (var picture in picturesList) {
+      // Conditions
+      var uploadCheck = picture.IsUploaded == false;
+
+      if (uploadCheck) {
+        await startApiInsertProductPicture(insertProductPictureRequestDtoUseCase: picture);
+      }
+    }
+
+    for (var pic in picturesList) {
+      // Conditions
+      var uploadCheck = pic.IsUploaded == false;
+
+      if (uploadCheck) {
+        allPicturesIsUploaded = false;
+      }
+    }
+
+    if (allPicturesIsUploaded) {
+      Get.back();
+    } else {
+      startUploadImagesApi();
+    }
+  }
+
   startApiProductGroups() async {
     updateLoading(isLoading: true);
     await iProductGroupsUseCase.Handler().then((response) {
@@ -807,6 +849,57 @@ class AddProductController extends GetxController {
   }
 
   startApiInsertProduct() async {
-    await iInsertProductUseCase.Handler(params: sendProduct.value).then((response) {});
+    updateLoading(isLoading: true);
+    await iInsertProductUseCase.Handler(params: sendProduct.value).then((response) {
+      var result = response.getOrElse(() => InsertProductResponseDtoUseCase());
+      this.productId.value = result.ProductId ?? "";
+
+      this.picturesList.clear();
+      var mainImageName = Uuid().v4();
+      InsertProductPictureRequestDtoUseCase mainPicture = InsertProductPictureRequestDtoUseCase(
+        Sort: 0,
+        IsMain: true,
+        IsUploaded: false,
+        PickedFile: this.image.value.pickedFile,
+        Id: mainImageName,
+        ProductId: this.productId.value,
+      );
+      picturesList.add(mainPicture);
+
+      var picSort = 1;
+      for (var image in imagesList) {
+        var name = Uuid().v4();
+        InsertProductPictureRequestDtoUseCase picture = InsertProductPictureRequestDtoUseCase(
+          Sort: picSort,
+          IsMain: false,
+          IsUploaded: false,
+          PickedFile: image.pickedFile,
+          Id: name,
+          ProductId: this.productId.value,
+        );
+        picturesList.add(picture);
+        picSort++;
+      }
+
+      startUploadImagesApi();
+    }).catchError((error) {
+      updateLoading(isLoading: false);
+      LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
+    });
+  }
+
+  startApiInsertProductPicture(
+      {required InsertProductPictureRequestDtoUseCase insertProductPictureRequestDtoUseCase}) async {
+    await iInsertProductPictureUseCase.Handler(params: insertProductPictureRequestDtoUseCase).then((response) {
+      for (var pic in picturesList) {
+        if (pic.Id!.toLowerCase() == insertProductPictureRequestDtoUseCase.Id!.toLowerCase()) {
+          pic.IsUploaded = true;
+        }
+      }
+    }).catchError((error) {
+      updateLoading(isLoading: false);
+      cancelToken.cancel("cancelled");
+      LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
+    });
   }
 }

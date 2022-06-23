@@ -60,8 +60,16 @@ Map<String, dynamic> _$VMProductPictureToJson(VMProductPicture instance) =>
 
 VMSendProductPicture _$VMSendProductPictureFromJson(
         Map<String, dynamic> json) =>
-    VMSendProductPicture();
+    VMSendProductPicture(
+      id: json['id'] as String?,
+      isUploaded: json['isUploaded'] as bool?,
+      isMain: json['isMain'] as bool?,
+    );
 
 Map<String, dynamic> _$VMSendProductPictureToJson(
         VMSendProductPicture instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'id': instance.id,
+      'isUploaded': instance.isUploaded,
+      'isMain': instance.isMain,
+    };

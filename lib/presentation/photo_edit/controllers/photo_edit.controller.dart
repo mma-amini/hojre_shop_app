@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_model.dart';
 import 'package:hojre_shop_app/domain/core/helpers/crop_editor_helper.dart';
+import 'package:uuid/uuid.dart';
 
 class PhotoEditController extends GetxController {
   bool _cropping = false;
@@ -54,7 +55,11 @@ class PhotoEditController extends GetxController {
     _cropping = false;
     updateIsLoading(isLoading: false);
 
-    VMSendProductPicture finalPics = VMSendProductPicture(pickedFile: fileData);
+    VMSendProductPicture finalPics = VMSendProductPicture(
+      id: Uuid().v4(),
+      pickedFile: fileData,
+      isUploaded: false,
+    );
     Get.back(result: {"image": finalPics});
   }
 }

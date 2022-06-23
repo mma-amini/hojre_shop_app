@@ -27,6 +27,9 @@ abstract class Repository {
   Future<Either<Failure, List<BrandResponseDtoUseCase>>>? brands(
       {required BrandsRequestDtoUseCase brandsRequestDtoUseCase});
 
-  Future<Either<Failure, NoParams>>? insertProduct(
+  Future<Either<Failure, InsertProductResponseDtoUseCase>>? insertProduct(
       {required InsertProductRequestDtoUseCase insertProductRequestDtoUseCase});
+
+  Future<Either<Failure, NoParams>>? insertProductImage(
+      {required InsertProductPictureRequestDtoUseCase insertProductPictureRequestDtoUseCase});
 }

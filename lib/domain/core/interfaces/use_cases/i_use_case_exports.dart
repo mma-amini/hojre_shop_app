@@ -2,6 +2,7 @@ export 'i_brands_use_case.dart';
 export 'i_brands_use_case.dart';
 export 'i_check_user_use_case.dart';
 export 'i_group_specs_use_case.dart';
+export 'i_insert_product_picture_use_case.dart';
 export 'i_insert_product_use_case.dart';
 export 'i_login_use_case.dart';
 export 'i_product_designs_use_case.dart';

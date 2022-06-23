@@ -8,4 +8,5 @@ class Api {
   static const String PRODUCT_DESIGNS_API = "/api/v1/shop/getDesigns";
   static const String BRANDS_API = "/api/v1/shop/brands";
   static const String INSERT_PRODUCT_API = "/api/v1/shop/insertProduct";
+  static const String INSERT_PRODUCT_IMAGE_API = "/api/v1/shop/insertProductImage";
 }

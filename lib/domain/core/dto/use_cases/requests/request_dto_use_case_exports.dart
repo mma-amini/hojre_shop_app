@@ -1,6 +1,7 @@
 export 'brands_request_dto_use_case.dart';
 export 'check_user_request_dto_use_case.dart';
 export 'group_specs_request_dto_use_case.dart';
+export 'insert_product_picture_request_dto_use_case.dart';
 export 'insert_product_request_dto_use_case.dart';
 export 'insert_product_request_dto_use_case.dart';
 export 'login_request_dto_use_case.dart';

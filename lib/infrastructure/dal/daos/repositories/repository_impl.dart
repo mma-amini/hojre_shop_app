@@ -111,11 +111,24 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, NoParams>>? insertProduct(
+  Future<Either<Failure, InsertProductResponseDtoUseCase>>? insertProduct(
       {required InsertProductRequestDtoUseCase insertProductRequestDtoUseCase}) async {
     try {
       var result =
           await baseRemoteDataSource.insertProduct(insertProductRequestDtoUseCase: insertProductRequestDtoUseCase);
+
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, NoParams>>? insertProductImage(
+      {required InsertProductPictureRequestDtoUseCase insertProductPictureRequestDtoUseCase}) async {
+    try {
+      var result = await baseRemoteDataSource.insertProductImages(
+          insertProductPictureRequestDtoUseCase: insertProductPictureRequestDtoUseCase);
 
       return Right(result);
     } on ServerException {

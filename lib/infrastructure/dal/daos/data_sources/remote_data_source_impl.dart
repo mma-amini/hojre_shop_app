@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/brands_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/group_specs_request_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/insert_product_picture_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/insert_product_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/product_design_request_dto_use_case.dart';
@@ -16,6 +17,7 @@ import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/message_dto_u
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/product_desing_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/product_groups_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case.dart';
+import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case_exports.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/shop_products_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/helpers/api.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
@@ -307,12 +309,48 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<NoParams> insertProduct({required InsertProductRequestDtoUseCase insertProductRequestDtoUseCase}) async {
+  Future<InsertProductResponseDtoUseCase> insertProduct(
+      {required InsertProductRequestDtoUseCase insertProductRequestDtoUseCase}) async {
     var jsonBody = json.encode(insertProductRequestDtoUseCase.toJson());
     var result = await Brain.dio
         .post(
       "${Brain.baseDomain}${Api.INSERT_PRODUCT_API}",
       data: jsonBody,
+      options: Options(
+        headers: headers(),
+      ),
+    )
+        .then((response) {
+      var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      checkMessage(messageDtoUseCase: apiResult.Message);
+      InsertProductResponseDtoUseCase insertProductResponseDtoUseCase =
+          InsertProductResponseDtoUseCase.fromJson(apiResult.Content);
+      return insertProductResponseDtoUseCase;
+    }).catchError((error) {
+      LogHelper.printLog(data: error);
+      return InsertProductResponseDtoUseCase();
+    });
+
+    return result;
+  }
+
+  @override
+  Future<NoParams> insertProductImages(
+      {required InsertProductPictureRequestDtoUseCase insertProductPictureRequestDtoUseCase}) async {
+    var body = FormData.fromMap({
+      "Id": insertProductPictureRequestDtoUseCase.Id,
+      "ProductId": insertProductPictureRequestDtoUseCase.ProductId,
+      "Image": MultipartFile.fromBytes(
+        insertProductPictureRequestDtoUseCase.PickedFile!,
+        filename: "${insertProductPictureRequestDtoUseCase.Id}.jpg",
+      ),
+      "Sort": insertProductPictureRequestDtoUseCase.Sort,
+      "IsMain": insertProductPictureRequestDtoUseCase.IsMain,
+    });
+    var result = await Brain.dio
+        .post(
+      "${Brain.baseDomain}${Api.INSERT_PRODUCT_IMAGE_API}",
+      data: body,
       options: Options(
         headers: headers(),
       ),

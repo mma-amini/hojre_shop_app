@@ -51,5 +51,12 @@ abstract class RemoteDataSource {
   /// Calls the method http-get https://server.com/api/v1/shop/insertProduct endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
-  Future<NoParams> insertProduct({required InsertProductRequestDtoUseCase insertProductRequestDtoUseCase});
+  Future<InsertProductResponseDtoUseCase> insertProduct(
+      {required InsertProductRequestDtoUseCase insertProductRequestDtoUseCase});
+
+  /// Calls the method http-get https://server.com/api/v1/shop/insertProductImage endpoint.
+  ///
+  /// Throws a [ServerException] for all error codes.
+  Future<NoParams> insertProductImages(
+      {required InsertProductPictureRequestDtoUseCase insertProductPictureRequestDtoUseCase});
 }

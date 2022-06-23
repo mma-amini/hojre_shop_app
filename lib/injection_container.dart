@@ -35,6 +35,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => ProductDesignsUseCase(repository: sl()));
   sl.registerLazySingleton(() => BrandsUseCase(repository: sl()));
   sl.registerLazySingleton(() => InsertProductUseCase(repository: sl()));
+  sl.registerLazySingleton(() => InsertProductPictureUseCase(repository: sl()));
 
   // Repository
   sl.registerLazySingleton<Repository>(
@@ -93,6 +94,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<IInsertProductUseCase>(
     () => InsertProductUseCase(
+      repository: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<IInsertProductPictureUseCase>(
+    () => InsertProductPictureUseCase(
       repository: sl(),
     ),
   );

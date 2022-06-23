@@ -1,6 +1,7 @@
 export 'brand_response_dto_use_case.dart';
 export 'check_user_response_dto_use_case.dart';
 export 'group_specs_response_dto_use_case.dart';
+export 'insert_product_response_dto_use_case.dart';
 export 'login_response_dto_use_case.dart';
 export 'message_dto_use_case.dart';
 export 'product_desing_response_dto_use_case.dart';
