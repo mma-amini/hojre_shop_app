@@ -23,7 +23,7 @@ class PhotoEditController extends GetxController {
   void onInit() {
     var argData = Get.arguments;
     if (argData != null) {
-      image.value = argData['image'] != null ? argData['image'] : VMSendProductPicture();
+      image.value = argData['image'] ?? VMSendProductPicture();
     }
 
     super.onInit();
@@ -56,7 +56,7 @@ class PhotoEditController extends GetxController {
     updateIsLoading(isLoading: false);
 
     VMSendProductPicture finalPics = VMSendProductPicture(
-      id: Uuid().v4(),
+      id: const Uuid().v4(),
       pickedFile: fileData,
       isUploaded: false,
     );

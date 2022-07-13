@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:hojre_shop_app/domain/core/dto/models/brand_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/warranty_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -7,30 +6,30 @@ part 'product_design_model.g.dart';
 
 @JsonSerializable()
 class VMProductDesign extends Equatable {
-  String? Id;
-  String? ShopId;
-  String? ProductId;
-  VMWarranty? Warranty;
-  String? DesignName;
-  String? Barcode;
-  num? Price;
-  num? OffPrice;
-  bool? IsReady;
-  int? ReadyDay;
-  int? ReadyHour;
+  String? id;
+  String? shopId;
+  String? productId;
+  VMWarranty? warranty;
+  String? designName;
+  String? barcode;
+  num? price;
+  num? offPrice;
+  bool? isReady;
+  int? readyDay;
+  int? readyHour;
 
   VMProductDesign({
-    this.Id,
-    this.ShopId,
-    this.ProductId,
-    this.Warranty,
-    this.DesignName,
-    this.Barcode,
-    this.Price,
-    this.OffPrice,
-    this.IsReady,
-    this.ReadyDay,
-    this.ReadyHour,
+    this.id,
+    this.shopId,
+    this.productId,
+    this.warranty,
+    this.designName,
+    this.barcode,
+    this.price,
+    this.offPrice,
+    this.isReady,
+    this.readyDay,
+    this.readyHour,
   });
 
   factory VMProductDesign.fromJson(Map<String, dynamic> json) => _$VMProductDesignFromJson(json);
@@ -40,16 +39,16 @@ class VMProductDesign extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        Id,
-        ShopId,
-        ProductId,
-        Warranty,
-        DesignName,
-        Barcode,
-        Price,
-        OffPrice,
-        IsReady,
-        ReadyDay,
-        ReadyHour,
+        id,
+        shopId,
+        productId,
+        warranty,
+        designName,
+        barcode,
+        price,
+        offPrice,
+        isReady,
+        readyDay,
+        readyHour,
       ];
 }

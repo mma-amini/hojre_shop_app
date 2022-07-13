@@ -5,11 +5,11 @@ part 'brand_model.g.dart';
 
 @JsonSerializable()
 class VMBrand extends Equatable {
-  String? Id;
-  String? Name;
-  String? Picture;
+  String? id;
+  String? name;
+  String? picture;
 
-  VMBrand({this.Id, this.Name, this.Picture});
+  VMBrand({this.id, this.name, this.picture});
 
   factory VMBrand.fromJson(Map<String, dynamic> json) => _$VMBrandFromJson(json);
 
@@ -18,8 +18,8 @@ class VMBrand extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        Id,
-        Name,
-        Picture,
+        id,
+        name,
+        picture,
       ];
 }

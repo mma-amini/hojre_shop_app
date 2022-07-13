@@ -12,7 +12,7 @@ class GroupSpecsUseCase implements IGroupSpecsUseCase {
   GroupSpecsUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, List<GroupSpecsResponseDtoUseCase>>> Handler({GroupSpecsRequestDtoUseCase? params}) async {
+  Future<Either<Failure, List<GroupSpecsResponseDtoUseCase>>> handler({GroupSpecsRequestDtoUseCase? params}) async {
     return await repository.groupSpecs(groupSpecsRequestDtoUseCase: params!)!;
   }
 }

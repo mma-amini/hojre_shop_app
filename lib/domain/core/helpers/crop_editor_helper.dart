@@ -7,6 +7,7 @@ import 'dart:ui';
 // import 'package:isolate/isolate_runner.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
 // ignore: implementation_imports
 import 'package:http_client_helper/http_client_helper.dart';
 import 'package:image/image.dart';
@@ -16,12 +17,12 @@ import 'package:image/image.dart';
 //     LoadBalancer.create(1, IsolateRunner.spawn);
 
 Future<Uint8List?> cropImageDataWithDartLibrary({required ExtendedImageEditorState state}) async {
-  print('dart library start cropping');
+  LogHelper.printLog(data: 'dart library start cropping');
 
   ///crop rect base on raw image
   Rect cropRect = state.getCropRect()!;
 
-  print('getCropRect : $cropRect');
+  LogHelper.printLog(data: 'getCropRect : $cropRect');
 
   // in web, we can't get rawImageData due to .
   // using following code to get imageCodec without download it.
@@ -94,7 +95,7 @@ Future<Uint8List?> cropImageDataWithDartLibrary({required ExtendedImageEditorSta
         image = copyRotate(image, editAction.rotateAngle);
       }
       final DateTime time3 = DateTime.now();
-      print('${time3.difference(time2)} : crop/flip/rotate');
+      LogHelper.printLog(data: '${time3.difference(time2)} : crop/flip/rotate');
       return image;
     }).toList();
   }
@@ -108,7 +109,7 @@ Future<Uint8List?> cropImageDataWithDartLibrary({required ExtendedImageEditorSta
   //var fileData = await compute(encodeJpg, src);
   //var fileData = await isolateEncodeImage(src);
   List<int>? fileData;
-  print('start encode');
+  LogHelper.printLog(data: 'start encode');
   final DateTime time4 = DateTime.now();
   if (src != null) {
     final bool onlyOneFrame = src.numFrames == 1;
@@ -121,8 +122,8 @@ Future<Uint8List?> cropImageDataWithDartLibrary({required ExtendedImageEditorSta
     }
   }
   final DateTime time5 = DateTime.now();
-  print('${time5.difference(time4)} : encode');
-  print('${time5.difference(time1)} : total time');
+  LogHelper.printLog(data: '${time5.difference(time4)} : encode');
+  LogHelper.printLog(data: '${time5.difference(time1)} : total time');
   return Uint8List.fromList(fileData!);
 }
 
@@ -228,7 +229,7 @@ Future<Uint8List> _loadNetwork(ExtendedNetworkImageProvider key) async {
         cancelToken: key.cancelToken);
     return response!.bodyBytes;
   } on OperationCanceledError catch (_) {
-    print('User cancel request ${key.url}.');
+    LogHelper.printLog(data: 'User cancel request ${key.url}.');
     return Future<Uint8List>.error(StateError('User cancel request ${key.url}.'));
   } catch (e) {
     return Future<Uint8List>.error(StateError('failed load ${key.url}. \n $e'));

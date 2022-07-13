@@ -21,6 +21,8 @@ import 'package:hojre_shop_app/presentation/widgets/multi_select_drop_down/flutt
 import 'controllers/add_product.controller.dart';
 
 class AddProductScreen extends GetView<AddProductController> {
+  const AddProductScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -36,7 +38,7 @@ class AddProductScreen extends GetView<AddProductController> {
           ),
           body: Obx(() {
             return Visibility(
-              visible: (controller.category.value.CategoryId ?? "").isNotEmpty,
+              visible: (controller.category.value.categoryId ?? "").isNotEmpty,
               child: Container(
                 padding: const EdgeInsets.all(16.0),
                 child: Form(
@@ -48,7 +50,7 @@ class AddProductScreen extends GetView<AddProductController> {
                           _setTitleWidget(title: "${LocaleKeys.screen_add_product_product_group.tr}:"),
                           Expanded(
                             child: Text(
-                              "${controller.category.value.CategoryName ?? ""}",
+                              controller.category.value.categoryName ?? "",
                             ),
                           ),
                           const SizedBox(
@@ -58,13 +60,11 @@ class AddProductScreen extends GetView<AddProductController> {
                             onPressed: () {
                               AwesomeDialog(
                                 context: Get.context!,
-                                body: Container(
-                                  child: Text(
-                                    LocaleKeys
-                                        .screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost
-                                        .tr,
-                                    textAlign: TextAlign.center,
-                                  ),
+                                body: Text(
+                                  LocaleKeys
+                                      .screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost
+                                      .tr,
+                                  textAlign: TextAlign.center,
                                 ),
                                 dismissOnTouchOutside: false,
                                 btnOkText: LocaleKeys.buttons_confirm.tr,
@@ -84,123 +84,115 @@ class AddProductScreen extends GetView<AddProductController> {
                       const SizedBox(
                         height: 16.0,
                       ),
-                      Container(
-                        child: Stepper(
-                          type: StepperType.vertical,
-                          physics: ScrollPhysics(),
-                          currentStep: controller.currentStep.value,
-                          onStepTapped: (step) {
-                            controller.updateCurrentStep(step: step);
-                          },
-                          onStepCancel: () {
-                            Get.back();
-                          },
-                          onStepContinue: () {
-                            if (controller.currentStep.value < 2) {
-                              controller.currentStep.value++;
-                            }
-                          },
-                          // controlsBuilder: (context, controlDetail) {
-                          //   return Column(
-                          //     children: [
-                          //       SizedBox(
-                          //         height: 16.0,
-                          //       ),
-                          //       Row(
-                          //         children: [
-                          //           InkWell(
-                          //             borderRadius: BorderRadius.circular(8.0),
-                          //             onTap: () {},
-                          //             child: Container(
-                          //               decoration: BoxDecoration(
-                          //                 borderRadius: BorderRadius.circular(8.0),
-                          //                 color: Colors.green,
-                          //               ),
-                          //               width: 75.0,
-                          //               padding: EdgeInsets.all(8.0),
-                          //               child: Center(child: Text("ادامه")),
-                          //             ),
-                          //           ),
-                          //           SizedBox(
-                          //             width: 24.0,
-                          //           ),
-                          //           InkWell(
-                          //             borderRadius: BorderRadius.circular(8.0),
-                          //             onTap: () {},
-                          //             child: Container(
-                          //               decoration: BoxDecoration(
-                          //                 borderRadius: BorderRadius.circular(8.0),
-                          //                 color: Colors.red,
-                          //               ),
-                          //               width: 75.0,
-                          //               padding: EdgeInsets.all(8.0),
-                          //               child: Center(child: Text("لغو")),
-                          //             ),
-                          //           ),
-                          //         ],
-                          //       ),
-                          //     ],
-                          //   );
-                          // },
-                          steps: [
-                            _imageStep(),
-                            _basicSpecificationStep(),
-                            _otherSpecificationStep(),
-                          ],
-                        ),
+                      Stepper(
+                        type: StepperType.vertical,
+                        physics: const ScrollPhysics(),
+                        currentStep: controller.currentStep.value,
+                        onStepTapped: (step) {
+                          controller.updateCurrentStep(step: step);
+                        },
+                        onStepCancel: () {
+                          Get.back();
+                        },
+                        onStepContinue: () {
+                          if (controller.currentStep.value < 2) {
+                            controller.currentStep.value++;
+                          }
+                        },
+                        // controlsBuilder: (context, controlDetail) {
+                        //   return Column(
+                        //     children: [
+                        //       SizedBox(
+                        //         height: 16.0,
+                        //       ),
+                        //       Row(
+                        //         children: [
+                        //           InkWell(
+                        //             borderRadius: BorderRadius.circular(8.0),
+                        //             onTap: () {},
+                        //             child: Container(
+                        //               decoration: BoxDecoration(
+                        //                 borderRadius: BorderRadius.circular(8.0),
+                        //                 color: Colors.green,
+                        //               ),
+                        //               width: 75.0,
+                        //               padding: EdgeInsets.all(8.0),
+                        //               child: Center(child: Text("ادامه")),
+                        //             ),
+                        //           ),
+                        //           SizedBox(
+                        //             width: 24.0,
+                        //           ),
+                        //           InkWell(
+                        //             borderRadius: BorderRadius.circular(8.0),
+                        //             onTap: () {},
+                        //             child: Container(
+                        //               decoration: BoxDecoration(
+                        //                 borderRadius: BorderRadius.circular(8.0),
+                        //                 color: Colors.red,
+                        //               ),
+                        //               width: 75.0,
+                        //               padding: EdgeInsets.all(8.0),
+                        //               child: Center(child: Text("لغو")),
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ],
+                        //   );
+                        // },
+                        steps: [
+                          _imageStep(),
+                          _basicSpecificationStep(),
+                          _otherSpecificationStep(),
+                        ],
                       ),
                       const SizedBox(
                         height: 16.0,
                       ),
-                      Container(
-                        child: Material(
-                          borderRadius: BorderRadius.circular(8.0),
-                          elevation: 3.0,
-                          color: Colors.blueAccent,
-                          child: InkWell(
-                            onTap: () {
-                              // Conditions
-                              var checkFormValidate = controller.formKey.currentState!.validate();
+                      Material(
+                        borderRadius: BorderRadius.circular(8.0),
+                        elevation: 3.0,
+                        color: Colors.blueAccent,
+                        child: InkWell(
+                          onTap: () {
+                            // Conditions
+                            var checkFormValidate = controller.formKey.currentState!.validate();
 
-                              if (checkFormValidate) {
-                                controller.onFormSaved(isMain: true);
-                              } else {
-                                ShowMessage.snackBar(
-                                  message:
-                                      LocaleKeys.screen_add_product_fields_error_enter_all_the_required_information.tr,
-                                  type: MessageType.ERROR,
-                                  context: context,
-                                );
-                              }
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                border: Border.all(color: Colors.blueAccent, width: 2.0),
-                              ),
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      child: const Icon(
-                                        Icons.check,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 8.0,
-                                    ),
-                                    Container(
-                                      child: Text(
-                                        LocaleKeys.screen_add_product_buttons_register_product.tr,
-                                        style: const TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                            if (checkFormValidate) {
+                              controller.onFormSaved(isMain: true);
+                            } else {
+                              ShowMessage.snackBar(
+                                message:
+                                    LocaleKeys.screen_add_product_fields_error_enter_all_the_required_information.tr,
+                                type: MessageType.ERROR,
+                                context: context,
+                              );
+                            }
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(color: Colors.blueAccent, width: 2.0),
+                            ),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.check,
+                                    color: Colors.white,
+                                  ),
+                                  const SizedBox(
+                                    width: 8.0,
+                                  ),
+                                  Text(
+                                    LocaleKeys.screen_add_product_buttons_register_product.tr,
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -218,28 +210,24 @@ class AddProductScreen extends GetView<AddProductController> {
   }
 
   Widget _setTitleWidget({required String title}) {
-    return Container(
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              color: Colors.blueAccent,
-            ),
-            width: 20.0,
-            height: 20.0,
+    return Row(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.blueAccent,
           ),
-          SizedBox(
-            width: 8.0,
-          ),
-          Container(
-            child: Text(
-              title,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-        ],
-      ),
+          width: 20.0,
+          height: 20.0,
+        ),
+        const SizedBox(
+          width: 8.0,
+        ),
+        Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 
@@ -250,46 +238,42 @@ class AddProductScreen extends GetView<AddProductController> {
     return Step(
       title: Text(
         LocaleKeys.screen_add_product_choose_product_pictures.tr,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 14.0,
         ),
       ),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            child: Row(
-              children: [
-                _setTitleWidget(title: LocaleKeys.screen_add_product_pics.tr),
-                SizedBox(
-                  width: 8,
+          Row(
+            children: [
+              _setTitleWidget(title: LocaleKeys.screen_add_product_pics.tr),
+              const SizedBox(
+                width: 8,
+              ),
+              InkWell(
+                borderRadius: BorderRadius.circular(50.0),
+                child: const Icon(
+                  Icons.info_outline_rounded,
+                  color: Colors.blue,
+                  size: 25.0,
                 ),
-                Container(
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(50.0),
-                    child: Icon(
-                      Icons.info_outline_rounded,
-                      color: Colors.blue,
-                      size: 25.0,
-                    ),
-                    onTap: () {
-                      controller.launchCameraHelpURL();
-                    },
-                  ),
-                )
-              ],
-            ),
+                onTap: () {
+                  controller.launchCameraHelpURL();
+                },
+              )
+            ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 16.0,
           ),
-          Container(
+          SizedBox(
             height: 170,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 8.0,
                   ),
                   InkWell(
@@ -328,28 +312,29 @@ class AddProductScreen extends GetView<AddProductController> {
                                     child: InkWell(
                                       onTap: () {
                                         AwesomeDialog(
-                                            context: Get.context!,
-                                            animType: AnimType.SCALE,
-                                            dialogType: DialogType.WARNING,
-                                            body: Padding(
-                                              padding: const EdgeInsets.all(3.0),
-                                              child: Center(
-                                                  child: Text(
-                                                LocaleKeys
-                                                    .screen_add_product_are_you_sure_you_want_to_delete_this_image.tr,
-                                                style: TextStyle(fontSize: 14.0),
-                                                textAlign: TextAlign.center,
-                                              )),
-                                            ),
-                                            btnOkText: LocaleKeys.buttons_yes.tr,
-                                            btnOkOnPress: () {
-                                              // controller.removeMainImage();
-                                            },
-                                            btnCancelText: LocaleKeys.buttons_no.tr,
-                                            btnCancelOnPress: () {})
-                                          ..show();
+                                                context: Get.context!,
+                                                animType: AnimType.SCALE,
+                                                dialogType: DialogType.WARNING,
+                                                body: Padding(
+                                                  padding: const EdgeInsets.all(3.0),
+                                                  child: Center(
+                                                      child: Text(
+                                                    LocaleKeys
+                                                        .screen_add_product_are_you_sure_you_want_to_delete_this_image
+                                                        .tr,
+                                                    style: const TextStyle(fontSize: 14.0),
+                                                    textAlign: TextAlign.center,
+                                                  )),
+                                                ),
+                                                btnOkText: LocaleKeys.buttons_yes.tr,
+                                                btnOkOnPress: () {
+                                                  // controller.removeMainImage();
+                                                },
+                                                btnCancelText: LocaleKeys.buttons_no.tr,
+                                                btnCancelOnPress: () {})
+                                            .show();
                                       },
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.remove_circle,
                                         color: Colors.red,
                                       ),
@@ -361,127 +346,122 @@ class AddProductScreen extends GetView<AddProductController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    child: Icon(
-                                      Icons.image,
-                                      size: 50.0,
-                                      color: Colors.grey,
-                                    ),
+                                  const Icon(
+                                    Icons.image,
+                                    size: 50.0,
+                                    color: Colors.grey,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 8.0,
                                   ),
-                                  Container(
-                                    child: Text(
-                                      LocaleKeys.screen_add_product_choose_main_picture.tr,
-                                      style: TextStyle(fontSize: 12.0),
-                                    ),
+                                  Text(
+                                    LocaleKeys.screen_add_product_choose_main_picture.tr,
+                                    style: const TextStyle(fontSize: 12.0),
                                   ),
                                 ],
                               ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8.0,
                   ),
-                  Container(
-                    child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.start,
-                      alignment: WrapAlignment.start,
-                      direction: Axis.vertical,
-                      runSpacing: 4.0,
-                      spacing: 4.0,
-                      children: [
-                        for (var image in controller.imagesList)
-                          InkWell(
-                            onTap: () {
-                              // controller.goToPhotoPreview(
-                              //     isMainImage: false, file: image.file);
-                            },
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Container(
-                                height: 83,
-                                width: 83,
-                                child: Stack(
-                                  children: [
-                                    ExtendedImage.memory(
-                                      image.pickedFile!,
-                                      fit: BoxFit.contain,
-                                      enableLoadState: true,
-                                    ),
-                                    Positioned(
-                                      bottom: 2.0,
-                                      left: 2.0,
-                                      child: InkWell(
-                                        onTap: () {
-                                          AwesomeDialog(
-                                              context: Get.context!,
-                                              animType: AnimType.SCALE,
-                                              dialogType: DialogType.WARNING,
-                                              body: Padding(
-                                                padding: const EdgeInsets.all(3.0),
-                                                child: Center(
-                                                    child: Text(
-                                                  LocaleKeys
-                                                      .screen_add_product_are_you_sure_you_want_to_delete_this_image.tr,
-                                                  style: TextStyle(fontSize: 14.0),
-                                                  textAlign: TextAlign.center,
-                                                )),
-                                              ),
-                                              btnOkText: LocaleKeys.buttons_yes.tr,
-                                              btnOkOnPress: () {
-                                                // controller.removeImageFromImagesList(
-                                                //     image: image);
-                                              },
-                                              btnCancelText: LocaleKeys.buttons_no.tr,
-                                              btnCancelOnPress: () {})
-                                            ..show();
-                                        },
-                                        child: Icon(
-                                          Icons.remove_circle,
-                                          color: Colors.red,
-                                        ),
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.start,
+                    alignment: WrapAlignment.start,
+                    direction: Axis.vertical,
+                    runSpacing: 4.0,
+                    spacing: 4.0,
+                    children: [
+                      for (var image in controller.imagesList)
+                        InkWell(
+                          onTap: () {
+                            // controller.goToPhotoPreview(
+                            //     isMainImage: false, file: image.file);
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: SizedBox(
+                              height: 83,
+                              width: 83,
+                              child: Stack(
+                                children: [
+                                  ExtendedImage.memory(
+                                    image.pickedFile!,
+                                    fit: BoxFit.contain,
+                                    enableLoadState: true,
+                                  ),
+                                  Positioned(
+                                    bottom: 2.0,
+                                    left: 2.0,
+                                    child: InkWell(
+                                      onTap: () {
+                                        AwesomeDialog(
+                                                context: Get.context!,
+                                                animType: AnimType.SCALE,
+                                                dialogType: DialogType.WARNING,
+                                                body: Padding(
+                                                  padding: const EdgeInsets.all(3.0),
+                                                  child: Center(
+                                                      child: Text(
+                                                    LocaleKeys
+                                                        .screen_add_product_are_you_sure_you_want_to_delete_this_image
+                                                        .tr,
+                                                    style: const TextStyle(fontSize: 14.0),
+                                                    textAlign: TextAlign.center,
+                                                  )),
+                                                ),
+                                                btnOkText: LocaleKeys.buttons_yes.tr,
+                                                btnOkOnPress: () {
+                                                  // controller.removeImageFromImagesList(
+                                                  //     image: image);
+                                                },
+                                                btnCancelText: LocaleKeys.buttons_no.tr,
+                                                btnCancelOnPress: () {})
+                                            .show();
+                                      },
+                                      child: const Icon(
+                                        Icons.remove_circle,
+                                        color: Colors.red,
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        InkWell(
-                          borderRadius: BorderRadius.circular(8.0),
-                          onTap: () {
-                            controller.openCameraDialog(isMainImage: false);
-                          },
-                          child: DottedBorder(
-                            color: Colors.grey,
-                            strokeWidth: 1,
-                            dashPattern: [5, 2],
-                            radius: Radius.circular(8.0),
-                            padding: EdgeInsets.all(0.0),
-                            borderType: BorderType.RRect,
-                            child: Container(
-                              width: 83,
-                              height: 83,
-                              child: Center(
-                                child: Icon(
-                                  Icons.add,
-                                  color: Colors.grey,
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
                         ),
-                        checkImageList
-                            ? Container(
-                                width: 83,
-                                height: 83,
-                              )
-                            : Container()
-                      ],
-                    ),
+                      InkWell(
+                        borderRadius: BorderRadius.circular(8.0),
+                        onTap: () {
+                          controller.openCameraDialog(isMainImage: false);
+                        },
+                        child: DottedBorder(
+                          color: Colors.grey,
+                          strokeWidth: 1,
+                          dashPattern: const [5, 2],
+                          radius: const Radius.circular(8.0),
+                          padding: const EdgeInsets.all(0.0),
+                          borderType: BorderType.RRect,
+                          child: const SizedBox(
+                            width: 83,
+                            height: 83,
+                            child: Center(
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      checkImageList
+                          ? const SizedBox(
+                              width: 83,
+                              height: 83,
+                            )
+                          : Container()
+                    ],
                   )
                 ],
               ),
@@ -496,24 +476,24 @@ class AddProductScreen extends GetView<AddProductController> {
     return Step(
       title: Text(
         LocaleKeys.screen_add_product_registration_basic_specifications.tr,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 14.0,
         ),
       ),
       content: Column(
         children: [
           _setTitleWidget(title: "اصالت"),
-          SizedBox(
+          const SizedBox(
             height: 8.0,
           ),
-          Text(
+          const Text(
             "در صورت ثبت کالا به عنوان اصل و تحویل کالای غیر اصل به مشتری، فروشنده تا ۱۰ برابر قیمت کالای اصلی آن جریمه خواهد شد.",
             style: TextStyle(color: Colors.red, fontSize: 12.0),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16.0,
           ),
-          Container(
+          SizedBox(
             height: 35.0,
             child: Center(
               child: ToggleButtons(
@@ -522,9 +502,9 @@ class AddProductScreen extends GetView<AddProductController> {
                 onPressed: (index) {
                   controller.updateIsOriginal(index: index);
                 },
-                children: [
-                  Container(width: 150, child: Center(child: Text("کالا اصلی است"))),
-                  Container(width: 150, child: Center(child: Text("کالا اصلی نیست"))),
+                children: const [
+                  SizedBox(width: 150, child: Center(child: Text("کالا اصلی است"))),
+                  SizedBox(width: 150, child: Center(child: Text("کالا اصلی نیست"))),
                 ],
               ),
             ),
@@ -574,7 +554,7 @@ class AddProductScreen extends GetView<AddProductController> {
           const SizedBox(
             height: 16.0,
           ),
-          Container(
+          SizedBox(
             height: 35.0,
             child: Center(
               child: ToggleButtons(
@@ -583,9 +563,9 @@ class AddProductScreen extends GetView<AddProductController> {
                 onPressed: (index) {
                   controller.updateIsBrand(index: index);
                 },
-                children: [
-                  Container(width: 150, child: Center(child: Text("برند دارد"))),
-                  Container(width: 150, child: Center(child: Text("برند ندارد"))),
+                children: const [
+                  SizedBox(width: 150, child: Center(child: Text("برند دارد"))),
+                  SizedBox(width: 150, child: Center(child: Text("برند ندارد"))),
                 ],
               ),
             ),
@@ -604,8 +584,8 @@ class AddProductScreen extends GetView<AddProductController> {
                   decoration: InputDecoration(
                     labelText: LocaleKeys.screen_add_product_brand.tr,
                     alignLabelWithHint: true,
-                    border: new OutlineInputBorder(
-                      borderSide: new BorderSide(color: Colors.grey),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     suffixIcon: controller.productBrandController.text.isNotEmpty
@@ -613,11 +593,11 @@ class AddProductScreen extends GetView<AddProductController> {
                             onPressed: () {
                               controller.removeBrand();
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.clear,
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                   ),
                   onTap: () {
                     List<VMBrand> tempData = List<VMBrand>.empty(growable: true);
@@ -625,27 +605,27 @@ class AddProductScreen extends GetView<AddProductController> {
                     Get.defaultDialog(
                         title: LocaleKeys.screen_add_product_brand_selection.tr,
                         content: GetBuilder(
-                          init: this.controller,
+                          init: controller,
                           builder: (dynamic _) {
-                            return Container(
+                            return SizedBox(
                               width: Get.width,
                               child: Column(
                                 children: [
                                   Row(
                                     children: [
                                       Expanded(
-                                        child: Container(
+                                        child: SizedBox(
                                           height: 40.0,
                                           child: TextField(
                                             controller: controller.searchBrandController,
                                             decoration: InputDecoration(
                                               labelText: LocaleKeys.general_search.tr,
                                               alignLabelWithHint: true,
-                                              border: new OutlineInputBorder(
-                                                borderSide: new BorderSide(color: Colors.grey),
+                                              border: OutlineInputBorder(
+                                                borderSide: const BorderSide(color: Colors.grey),
                                                 borderRadius: BorderRadius.circular(8.0),
                                               ),
-                                              contentPadding: EdgeInsets.all(8.0),
+                                              contentPadding: const EdgeInsets.all(8.0),
                                             ),
                                             onChanged: (value) async {
                                               await controller.startApiGetBrands(keyword: value);
@@ -657,27 +637,24 @@ class AddProductScreen extends GetView<AddProductController> {
                                         ),
                                       ),
                                       Visibility(
-                                        visible:
-                                            tempData.length == 0 && controller.searchBrandController.text.isNotEmpty,
-                                        child: Container(
-                                          child: IconButton(
-                                            icon: Icon(Icons.add),
-                                            onPressed: () {
-                                              VMBrand brand =
-                                                  VMBrand(Id: null, Name: controller.searchBrandController.text);
-                                              controller.selectedBrand.value = brand;
-                                              controller.productBrandController.text = brand.Name!;
-                                              controller.searchBrandController.text = "";
-                                              controller.unFocus();
-                                              Get.back();
-                                            },
-                                          ),
+                                        visible: tempData.isEmpty && controller.searchBrandController.text.isNotEmpty,
+                                        child: IconButton(
+                                          icon: const Icon(Icons.add),
+                                          onPressed: () {
+                                            VMBrand brand =
+                                                VMBrand(id: null, name: controller.searchBrandController.text);
+                                            controller.selectedBrand.value = brand;
+                                            controller.productBrandController.text = brand.name!;
+                                            controller.searchBrandController.text = "";
+                                            controller.unFocus();
+                                            Get.back();
+                                          },
                                         ),
                                       )
                                     ],
                                   ),
-                                  Divider(),
-                                  Container(
+                                  const Divider(),
+                                  SizedBox(
                                     width: Get.width,
                                     height: 200.0,
                                     child: Stack(
@@ -693,18 +670,18 @@ class AddProductScreen extends GetView<AddProductController> {
                                                   onTap: () {
                                                     controller.searchBrandController.text = "";
                                                     controller.selectedBrand.value = item;
-                                                    controller.productBrandController.text = item.Name!;
+                                                    controller.productBrandController.text = item.name!;
                                                     controller.unFocus();
                                                     Get.back();
                                                   },
                                                   child: Container(
-                                                    padding: EdgeInsets.all(8.0),
+                                                    padding: const EdgeInsets.all(8.0),
                                                     child: Center(
-                                                      child: Text(item.Name!),
+                                                      child: Text(item.name!),
                                                     ),
                                                   ),
                                                 ),
-                                                Divider(),
+                                                const Divider(),
                                               ],
                                             );
                                           },
@@ -712,7 +689,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                         controller.isBrandLoading.value
                                             ? Container(
                                                 height: 200.0,
-                                                color: Color.fromARGB(150, 0, 0, 0),
+                                                color: const Color.fromARGB(150, 0, 0, 0),
                                                 child: SpinKitCircle(
                                                   itemBuilder: (BuildContext context, int index) {
                                                     return DecoratedBox(
@@ -734,7 +711,7 @@ class AddProductScreen extends GetView<AddProductController> {
                           },
                         ),
                         actions: [
-                          Container(
+                          SizedBox(
                             width: Get.width,
                             child: InkWell(
                               onTap: () {
@@ -743,8 +720,8 @@ class AddProductScreen extends GetView<AddProductController> {
                                 Get.back();
                               },
                               child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                child: Center(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Center(
                                   child: Text(
                                     "بستن",
                                     style: TextStyle(fontSize: 13.0),
@@ -764,7 +741,7 @@ class AddProductScreen extends GetView<AddProductController> {
           ),
           _setTitleWidget(title: LocaleKeys.screen_add_product_packaging_dimensions.tr),
           Container(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Text(
               LocaleKeys.screen_add_product_enter_number_between_x_and_x_cm.trParams(
                 {
@@ -772,7 +749,7 @@ class AddProductScreen extends GetView<AddProductController> {
                   "max": "1000",
                 },
               ),
-              style: TextStyle(fontSize: 12.0, color: Colors.blue),
+              style: const TextStyle(fontSize: 12.0, color: Colors.blue),
             ),
           ),
           TextFormField(
@@ -811,13 +788,13 @@ class AddProductScreen extends GetView<AddProductController> {
               labelText: LocaleKeys.screen_add_product_fields_name_length_cm.tr,
               hintText: "0",
               alignLabelWithHint: true,
-              border: new OutlineInputBorder(
-                borderSide: new BorderSide(color: Colors.grey),
+              border: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16.0,
           ),
           TextFormField(
@@ -857,13 +834,13 @@ class AddProductScreen extends GetView<AddProductController> {
               labelText: LocaleKeys.screen_add_product_fields_name_width_cm.tr,
               hintText: "0",
               alignLabelWithHint: true,
-              border: new OutlineInputBorder(
-                borderSide: new BorderSide(color: Colors.grey),
+              border: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16.0,
           ),
           TextFormField(
@@ -903,15 +880,15 @@ class AddProductScreen extends GetView<AddProductController> {
               labelText: LocaleKeys.screen_add_product_fields_name_height_cm.tr,
               hintText: "0",
               alignLabelWithHint: true,
-              border: new OutlineInputBorder(
-                borderSide: new BorderSide(color: Colors.grey),
+              border: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
           ),
           _setTitleWidget(title: LocaleKeys.screen_add_product_package_weight.tr),
           Container(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Text(
               "${LocaleKeys.screen_add_product_enter_number_between_x_and_x.trParams(
                 {
@@ -919,11 +896,11 @@ class AddProductScreen extends GetView<AddProductController> {
                   "max": "1000",
                 },
               )} ${LocaleKeys.screen_add_product_also_select_the_type_of_weight.tr}",
-              style: TextStyle(fontSize: 12.0, color: Colors.blue),
+              style: const TextStyle(fontSize: 12.0, color: Colors.blue),
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(16.0, 0.0, 15.0, 0.0),
+            padding: const EdgeInsets.fromLTRB(16.0, 0.0, 15.0, 0.0),
             width: Get.width,
             height: 52.0,
             decoration: BoxDecoration(
@@ -935,7 +912,7 @@ class AddProductScreen extends GetView<AddProductController> {
             ),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<int>(
-                items: [
+                items: const [
                   DropdownMenuItem<int>(
                     value: 0,
                     child: Text(
@@ -962,7 +939,7 @@ class AddProductScreen extends GetView<AddProductController> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16.0,
           ),
           TextFormField(
@@ -1002,8 +979,8 @@ class AddProductScreen extends GetView<AddProductController> {
               labelText: LocaleKeys.screen_add_product_package_weight.tr,
               hintText: "0",
               alignLabelWithHint: true,
-              border: new OutlineInputBorder(
-                borderSide: new BorderSide(color: Colors.grey),
+              border: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
@@ -1020,786 +997,760 @@ class AddProductScreen extends GetView<AddProductController> {
     return Step(
       title: Text(
         LocaleKeys.screen_add_product_registration_other_specification.tr,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 14.0,
         ),
       ),
       content: ListView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: controller.groupSpecsList.length,
         itemBuilder: (context, index) {
           var item = controller.groupSpecsList[index];
-          return Container(
-            child: Column(
-              children: [
-                ExpandablePanel(
-                  header: Container(
-                    padding: EdgeInsets.only(top: 8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            color: Colors.blueAccent,
-                          ),
-                          width: 20.0,
-                          height: 20.0,
-                        ),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        Container(
-                          child: Text(
-                            item.Name!,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  expanded: Column(
+          return Column(
+            children: [
+              ExpandablePanel(
+                header: Container(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: 8,
-                      ),
-                      TextField(
-                        controller: item.searchTextController,
-                        decoration: InputDecoration(
-                            labelText: LocaleKeys.general_search.tr,
-                            alignLabelWithHint: true,
-                            border: new OutlineInputBorder(
-                              borderSide: new BorderSide(color: Colors.green),
-                              borderRadius: BorderRadius.circular(100.0),
-                            ),
-                            contentPadding: EdgeInsets.all(8.0),
-                            prefixIcon: IconButton(
-                              onPressed: () {
-                                if (item.searchTextController!.text.isNotEmpty) {
-                                  item.searchResult!.clear();
-                                  for (var spcItem in item.Items!) {
-                                    if (spcItem.Name!.contains(item.searchTextController!.text)) {
-                                      item.searchResult!.add(spcItem);
-                                    }
-                                  }
-                                  controller.justUpdate();
-                                }
-                              },
-                              icon: Icon(Icons.search),
-                            ),
-                            suffixIcon: item.searchTextController!.text.isNotEmpty
-                                ? IconButton(
-                                    onPressed: () {
-                                      item.searchTextController!.text = "";
-                                      item.searchResult!.clear();
-                                      controller.justUpdate();
-                                    },
-                                    icon: Icon(Icons.close),
-                                  )
-                                : null),
-                        onEditingComplete: () {
-                          item.searchResult!.clear();
-                          for (var spcItem in item.Items!) {
-                            if (spcItem.Name!.contains(item.searchTextController!.text)) {
-                              item.searchResult!.add(spcItem);
-                            }
-                          }
-                          controller.justUpdate();
-                        },
-                        onChanged: (value) {
-                          if (!kIsWeb) {
-                            item.searchResult!.clear();
-                            for (var spcItem in item.Items!) {
-                              if (spcItem.Name!.contains(item.searchTextController!.text)) {
-                                item.searchResult!.add(spcItem);
-                              }
-                            }
-                            controller.justUpdate();
-                          }
-                        },
-                      ),
-                      Divider(),
                       Container(
-                        padding: EdgeInsets.only(top: 8.0),
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: item.searchResult!.isNotEmpty ? item.searchResult!.length : item.Items!.length,
-                          itemBuilder: (context, ind) {
-                            var spcItem = item.searchResult!.isNotEmpty ? item.searchResult![ind] : item.Items![ind];
-
-                            // Conditions
-                            var checkSpcItemSelectedItem =
-                                spcItem.SelectedItem != null && spcItem.SelectedItem!.Value != null;
-
-                            switch (spcItem.type) {
-                              case SpecificationType.COLOR:
-                                return Container();
-                              case SpecificationType.SELECTABLE:
-                                return Container(
-                                  child: Column(
-                                    children: [
-                                      TextField(
-                                        focusNode: spcItem.textNode,
-                                        controller: spcItem.textController,
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                          labelText: spcItem.Name,
-                                          alignLabelWithHint: true,
-                                          border: new OutlineInputBorder(
-                                            borderSide: new BorderSide(color: Colors.grey),
-                                            borderRadius: BorderRadius.circular(8.0),
-                                          ),
-                                        ),
-                                        onTap: () {
-                                          List<VMSpecValue> tempData = List<VMSpecValue>.empty(growable: true);
-
-                                          tempData.addAll(spcItem.Values!);
-
-                                          Get.defaultDialog(
-                                              title: spcItem.Name!,
-                                              content: WillPopScope(
-                                                onWillPop: () {
-                                                  spcItem.searchTextController.text = "";
-                                                  spcItem.searchTextNode.unfocus();
-                                                  Get.back();
-                                                  return Future.delayed(Duration(seconds: 0)).then((value) {
-                                                    return true;
-                                                  });
-                                                },
-                                                child: GetBuilder(
-                                                  init: this.controller,
-                                                  builder: (dynamic _) {
-                                                    return Container(
-                                                      child: Column(
-                                                        children: [
-                                                          Row(
-                                                            children: [
-                                                              Expanded(
-                                                                child: Container(
-                                                                  height: 40.0,
-                                                                  child: TextField(
-                                                                    focusNode: spcItem.searchTextNode,
-                                                                    controller: spcItem.searchTextController,
-                                                                    decoration: InputDecoration(
-                                                                      labelText: LocaleKeys.general_search.tr,
-                                                                      alignLabelWithHint: true,
-                                                                      border: new OutlineInputBorder(
-                                                                        borderSide: new BorderSide(color: Colors.grey),
-                                                                        borderRadius: BorderRadius.circular(8.0),
-                                                                      ),
-                                                                      contentPadding: EdgeInsets.all(8.0),
-                                                                    ),
-                                                                    onChanged: (value) {
-                                                                      tempData.clear();
-                                                                      if (value.isNotEmpty) {
-                                                                        spcItem.Values!.forEach((element) {
-                                                                          if (element.Title!.contains(value)) {
-                                                                            tempData.add(element);
-                                                                          }
-                                                                        });
-                                                                      } else {
-                                                                        tempData.addAll(spcItem.Values!);
-                                                                      }
-                                                                      controller.justUpdate();
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Visibility(
-                                                                visible: tempData.length == 0,
-                                                                child: Container(
-                                                                  child: IconButton(
-                                                                    icon: Icon(Icons.add),
-                                                                    onPressed: () {
-                                                                      VMSpecValue spcData = VMSpecValue(
-                                                                          Title: spcItem.searchTextController.text,
-                                                                          SpecValueId: null,
-                                                                          Value: spcItem.searchTextController.text);
-                                                                      spcItem.searchTextController.text = "";
-                                                                      spcItem.searchTextNode.unfocus();
-                                                                      spcItem.textController.text = spcData.Value!;
-                                                                      spcItem.SelectedItem = spcData;
-                                                                      Get.back();
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
-                                                          Divider(),
-                                                          Container(
-                                                            width: Get.width,
-                                                            height: 200.0,
-                                                            child: ListView.builder(
-                                                              itemCount: tempData.length,
-                                                              itemBuilder: (context, index) {
-                                                                var item = tempData[index];
-                                                                return Column(
-                                                                  children: [
-                                                                    InkWell(
-                                                                      borderRadius: BorderRadius.circular(8.0),
-                                                                      onTap: () {
-                                                                        spcItem.searchTextController.text = "";
-                                                                        spcItem.searchTextNode.unfocus();
-                                                                        spcItem.textController.text = item.Value!;
-                                                                        spcItem.SelectedItem = item;
-                                                                        Get.back();
-                                                                      },
-                                                                      child: Container(
-                                                                        padding: EdgeInsets.all(8.0),
-                                                                        child: Center(
-                                                                          child: Text(item.Title!),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    Divider(),
-                                                                  ],
-                                                                );
-                                                              },
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                              actions: [
-                                                Container(
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      spcItem.searchTextController.text = "";
-                                                      spcItem.searchTextNode.unfocus();
-                                                      Get.back();
-                                                    },
-                                                    child: Container(
-                                                      padding: EdgeInsets.all(8.0),
-                                                      child: Center(
-                                                        child: Text(
-                                                          LocaleKeys.buttons_close.tr,
-                                                          style: TextStyle(fontSize: 13.0),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ]);
-                                        },
-                                      ),
-                                      Divider(),
-                                    ],
-                                  ),
-                                );
-                              case SpecificationType.TEXT_INPUT:
-                                return Container(
-                                  child: Column(
-                                    children: [
-                                      TextField(
-                                        focusNode: spcItem.textNode,
-                                        controller: spcItem.textController,
-                                        decoration: InputDecoration(
-                                          labelText: spcItem.Name,
-                                          alignLabelWithHint: true,
-                                          border: new OutlineInputBorder(
-                                            borderSide: new BorderSide(color: Colors.grey),
-                                            borderRadius: BorderRadius.circular(8.0),
-                                          ),
-                                        ),
-                                        onChanged: (value) {
-                                          spcItem.TypedText = spcItem.textController.text;
-                                        },
-                                      ),
-                                      Divider(),
-                                    ],
-                                  ),
-                                );
-                              case SpecificationType.BOOL:
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(spcItem.Name!),
-                                    SizedBox(
-                                      height: 8.0,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8.0),
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                      child: DropdownButtonHideUnderline(
-                                        child: DropdownButton<String>(
-                                          isExpanded: true,
-                                          items: List.generate(
-                                            spcItem.Values!.length,
-                                            (indexItem) => DropdownMenuItem<String>(
-                                              value: spcItem.Values![indexItem].Value,
-                                              child: Text(
-                                                "${spcItem.Values![indexItem].Title}",
-                                              ),
-                                            ),
-                                          ),
-                                          onChanged: (String? value) async {
-                                            for (var item in spcItem.Values!) {
-                                              // Conditions
-                                              var checkItem = item.Value!.toLowerCase() == value!.toLowerCase();
-
-                                              if (checkItem) {
-                                                spcItem.SelectedItem = item;
-                                              }
-                                            }
-                                            controller.justUpdate();
-                                          },
-                                          hint: Text(
-                                            LocaleKeys.screen_add_product_specs_select.tr,
-                                          ),
-                                          onTap: () {
-                                            controller.unFocus();
-                                          },
-                                          value: checkSpcItemSelectedItem ? spcItem.SelectedItem!.Value : null,
-                                        ),
-                                      ),
-                                    ),
-                                    Divider(),
-                                  ],
-                                );
-                              case SpecificationType.NUMBER_INPUT:
-                                return Container(
-                                  child: Column(
-                                    children: [
-                                      TextField(
-                                        focusNode: spcItem.textNode,
-                                        controller: spcItem.textController,
-                                        textAlign: TextAlign.left,
-                                        keyboardType: TextInputType.numberWithOptions(decimal: true),
-                                        inputFormatters: <TextInputFormatter>[
-                                          FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,1}')),
-                                        ],
-                                        decoration: InputDecoration(
-                                          labelText: spcItem.Name,
-                                          hintText: "0",
-                                          alignLabelWithHint: true,
-                                          border: new OutlineInputBorder(
-                                            borderSide: new BorderSide(color: Colors.grey),
-                                            borderRadius: BorderRadius.circular(8.0),
-                                          ),
-                                        ),
-                                        onChanged: (value) {
-                                          spcItem.TypedText = spcItem.textController.text;
-                                        },
-                                      ),
-                                      Divider(),
-                                    ],
-                                  ),
-                                );
-                              case SpecificationType.MULTI_SELECT:
-                                return Container(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        child: MultiSelect(
-                                          autovalidate: spcItem.IsRequired!,
-                                          addedData: true,
-                                          addedDataFunction: (value) {
-                                            VMSpecValue spcData = VMSpecValue(
-                                                SpecValueId: value["value"],
-                                                Title: value["text"],
-                                                Value: value["value"],
-                                                isNew: true);
-                                            spcItem.Values!.add(spcData);
-                                            if (spcItem.SelectedItems == null) {
-                                              spcItem.SelectedItems = List<VMSpecValue>.empty(growable: true);
-                                            }
-
-                                            spcItem.SelectedItems!.add(spcData);
-                                            controller.justUpdate();
-                                          },
-                                          titleText: spcItem.Name,
-                                          validator: (value) {
-                                            if (value == null) {
-                                              return LocaleKeys.screen_add_product_specs_select_one_or_more_items.tr;
-                                            }
-                                            return null;
-                                          },
-                                          dataSource: List.generate(
-                                              spcItem.Values!.length,
-                                              (muIndex) => {
-                                                    "Title": spcItem.Values![muIndex].Title,
-                                                    "Value": spcItem.Values![muIndex].Value,
-                                                    "SpecValueId": spcItem.Values![muIndex].SpecValueId
-                                                  }).toList(),
-                                          textField: "Title",
-                                          valueField: "SpecValueId",
-                                          filterable: true,
-                                          required: spcItem.IsRequired,
-                                          initialValue: spcItem.SelectedItems != null
-                                              ? List.generate(spcItem.SelectedItems!.length,
-                                                  (muIndex) => spcItem.SelectedItems![muIndex].SpecValueId).toList()
-                                              : null,
-                                          saveButtonText: LocaleKeys.buttons_confirm.tr,
-                                          cancelButtonText: LocaleKeys.buttons_cancel.tr,
-                                          hintText: LocaleKeys.screen_add_product_specs_select_one_or_more_items.tr,
-                                          cancelButtonColor: Colors.red,
-                                          onSaved: (value) {},
-                                          open: () {
-                                            controller.unFocus();
-                                          },
-                                          change: (value) {
-                                            List<String?> tempList = List<String?>.empty(growable: true);
-                                            if (value != null) {
-                                              for (var i in value) {
-                                                tempList.add(i);
-                                              }
-                                            }
-
-                                            spcItem.SelectedItems = List<VMSpecValue>.empty(growable: true);
-
-                                            for (String? val in tempList) {
-                                              for (var item in spcItem.Values!) {
-                                                // Conditions
-                                                var checkSpecificationTypeItemId =
-                                                    val!.toLowerCase() == item.SpecValueId!.toLowerCase();
-                                                if (checkSpecificationTypeItemId) {
-                                                  spcItem.SelectedItems!.add(item);
-                                                }
-                                              }
-                                            }
-                                            controller.justUpdate();
-                                          },
-                                        ),
-                                      ),
-                                      Divider(),
-                                    ],
-                                  ),
-                                );
-                              case SpecificationType.WEIGHT:
-                                return Container(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(LocaleKeys.screen_add_product_specs_product_weight.tr),
-                                      Container(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "${LocaleKeys.screen_add_product_enter_number_between_x_and_x.trParams(
-                                            {
-                                              "min": "1",
-                                              "max": "1000",
-                                            },
-                                          )} ${LocaleKeys.screen_add_product_also_select_the_type_of_weight.tr}",
-                                          style: TextStyle(fontSize: 12.0, color: Colors.blue),
-                                        ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: Container(
-                                              padding: EdgeInsets.fromLTRB(16.0, 0.0, 15.0, 0.0),
-                                              height: 52.0,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(8.0),
-                                                border: Border.all(
-                                                  color: Colors.grey,
-                                                  width: 1.0,
-                                                ),
-                                              ),
-                                              child: DropdownButtonHideUnderline(
-                                                child: DropdownButton<int>(
-                                                  items: [
-                                                    DropdownMenuItem<int>(
-                                                      value: 0,
-                                                      child: Text(
-                                                        "گرم",
-                                                      ),
-                                                    ),
-                                                    DropdownMenuItem<int>(
-                                                      value: 1,
-                                                      child: Text(
-                                                        "کیلوگرم",
-                                                      ),
-                                                    ),
-                                                  ],
-                                                  onChanged: (int? value) {
-                                                    controller.updateProductWeightType(productWeightType: value!);
-                                                    var weight = 0;
-                                                    if (spcItem.textController.text.isNotEmpty) {
-                                                      weight = int.parse(spcItem.textController.text);
-                                                      if (value == 0 && weight > 1000) {
-                                                        weight = (weight / 1000).round();
-                                                      }
-
-                                                      if (value == 1 && weight < 1000) {
-                                                        weight = (weight * 1000);
-                                                      }
-
-                                                      spcItem.textController.text = weight.toString();
-                                                      controller.productWeightText.value = spcItem.textController.text;
-                                                    }
-                                                  },
-                                                  hint: Text(
-                                                    LocaleKeys.screen_add_product_fields_name_type_of_weight,
-                                                  ),
-                                                  value: controller.productWeightType.value,
-                                                  onTap: () {
-                                                    controller.unFocus();
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 8.0,
-                                          ),
-                                          Expanded(
-                                            child: TextFormField(
-                                              controller: spcItem.textController,
-                                              focusNode: GetPlatform.isMobile ? spcItem.textNode : null,
-                                              textAlignVertical: TextAlignVertical.center,
-                                              textAlign: TextAlign.left,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[
-                                                FilteringTextInputFormatter.digitsOnly,
-                                                LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                              ],
-                                              readOnly: controller.productWeightType.value == null ? true : false,
-                                              decoration: InputDecoration(
-                                                labelText: LocaleKeys.screen_add_product_specs_product_weight.tr,
-                                                hintText: "0",
-                                                alignLabelWithHint: true,
-                                                border: new OutlineInputBorder(
-                                                  borderSide: new BorderSide(color: Colors.grey),
-                                                  borderRadius: BorderRadius.circular(8.0),
-                                                ),
-                                              ),
-                                              onTap: () {
-                                                if (controller.productWeightType.value == null) {
-                                                  ShowMessage.getSnackBar(
-                                                    message: LocaleKeys
-                                                        .screen_add_product_fields_error_first_determine_the_type_of_weight
-                                                        .tr,
-                                                    type: MessageType.WARNING,
-                                                  );
-                                                }
-                                              },
-                                              onChanged: (value) {
-                                                controller.justUpdate();
-                                                if (spcItem.textController.text.isNotEmpty) {
-                                                  var weight = int.parse(spcItem.textController.text);
-                                                  weight = controller.productWeightType == 0 ? weight : weight * 1000;
-                                                  spcItem.TypedText = weight.toString();
-                                                } else {
-                                                  spcItem.TypedText = "";
-                                                }
-
-                                                controller.productWeightText.value = spcItem.TypedText ?? "";
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Divider(),
-                                    ],
-                                  ),
-                                );
-                              case SpecificationType.DIMENSION:
-                                return Container(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(LocaleKeys.screen_add_product_specs_product_dimension.tr),
-                                      Container(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Text(
-                                          LocaleKeys.screen_add_product_enter_number_between_x_and_x_cm.trParams(
-                                            {
-                                              "min": "1",
-                                              "max": "1000",
-                                            },
-                                          ),
-                                          style: TextStyle(fontSize: 12.0, color: Colors.blue),
-                                        ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: TextField(
-                                              focusNode: controller.productLengthNode,
-                                              controller: controller.productLengthController,
-                                              textAlign: TextAlign.left,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[
-                                                FilteringTextInputFormatter.digitsOnly,
-                                                LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                              ],
-                                              decoration: InputDecoration(
-                                                labelText: LocaleKeys.screen_add_product_fields_name_length_cm.tr,
-                                                hintText: "0",
-                                                alignLabelWithHint: true,
-                                                border: new OutlineInputBorder(
-                                                  borderSide: new BorderSide(color: Colors.grey),
-                                                  borderRadius: BorderRadius.circular(8.0),
-                                                ),
-                                              ),
-                                              onChanged: (value) {
-                                                var length = controller.productLengthController.text.isNotEmpty
-                                                    ? controller.productLengthController.text
-                                                    : "";
-                                                var width = controller.productWidthController.text.isNotEmpty
-                                                    ? controller.productWidthController.text
-                                                    : "";
-                                                var height = controller.productHeightController.text.isNotEmpty
-                                                    ? controller.productHeightController.text
-                                                    : "";
-
-                                                var lengthString = length.isNotEmpty ? length : "";
-                                                var widthString = width.isNotEmpty
-                                                    ? length.isNotEmpty
-                                                        ? "x$width"
-                                                        : "$width"
-                                                    : "";
-                                                var heightString = height.isNotEmpty
-                                                    ? length.isNotEmpty || width.isNotEmpty
-                                                        ? "x$height"
-                                                        : "$height"
-                                                    : "";
-
-                                                spcItem.TypedText = "$lengthString$widthString$heightString";
-                                              },
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 8.0,
-                                          ),
-                                          Expanded(
-                                            child: TextField(
-                                              focusNode: controller.productWidthNode,
-                                              controller: controller.productWidthController,
-                                              textAlign: TextAlign.left,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[
-                                                FilteringTextInputFormatter.digitsOnly,
-                                                LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                              ],
-                                              decoration: InputDecoration(
-                                                labelText: LocaleKeys.screen_add_product_fields_name_width_cm.tr,
-                                                hintText: "0",
-                                                alignLabelWithHint: true,
-                                                border: new OutlineInputBorder(
-                                                  borderSide: new BorderSide(color: Colors.grey),
-                                                  borderRadius: BorderRadius.circular(8.0),
-                                                ),
-                                              ),
-                                              onChanged: (value) {
-                                                var length = controller.productLengthController.text.isNotEmpty
-                                                    ? controller.productLengthController.text
-                                                    : "";
-                                                var width = controller.productWidthController.text.isNotEmpty
-                                                    ? controller.productWidthController.text
-                                                    : "";
-                                                var height = controller.productHeightController.text.isNotEmpty
-                                                    ? controller.productHeightController.text
-                                                    : "";
-
-                                                var lengthString = length.isNotEmpty ? length : "";
-                                                var widthString = width.isNotEmpty
-                                                    ? length.isNotEmpty
-                                                        ? "x$width"
-                                                        : "$width"
-                                                    : "";
-                                                var heightString = height.isNotEmpty
-                                                    ? length.isNotEmpty || width.isNotEmpty
-                                                        ? "x$height"
-                                                        : "$height"
-                                                    : "";
-
-                                                spcItem.TypedText = "$lengthString$widthString$heightString";
-                                              },
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 8.0,
-                                          ),
-                                          Expanded(
-                                            child: TextField(
-                                              focusNode: controller.productHeightNode,
-                                              controller: controller.productHeightController,
-                                              textAlign: TextAlign.left,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[
-                                                FilteringTextInputFormatter.digitsOnly,
-                                                LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-                                              ],
-                                              decoration: InputDecoration(
-                                                labelText: LocaleKeys.screen_add_product_fields_name_height_cm.tr,
-                                                hintText: "0",
-                                                alignLabelWithHint: true,
-                                                border: new OutlineInputBorder(
-                                                  borderSide: new BorderSide(color: Colors.grey),
-                                                  borderRadius: BorderRadius.circular(8.0),
-                                                ),
-                                              ),
-                                              onChanged: (value) {
-                                                var length = controller.productLengthController.text.isNotEmpty
-                                                    ? controller.productLengthController.text
-                                                    : "";
-                                                var width = controller.productWidthController.text.isNotEmpty
-                                                    ? controller.productWidthController.text
-                                                    : "";
-                                                var height = controller.productHeightController.text.isNotEmpty
-                                                    ? controller.productHeightController.text
-                                                    : "";
-
-                                                var lengthString = length.isNotEmpty ? length : "";
-                                                var widthString = width.isNotEmpty
-                                                    ? length.isNotEmpty
-                                                        ? "x$width"
-                                                        : "$width"
-                                                    : "";
-                                                var heightString = height.isNotEmpty
-                                                    ? length.isNotEmpty || width.isNotEmpty
-                                                        ? "x$height"
-                                                        : "$height"
-                                                    : "";
-
-                                                spcItem.TypedText = "$lengthString$widthString$heightString";
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Divider(),
-                                    ],
-                                  ),
-                                );
-                              case SpecificationType.FILE_DOC:
-                                return Container();
-                              case SpecificationType.FILE_PIC:
-                                return Container();
-                              default:
-                                return Container();
-                            }
-                          },
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.blueAccent,
+                        ),
+                        width: 20.0,
+                        height: 20.0,
+                      ),
+                      const SizedBox(
+                        width: 8.0,
+                      ),
+                      Text(
+                        item.name!,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
                 ),
-                Divider(
-                  color: Colors.blue,
-                  thickness: 2.0,
-                )
-              ],
-            ),
+                expanded: Column(
+                  children: [
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    TextField(
+                      controller: item.searchTextController,
+                      decoration: InputDecoration(
+                          labelText: LocaleKeys.general_search.tr,
+                          alignLabelWithHint: true,
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.green),
+                            borderRadius: BorderRadius.circular(100.0),
+                          ),
+                          contentPadding: const EdgeInsets.all(8.0),
+                          prefixIcon: IconButton(
+                            onPressed: () {
+                              if (item.searchTextController!.text.isNotEmpty) {
+                                item.searchResult!.clear();
+                                for (var spcItem in item.items!) {
+                                  if (spcItem.name!.contains(item.searchTextController!.text)) {
+                                    item.searchResult!.add(spcItem);
+                                  }
+                                }
+                                controller.justUpdate();
+                              }
+                            },
+                            icon: const Icon(Icons.search),
+                          ),
+                          suffixIcon: item.searchTextController!.text.isNotEmpty
+                              ? IconButton(
+                                  onPressed: () {
+                                    item.searchTextController!.text = "";
+                                    item.searchResult!.clear();
+                                    controller.justUpdate();
+                                  },
+                                  icon: const Icon(Icons.close),
+                                )
+                              : null),
+                      onEditingComplete: () {
+                        item.searchResult!.clear();
+                        for (var spcItem in item.items!) {
+                          if (spcItem.name!.contains(item.searchTextController!.text)) {
+                            item.searchResult!.add(spcItem);
+                          }
+                        }
+                        controller.justUpdate();
+                      },
+                      onChanged: (value) {
+                        if (!kIsWeb) {
+                          item.searchResult!.clear();
+                          for (var spcItem in item.items!) {
+                            if (spcItem.name!.contains(item.searchTextController!.text)) {
+                              item.searchResult!.add(spcItem);
+                            }
+                          }
+                          controller.justUpdate();
+                        }
+                      },
+                    ),
+                    const Divider(),
+                    Container(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: item.searchResult!.isNotEmpty ? item.searchResult!.length : item.items!.length,
+                        itemBuilder: (context, ind) {
+                          var spcItem = item.searchResult!.isNotEmpty ? item.searchResult![ind] : item.items![ind];
+
+                          // Conditions
+                          var checkSpcItemSelectedItem =
+                              spcItem.selectedItem != null && spcItem.selectedItem!.value != null;
+
+                          switch (spcItem.type) {
+                            case SpecificationType.COLOR:
+                              return Container();
+                            case SpecificationType.SELECTABLE:
+                              return Column(
+                                children: [
+                                  TextField(
+                                    focusNode: spcItem.textNode,
+                                    controller: spcItem.textController,
+                                    readOnly: true,
+                                    decoration: InputDecoration(
+                                      labelText: spcItem.name,
+                                      alignLabelWithHint: true,
+                                      border: OutlineInputBorder(
+                                        borderSide: const BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      List<VMSpecValue> tempData = List<VMSpecValue>.empty(growable: true);
+
+                                      tempData.addAll(spcItem.values!);
+
+                                      Get.defaultDialog(
+                                          title: spcItem.name!,
+                                          content: WillPopScope(
+                                            onWillPop: () {
+                                              spcItem.searchTextController.text = "";
+                                              spcItem.searchTextNode.unfocus();
+                                              Get.back();
+                                              return Future.delayed(const Duration(seconds: 0)).then((value) {
+                                                return true;
+                                              });
+                                            },
+                                            child: GetBuilder(
+                                              init: controller,
+                                              builder: (dynamic _) {
+                                                return Column(
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Expanded(
+                                                          child: SizedBox(
+                                                            height: 40.0,
+                                                            child: TextField(
+                                                              focusNode: spcItem.searchTextNode,
+                                                              controller: spcItem.searchTextController,
+                                                              decoration: InputDecoration(
+                                                                labelText: LocaleKeys.general_search.tr,
+                                                                alignLabelWithHint: true,
+                                                                border: OutlineInputBorder(
+                                                                  borderSide: const BorderSide(color: Colors.grey),
+                                                                  borderRadius: BorderRadius.circular(8.0),
+                                                                ),
+                                                                contentPadding: const EdgeInsets.all(8.0),
+                                                              ),
+                                                              onChanged: (value) {
+                                                                tempData.clear();
+                                                                if (value.isNotEmpty) {
+                                                                  for (var element in spcItem.values!) {
+                                                                    if (element.title!.contains(value)) {
+                                                                      tempData.add(element);
+                                                                    }
+                                                                  }
+                                                                } else {
+                                                                  tempData.addAll(spcItem.values!);
+                                                                }
+                                                                controller.justUpdate();
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Visibility(
+                                                          visible: tempData.isEmpty,
+                                                          child: IconButton(
+                                                            icon: const Icon(Icons.add),
+                                                            onPressed: () {
+                                                              VMSpecValue spcData = VMSpecValue(
+                                                                  title: spcItem.searchTextController.text,
+                                                                  specValueId: null,
+                                                                  value: spcItem.searchTextController.text);
+                                                              spcItem.searchTextController.text = "";
+                                                              spcItem.searchTextNode.unfocus();
+                                                              spcItem.textController.text = spcData.value!;
+                                                              spcItem.selectedItem = spcData;
+                                                              Get.back();
+                                                            },
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    const Divider(),
+                                                    SizedBox(
+                                                      width: Get.width,
+                                                      height: 200.0,
+                                                      child: ListView.builder(
+                                                        itemCount: tempData.length,
+                                                        itemBuilder: (context, index) {
+                                                          var item = tempData[index];
+                                                          return Column(
+                                                            children: [
+                                                              InkWell(
+                                                                borderRadius: BorderRadius.circular(8.0),
+                                                                onTap: () {
+                                                                  spcItem.searchTextController.text = "";
+                                                                  spcItem.searchTextNode.unfocus();
+                                                                  spcItem.textController.text = item.value!;
+                                                                  spcItem.selectedItem = item;
+                                                                  Get.back();
+                                                                },
+                                                                child: Container(
+                                                                  padding: const EdgeInsets.all(8.0),
+                                                                  child: Center(
+                                                                    child: Text(item.title!),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              const Divider(),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                          actions: [
+                                            InkWell(
+                                              onTap: () {
+                                                spcItem.searchTextController.text = "";
+                                                spcItem.searchTextNode.unfocus();
+                                                Get.back();
+                                              },
+                                              child: Container(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Center(
+                                                  child: Text(
+                                                    LocaleKeys.buttons_close.tr,
+                                                    style: const TextStyle(fontSize: 13.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ]);
+                                    },
+                                  ),
+                                  const Divider(),
+                                ],
+                              );
+                            case SpecificationType.TEXT_INPUT:
+                              return Column(
+                                children: [
+                                  TextField(
+                                    focusNode: spcItem.textNode,
+                                    controller: spcItem.textController,
+                                    decoration: InputDecoration(
+                                      labelText: spcItem.name,
+                                      alignLabelWithHint: true,
+                                      border: OutlineInputBorder(
+                                        borderSide: const BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                    onChanged: (value) {
+                                      spcItem.typedText = spcItem.textController.text;
+                                    },
+                                  ),
+                                  const Divider(),
+                                ],
+                              );
+                            case SpecificationType.BOOL:
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(spcItem.name!),
+                                  const SizedBox(
+                                    height: 8.0,
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton<String>(
+                                        isExpanded: true,
+                                        items: List.generate(
+                                          spcItem.values!.length,
+                                          (indexItem) => DropdownMenuItem<String>(
+                                            value: spcItem.values![indexItem].value,
+                                            child: Text(
+                                              "${spcItem.values![indexItem].title}",
+                                            ),
+                                          ),
+                                        ),
+                                        onChanged: (String? value) async {
+                                          for (var item in spcItem.values!) {
+                                            // Conditions
+                                            var checkItem = item.value!.toLowerCase() == value!.toLowerCase();
+
+                                            if (checkItem) {
+                                              spcItem.selectedItem = item;
+                                            }
+                                          }
+                                          controller.justUpdate();
+                                        },
+                                        hint: Text(
+                                          LocaleKeys.screen_add_product_specs_select.tr,
+                                        ),
+                                        onTap: () {
+                                          controller.unFocus();
+                                        },
+                                        value: checkSpcItemSelectedItem ? spcItem.selectedItem!.value : null,
+                                      ),
+                                    ),
+                                  ),
+                                  const Divider(),
+                                ],
+                              );
+                            case SpecificationType.NUMBER_INPUT:
+                              return Column(
+                                children: [
+                                  TextField(
+                                    focusNode: spcItem.textNode,
+                                    controller: spcItem.textController,
+                                    textAlign: TextAlign.left,
+                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,1}')),
+                                    ],
+                                    decoration: InputDecoration(
+                                      labelText: spcItem.name,
+                                      hintText: "0",
+                                      alignLabelWithHint: true,
+                                      border: OutlineInputBorder(
+                                        borderSide: const BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                    onChanged: (value) {
+                                      spcItem.typedText = spcItem.textController.text;
+                                    },
+                                  ),
+                                  const Divider(),
+                                ],
+                              );
+                            case SpecificationType.MULTI_SELECT:
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  MultiSelect(
+                                    autovalidate: spcItem.isRequired!,
+                                    addedData: true,
+                                    addedDataFunction: (value) {
+                                      VMSpecValue spcData = VMSpecValue(
+                                          specValueId: value["value"],
+                                          title: value["text"],
+                                          value: value["value"],
+                                          isNew: true);
+                                      spcItem.values!.add(spcData);
+                                      spcItem.selectedItems ??= List<VMSpecValue>.empty(growable: true);
+
+                                      spcItem.selectedItems!.add(spcData);
+                                      controller.justUpdate();
+                                    },
+                                    titleText: spcItem.name,
+                                    validator: (value) {
+                                      if (value == null) {
+                                        return LocaleKeys.screen_add_product_specs_select_one_or_more_items.tr;
+                                      }
+                                      return null;
+                                    },
+                                    dataSource: List.generate(
+                                        spcItem.values!.length,
+                                        (muIndex) => {
+                                              "Title": spcItem.values![muIndex].title,
+                                              "Value": spcItem.values![muIndex].value,
+                                              "SpecValueId": spcItem.values![muIndex].specValueId
+                                            }).toList(),
+                                    textField: "Title",
+                                    valueField: "SpecValueId",
+                                    filterable: true,
+                                    required: spcItem.isRequired,
+                                    initialValue: spcItem.selectedItems != null
+                                        ? List.generate(spcItem.selectedItems!.length,
+                                            (muIndex) => spcItem.selectedItems![muIndex].specValueId).toList()
+                                        : null,
+                                    saveButtonText: LocaleKeys.buttons_confirm.tr,
+                                    cancelButtonText: LocaleKeys.buttons_cancel.tr,
+                                    hintText: LocaleKeys.screen_add_product_specs_select_one_or_more_items.tr,
+                                    cancelButtonColor: Colors.red,
+                                    onSaved: (value) {},
+                                    open: () {
+                                      controller.unFocus();
+                                    },
+                                    change: (value) {
+                                      List<String?> tempList = List<String?>.empty(growable: true);
+                                      if (value != null) {
+                                        for (var i in value) {
+                                          tempList.add(i);
+                                        }
+                                      }
+
+                                      spcItem.selectedItems = List<VMSpecValue>.empty(growable: true);
+
+                                      for (String? val in tempList) {
+                                        for (var item in spcItem.values!) {
+                                          // Conditions
+                                          var checkSpecificationTypeItemId =
+                                              val!.toLowerCase() == item.specValueId!.toLowerCase();
+                                          if (checkSpecificationTypeItemId) {
+                                            spcItem.selectedItems!.add(item);
+                                          }
+                                        }
+                                      }
+                                      controller.justUpdate();
+                                    },
+                                  ),
+                                  const Divider(),
+                                ],
+                              );
+                            case SpecificationType.WEIGHT:
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(LocaleKeys.screen_add_product_specs_product_weight.tr),
+                                  Container(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "${LocaleKeys.screen_add_product_enter_number_between_x_and_x.trParams(
+                                        {
+                                          "min": "1",
+                                          "max": "1000",
+                                        },
+                                      )} ${LocaleKeys.screen_add_product_also_select_the_type_of_weight.tr}",
+                                      style: const TextStyle(fontSize: 12.0, color: Colors.blue),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          padding: const EdgeInsets.fromLTRB(16.0, 0.0, 15.0, 0.0),
+                                          height: 52.0,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(8.0),
+                                            border: Border.all(
+                                              color: Colors.grey,
+                                              width: 1.0,
+                                            ),
+                                          ),
+                                          child: DropdownButtonHideUnderline(
+                                            child: DropdownButton<int>(
+                                              items: const [
+                                                DropdownMenuItem<int>(
+                                                  value: 0,
+                                                  child: Text(
+                                                    "گرم",
+                                                  ),
+                                                ),
+                                                DropdownMenuItem<int>(
+                                                  value: 1,
+                                                  child: Text(
+                                                    "کیلوگرم",
+                                                  ),
+                                                ),
+                                              ],
+                                              onChanged: (int? value) {
+                                                controller.updateProductWeightType(productWeightType: value!);
+                                                var weight = 0;
+                                                if (spcItem.textController.text.isNotEmpty) {
+                                                  weight = int.parse(spcItem.textController.text);
+                                                  if (value == 0 && weight > 1000) {
+                                                    weight = (weight / 1000).round();
+                                                  }
+
+                                                  if (value == 1 && weight < 1000) {
+                                                    weight = (weight * 1000);
+                                                  }
+
+                                                  spcItem.textController.text = weight.toString();
+                                                  controller.productWeightText.value = spcItem.textController.text;
+                                                }
+                                              },
+                                              hint: const Text(
+                                                LocaleKeys.screen_add_product_fields_name_type_of_weight,
+                                              ),
+                                              value: controller.productWeightType.value,
+                                              onTap: () {
+                                                controller.unFocus();
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 8.0,
+                                      ),
+                                      Expanded(
+                                        child: TextFormField(
+                                          controller: spcItem.textController,
+                                          focusNode: GetPlatform.isMobile ? spcItem.textNode : null,
+                                          textAlignVertical: TextAlignVertical.center,
+                                          textAlign: TextAlign.left,
+                                          keyboardType: TextInputType.number,
+                                          inputFormatters: <TextInputFormatter>[
+                                            FilteringTextInputFormatter.digitsOnly,
+                                            LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                          ],
+                                          readOnly: controller.productWeightType.value == null ? true : false,
+                                          decoration: InputDecoration(
+                                            labelText: LocaleKeys.screen_add_product_specs_product_weight.tr,
+                                            hintText: "0",
+                                            alignLabelWithHint: true,
+                                            border: OutlineInputBorder(
+                                              borderSide: const BorderSide(color: Colors.grey),
+                                              borderRadius: BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            if (controller.productWeightType.value == null) {
+                                              ShowMessage.getSnackBar(
+                                                message: LocaleKeys
+                                                    .screen_add_product_fields_error_first_determine_the_type_of_weight
+                                                    .tr,
+                                                type: MessageType.WARNING,
+                                              );
+                                            }
+                                          },
+                                          onChanged: (value) {
+                                            controller.justUpdate();
+                                            if (spcItem.textController.text.isNotEmpty) {
+                                              var weight = int.parse(spcItem.textController.text);
+                                              weight = controller.productWeightType == 0 ? weight : weight * 1000;
+                                              spcItem.typedText = weight.toString();
+                                            } else {
+                                              spcItem.typedText = "";
+                                            }
+
+                                            controller.productWeightText.value = spcItem.typedText ?? "";
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(),
+                                ],
+                              );
+                            case SpecificationType.DIMENSION:
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(LocaleKeys.screen_add_product_specs_product_dimension.tr),
+                                  Container(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      LocaleKeys.screen_add_product_enter_number_between_x_and_x_cm.trParams(
+                                        {
+                                          "min": "1",
+                                          "max": "1000",
+                                        },
+                                      ),
+                                      style: const TextStyle(fontSize: 12.0, color: Colors.blue),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: TextField(
+                                          focusNode: controller.productLengthNode,
+                                          controller: controller.productLengthController,
+                                          textAlign: TextAlign.left,
+                                          keyboardType: TextInputType.number,
+                                          inputFormatters: <TextInputFormatter>[
+                                            FilteringTextInputFormatter.digitsOnly,
+                                            LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                          ],
+                                          decoration: InputDecoration(
+                                            labelText: LocaleKeys.screen_add_product_fields_name_length_cm.tr,
+                                            hintText: "0",
+                                            alignLabelWithHint: true,
+                                            border: OutlineInputBorder(
+                                              borderSide: const BorderSide(color: Colors.grey),
+                                              borderRadius: BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                          onChanged: (value) {
+                                            var length = controller.productLengthController.text.isNotEmpty
+                                                ? controller.productLengthController.text
+                                                : "";
+                                            var width = controller.productWidthController.text.isNotEmpty
+                                                ? controller.productWidthController.text
+                                                : "";
+                                            var height = controller.productHeightController.text.isNotEmpty
+                                                ? controller.productHeightController.text
+                                                : "";
+
+                                            var lengthString = length.isNotEmpty ? length : "";
+                                            var widthString = width.isNotEmpty
+                                                ? length.isNotEmpty
+                                                    ? "x$width"
+                                                    : width
+                                                : "";
+                                            var heightString = height.isNotEmpty
+                                                ? length.isNotEmpty || width.isNotEmpty
+                                                    ? "x$height"
+                                                    : height
+                                                : "";
+
+                                            spcItem.typedText = "$lengthString$widthString$heightString";
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 8.0,
+                                      ),
+                                      Expanded(
+                                        child: TextField(
+                                          focusNode: controller.productWidthNode,
+                                          controller: controller.productWidthController,
+                                          textAlign: TextAlign.left,
+                                          keyboardType: TextInputType.number,
+                                          inputFormatters: <TextInputFormatter>[
+                                            FilteringTextInputFormatter.digitsOnly,
+                                            LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                          ],
+                                          decoration: InputDecoration(
+                                            labelText: LocaleKeys.screen_add_product_fields_name_width_cm.tr,
+                                            hintText: "0",
+                                            alignLabelWithHint: true,
+                                            border: OutlineInputBorder(
+                                              borderSide: const BorderSide(color: Colors.grey),
+                                              borderRadius: BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                          onChanged: (value) {
+                                            var length = controller.productLengthController.text.isNotEmpty
+                                                ? controller.productLengthController.text
+                                                : "";
+                                            var width = controller.productWidthController.text.isNotEmpty
+                                                ? controller.productWidthController.text
+                                                : "";
+                                            var height = controller.productHeightController.text.isNotEmpty
+                                                ? controller.productHeightController.text
+                                                : "";
+
+                                            var lengthString = length.isNotEmpty ? length : "";
+                                            var widthString = width.isNotEmpty
+                                                ? length.isNotEmpty
+                                                    ? "x$width"
+                                                    : width
+                                                : "";
+                                            var heightString = height.isNotEmpty
+                                                ? length.isNotEmpty || width.isNotEmpty
+                                                    ? "x$height"
+                                                    : height
+                                                : "";
+
+                                            spcItem.typedText = "$lengthString$widthString$heightString";
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 8.0,
+                                      ),
+                                      Expanded(
+                                        child: TextField(
+                                          focusNode: controller.productHeightNode,
+                                          controller: controller.productHeightController,
+                                          textAlign: TextAlign.left,
+                                          keyboardType: TextInputType.number,
+                                          inputFormatters: <TextInputFormatter>[
+                                            FilteringTextInputFormatter.digitsOnly,
+                                            LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
+                                          ],
+                                          decoration: InputDecoration(
+                                            labelText: LocaleKeys.screen_add_product_fields_name_height_cm.tr,
+                                            hintText: "0",
+                                            alignLabelWithHint: true,
+                                            border: OutlineInputBorder(
+                                              borderSide: const BorderSide(color: Colors.grey),
+                                              borderRadius: BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                          onChanged: (value) {
+                                            var length = controller.productLengthController.text.isNotEmpty
+                                                ? controller.productLengthController.text
+                                                : "";
+                                            var width = controller.productWidthController.text.isNotEmpty
+                                                ? controller.productWidthController.text
+                                                : "";
+                                            var height = controller.productHeightController.text.isNotEmpty
+                                                ? controller.productHeightController.text
+                                                : "";
+
+                                            var lengthString = length.isNotEmpty ? length : "";
+                                            var widthString = width.isNotEmpty
+                                                ? length.isNotEmpty
+                                                    ? "x$width"
+                                                    : width
+                                                : "";
+                                            var heightString = height.isNotEmpty
+                                                ? length.isNotEmpty || width.isNotEmpty
+                                                    ? "x$height"
+                                                    : height
+                                                : "";
+
+                                            spcItem.typedText = "$lengthString$widthString$heightString";
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(),
+                                ],
+                              );
+                            case SpecificationType.FILE_DOC:
+                              return Container();
+                            case SpecificationType.FILE_PIC:
+                              return Container();
+                            default:
+                              return Container();
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(
+                color: Colors.blue,
+                thickness: 2.0,
+              )
+            ],
           );
         },
       ),

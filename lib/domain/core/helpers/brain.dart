@@ -10,29 +10,29 @@ import 'package:hojre_shop_app/infrastructure/dal/services/database/storage_serv
 import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 
 class Brain {
-  static String _baseDomain = "http://localhost:8000";
-  static VMToken _token = const VMToken();
-  static VMAccount _account = VMAccount();
-  static String _cityID = "";
-  static String _addressID = "";
-  static String _appVersion = "";
-  static String _appBuildNumber = "";
-  static String _deviceID = "";
-  static String _playerID = "";
-  static String _platform = "";
-  static String _os = "";
-  static late StorageService _storageService;
-  static late Dio _dio;
-  static bool _showBottomPanel = false;
-  static String _appTheme = "LIGHT";
-  static String _appName = "";
-  static String _packageName = "";
-  static String _application = "tech.hadish.shop";
-  static Map<String, dynamic> _deviceData = {};
-  static String _deviceId = "";
+  static String baseDomain = "http://localhost:8000";
+  static VMToken token = const VMToken();
+  static VMAccount account = VMAccount();
+  static String cityID = "";
+  static String addressID = "";
+  static String appVersion = "";
+  static String appBuildNumber = "";
+  static String deviceID = "";
+  static String playerID = "";
+  static String platform = "";
+  static String os = "";
+  static late StorageService storageService;
+  static late Dio dio;
+  static bool showBottomPanel = false;
+  static String appTheme = "LIGHT";
+  static String appName = "";
+  static String packageName = "";
+  static String application = "tech.hadish.shop";
+  static Map<String, dynamic> deviceData = {};
+  static String deviceId = "";
 
   static checkUser() {
-    if ((Brain.account.UserId ?? "").isNotEmpty && (Brain.token.AccessToken ?? "").isNotEmpty) {
+    if ((Brain.account.userId ?? "").isNotEmpty && (Brain.token.accessToken ?? "").isNotEmpty) {
       return true;
     }
     return false;
@@ -151,125 +151,5 @@ class Brain {
       'computerName': data.computerName,
       'systemMemoryInMegabytes': data.systemMemoryInMegabytes,
     };
-  }
-
-  static bool get showBottomPanel => _showBottomPanel;
-
-  static set showBottomPanel(bool value) {
-    _showBottomPanel = value;
-  }
-
-  static String get baseDomain => _baseDomain;
-
-  static set baseDomain(String value) {
-    _baseDomain = value;
-  }
-
-  static VMToken get token => _token;
-
-  static set token(VMToken value) {
-    _token = value;
-  }
-
-  static String get cityID => _cityID;
-
-  static set cityID(String value) {
-    _cityID = value;
-  }
-
-  static String get addressID => _addressID;
-
-  static set addressID(String value) {
-    _addressID = value;
-  }
-
-  static String get appVersion => _appVersion;
-
-  static set appVersion(String value) {
-    _appVersion = value;
-  }
-
-  static String get playerID => _playerID;
-
-  static set playerID(String value) {
-    _playerID = value;
-  }
-
-  static String get deviceID => _deviceID;
-
-  static set deviceID(String value) {
-    _deviceID = value;
-  }
-
-  static String get appBuildNumber => _appBuildNumber;
-
-  static set appBuildNumber(String value) {
-    _appBuildNumber = value;
-  }
-
-  static String get platform => _platform;
-
-  static set platform(String value) {
-    _platform = value;
-  }
-
-  static String get os => _os;
-
-  static set os(String value) {
-    _os = value;
-  }
-
-  static StorageService get storageService => _storageService;
-
-  static set storageService(StorageService value) {
-    _storageService = value;
-  }
-
-  static Dio get dio => _dio;
-
-  static set dio(Dio value) {
-    _dio = value;
-  }
-
-  static VMAccount get account => _account;
-
-  static set account(VMAccount value) {
-    _account = value;
-  }
-
-  static String get appTheme => _appTheme;
-
-  static set appTheme(String value) {
-    _appTheme = value;
-  }
-
-  static String get appName => _appName;
-
-  static set appName(String value) {
-    _appName = value;
-  }
-
-  static String get application => _application;
-
-  static set application(String value) {
-    _application = value;
-  }
-
-  static String get packageName => _packageName;
-
-  static set packageName(String value) {
-    _packageName = value;
-  }
-
-  static Map<String, dynamic> get deviceData => _deviceData;
-
-  static set deviceData(Map<String, dynamic> value) {
-    _deviceData = value;
-  }
-
-  static String get deviceId => _deviceId;
-
-  static set deviceId(String value) {
-    _deviceId = value;
   }
 }

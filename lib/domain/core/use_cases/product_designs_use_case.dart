@@ -12,7 +12,7 @@ class ProductDesignsUseCase implements IProductDesignsUseCase {
   ProductDesignsUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, List<ProductDesignResponseDtoUseCase>>> Handler(
+  Future<Either<Failure, List<ProductDesignResponseDtoUseCase>>> handler(
       {ProductDesignRequestDtoUseCase? params}) async {
     return await repository.productDesigns(productDesignRequestDtoUseCase: params!)!;
   }

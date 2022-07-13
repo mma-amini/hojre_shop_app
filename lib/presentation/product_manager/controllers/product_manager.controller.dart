@@ -25,7 +25,6 @@ class ProductManagerController extends GetxController {
 
   ProductManagerController({required this.iProductGroupsUseCase, required this.iShopProductsUseCase});
 
-
   @override
   void onReady() {
     super.onReady();
@@ -74,20 +73,20 @@ class ProductManagerController extends GetxController {
   }
 
   startApiProductGroups() async {
-    await iProductGroupsUseCase.Handler().then((response) {
+    await iProductGroupsUseCase.handler().then((response) {
       var data = response.getOrElse(() => []);
 
       List<VMProductGroup> tempProductGroupsList = List<VMProductGroup>.empty(growable: true);
 
-      VMProductGroup emptyGroup = VMProductGroup(CategoryName: "همه گروه ها", CategoryId: "");
+      VMProductGroup emptyGroup = VMProductGroup(categoryName: "همه گروه ها", categoryId: "");
       tempProductGroupsList.add(emptyGroup);
 
       for (var element in data) {
         VMProductGroup productGroup = VMProductGroup(
-          CategoryId: element.CategoryId,
-          CategoryName: element.CategoryName,
-          Picture: element.Picture,
-          ParentId: element.ParentId,
+          categoryId: element.categoryId,
+          categoryName: element.categoryName,
+          picture: element.picture,
+          parentId: element.parentId,
         );
 
         tempProductGroupsList.add(productGroup);
@@ -101,8 +100,8 @@ class ProductManagerController extends GetxController {
 
   startApiShopProducts() async {
     updateLoading(isLoading: true);
-    await iShopProductsUseCase.Handler(
-            params: ShopProductsRequestDtoUseCase(categoryId: selectedCategory.value.CategoryId ?? ""))
+    await iShopProductsUseCase
+        .handler(params: ShopProductsRequestDtoUseCase(categoryId: selectedCategory.value.categoryId ?? ""))
         .then((response) {
       updateLoading(isLoading: false);
       refreshController.refreshCompleted();

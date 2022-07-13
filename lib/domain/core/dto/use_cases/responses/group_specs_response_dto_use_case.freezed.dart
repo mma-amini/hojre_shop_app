@@ -21,10 +21,10 @@ GroupSpecsResponseDtoUseCase _$GroupSpecsResponseDtoUseCaseFromJson(
 
 /// @nodoc
 mixin _$GroupSpecsResponseDtoUseCase {
-  List<ItemOfGroupSpecsResponseDtoUseCase>? get Items =>
+  List<ItemOfGroupSpecsResponseDtoUseCase>? get items =>
       throw _privateConstructorUsedError;
-  String? get Name => throw _privateConstructorUsedError;
-  String? get SpecId => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get specId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,9 +39,9 @@ abstract class $GroupSpecsResponseDtoUseCaseCopyWith<$Res> {
           $Res Function(GroupSpecsResponseDtoUseCase) then) =
       _$GroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>;
   $Res call(
-      {List<ItemOfGroupSpecsResponseDtoUseCase>? Items,
-      String? Name,
-      String? SpecId});
+      {List<ItemOfGroupSpecsResponseDtoUseCase>? items,
+      String? name,
+      String? specId});
 }
 
 /// @nodoc
@@ -55,22 +55,22 @@ class _$GroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? Items = freezed,
-    Object? Name = freezed,
-    Object? SpecId = freezed,
+    Object? items = freezed,
+    Object? name = freezed,
+    Object? specId = freezed,
   }) {
     return _then(_value.copyWith(
-      Items: Items == freezed
-          ? _value.Items
-          : Items // ignore: cast_nullable_to_non_nullable
+      items: items == freezed
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
               as List<ItemOfGroupSpecsResponseDtoUseCase>?,
-      Name: Name == freezed
-          ? _value.Name
-          : Name // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      SpecId: SpecId == freezed
-          ? _value.SpecId
-          : SpecId // ignore: cast_nullable_to_non_nullable
+      specId: specId == freezed
+          ? _value.specId
+          : specId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -85,9 +85,9 @@ abstract class _$$_GroupSpecsResponseDtoUseCaseCopyWith<$Res>
       __$$_GroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {List<ItemOfGroupSpecsResponseDtoUseCase>? Items,
-      String? Name,
-      String? SpecId});
+      {List<ItemOfGroupSpecsResponseDtoUseCase>? items,
+      String? name,
+      String? specId});
 }
 
 /// @nodoc
@@ -105,22 +105,22 @@ class __$$_GroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? Items = freezed,
-    Object? Name = freezed,
-    Object? SpecId = freezed,
+    Object? items = freezed,
+    Object? name = freezed,
+    Object? specId = freezed,
   }) {
     return _then(_$_GroupSpecsResponseDtoUseCase(
-      Items: Items == freezed
-          ? _value._Items
-          : Items // ignore: cast_nullable_to_non_nullable
+      items: items == freezed
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
               as List<ItemOfGroupSpecsResponseDtoUseCase>?,
-      Name: Name == freezed
-          ? _value.Name
-          : Name // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      SpecId: SpecId == freezed
-          ? _value.SpecId
-          : SpecId // ignore: cast_nullable_to_non_nullable
+      specId: specId == freezed
+          ? _value.specId
+          : specId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -130,31 +130,31 @@ class __$$_GroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GroupSpecsResponseDtoUseCase implements _GroupSpecsResponseDtoUseCase {
   _$_GroupSpecsResponseDtoUseCase(
-      {final List<ItemOfGroupSpecsResponseDtoUseCase>? Items,
-      this.Name,
-      this.SpecId})
-      : _Items = Items;
+      {final List<ItemOfGroupSpecsResponseDtoUseCase>? items,
+      this.name,
+      this.specId})
+      : _items = items;
 
   factory _$_GroupSpecsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>
       _$$_GroupSpecsResponseDtoUseCaseFromJson(json);
 
-  final List<ItemOfGroupSpecsResponseDtoUseCase>? _Items;
+  final List<ItemOfGroupSpecsResponseDtoUseCase>? _items;
   @override
-  List<ItemOfGroupSpecsResponseDtoUseCase>? get Items {
-    final value = _Items;
+  List<ItemOfGroupSpecsResponseDtoUseCase>? get items {
+    final value = _items;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
-  final String? Name;
+  final String? name;
   @override
-  final String? SpecId;
+  final String? specId;
 
   @override
   String toString() {
-    return 'GroupSpecsResponseDtoUseCase(Items: $Items, Name: $Name, SpecId: $SpecId)';
+    return 'GroupSpecsResponseDtoUseCase(items: $items, name: $name, specId: $specId)';
   }
 
   @override
@@ -162,18 +162,18 @@ class _$_GroupSpecsResponseDtoUseCase implements _GroupSpecsResponseDtoUseCase {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GroupSpecsResponseDtoUseCase &&
-            const DeepCollectionEquality().equals(other._Items, _Items) &&
-            const DeepCollectionEquality().equals(other.Name, Name) &&
-            const DeepCollectionEquality().equals(other.SpecId, SpecId));
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.specId, specId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_Items),
-      const DeepCollectionEquality().hash(Name),
-      const DeepCollectionEquality().hash(SpecId));
+      const DeepCollectionEquality().hash(_items),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(specId));
 
   @JsonKey(ignore: true)
   @override
@@ -190,20 +190,19 @@ class _$_GroupSpecsResponseDtoUseCase implements _GroupSpecsResponseDtoUseCase {
 abstract class _GroupSpecsResponseDtoUseCase
     implements GroupSpecsResponseDtoUseCase {
   factory _GroupSpecsResponseDtoUseCase(
-      {final List<ItemOfGroupSpecsResponseDtoUseCase>? Items,
-      final String? Name,
-      final String? SpecId}) = _$_GroupSpecsResponseDtoUseCase;
+      {final List<ItemOfGroupSpecsResponseDtoUseCase>? items,
+      final String? name,
+      final String? specId}) = _$_GroupSpecsResponseDtoUseCase;
 
   factory _GroupSpecsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_GroupSpecsResponseDtoUseCase.fromJson;
 
   @override
-  List<ItemOfGroupSpecsResponseDtoUseCase>? get Items =>
-      throw _privateConstructorUsedError;
+  List<ItemOfGroupSpecsResponseDtoUseCase>? get items;
   @override
-  String? get Name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get SpecId => throw _privateConstructorUsedError;
+  String? get specId;
   @override
   @JsonKey(ignore: true)
   _$$_GroupSpecsResponseDtoUseCaseCopyWith<_$_GroupSpecsResponseDtoUseCase>
@@ -217,11 +216,11 @@ ItemOfGroupSpecsResponseDtoUseCase _$ItemOfGroupSpecsResponseDtoUseCaseFromJson(
 
 /// @nodoc
 mixin _$ItemOfGroupSpecsResponseDtoUseCase {
-  String? get InputName => throw _privateConstructorUsedError;
-  String? get InputTitle => throw _privateConstructorUsedError;
-  String? get Name => throw _privateConstructorUsedError;
-  String? get SpecItemId => throw _privateConstructorUsedError;
-  List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? get Values =>
+  String? get inputName => throw _privateConstructorUsedError;
+  String? get inputTitle => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get specItemId => throw _privateConstructorUsedError;
+  List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? get values =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -238,11 +237,11 @@ abstract class $ItemOfGroupSpecsResponseDtoUseCaseCopyWith<$Res> {
           $Res Function(ItemOfGroupSpecsResponseDtoUseCase) then) =
       _$ItemOfGroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>;
   $Res call(
-      {String? InputName,
-      String? InputTitle,
-      String? Name,
-      String? SpecItemId,
-      List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? Values});
+      {String? inputName,
+      String? inputTitle,
+      String? name,
+      String? specItemId,
+      List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? values});
 }
 
 /// @nodoc
@@ -256,32 +255,32 @@ class _$ItemOfGroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? InputName = freezed,
-    Object? InputTitle = freezed,
-    Object? Name = freezed,
-    Object? SpecItemId = freezed,
-    Object? Values = freezed,
+    Object? inputName = freezed,
+    Object? inputTitle = freezed,
+    Object? name = freezed,
+    Object? specItemId = freezed,
+    Object? values = freezed,
   }) {
     return _then(_value.copyWith(
-      InputName: InputName == freezed
-          ? _value.InputName
-          : InputName // ignore: cast_nullable_to_non_nullable
+      inputName: inputName == freezed
+          ? _value.inputName
+          : inputName // ignore: cast_nullable_to_non_nullable
               as String?,
-      InputTitle: InputTitle == freezed
-          ? _value.InputTitle
-          : InputTitle // ignore: cast_nullable_to_non_nullable
+      inputTitle: inputTitle == freezed
+          ? _value.inputTitle
+          : inputTitle // ignore: cast_nullable_to_non_nullable
               as String?,
-      Name: Name == freezed
-          ? _value.Name
-          : Name // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      SpecItemId: SpecItemId == freezed
-          ? _value.SpecItemId
-          : SpecItemId // ignore: cast_nullable_to_non_nullable
+      specItemId: specItemId == freezed
+          ? _value.specItemId
+          : specItemId // ignore: cast_nullable_to_non_nullable
               as String?,
-      Values: Values == freezed
-          ? _value.Values
-          : Values // ignore: cast_nullable_to_non_nullable
+      values: values == freezed
+          ? _value.values
+          : values // ignore: cast_nullable_to_non_nullable
               as List<ValueOfItemOfGroupSpecsResponseDtoUseCase>?,
     ));
   }
@@ -296,11 +295,11 @@ abstract class _$$_ItemOfGroupSpecsResponseDtoUseCaseCopyWith<$Res>
       __$$_ItemOfGroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? InputName,
-      String? InputTitle,
-      String? Name,
-      String? SpecItemId,
-      List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? Values});
+      {String? inputName,
+      String? inputTitle,
+      String? name,
+      String? specItemId,
+      List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? values});
 }
 
 /// @nodoc
@@ -318,32 +317,32 @@ class __$$_ItemOfGroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? InputName = freezed,
-    Object? InputTitle = freezed,
-    Object? Name = freezed,
-    Object? SpecItemId = freezed,
-    Object? Values = freezed,
+    Object? inputName = freezed,
+    Object? inputTitle = freezed,
+    Object? name = freezed,
+    Object? specItemId = freezed,
+    Object? values = freezed,
   }) {
     return _then(_$_ItemOfGroupSpecsResponseDtoUseCase(
-      InputName: InputName == freezed
-          ? _value.InputName
-          : InputName // ignore: cast_nullable_to_non_nullable
+      inputName: inputName == freezed
+          ? _value.inputName
+          : inputName // ignore: cast_nullable_to_non_nullable
               as String?,
-      InputTitle: InputTitle == freezed
-          ? _value.InputTitle
-          : InputTitle // ignore: cast_nullable_to_non_nullable
+      inputTitle: inputTitle == freezed
+          ? _value.inputTitle
+          : inputTitle // ignore: cast_nullable_to_non_nullable
               as String?,
-      Name: Name == freezed
-          ? _value.Name
-          : Name // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      SpecItemId: SpecItemId == freezed
-          ? _value.SpecItemId
-          : SpecItemId // ignore: cast_nullable_to_non_nullable
+      specItemId: specItemId == freezed
+          ? _value.specItemId
+          : specItemId // ignore: cast_nullable_to_non_nullable
               as String?,
-      Values: Values == freezed
-          ? _value._Values
-          : Values // ignore: cast_nullable_to_non_nullable
+      values: values == freezed
+          ? _value._values
+          : values // ignore: cast_nullable_to_non_nullable
               as List<ValueOfItemOfGroupSpecsResponseDtoUseCase>?,
     ));
   }
@@ -354,29 +353,29 @@ class __$$_ItemOfGroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>
 class _$_ItemOfGroupSpecsResponseDtoUseCase
     implements _ItemOfGroupSpecsResponseDtoUseCase {
   _$_ItemOfGroupSpecsResponseDtoUseCase(
-      {this.InputName,
-      this.InputTitle,
-      this.Name,
-      this.SpecItemId,
-      final List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? Values})
-      : _Values = Values;
+      {this.inputName,
+      this.inputTitle,
+      this.name,
+      this.specItemId,
+      final List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? values})
+      : _values = values;
 
   factory _$_ItemOfGroupSpecsResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =>
       _$$_ItemOfGroupSpecsResponseDtoUseCaseFromJson(json);
 
   @override
-  final String? InputName;
+  final String? inputName;
   @override
-  final String? InputTitle;
+  final String? inputTitle;
   @override
-  final String? Name;
+  final String? name;
   @override
-  final String? SpecItemId;
-  final List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? _Values;
+  final String? specItemId;
+  final List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? _values;
   @override
-  List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? get Values {
-    final value = _Values;
+  List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? get values {
+    final value = _values;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
@@ -384,7 +383,7 @@ class _$_ItemOfGroupSpecsResponseDtoUseCase
 
   @override
   String toString() {
-    return 'ItemOfGroupSpecsResponseDtoUseCase(InputName: $InputName, InputTitle: $InputTitle, Name: $Name, SpecItemId: $SpecItemId, Values: $Values)';
+    return 'ItemOfGroupSpecsResponseDtoUseCase(inputName: $inputName, inputTitle: $inputTitle, name: $name, specItemId: $specItemId, values: $values)';
   }
 
   @override
@@ -392,24 +391,24 @@ class _$_ItemOfGroupSpecsResponseDtoUseCase
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ItemOfGroupSpecsResponseDtoUseCase &&
-            const DeepCollectionEquality().equals(other.InputName, InputName) &&
+            const DeepCollectionEquality().equals(other.inputName, inputName) &&
             const DeepCollectionEquality()
-                .equals(other.InputTitle, InputTitle) &&
-            const DeepCollectionEquality().equals(other.Name, Name) &&
+                .equals(other.inputTitle, inputTitle) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
-                .equals(other.SpecItemId, SpecItemId) &&
-            const DeepCollectionEquality().equals(other._Values, _Values));
+                .equals(other.specItemId, specItemId) &&
+            const DeepCollectionEquality().equals(other._values, _values));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(InputName),
-      const DeepCollectionEquality().hash(InputTitle),
-      const DeepCollectionEquality().hash(Name),
-      const DeepCollectionEquality().hash(SpecItemId),
-      const DeepCollectionEquality().hash(_Values));
+      const DeepCollectionEquality().hash(inputName),
+      const DeepCollectionEquality().hash(inputTitle),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(specItemId),
+      const DeepCollectionEquality().hash(_values));
 
   @JsonKey(ignore: true)
   @override
@@ -427,11 +426,11 @@ class _$_ItemOfGroupSpecsResponseDtoUseCase
 abstract class _ItemOfGroupSpecsResponseDtoUseCase
     implements ItemOfGroupSpecsResponseDtoUseCase {
   factory _ItemOfGroupSpecsResponseDtoUseCase(
-          {final String? InputName,
-          final String? InputTitle,
-          final String? Name,
-          final String? SpecItemId,
-          final List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? Values}) =
+          {final String? inputName,
+          final String? inputTitle,
+          final String? name,
+          final String? specItemId,
+          final List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? values}) =
       _$_ItemOfGroupSpecsResponseDtoUseCase;
 
   factory _ItemOfGroupSpecsResponseDtoUseCase.fromJson(
@@ -439,16 +438,15 @@ abstract class _ItemOfGroupSpecsResponseDtoUseCase
       _$_ItemOfGroupSpecsResponseDtoUseCase.fromJson;
 
   @override
-  String? get InputName => throw _privateConstructorUsedError;
+  String? get inputName;
   @override
-  String? get InputTitle => throw _privateConstructorUsedError;
+  String? get inputTitle;
   @override
-  String? get Name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get SpecItemId => throw _privateConstructorUsedError;
+  String? get specItemId;
   @override
-  List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? get Values =>
-      throw _privateConstructorUsedError;
+  List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? get values;
   @override
   @JsonKey(ignore: true)
   _$$_ItemOfGroupSpecsResponseDtoUseCaseCopyWith<
@@ -464,8 +462,8 @@ ValueOfItemOfGroupSpecsResponseDtoUseCase
 
 /// @nodoc
 mixin _$ValueOfItemOfGroupSpecsResponseDtoUseCase {
-  String? get SpecValueId => throw _privateConstructorUsedError;
-  String? get Title => throw _privateConstructorUsedError;
+  String? get specValueId => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -480,7 +478,7 @@ abstract class $ValueOfItemOfGroupSpecsResponseDtoUseCaseCopyWith<$Res> {
           ValueOfItemOfGroupSpecsResponseDtoUseCase value,
           $Res Function(ValueOfItemOfGroupSpecsResponseDtoUseCase) then) =
       _$ValueOfItemOfGroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>;
-  $Res call({String? SpecValueId, String? Title});
+  $Res call({String? specValueId, String? title});
 }
 
 /// @nodoc
@@ -495,17 +493,17 @@ class _$ValueOfItemOfGroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? SpecValueId = freezed,
-    Object? Title = freezed,
+    Object? specValueId = freezed,
+    Object? title = freezed,
   }) {
     return _then(_value.copyWith(
-      SpecValueId: SpecValueId == freezed
-          ? _value.SpecValueId
-          : SpecValueId // ignore: cast_nullable_to_non_nullable
+      specValueId: specValueId == freezed
+          ? _value.specValueId
+          : specValueId // ignore: cast_nullable_to_non_nullable
               as String?,
-      Title: Title == freezed
-          ? _value.Title
-          : Title // ignore: cast_nullable_to_non_nullable
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -519,7 +517,7 @@ abstract class _$$_ValueOfItemOfGroupSpecsResponseDtoUseCaseCopyWith<$Res>
           $Res Function(_$_ValueOfItemOfGroupSpecsResponseDtoUseCase) then) =
       __$$_ValueOfItemOfGroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
-  $Res call({String? SpecValueId, String? Title});
+  $Res call({String? specValueId, String? title});
 }
 
 /// @nodoc
@@ -538,17 +536,17 @@ class __$$_ValueOfItemOfGroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? SpecValueId = freezed,
-    Object? Title = freezed,
+    Object? specValueId = freezed,
+    Object? title = freezed,
   }) {
     return _then(_$_ValueOfItemOfGroupSpecsResponseDtoUseCase(
-      SpecValueId: SpecValueId == freezed
-          ? _value.SpecValueId
-          : SpecValueId // ignore: cast_nullable_to_non_nullable
+      specValueId: specValueId == freezed
+          ? _value.specValueId
+          : specValueId // ignore: cast_nullable_to_non_nullable
               as String?,
-      Title: Title == freezed
-          ? _value.Title
-          : Title // ignore: cast_nullable_to_non_nullable
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -558,20 +556,20 @@ class __$$_ValueOfItemOfGroupSpecsResponseDtoUseCaseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ValueOfItemOfGroupSpecsResponseDtoUseCase
     implements _ValueOfItemOfGroupSpecsResponseDtoUseCase {
-  _$_ValueOfItemOfGroupSpecsResponseDtoUseCase({this.SpecValueId, this.Title});
+  _$_ValueOfItemOfGroupSpecsResponseDtoUseCase({this.specValueId, this.title});
 
   factory _$_ValueOfItemOfGroupSpecsResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =>
       _$$_ValueOfItemOfGroupSpecsResponseDtoUseCaseFromJson(json);
 
   @override
-  final String? SpecValueId;
+  final String? specValueId;
   @override
-  final String? Title;
+  final String? title;
 
   @override
   String toString() {
-    return 'ValueOfItemOfGroupSpecsResponseDtoUseCase(SpecValueId: $SpecValueId, Title: $Title)';
+    return 'ValueOfItemOfGroupSpecsResponseDtoUseCase(specValueId: $specValueId, title: $title)';
   }
 
   @override
@@ -580,16 +578,16 @@ class _$_ValueOfItemOfGroupSpecsResponseDtoUseCase
         (other.runtimeType == runtimeType &&
             other is _$_ValueOfItemOfGroupSpecsResponseDtoUseCase &&
             const DeepCollectionEquality()
-                .equals(other.SpecValueId, SpecValueId) &&
-            const DeepCollectionEquality().equals(other.Title, Title));
+                .equals(other.specValueId, specValueId) &&
+            const DeepCollectionEquality().equals(other.title, title));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(SpecValueId),
-      const DeepCollectionEquality().hash(Title));
+      const DeepCollectionEquality().hash(specValueId),
+      const DeepCollectionEquality().hash(title));
 
   @JsonKey(ignore: true)
   @override
@@ -608,17 +606,17 @@ class _$_ValueOfItemOfGroupSpecsResponseDtoUseCase
 abstract class _ValueOfItemOfGroupSpecsResponseDtoUseCase
     implements ValueOfItemOfGroupSpecsResponseDtoUseCase {
   factory _ValueOfItemOfGroupSpecsResponseDtoUseCase(
-      {final String? SpecValueId,
-      final String? Title}) = _$_ValueOfItemOfGroupSpecsResponseDtoUseCase;
+      {final String? specValueId,
+      final String? title}) = _$_ValueOfItemOfGroupSpecsResponseDtoUseCase;
 
   factory _ValueOfItemOfGroupSpecsResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =
       _$_ValueOfItemOfGroupSpecsResponseDtoUseCase.fromJson;
 
   @override
-  String? get SpecValueId => throw _privateConstructorUsedError;
+  String? get specValueId;
   @override
-  String? get Title => throw _privateConstructorUsedError;
+  String? get title;
   @override
   @JsonKey(ignore: true)
   _$$_ValueOfItemOfGroupSpecsResponseDtoUseCaseCopyWith<

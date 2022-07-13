@@ -8,32 +8,32 @@ part of 'product_design_model.dart';
 
 VMProductDesign _$VMProductDesignFromJson(Map<String, dynamic> json) =>
     VMProductDesign(
-      Id: json['Id'] as String?,
-      ShopId: json['ShopId'] as String?,
-      ProductId: json['ProductId'] as String?,
-      Warranty: json['Warranty'] == null
+      id: json['id'] as String?,
+      shopId: json['shopId'] as String?,
+      productId: json['productId'] as String?,
+      warranty: json['warranty'] == null
           ? null
-          : VMWarranty.fromJson(json['Warranty'] as Map<String, dynamic>),
-      DesignName: json['DesignName'] as String?,
-      Barcode: json['Barcode'] as String?,
-      Price: json['Price'] as num?,
-      OffPrice: json['OffPrice'] as num?,
-      IsReady: json['IsReady'] as bool?,
-      ReadyDay: json['ReadyDay'] as int?,
-      ReadyHour: json['ReadyHour'] as int?,
+          : VMWarranty.fromJson(json['warranty'] as Map<String, dynamic>),
+      designName: json['designName'] as String?,
+      barcode: json['barcode'] as String?,
+      price: json['price'] as num?,
+      offPrice: json['offPrice'] as num?,
+      isReady: json['isReady'] as bool?,
+      readyDay: json['readyDay'] as int?,
+      readyHour: json['readyHour'] as int?,
     );
 
 Map<String, dynamic> _$VMProductDesignToJson(VMProductDesign instance) =>
     <String, dynamic>{
-      'Id': instance.Id,
-      'ShopId': instance.ShopId,
-      'ProductId': instance.ProductId,
-      'Warranty': instance.Warranty,
-      'DesignName': instance.DesignName,
-      'Barcode': instance.Barcode,
-      'Price': instance.Price,
-      'OffPrice': instance.OffPrice,
-      'IsReady': instance.IsReady,
-      'ReadyDay': instance.ReadyDay,
-      'ReadyHour': instance.ReadyHour,
+      'id': instance.id,
+      'shopId': instance.shopId,
+      'productId': instance.productId,
+      'warranty': instance.warranty,
+      'designName': instance.designName,
+      'barcode': instance.barcode,
+      'price': instance.price,
+      'offPrice': instance.offPrice,
+      'isReady': instance.isReady,
+      'readyDay': instance.readyDay,
+      'readyHour': instance.readyHour,
     };

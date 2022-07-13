@@ -6,10 +6,10 @@ part 'product_groups_response_dto_use_case.g.dart';
 @freezed
 class ProductGroupsResponseDtoUseCase with _$ProductGroupsResponseDtoUseCase {
   factory ProductGroupsResponseDtoUseCase({
-    String? CategoryId,
-    String? ParentId,
-    String? CategoryName,
-    String? Picture,
+    String? categoryId,
+    String? parentId,
+    String? categoryName,
+    String? picture,
   }) = _ProductGroupsResponseDtoUseCase;
 
   factory ProductGroupsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>

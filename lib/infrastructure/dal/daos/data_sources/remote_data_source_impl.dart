@@ -1,30 +1,15 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/brands_request_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/check_user_request_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/group_specs_request_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/insert_product_picture_request_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/insert_product_request_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/login_request_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/product_design_request_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/shop_products_request_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/brand_response_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/check_user_response_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/group_specs_response_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/login_response_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/message_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/product_desing_response_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/product_groups_response_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case_exports.dart';
-import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/shop_products_response_dto_use_case.dart';
 import 'package:hojre_shop_app/domain/core/helpers/api.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
 import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/repositories/remote_data_source.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case.dart';
+
+import '../../../../domain/core/dto/use_cases/requests/request_dto_use_case_exports.dart';
+import '../../../../domain/core/dto/use_cases/responses/response_dto_use_case_exports.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   headers() {
@@ -36,16 +21,16 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   getRefreshToken() {
-    var checkToken = (Brain.token.AccessToken ?? "").isNotEmpty;
+    var checkToken = (Brain.token.accessToken ?? "").isNotEmpty;
 
-    return checkToken ? Brain.token.RefreshToken : "";
+    return checkToken ? Brain.token.refreshToken : "";
   }
 
   checkMessage({MessageDtoUseCase? messageDtoUseCase}) {
     if (messageDtoUseCase != null) {
-      if ((messageDtoUseCase.Text ?? "").isNotEmpty) {
+      if ((messageDtoUseCase.text ?? "").isNotEmpty) {
         ShowMessage.getSnackBar(
-          message: messageDtoUseCase.Text!,
+          message: messageDtoUseCase.text!,
         );
       }
     }
@@ -57,7 +42,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       "grant_type": "refresh_token",
       "refresh_token": getRefreshToken(),
       "client_id": 2,
-      "client_secret": Brain.account.ClientSecret,
+      "client_secret": Brain.account.clientSecret,
     };
     var jsonData = json.encode(body);
     var result = await dio
@@ -71,7 +56,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         .then((response) {
       LogHelper.printLog(data: "Refresh Token Response: $response");
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
-      LoginResponseDtoUseCase confirmResponseDtoUseCase = LoginResponseDtoUseCase.fromJson(apiResult.Content);
+      LoginResponseDtoUseCase confirmResponseDtoUseCase = LoginResponseDtoUseCase.fromJson(apiResult.content);
       return confirmResponseDtoUseCase;
     }).catchError((error) {
       LogHelper.printLog(data: error);
@@ -97,8 +82,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     )
         .then((response) {
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
-      checkMessage(messageDtoUseCase: apiResult.Message);
-      CheckUserResponseDtoUseCase checkUserResponseDtoUseCase = CheckUserResponseDtoUseCase.fromJson(apiResult.Content);
+      checkMessage(messageDtoUseCase: apiResult.message);
+      CheckUserResponseDtoUseCase checkUserResponseDtoUseCase = CheckUserResponseDtoUseCase.fromJson(apiResult.content);
       return checkUserResponseDtoUseCase;
     }).catchError((error) {
       LogHelper.printLog(data: error);
@@ -112,10 +97,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<LoginResponseDtoUseCase> login({required LoginRequestDtoUseCase loginRequestDtoUseCase}) async {
     var body = {
       "username": loginRequestDtoUseCase.phoneNumber,
-      "password": loginRequestDtoUseCase.Code,
+      "password": loginRequestDtoUseCase.code,
       "grant_type": "password",
       "client_id": 2,
-      "client_secret": loginRequestDtoUseCase.ClientSecret,
+      "client_secret": loginRequestDtoUseCase.clientSecret,
     };
     var jsonData = json.encode(body);
 
@@ -129,8 +114,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     )
         .then((response) {
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
-      checkMessage(messageDtoUseCase: apiResult.Message);
-      LoginResponseDtoUseCase loginResponseDtoUseCase = LoginResponseDtoUseCase.fromJson(apiResult.Content);
+      checkMessage(messageDtoUseCase: apiResult.message);
+      LoginResponseDtoUseCase loginResponseDtoUseCase = LoginResponseDtoUseCase.fromJson(apiResult.content);
       return loginResponseDtoUseCase;
     }).catchError((error) {
       LogHelper.printLog(data: error);
@@ -151,8 +136,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     )
         .then((response) {
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
-      checkMessage(messageDtoUseCase: apiResult.Message);
-      List<dynamic> arrayData = apiResult.Content;
+      checkMessage(messageDtoUseCase: apiResult.message);
+      List<dynamic> arrayData = apiResult.content;
 
       List<ProductGroupsResponseDtoUseCase> dataList = List<ProductGroupsResponseDtoUseCase>.empty(growable: true);
 
@@ -166,7 +151,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return dataList;
     }).catchError((error) {
       LogHelper.printLog(data: error);
-      return [];
+      List<ProductGroupsResponseDtoUseCase> dataList = List<ProductGroupsResponseDtoUseCase>.empty(growable: true);
+      return dataList;
     });
 
     return result;
@@ -186,8 +172,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     )
         .then((response) {
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
-      checkMessage(messageDtoUseCase: apiResult.Message);
-      List<dynamic> arrayData = apiResult.Content;
+      checkMessage(messageDtoUseCase: apiResult.message);
+      List<dynamic> arrayData = apiResult.content;
 
       List<ShopProductsResponseDtoUseCase> dataList = List<ShopProductsResponseDtoUseCase>.empty(growable: true);
 
@@ -200,7 +186,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return dataList;
     }).catchError((error) {
       LogHelper.printLog(data: error);
-      return [];
+      List<ShopProductsResponseDtoUseCase> dataList = List<ShopProductsResponseDtoUseCase>.empty(growable: true);
+      return dataList;
     });
 
     return result;
@@ -220,8 +207,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     )
         .then((response) {
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
-      checkMessage(messageDtoUseCase: apiResult.Message);
-      List<dynamic> arrayData = apiResult.Content;
+      checkMessage(messageDtoUseCase: apiResult.message);
+      List<dynamic> arrayData = apiResult.content;
 
       List<GroupSpecsResponseDtoUseCase> dataList = List<GroupSpecsResponseDtoUseCase>.empty(growable: true);
 
@@ -234,7 +221,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return dataList;
     }).catchError((error) {
       LogHelper.printLog(data: error);
-      return [];
+      List<GroupSpecsResponseDtoUseCase> dataList = List<GroupSpecsResponseDtoUseCase>.empty(growable: true);
+      return dataList;
     });
 
     return result;
@@ -243,7 +231,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<List<ProductDesignResponseDtoUseCase>> productDesigns(
       {required ProductDesignRequestDtoUseCase productDesignRequestDtoUseCase}) async {
-    var body = {"productId": productDesignRequestDtoUseCase.ProductId};
+    var body = {"productId": productDesignRequestDtoUseCase.productId};
     var result = await Brain.dio
         .get(
       "${Brain.baseDomain}${Api.PRODUCT_DESIGNS_API}",
@@ -254,8 +242,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     )
         .then((response) {
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
-      checkMessage(messageDtoUseCase: apiResult.Message);
-      List<dynamic> arrayData = apiResult.Content;
+      checkMessage(messageDtoUseCase: apiResult.message);
+      List<dynamic> arrayData = apiResult.content;
 
       List<ProductDesignResponseDtoUseCase> dataList = List<ProductDesignResponseDtoUseCase>.empty(growable: true);
 
@@ -269,7 +257,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return dataList;
     }).catchError((error) {
       LogHelper.printLog(data: error);
-      return [];
+      List<ProductDesignResponseDtoUseCase> dataList = List<ProductDesignResponseDtoUseCase>.empty(growable: true);
+      return dataList;
     });
 
     return result;
@@ -288,8 +277,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     )
         .then((response) {
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
-      checkMessage(messageDtoUseCase: apiResult.Message);
-      List<dynamic> arrayData = apiResult.Content;
+      checkMessage(messageDtoUseCase: apiResult.message);
+      List<dynamic> arrayData = apiResult.content;
 
       List<BrandResponseDtoUseCase> dataList = List<BrandResponseDtoUseCase>.empty(growable: true);
 
@@ -302,7 +291,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return dataList;
     }).catchError((error) {
       LogHelper.printLog(data: error);
-      return [];
+      List<BrandResponseDtoUseCase> dataList = List<BrandResponseDtoUseCase>.empty(growable: true);
+      return dataList;
     });
 
     return result;
@@ -322,9 +312,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     )
         .then((response) {
       var apiResult = ResponseDtoUseCase.fromJson(response.data);
-      checkMessage(messageDtoUseCase: apiResult.Message);
+      checkMessage(messageDtoUseCase: apiResult.message);
       InsertProductResponseDtoUseCase insertProductResponseDtoUseCase =
-          InsertProductResponseDtoUseCase.fromJson(apiResult.Content);
+          InsertProductResponseDtoUseCase.fromJson(apiResult.content);
       return insertProductResponseDtoUseCase;
     }).catchError((error) {
       LogHelper.printLog(data: error);
@@ -338,14 +328,14 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<NoParams> insertProductImages(
       {required InsertProductPictureRequestDtoUseCase insertProductPictureRequestDtoUseCase}) async {
     var body = FormData.fromMap({
-      "Id": insertProductPictureRequestDtoUseCase.Id,
-      "ProductId": insertProductPictureRequestDtoUseCase.ProductId,
+      "Id": insertProductPictureRequestDtoUseCase.id,
+      "ProductId": insertProductPictureRequestDtoUseCase.productId,
       "Image": MultipartFile.fromBytes(
-        insertProductPictureRequestDtoUseCase.PickedFile!,
-        filename: "${insertProductPictureRequestDtoUseCase.Id}.jpg",
+        insertProductPictureRequestDtoUseCase.pickedFile!,
+        filename: "${insertProductPictureRequestDtoUseCase.id}.jpg",
       ),
-      "Sort": insertProductPictureRequestDtoUseCase.Sort,
-      "IsMain": insertProductPictureRequestDtoUseCase.IsMain,
+      "Sort": insertProductPictureRequestDtoUseCase.sort,
+      "IsMain": insertProductPictureRequestDtoUseCase.isMain,
     });
     var result = await Brain.dio
         .post(

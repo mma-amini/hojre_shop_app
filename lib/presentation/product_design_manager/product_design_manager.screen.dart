@@ -6,6 +6,8 @@ import 'package:hojre_shop_app/generated/locales.g.dart';
 import 'controllers/product_design_manager.controller.dart';
 
 class ProductDesignManagerScreen extends GetView<ProductDesignManagerController> {
+  const ProductDesignManagerScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder(

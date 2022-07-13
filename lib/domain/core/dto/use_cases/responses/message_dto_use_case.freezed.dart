@@ -20,8 +20,8 @@ MessageDtoUseCase _$MessageDtoUseCaseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MessageDtoUseCase {
-  String? get Text => throw _privateConstructorUsedError;
-  String? get ShowType => throw _privateConstructorUsedError;
+  String? get text => throw _privateConstructorUsedError;
+  String? get showType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $MessageDtoUseCaseCopyWith<$Res> {
   factory $MessageDtoUseCaseCopyWith(
           MessageDtoUseCase value, $Res Function(MessageDtoUseCase) then) =
       _$MessageDtoUseCaseCopyWithImpl<$Res>;
-  $Res call({String? Text, String? ShowType});
+  $Res call({String? text, String? showType});
 }
 
 /// @nodoc
@@ -48,17 +48,17 @@ class _$MessageDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? Text = freezed,
-    Object? ShowType = freezed,
+    Object? text = freezed,
+    Object? showType = freezed,
   }) {
     return _then(_value.copyWith(
-      Text: Text == freezed
-          ? _value.Text
-          : Text // ignore: cast_nullable_to_non_nullable
+      text: text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      ShowType: ShowType == freezed
-          ? _value.ShowType
-          : ShowType // ignore: cast_nullable_to_non_nullable
+      showType: showType == freezed
+          ? _value.showType
+          : showType // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -71,7 +71,7 @@ abstract class _$$_MessageDtoUseCaseCopyWith<$Res>
           $Res Function(_$_MessageDtoUseCase) then) =
       __$$_MessageDtoUseCaseCopyWithImpl<$Res>;
   @override
-  $Res call({String? Text, String? ShowType});
+  $Res call({String? text, String? showType});
 }
 
 /// @nodoc
@@ -87,17 +87,17 @@ class __$$_MessageDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? Text = freezed,
-    Object? ShowType = freezed,
+    Object? text = freezed,
+    Object? showType = freezed,
   }) {
     return _then(_$_MessageDtoUseCase(
-      Text: Text == freezed
-          ? _value.Text
-          : Text // ignore: cast_nullable_to_non_nullable
+      text: text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      ShowType: ShowType == freezed
-          ? _value.ShowType
-          : ShowType // ignore: cast_nullable_to_non_nullable
+      showType: showType == freezed
+          ? _value.showType
+          : showType // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -106,19 +106,19 @@ class __$$_MessageDtoUseCaseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MessageDtoUseCase implements _MessageDtoUseCase {
-  _$_MessageDtoUseCase({this.Text, this.ShowType});
+  _$_MessageDtoUseCase({this.text, this.showType});
 
   factory _$_MessageDtoUseCase.fromJson(Map<String, dynamic> json) =>
       _$$_MessageDtoUseCaseFromJson(json);
 
   @override
-  final String? Text;
+  final String? text;
   @override
-  final String? ShowType;
+  final String? showType;
 
   @override
   String toString() {
-    return 'MessageDtoUseCase(Text: $Text, ShowType: $ShowType)';
+    return 'MessageDtoUseCase(text: $text, showType: $showType)';
   }
 
   @override
@@ -126,16 +126,16 @@ class _$_MessageDtoUseCase implements _MessageDtoUseCase {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MessageDtoUseCase &&
-            const DeepCollectionEquality().equals(other.Text, Text) &&
-            const DeepCollectionEquality().equals(other.ShowType, ShowType));
+            const DeepCollectionEquality().equals(other.text, text) &&
+            const DeepCollectionEquality().equals(other.showType, showType));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(Text),
-      const DeepCollectionEquality().hash(ShowType));
+      const DeepCollectionEquality().hash(text),
+      const DeepCollectionEquality().hash(showType));
 
   @JsonKey(ignore: true)
   @override
@@ -150,16 +150,16 @@ class _$_MessageDtoUseCase implements _MessageDtoUseCase {
 }
 
 abstract class _MessageDtoUseCase implements MessageDtoUseCase {
-  factory _MessageDtoUseCase({final String? Text, final String? ShowType}) =
+  factory _MessageDtoUseCase({final String? text, final String? showType}) =
       _$_MessageDtoUseCase;
 
   factory _MessageDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_MessageDtoUseCase.fromJson;
 
   @override
-  String? get Text => throw _privateConstructorUsedError;
+  String? get text;
   @override
-  String? get ShowType => throw _privateConstructorUsedError;
+  String? get showType;
   @override
   @JsonKey(ignore: true)
   _$$_MessageDtoUseCaseCopyWith<_$_MessageDtoUseCase> get copyWith =>

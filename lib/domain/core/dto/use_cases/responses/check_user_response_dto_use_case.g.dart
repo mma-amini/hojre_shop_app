@@ -9,15 +9,15 @@ part of 'check_user_response_dto_use_case.dart';
 _$_CheckUserResponseDtoUseCase _$$_CheckUserResponseDtoUseCaseFromJson(
         Map<String, dynamic> json) =>
     _$_CheckUserResponseDtoUseCase(
-      ClientSecret: json['ClientSecret'] as String?,
-      Code: json['Code'] as String?,
-      Minutes: json['Minutes'] as int?,
+      clientSecret: json['clientSecret'] as String?,
+      code: json['code'] as String?,
+      minutes: json['minutes'] as int?,
     );
 
 Map<String, dynamic> _$$_CheckUserResponseDtoUseCaseToJson(
         _$_CheckUserResponseDtoUseCase instance) =>
     <String, dynamic>{
-      'ClientSecret': instance.ClientSecret,
-      'Code': instance.Code,
-      'Minutes': instance.Minutes,
+      'clientSecret': instance.clientSecret,
+      'code': instance.code,
+      'minutes': instance.minutes,
     };

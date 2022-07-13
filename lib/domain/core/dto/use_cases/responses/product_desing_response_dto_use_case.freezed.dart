@@ -21,18 +21,18 @@ ProductDesignResponseDtoUseCase _$ProductDesignResponseDtoUseCaseFromJson(
 
 /// @nodoc
 mixin _$ProductDesignResponseDtoUseCase {
-  String? get Id => throw _privateConstructorUsedError;
-  String? get ShopId => throw _privateConstructorUsedError;
-  String? get ProductId => throw _privateConstructorUsedError;
-  WarrantyOfProductDesignResponseDtoUseCase? get Warranty =>
+  String? get id => throw _privateConstructorUsedError;
+  String? get shopId => throw _privateConstructorUsedError;
+  String? get productId => throw _privateConstructorUsedError;
+  WarrantyOfProductDesignResponseDtoUseCase? get warranty =>
       throw _privateConstructorUsedError;
-  String? get DesignName => throw _privateConstructorUsedError;
-  String? get Barcode => throw _privateConstructorUsedError;
-  num? get Price => throw _privateConstructorUsedError;
-  num? get OffPrice => throw _privateConstructorUsedError;
-  bool? get IsReady => throw _privateConstructorUsedError;
-  int? get ReadyDay => throw _privateConstructorUsedError;
-  int? get ReadyHour => throw _privateConstructorUsedError;
+  String? get designName => throw _privateConstructorUsedError;
+  String? get barcode => throw _privateConstructorUsedError;
+  num? get price => throw _privateConstructorUsedError;
+  num? get offPrice => throw _privateConstructorUsedError;
+  bool? get isReady => throw _privateConstructorUsedError;
+  int? get readyDay => throw _privateConstructorUsedError;
+  int? get readyHour => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,19 +47,19 @@ abstract class $ProductDesignResponseDtoUseCaseCopyWith<$Res> {
           $Res Function(ProductDesignResponseDtoUseCase) then) =
       _$ProductDesignResponseDtoUseCaseCopyWithImpl<$Res>;
   $Res call(
-      {String? Id,
-      String? ShopId,
-      String? ProductId,
-      WarrantyOfProductDesignResponseDtoUseCase? Warranty,
-      String? DesignName,
-      String? Barcode,
-      num? Price,
-      num? OffPrice,
-      bool? IsReady,
-      int? ReadyDay,
-      int? ReadyHour});
+      {String? id,
+      String? shopId,
+      String? productId,
+      WarrantyOfProductDesignResponseDtoUseCase? warranty,
+      String? designName,
+      String? barcode,
+      num? price,
+      num? offPrice,
+      bool? isReady,
+      int? readyDay,
+      int? readyHour});
 
-  $WarrantyOfProductDesignResponseDtoUseCaseCopyWith<$Res>? get Warranty;
+  $WarrantyOfProductDesignResponseDtoUseCaseCopyWith<$Res>? get warranty;
 }
 
 /// @nodoc
@@ -73,75 +73,75 @@ class _$ProductDesignResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? Id = freezed,
-    Object? ShopId = freezed,
-    Object? ProductId = freezed,
-    Object? Warranty = freezed,
-    Object? DesignName = freezed,
-    Object? Barcode = freezed,
-    Object? Price = freezed,
-    Object? OffPrice = freezed,
-    Object? IsReady = freezed,
-    Object? ReadyDay = freezed,
-    Object? ReadyHour = freezed,
+    Object? id = freezed,
+    Object? shopId = freezed,
+    Object? productId = freezed,
+    Object? warranty = freezed,
+    Object? designName = freezed,
+    Object? barcode = freezed,
+    Object? price = freezed,
+    Object? offPrice = freezed,
+    Object? isReady = freezed,
+    Object? readyDay = freezed,
+    Object? readyHour = freezed,
   }) {
     return _then(_value.copyWith(
-      Id: Id == freezed
-          ? _value.Id
-          : Id // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      ShopId: ShopId == freezed
-          ? _value.ShopId
-          : ShopId // ignore: cast_nullable_to_non_nullable
+      shopId: shopId == freezed
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
               as String?,
-      ProductId: ProductId == freezed
-          ? _value.ProductId
-          : ProductId // ignore: cast_nullable_to_non_nullable
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
               as String?,
-      Warranty: Warranty == freezed
-          ? _value.Warranty
-          : Warranty // ignore: cast_nullable_to_non_nullable
+      warranty: warranty == freezed
+          ? _value.warranty
+          : warranty // ignore: cast_nullable_to_non_nullable
               as WarrantyOfProductDesignResponseDtoUseCase?,
-      DesignName: DesignName == freezed
-          ? _value.DesignName
-          : DesignName // ignore: cast_nullable_to_non_nullable
+      designName: designName == freezed
+          ? _value.designName
+          : designName // ignore: cast_nullable_to_non_nullable
               as String?,
-      Barcode: Barcode == freezed
-          ? _value.Barcode
-          : Barcode // ignore: cast_nullable_to_non_nullable
+      barcode: barcode == freezed
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
               as String?,
-      Price: Price == freezed
-          ? _value.Price
-          : Price // ignore: cast_nullable_to_non_nullable
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
               as num?,
-      OffPrice: OffPrice == freezed
-          ? _value.OffPrice
-          : OffPrice // ignore: cast_nullable_to_non_nullable
+      offPrice: offPrice == freezed
+          ? _value.offPrice
+          : offPrice // ignore: cast_nullable_to_non_nullable
               as num?,
-      IsReady: IsReady == freezed
-          ? _value.IsReady
-          : IsReady // ignore: cast_nullable_to_non_nullable
+      isReady: isReady == freezed
+          ? _value.isReady
+          : isReady // ignore: cast_nullable_to_non_nullable
               as bool?,
-      ReadyDay: ReadyDay == freezed
-          ? _value.ReadyDay
-          : ReadyDay // ignore: cast_nullable_to_non_nullable
+      readyDay: readyDay == freezed
+          ? _value.readyDay
+          : readyDay // ignore: cast_nullable_to_non_nullable
               as int?,
-      ReadyHour: ReadyHour == freezed
-          ? _value.ReadyHour
-          : ReadyHour // ignore: cast_nullable_to_non_nullable
+      readyHour: readyHour == freezed
+          ? _value.readyHour
+          : readyHour // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
 
   @override
-  $WarrantyOfProductDesignResponseDtoUseCaseCopyWith<$Res>? get Warranty {
-    if (_value.Warranty == null) {
+  $WarrantyOfProductDesignResponseDtoUseCaseCopyWith<$Res>? get warranty {
+    if (_value.warranty == null) {
       return null;
     }
 
     return $WarrantyOfProductDesignResponseDtoUseCaseCopyWith<$Res>(
-        _value.Warranty!, (value) {
-      return _then(_value.copyWith(Warranty: value));
+        _value.warranty!, (value) {
+      return _then(_value.copyWith(warranty: value));
     });
   }
 }
@@ -155,20 +155,20 @@ abstract class _$$_ProductDesignResponseDtoUseCaseCopyWith<$Res>
       __$$_ProductDesignResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? Id,
-      String? ShopId,
-      String? ProductId,
-      WarrantyOfProductDesignResponseDtoUseCase? Warranty,
-      String? DesignName,
-      String? Barcode,
-      num? Price,
-      num? OffPrice,
-      bool? IsReady,
-      int? ReadyDay,
-      int? ReadyHour});
+      {String? id,
+      String? shopId,
+      String? productId,
+      WarrantyOfProductDesignResponseDtoUseCase? warranty,
+      String? designName,
+      String? barcode,
+      num? price,
+      num? offPrice,
+      bool? isReady,
+      int? readyDay,
+      int? readyHour});
 
   @override
-  $WarrantyOfProductDesignResponseDtoUseCaseCopyWith<$Res>? get Warranty;
+  $WarrantyOfProductDesignResponseDtoUseCaseCopyWith<$Res>? get warranty;
 }
 
 /// @nodoc
@@ -186,62 +186,62 @@ class __$$_ProductDesignResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? Id = freezed,
-    Object? ShopId = freezed,
-    Object? ProductId = freezed,
-    Object? Warranty = freezed,
-    Object? DesignName = freezed,
-    Object? Barcode = freezed,
-    Object? Price = freezed,
-    Object? OffPrice = freezed,
-    Object? IsReady = freezed,
-    Object? ReadyDay = freezed,
-    Object? ReadyHour = freezed,
+    Object? id = freezed,
+    Object? shopId = freezed,
+    Object? productId = freezed,
+    Object? warranty = freezed,
+    Object? designName = freezed,
+    Object? barcode = freezed,
+    Object? price = freezed,
+    Object? offPrice = freezed,
+    Object? isReady = freezed,
+    Object? readyDay = freezed,
+    Object? readyHour = freezed,
   }) {
     return _then(_$_ProductDesignResponseDtoUseCase(
-      Id: Id == freezed
-          ? _value.Id
-          : Id // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      ShopId: ShopId == freezed
-          ? _value.ShopId
-          : ShopId // ignore: cast_nullable_to_non_nullable
+      shopId: shopId == freezed
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
               as String?,
-      ProductId: ProductId == freezed
-          ? _value.ProductId
-          : ProductId // ignore: cast_nullable_to_non_nullable
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
               as String?,
-      Warranty: Warranty == freezed
-          ? _value.Warranty
-          : Warranty // ignore: cast_nullable_to_non_nullable
+      warranty: warranty == freezed
+          ? _value.warranty
+          : warranty // ignore: cast_nullable_to_non_nullable
               as WarrantyOfProductDesignResponseDtoUseCase?,
-      DesignName: DesignName == freezed
-          ? _value.DesignName
-          : DesignName // ignore: cast_nullable_to_non_nullable
+      designName: designName == freezed
+          ? _value.designName
+          : designName // ignore: cast_nullable_to_non_nullable
               as String?,
-      Barcode: Barcode == freezed
-          ? _value.Barcode
-          : Barcode // ignore: cast_nullable_to_non_nullable
+      barcode: barcode == freezed
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
               as String?,
-      Price: Price == freezed
-          ? _value.Price
-          : Price // ignore: cast_nullable_to_non_nullable
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
               as num?,
-      OffPrice: OffPrice == freezed
-          ? _value.OffPrice
-          : OffPrice // ignore: cast_nullable_to_non_nullable
+      offPrice: offPrice == freezed
+          ? _value.offPrice
+          : offPrice // ignore: cast_nullable_to_non_nullable
               as num?,
-      IsReady: IsReady == freezed
-          ? _value.IsReady
-          : IsReady // ignore: cast_nullable_to_non_nullable
+      isReady: isReady == freezed
+          ? _value.isReady
+          : isReady // ignore: cast_nullable_to_non_nullable
               as bool?,
-      ReadyDay: ReadyDay == freezed
-          ? _value.ReadyDay
-          : ReadyDay // ignore: cast_nullable_to_non_nullable
+      readyDay: readyDay == freezed
+          ? _value.readyDay
+          : readyDay // ignore: cast_nullable_to_non_nullable
               as int?,
-      ReadyHour: ReadyHour == freezed
-          ? _value.ReadyHour
-          : ReadyHour // ignore: cast_nullable_to_non_nullable
+      readyHour: readyHour == freezed
+          ? _value.readyHour
+          : readyHour // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -252,48 +252,48 @@ class __$$_ProductDesignResponseDtoUseCaseCopyWithImpl<$Res>
 class _$_ProductDesignResponseDtoUseCase
     implements _ProductDesignResponseDtoUseCase {
   _$_ProductDesignResponseDtoUseCase(
-      {this.Id,
-      this.ShopId,
-      this.ProductId,
-      this.Warranty,
-      this.DesignName,
-      this.Barcode,
-      this.Price,
-      this.OffPrice,
-      this.IsReady,
-      this.ReadyDay,
-      this.ReadyHour});
+      {this.id,
+      this.shopId,
+      this.productId,
+      this.warranty,
+      this.designName,
+      this.barcode,
+      this.price,
+      this.offPrice,
+      this.isReady,
+      this.readyDay,
+      this.readyHour});
 
   factory _$_ProductDesignResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =>
       _$$_ProductDesignResponseDtoUseCaseFromJson(json);
 
   @override
-  final String? Id;
+  final String? id;
   @override
-  final String? ShopId;
+  final String? shopId;
   @override
-  final String? ProductId;
+  final String? productId;
   @override
-  final WarrantyOfProductDesignResponseDtoUseCase? Warranty;
+  final WarrantyOfProductDesignResponseDtoUseCase? warranty;
   @override
-  final String? DesignName;
+  final String? designName;
   @override
-  final String? Barcode;
+  final String? barcode;
   @override
-  final num? Price;
+  final num? price;
   @override
-  final num? OffPrice;
+  final num? offPrice;
   @override
-  final bool? IsReady;
+  final bool? isReady;
   @override
-  final int? ReadyDay;
+  final int? readyDay;
   @override
-  final int? ReadyHour;
+  final int? readyHour;
 
   @override
   String toString() {
-    return 'ProductDesignResponseDtoUseCase(Id: $Id, ShopId: $ShopId, ProductId: $ProductId, Warranty: $Warranty, DesignName: $DesignName, Barcode: $Barcode, Price: $Price, OffPrice: $OffPrice, IsReady: $IsReady, ReadyDay: $ReadyDay, ReadyHour: $ReadyHour)';
+    return 'ProductDesignResponseDtoUseCase(id: $id, shopId: $shopId, productId: $productId, warranty: $warranty, designName: $designName, barcode: $barcode, price: $price, offPrice: $offPrice, isReady: $isReady, readyDay: $readyDay, readyHour: $readyHour)';
   }
 
   @override
@@ -301,35 +301,35 @@ class _$_ProductDesignResponseDtoUseCase
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductDesignResponseDtoUseCase &&
-            const DeepCollectionEquality().equals(other.Id, Id) &&
-            const DeepCollectionEquality().equals(other.ShopId, ShopId) &&
-            const DeepCollectionEquality().equals(other.ProductId, ProductId) &&
-            const DeepCollectionEquality().equals(other.Warranty, Warranty) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.shopId, shopId) &&
+            const DeepCollectionEquality().equals(other.productId, productId) &&
+            const DeepCollectionEquality().equals(other.warranty, warranty) &&
             const DeepCollectionEquality()
-                .equals(other.DesignName, DesignName) &&
-            const DeepCollectionEquality().equals(other.Barcode, Barcode) &&
-            const DeepCollectionEquality().equals(other.Price, Price) &&
-            const DeepCollectionEquality().equals(other.OffPrice, OffPrice) &&
-            const DeepCollectionEquality().equals(other.IsReady, IsReady) &&
-            const DeepCollectionEquality().equals(other.ReadyDay, ReadyDay) &&
-            const DeepCollectionEquality().equals(other.ReadyHour, ReadyHour));
+                .equals(other.designName, designName) &&
+            const DeepCollectionEquality().equals(other.barcode, barcode) &&
+            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.offPrice, offPrice) &&
+            const DeepCollectionEquality().equals(other.isReady, isReady) &&
+            const DeepCollectionEquality().equals(other.readyDay, readyDay) &&
+            const DeepCollectionEquality().equals(other.readyHour, readyHour));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(Id),
-      const DeepCollectionEquality().hash(ShopId),
-      const DeepCollectionEquality().hash(ProductId),
-      const DeepCollectionEquality().hash(Warranty),
-      const DeepCollectionEquality().hash(DesignName),
-      const DeepCollectionEquality().hash(Barcode),
-      const DeepCollectionEquality().hash(Price),
-      const DeepCollectionEquality().hash(OffPrice),
-      const DeepCollectionEquality().hash(IsReady),
-      const DeepCollectionEquality().hash(ReadyDay),
-      const DeepCollectionEquality().hash(ReadyHour));
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(shopId),
+      const DeepCollectionEquality().hash(productId),
+      const DeepCollectionEquality().hash(warranty),
+      const DeepCollectionEquality().hash(designName),
+      const DeepCollectionEquality().hash(barcode),
+      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(offPrice),
+      const DeepCollectionEquality().hash(isReady),
+      const DeepCollectionEquality().hash(readyDay),
+      const DeepCollectionEquality().hash(readyHour));
 
   @JsonKey(ignore: true)
   @override
@@ -347,44 +347,43 @@ class _$_ProductDesignResponseDtoUseCase
 abstract class _ProductDesignResponseDtoUseCase
     implements ProductDesignResponseDtoUseCase {
   factory _ProductDesignResponseDtoUseCase(
-      {final String? Id,
-      final String? ShopId,
-      final String? ProductId,
-      final WarrantyOfProductDesignResponseDtoUseCase? Warranty,
-      final String? DesignName,
-      final String? Barcode,
-      final num? Price,
-      final num? OffPrice,
-      final bool? IsReady,
-      final int? ReadyDay,
-      final int? ReadyHour}) = _$_ProductDesignResponseDtoUseCase;
+      {final String? id,
+      final String? shopId,
+      final String? productId,
+      final WarrantyOfProductDesignResponseDtoUseCase? warranty,
+      final String? designName,
+      final String? barcode,
+      final num? price,
+      final num? offPrice,
+      final bool? isReady,
+      final int? readyDay,
+      final int? readyHour}) = _$_ProductDesignResponseDtoUseCase;
 
   factory _ProductDesignResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_ProductDesignResponseDtoUseCase.fromJson;
 
   @override
-  String? get Id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get ShopId => throw _privateConstructorUsedError;
+  String? get shopId;
   @override
-  String? get ProductId => throw _privateConstructorUsedError;
+  String? get productId;
   @override
-  WarrantyOfProductDesignResponseDtoUseCase? get Warranty =>
-      throw _privateConstructorUsedError;
+  WarrantyOfProductDesignResponseDtoUseCase? get warranty;
   @override
-  String? get DesignName => throw _privateConstructorUsedError;
+  String? get designName;
   @override
-  String? get Barcode => throw _privateConstructorUsedError;
+  String? get barcode;
   @override
-  num? get Price => throw _privateConstructorUsedError;
+  num? get price;
   @override
-  num? get OffPrice => throw _privateConstructorUsedError;
+  num? get offPrice;
   @override
-  bool? get IsReady => throw _privateConstructorUsedError;
+  bool? get isReady;
   @override
-  int? get ReadyDay => throw _privateConstructorUsedError;
+  int? get readyDay;
   @override
-  int? get ReadyHour => throw _privateConstructorUsedError;
+  int? get readyHour;
   @override
   @JsonKey(ignore: true)
   _$$_ProductDesignResponseDtoUseCaseCopyWith<
@@ -400,9 +399,9 @@ WarrantyOfProductDesignResponseDtoUseCase
 
 /// @nodoc
 mixin _$WarrantyOfProductDesignResponseDtoUseCase {
-  String? get Id => throw _privateConstructorUsedError;
-  String? get WarrantName => throw _privateConstructorUsedError;
-  String? get WarrantDescription => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get warrantName => throw _privateConstructorUsedError;
+  String? get warrantDescription => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -417,7 +416,7 @@ abstract class $WarrantyOfProductDesignResponseDtoUseCaseCopyWith<$Res> {
           WarrantyOfProductDesignResponseDtoUseCase value,
           $Res Function(WarrantyOfProductDesignResponseDtoUseCase) then) =
       _$WarrantyOfProductDesignResponseDtoUseCaseCopyWithImpl<$Res>;
-  $Res call({String? Id, String? WarrantName, String? WarrantDescription});
+  $Res call({String? id, String? warrantName, String? warrantDescription});
 }
 
 /// @nodoc
@@ -432,22 +431,22 @@ class _$WarrantyOfProductDesignResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? Id = freezed,
-    Object? WarrantName = freezed,
-    Object? WarrantDescription = freezed,
+    Object? id = freezed,
+    Object? warrantName = freezed,
+    Object? warrantDescription = freezed,
   }) {
     return _then(_value.copyWith(
-      Id: Id == freezed
-          ? _value.Id
-          : Id // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      WarrantName: WarrantName == freezed
-          ? _value.WarrantName
-          : WarrantName // ignore: cast_nullable_to_non_nullable
+      warrantName: warrantName == freezed
+          ? _value.warrantName
+          : warrantName // ignore: cast_nullable_to_non_nullable
               as String?,
-      WarrantDescription: WarrantDescription == freezed
-          ? _value.WarrantDescription
-          : WarrantDescription // ignore: cast_nullable_to_non_nullable
+      warrantDescription: warrantDescription == freezed
+          ? _value.warrantDescription
+          : warrantDescription // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -461,7 +460,7 @@ abstract class _$$_WarrantyOfProductDesignResponseDtoUseCaseCopyWith<$Res>
           $Res Function(_$_WarrantyOfProductDesignResponseDtoUseCase) then) =
       __$$_WarrantyOfProductDesignResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
-  $Res call({String? Id, String? WarrantName, String? WarrantDescription});
+  $Res call({String? id, String? warrantName, String? warrantDescription});
 }
 
 /// @nodoc
@@ -480,22 +479,22 @@ class __$$_WarrantyOfProductDesignResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? Id = freezed,
-    Object? WarrantName = freezed,
-    Object? WarrantDescription = freezed,
+    Object? id = freezed,
+    Object? warrantName = freezed,
+    Object? warrantDescription = freezed,
   }) {
     return _then(_$_WarrantyOfProductDesignResponseDtoUseCase(
-      Id: Id == freezed
-          ? _value.Id
-          : Id // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      WarrantName: WarrantName == freezed
-          ? _value.WarrantName
-          : WarrantName // ignore: cast_nullable_to_non_nullable
+      warrantName: warrantName == freezed
+          ? _value.warrantName
+          : warrantName // ignore: cast_nullable_to_non_nullable
               as String?,
-      WarrantDescription: WarrantDescription == freezed
-          ? _value.WarrantDescription
-          : WarrantDescription // ignore: cast_nullable_to_non_nullable
+      warrantDescription: warrantDescription == freezed
+          ? _value.warrantDescription
+          : warrantDescription // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -506,22 +505,22 @@ class __$$_WarrantyOfProductDesignResponseDtoUseCaseCopyWithImpl<$Res>
 class _$_WarrantyOfProductDesignResponseDtoUseCase
     implements _WarrantyOfProductDesignResponseDtoUseCase {
   _$_WarrantyOfProductDesignResponseDtoUseCase(
-      {this.Id, this.WarrantName, this.WarrantDescription});
+      {this.id, this.warrantName, this.warrantDescription});
 
   factory _$_WarrantyOfProductDesignResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =>
       _$$_WarrantyOfProductDesignResponseDtoUseCaseFromJson(json);
 
   @override
-  final String? Id;
+  final String? id;
   @override
-  final String? WarrantName;
+  final String? warrantName;
   @override
-  final String? WarrantDescription;
+  final String? warrantDescription;
 
   @override
   String toString() {
-    return 'WarrantyOfProductDesignResponseDtoUseCase(Id: $Id, WarrantName: $WarrantName, WarrantDescription: $WarrantDescription)';
+    return 'WarrantyOfProductDesignResponseDtoUseCase(id: $id, warrantName: $warrantName, warrantDescription: $warrantDescription)';
   }
 
   @override
@@ -529,20 +528,20 @@ class _$_WarrantyOfProductDesignResponseDtoUseCase
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WarrantyOfProductDesignResponseDtoUseCase &&
-            const DeepCollectionEquality().equals(other.Id, Id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
-                .equals(other.WarrantName, WarrantName) &&
+                .equals(other.warrantName, warrantName) &&
             const DeepCollectionEquality()
-                .equals(other.WarrantDescription, WarrantDescription));
+                .equals(other.warrantDescription, warrantDescription));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(Id),
-      const DeepCollectionEquality().hash(WarrantName),
-      const DeepCollectionEquality().hash(WarrantDescription));
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(warrantName),
+      const DeepCollectionEquality().hash(warrantDescription));
 
   @JsonKey(ignore: true)
   @override
@@ -561,9 +560,9 @@ class _$_WarrantyOfProductDesignResponseDtoUseCase
 abstract class _WarrantyOfProductDesignResponseDtoUseCase
     implements WarrantyOfProductDesignResponseDtoUseCase {
   factory _WarrantyOfProductDesignResponseDtoUseCase(
-          {final String? Id,
-          final String? WarrantName,
-          final String? WarrantDescription}) =
+          {final String? id,
+          final String? warrantName,
+          final String? warrantDescription}) =
       _$_WarrantyOfProductDesignResponseDtoUseCase;
 
   factory _WarrantyOfProductDesignResponseDtoUseCase.fromJson(
@@ -571,11 +570,11 @@ abstract class _WarrantyOfProductDesignResponseDtoUseCase
       _$_WarrantyOfProductDesignResponseDtoUseCase.fromJson;
 
   @override
-  String? get Id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get WarrantName => throw _privateConstructorUsedError;
+  String? get warrantName;
   @override
-  String? get WarrantDescription => throw _privateConstructorUsedError;
+  String? get warrantDescription;
   @override
   @JsonKey(ignore: true)
   _$$_WarrantyOfProductDesignResponseDtoUseCaseCopyWith<

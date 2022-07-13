@@ -5,34 +5,34 @@ part 'insert_product_request_dto_use_case.g.dart';
 
 @JsonSerializable()
 class InsertProductRequestDtoUseCase extends Equatable {
-  String? ProductName;
-  String? ProductId;
-  String? ProductGroupId;
-  String? BrandId;
-  String? BrandName;
-  int? ProductPackWeight;
-  int? ProductPackLength;
-  int? ProductPackWidth;
-  int? ProductPackHeight;
-  int? ProductPackWeightType;
-  String? Description;
-  bool? Original;
-  List<SectionOfInsertProductRequestDtoUseCase>? Sections;
+  String? productName;
+  String? productId;
+  String? productGroupId;
+  String? brandId;
+  String? brandName;
+  int? productPackWeight;
+  int? productPackLength;
+  int? productPackWidth;
+  int? productPackHeight;
+  int? productPackWeightType;
+  String? description;
+  bool? original;
+  List<SectionOfInsertProductRequestDtoUseCase>? sections;
 
   InsertProductRequestDtoUseCase(
-      {this.ProductName,
-      this.ProductId,
-      this.ProductGroupId,
-      this.BrandId,
-      this.BrandName,
-      this.ProductPackWeight,
-      this.ProductPackLength,
-      this.ProductPackWidth,
-      this.ProductPackHeight,
-      this.ProductPackWeightType,
-      this.Description,
-      this.Original = false,
-      this.Sections});
+      {this.productName,
+      this.productId,
+      this.productGroupId,
+      this.brandId,
+      this.brandName,
+      this.productPackWeight,
+      this.productPackLength,
+      this.productPackWidth,
+      this.productPackHeight,
+      this.productPackWeightType,
+      this.description,
+      this.original = false,
+      this.sections});
 
   factory InsertProductRequestDtoUseCase.fromJson(Map<String, dynamic> json) =>
       _$InsertProductRequestDtoUseCaseFromJson(json);
@@ -41,28 +41,28 @@ class InsertProductRequestDtoUseCase extends Equatable {
 
   @override
   List<Object?> get props => [
-        ProductName,
-        ProductId,
-        ProductGroupId,
-        BrandId,
-        BrandName,
-        ProductPackWeight,
-        ProductPackLength,
-        ProductPackWidth,
-        ProductPackHeight,
-        ProductPackWeightType,
-        Description,
-        Original,
-        Sections,
+        productName,
+        productId,
+        productGroupId,
+        brandId,
+        brandName,
+        productPackWeight,
+        productPackLength,
+        productPackWidth,
+        productPackHeight,
+        productPackWeightType,
+        description,
+        original,
+        sections,
       ];
 }
 
 @JsonSerializable()
 class SectionOfInsertProductRequestDtoUseCase extends Equatable {
-  String? SpecId;
-  List<DataOfSectionOfInsertProductRequestDtoUseCase>? Specs;
+  String? specId;
+  List<DataOfSectionOfInsertProductRequestDtoUseCase>? specs;
 
-  SectionOfInsertProductRequestDtoUseCase({this.SpecId, this.Specs});
+  SectionOfInsertProductRequestDtoUseCase({this.specId, this.specs});
 
   factory SectionOfInsertProductRequestDtoUseCase.fromJson(Map<String, dynamic> json) =>
       _$SectionOfInsertProductRequestDtoUseCaseFromJson(json);
@@ -71,18 +71,18 @@ class SectionOfInsertProductRequestDtoUseCase extends Equatable {
 
   @override
   List<Object?> get props => [
-        SpecId,
-        Specs,
+        specId,
+        specs,
       ];
 }
 
 @JsonSerializable()
 class DataOfSectionOfInsertProductRequestDtoUseCase extends Equatable {
-  String? InputType;
-  String? SpecItemId;
-  dynamic Value;
+  String? inputType;
+  String? specItemId;
+  dynamic value;
 
-  DataOfSectionOfInsertProductRequestDtoUseCase({this.InputType, this.SpecItemId, this.Value});
+  DataOfSectionOfInsertProductRequestDtoUseCase({this.inputType, this.specItemId, this.value});
 
   factory DataOfSectionOfInsertProductRequestDtoUseCase.fromJson(Map<String, dynamic> json) =>
       _$DataOfSectionOfInsertProductRequestDtoUseCaseFromJson(json);
@@ -92,8 +92,8 @@ class DataOfSectionOfInsertProductRequestDtoUseCase extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        InputType,
-        SpecItemId,
-        Value,
+        inputType,
+        specItemId,
+        value,
       ];
 }

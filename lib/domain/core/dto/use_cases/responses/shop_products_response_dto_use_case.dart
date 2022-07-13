@@ -6,20 +6,20 @@ part 'shop_products_response_dto_use_case.g.dart';
 @freezed
 class ShopProductsResponseDtoUseCase with _$ShopProductsResponseDtoUseCase {
   factory ShopProductsResponseDtoUseCase({
-    int? ApprovedProductDesignsCount,
-    BrandOfShopProductsResponseDtoUseCase? Brand,
-    String? Description,
-    bool? IsActive,
-    bool? IsOriginal,
-    int? NotApprovedProductDesignsCount,
-    String? PackingDimensions,
-    double? PackingWeight,
-    List<PictureOfShopProductsResponseDtoUseCase>? Pictures,
-    String? Picture,
-    String? ProductDimensions,
-    String? ProductId,
-    String? ProductName,
-    double? ProductWeight,
+    int? approvedProductDesignsCount,
+    BrandOfShopProductsResponseDtoUseCase? brand,
+    String? description,
+    bool? isActive,
+    bool? isOriginal,
+    int? notApprovedProductDesignsCount,
+    String? packingDimensions,
+    double? packingWeight,
+    List<PictureOfShopProductsResponseDtoUseCase>? pictures,
+    String? picture,
+    String? productDimensions,
+    String? productId,
+    String? productName,
+    double? productWeight,
   }) = _ShopProductsResponseDtoUseCase;
 
   factory ShopProductsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>
@@ -29,9 +29,9 @@ class ShopProductsResponseDtoUseCase with _$ShopProductsResponseDtoUseCase {
 @freezed
 class BrandOfShopProductsResponseDtoUseCase with _$BrandOfShopProductsResponseDtoUseCase {
   factory BrandOfShopProductsResponseDtoUseCase({
-    String? Id,
-    String? Name,
-    String? Picture,
+    String? id,
+    String? name,
+    String? picture,
   }) = _BrandOfShopProductsResponseDtoUseCase;
 
   factory BrandOfShopProductsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>
@@ -41,8 +41,8 @@ class BrandOfShopProductsResponseDtoUseCase with _$BrandOfShopProductsResponseDt
 @freezed
 class PictureOfShopProductsResponseDtoUseCase with _$PictureOfShopProductsResponseDtoUseCase {
   factory PictureOfShopProductsResponseDtoUseCase({
-    bool? IsMain,
-    String? Picture,
+    bool? isMain,
+    String? picture,
   }) = _PictureOfShopProductsResponseDtoUseCase;
 
   factory PictureOfShopProductsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>

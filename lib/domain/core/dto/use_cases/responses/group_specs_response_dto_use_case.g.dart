@@ -9,30 +9,30 @@ part of 'group_specs_response_dto_use_case.dart';
 _$_GroupSpecsResponseDtoUseCase _$$_GroupSpecsResponseDtoUseCaseFromJson(
         Map<String, dynamic> json) =>
     _$_GroupSpecsResponseDtoUseCase(
-      Items: (json['Items'] as List<dynamic>?)
+      items: (json['items'] as List<dynamic>?)
           ?.map((e) => ItemOfGroupSpecsResponseDtoUseCase.fromJson(
               e as Map<String, dynamic>))
           .toList(),
-      Name: json['Name'] as String?,
-      SpecId: json['SpecId'] as String?,
+      name: json['name'] as String?,
+      specId: json['specId'] as String?,
     );
 
 Map<String, dynamic> _$$_GroupSpecsResponseDtoUseCaseToJson(
         _$_GroupSpecsResponseDtoUseCase instance) =>
     <String, dynamic>{
-      'Items': instance.Items,
-      'Name': instance.Name,
-      'SpecId': instance.SpecId,
+      'items': instance.items,
+      'name': instance.name,
+      'specId': instance.specId,
     };
 
 _$_ItemOfGroupSpecsResponseDtoUseCase
     _$$_ItemOfGroupSpecsResponseDtoUseCaseFromJson(Map<String, dynamic> json) =>
         _$_ItemOfGroupSpecsResponseDtoUseCase(
-          InputName: json['InputName'] as String?,
-          InputTitle: json['InputTitle'] as String?,
-          Name: json['Name'] as String?,
-          SpecItemId: json['SpecItemId'] as String?,
-          Values: (json['Values'] as List<dynamic>?)
+          inputName: json['inputName'] as String?,
+          inputTitle: json['inputTitle'] as String?,
+          name: json['name'] as String?,
+          specItemId: json['specItemId'] as String?,
+          values: (json['values'] as List<dynamic>?)
               ?.map((e) => ValueOfItemOfGroupSpecsResponseDtoUseCase.fromJson(
                   e as Map<String, dynamic>))
               .toList(),
@@ -41,24 +41,24 @@ _$_ItemOfGroupSpecsResponseDtoUseCase
 Map<String, dynamic> _$$_ItemOfGroupSpecsResponseDtoUseCaseToJson(
         _$_ItemOfGroupSpecsResponseDtoUseCase instance) =>
     <String, dynamic>{
-      'InputName': instance.InputName,
-      'InputTitle': instance.InputTitle,
-      'Name': instance.Name,
-      'SpecItemId': instance.SpecItemId,
-      'Values': instance.Values,
+      'inputName': instance.inputName,
+      'inputTitle': instance.inputTitle,
+      'name': instance.name,
+      'specItemId': instance.specItemId,
+      'values': instance.values,
     };
 
 _$_ValueOfItemOfGroupSpecsResponseDtoUseCase
     _$$_ValueOfItemOfGroupSpecsResponseDtoUseCaseFromJson(
             Map<String, dynamic> json) =>
         _$_ValueOfItemOfGroupSpecsResponseDtoUseCase(
-          SpecValueId: json['SpecValueId'] as String?,
-          Title: json['Title'] as String?,
+          specValueId: json['specValueId'] as String?,
+          title: json['title'] as String?,
         );
 
 Map<String, dynamic> _$$_ValueOfItemOfGroupSpecsResponseDtoUseCaseToJson(
         _$_ValueOfItemOfGroupSpecsResponseDtoUseCase instance) =>
     <String, dynamic>{
-      'SpecValueId': instance.SpecValueId,
-      'Title': instance.Title,
+      'specValueId': instance.specValueId,
+      'title': instance.title,
     };

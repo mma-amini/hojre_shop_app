@@ -41,7 +41,7 @@ class BaseDio {
   headers() {
     "";
     var headers = {
-      "authorization": "${Brain.token.TokenType} ${Brain.token.AccessToken}",
+      "authorization": "${Brain.token.tokenType} ${Brain.token.accessToken}",
       "cityid": Brain.cityID,
       "addressid": Brain.addressID,
       "type": "Flutter",
@@ -50,8 +50,8 @@ class BaseDio {
       "application": "hadish.sesoot",
       "appversion": Brain.appVersion,
       "buildnumber": Brain.appBuildNumber,
-      "deviceid": (kIsWeb) ? ((Brain.playerID != null) ? Brain.playerID : "") : Brain.deviceID,
-      "playerid": (Brain.playerID != null) ? Brain.playerID : "",
+      "deviceid": (kIsWeb) ? Brain.playerID : Brain.deviceID,
+      "playerid": Brain.playerID,
     };
     return headers;
   }

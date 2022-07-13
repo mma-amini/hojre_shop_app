@@ -6,9 +6,9 @@ part 'brand_response_dto_use_case.g.dart';
 @freezed
 class BrandResponseDtoUseCase with _$BrandResponseDtoUseCase {
   factory BrandResponseDtoUseCase({
-    String? Id,
-    String? Name,
-    String? Picture,
+    String? id,
+    String? name,
+    String? picture,
   }) = _BrandResponseDtoUseCase;
 
   factory BrandResponseDtoUseCase.fromJson(Map<String, dynamic> json) => _$BrandResponseDtoUseCaseFromJson(json);

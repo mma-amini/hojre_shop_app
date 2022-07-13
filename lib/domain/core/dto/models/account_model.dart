@@ -5,15 +5,15 @@ part 'account_model.g.dart';
 
 @JsonSerializable()
 class VMAccount extends Equatable {
-  String? UserId;
-  String? Username;
-  String? FirstName;
-  String? LastName;
-  String? ShopId;
-  String? ShopName;
-  String? ClientSecret;
+  String? userId;
+  String? username;
+  String? firstName;
+  String? lastName;
+  String? shopId;
+  String? shopName;
+  String? clientSecret;
 
-  VMAccount({this.UserId, this.Username, this.FirstName, this.LastName, this.ShopId, this.ShopName, this.ClientSecret});
+  VMAccount({this.userId, this.username, this.firstName, this.lastName, this.shopId, this.shopName, this.clientSecret});
 
   factory VMAccount.fromJson(Map<String, dynamic> json) => _$VMAccountFromJson(json);
 
@@ -22,12 +22,12 @@ class VMAccount extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        UserId,
-        Username,
-        FirstName,
-        LastName,
-        ShopId,
-        ShopName,
-        ClientSecret,
+        userId,
+        username,
+        firstName,
+        lastName,
+        shopId,
+        shopName,
+        clientSecret,
       ];
 }

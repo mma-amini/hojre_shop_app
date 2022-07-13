@@ -12,7 +12,7 @@ class BrandsUseCase implements IBrandsUseCase {
   BrandsUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, List<BrandResponseDtoUseCase>>> Handler({BrandsRequestDtoUseCase? params}) async {
+  Future<Either<Failure, List<BrandResponseDtoUseCase>>> handler({BrandsRequestDtoUseCase? params}) async {
     return await repository.brands(brandsRequestDtoUseCase: params!)!;
   }
 }

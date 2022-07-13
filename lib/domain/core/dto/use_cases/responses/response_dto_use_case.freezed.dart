@@ -20,9 +20,9 @@ ResponseDtoUseCase _$ResponseDtoUseCaseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ResponseDtoUseCase {
-  int? get StatusCode => throw _privateConstructorUsedError;
-  MessageDtoUseCase? get Message => throw _privateConstructorUsedError;
-  dynamic? get Content => throw _privateConstructorUsedError;
+  int? get statusCode => throw _privateConstructorUsedError;
+  MessageDtoUseCase? get message => throw _privateConstructorUsedError;
+  dynamic? get content => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +35,9 @@ abstract class $ResponseDtoUseCaseCopyWith<$Res> {
   factory $ResponseDtoUseCaseCopyWith(
           ResponseDtoUseCase value, $Res Function(ResponseDtoUseCase) then) =
       _$ResponseDtoUseCaseCopyWithImpl<$Res>;
-  $Res call({int? StatusCode, MessageDtoUseCase? Message, dynamic? Content});
+  $Res call({int? statusCode, MessageDtoUseCase? message, dynamic? content});
 
-  $MessageDtoUseCaseCopyWith<$Res>? get Message;
+  $MessageDtoUseCaseCopyWith<$Res>? get message;
 }
 
 /// @nodoc
@@ -51,34 +51,34 @@ class _$ResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? StatusCode = freezed,
-    Object? Message = freezed,
-    Object? Content = freezed,
+    Object? statusCode = freezed,
+    Object? message = freezed,
+    Object? content = freezed,
   }) {
     return _then(_value.copyWith(
-      StatusCode: StatusCode == freezed
-          ? _value.StatusCode
-          : StatusCode // ignore: cast_nullable_to_non_nullable
+      statusCode: statusCode == freezed
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
               as int?,
-      Message: Message == freezed
-          ? _value.Message
-          : Message // ignore: cast_nullable_to_non_nullable
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as MessageDtoUseCase?,
-      Content: Content == freezed
-          ? _value.Content
-          : Content // ignore: cast_nullable_to_non_nullable
+      content: content == freezed
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as dynamic?,
     ));
   }
 
   @override
-  $MessageDtoUseCaseCopyWith<$Res>? get Message {
-    if (_value.Message == null) {
+  $MessageDtoUseCaseCopyWith<$Res>? get message {
+    if (_value.message == null) {
       return null;
     }
 
-    return $MessageDtoUseCaseCopyWith<$Res>(_value.Message!, (value) {
-      return _then(_value.copyWith(Message: value));
+    return $MessageDtoUseCaseCopyWith<$Res>(_value.message!, (value) {
+      return _then(_value.copyWith(message: value));
     });
   }
 }
@@ -90,10 +90,10 @@ abstract class _$$_ResponseDtoUseCaseCopyWith<$Res>
           $Res Function(_$_ResponseDtoUseCase) then) =
       __$$_ResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
-  $Res call({int? StatusCode, MessageDtoUseCase? Message, dynamic? Content});
+  $Res call({int? statusCode, MessageDtoUseCase? message, dynamic? content});
 
   @override
-  $MessageDtoUseCaseCopyWith<$Res>? get Message;
+  $MessageDtoUseCaseCopyWith<$Res>? get message;
 }
 
 /// @nodoc
@@ -109,22 +109,22 @@ class __$$_ResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? StatusCode = freezed,
-    Object? Message = freezed,
-    Object? Content = freezed,
+    Object? statusCode = freezed,
+    Object? message = freezed,
+    Object? content = freezed,
   }) {
     return _then(_$_ResponseDtoUseCase(
-      StatusCode: StatusCode == freezed
-          ? _value.StatusCode
-          : StatusCode // ignore: cast_nullable_to_non_nullable
+      statusCode: statusCode == freezed
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
               as int?,
-      Message: Message == freezed
-          ? _value.Message
-          : Message // ignore: cast_nullable_to_non_nullable
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as MessageDtoUseCase?,
-      Content: Content == freezed
-          ? _value.Content
-          : Content // ignore: cast_nullable_to_non_nullable
+      content: content == freezed
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as dynamic?,
     ));
   }
@@ -133,21 +133,21 @@ class __$$_ResponseDtoUseCaseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ResponseDtoUseCase implements _ResponseDtoUseCase {
-  _$_ResponseDtoUseCase({this.StatusCode, this.Message, this.Content});
+  _$_ResponseDtoUseCase({this.statusCode, this.message, this.content});
 
   factory _$_ResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>
       _$$_ResponseDtoUseCaseFromJson(json);
 
   @override
-  final int? StatusCode;
+  final int? statusCode;
   @override
-  final MessageDtoUseCase? Message;
+  final MessageDtoUseCase? message;
   @override
-  final dynamic? Content;
+  final dynamic? content;
 
   @override
   String toString() {
-    return 'ResponseDtoUseCase(StatusCode: $StatusCode, Message: $Message, Content: $Content)';
+    return 'ResponseDtoUseCase(statusCode: $statusCode, message: $message, content: $content)';
   }
 
   @override
@@ -156,18 +156,18 @@ class _$_ResponseDtoUseCase implements _ResponseDtoUseCase {
         (other.runtimeType == runtimeType &&
             other is _$_ResponseDtoUseCase &&
             const DeepCollectionEquality()
-                .equals(other.StatusCode, StatusCode) &&
-            const DeepCollectionEquality().equals(other.Message, Message) &&
-            const DeepCollectionEquality().equals(other.Content, Content));
+                .equals(other.statusCode, statusCode) &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.content, content));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(StatusCode),
-      const DeepCollectionEquality().hash(Message),
-      const DeepCollectionEquality().hash(Content));
+      const DeepCollectionEquality().hash(statusCode),
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(content));
 
   @JsonKey(ignore: true)
   @override
@@ -183,19 +183,19 @@ class _$_ResponseDtoUseCase implements _ResponseDtoUseCase {
 
 abstract class _ResponseDtoUseCase implements ResponseDtoUseCase {
   factory _ResponseDtoUseCase(
-      {final int? StatusCode,
-      final MessageDtoUseCase? Message,
-      final dynamic? Content}) = _$_ResponseDtoUseCase;
+      {final int? statusCode,
+      final MessageDtoUseCase? message,
+      final dynamic? content}) = _$_ResponseDtoUseCase;
 
   factory _ResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_ResponseDtoUseCase.fromJson;
 
   @override
-  int? get StatusCode => throw _privateConstructorUsedError;
+  int? get statusCode;
   @override
-  MessageDtoUseCase? get Message => throw _privateConstructorUsedError;
+  MessageDtoUseCase? get message;
   @override
-  dynamic? get Content => throw _privateConstructorUsedError;
+  dynamic? get content;
   @override
   @JsonKey(ignore: true)
   _$$_ResponseDtoUseCaseCopyWith<_$_ResponseDtoUseCase> get copyWith =>

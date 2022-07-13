@@ -6,13 +6,13 @@ import 'package:hojre_shop_app/infrastructure/dal/services/database/storage_serv
 class LocalDataSourceImpl {
   static Future<VMToken?> getToken() async {
     VMToken? token;
-    return await Brain.storageService.getByProperty(StorageServiceTables.TABLE_TOKEN).then((value) {
+    return await Brain.storageService.getByProperty(StorageServiceTables.tableToken).then((value) {
       if (value != null) {
         token = VMToken(
-          TokenType: value["TokenType"],
-          AccessToken: value["AccessToken"],
-          RefreshToken: value["RefreshToken"],
-          ExpiresIn: value["ExpiresIn"],
+          tokenType: value["tokenType"],
+          accessToken: value["accessToken"],
+          refreshToken: value["refreshToken"],
+          expiresIn: value["expiresIn"],
         );
       }
       return token;
@@ -21,16 +21,16 @@ class LocalDataSourceImpl {
 
   static Future<VMAccount?> getAccount() async {
     VMAccount? account;
-    return await Brain.storageService.getByProperty(StorageServiceTables.TABLE_USER).then((value) {
+    return await Brain.storageService.getByProperty(StorageServiceTables.tableUser).then((value) {
       if (value != null) {
         account = VMAccount(
-          UserId: value["UserId"],
-          Username: value["Username"],
-          FirstName: value["FirstName"],
-          LastName: value["LastName"],
-          ShopId: value['ShopId'],
-          ShopName: value['ShopName'],
-          ClientSecret: value['ClientSecret'],
+          userId: value["userId"],
+          username: value["username"],
+          firstName: value["firstName"],
+          lastName: value["lastName"],
+          shopId: value['shopId'],
+          shopName: value['shopName'],
+          clientSecret: value['clientSecret'],
         );
       }
       return account;
@@ -39,7 +39,7 @@ class LocalDataSourceImpl {
 
   static Future<bool> saveToken(VMToken token) async {
     await Brain.storageService
-        .insert(data: token.toJson(), storageServiceTables: StorageServiceTables.TABLE_TOKEN)
+        .insert(data: token.toJson(), storageServiceTables: StorageServiceTables.tableToken)
         .then((value) {
       getToken();
     });
@@ -48,19 +48,19 @@ class LocalDataSourceImpl {
   }
 
   static Future<bool> saveAccount(VMAccount account) async {
-    await Brain.storageService.insert(data: account.toJson(), storageServiceTables: StorageServiceTables.TABLE_USER);
+    await Brain.storageService.insert(data: account.toJson(), storageServiceTables: StorageServiceTables.tableUser);
     Brain.account = account;
     return Future.value(true);
   }
 
   static deleteToken() async {
-    await Brain.storageService.deleteByProperty(StorageServiceTables.TABLE_TOKEN).then((value) {
+    await Brain.storageService.deleteByProperty(StorageServiceTables.tableToken).then((value) {
       Brain.token = const VMToken();
     });
   }
 
   static deleteAccount() async {
-    await Brain.storageService.deleteByProperty(StorageServiceTables.TABLE_USER).then((value) {
+    await Brain.storageService.deleteByProperty(StorageServiceTables.tableUser).then((value) {
       Brain.account = VMAccount();
     });
   }

@@ -6,14 +6,16 @@ import 'package:get/get.dart';
 import 'controllers/photo_edit.controller.dart';
 
 class PhotoEditScreen extends GetView<PhotoEditController> {
+  const PhotoEditScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-      init: this.controller,
+      init: controller,
       builder: (_) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               "ویرایش عکس",
             ),
             centerTitle: true,
@@ -42,7 +44,7 @@ class PhotoEditScreen extends GetView<PhotoEditController> {
                         },
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8.0,
                     )
                   ],
@@ -50,7 +52,7 @@ class PhotoEditScreen extends GetView<PhotoEditController> {
                 controller.isLoading.value
                     ? Container(
                         height: Get.context!.height,
-                        color: Color.fromARGB(150, 0, 0, 0),
+                        color: const Color.fromARGB(150, 0, 0, 0),
                         child: SpinKitCircle(
                           itemBuilder: (BuildContext context, int index) {
                             return DecoratedBox(
@@ -86,7 +88,7 @@ class PhotoEditScreen extends GetView<PhotoEditController> {
                         controller.cropImage();
                       },
                       child: Container(
-                        padding: EdgeInsets.fromLTRB(18.0, 6.0, 18.0, 6.0),
+                        padding: const EdgeInsets.fromLTRB(18.0, 6.0, 18.0, 6.0),
                         child: Text(
                           "تایید",
                           style: TextStyle(

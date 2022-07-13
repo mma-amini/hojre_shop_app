@@ -9,19 +9,19 @@ part of 'insert_product_request_dto_use_case.dart';
 InsertProductRequestDtoUseCase _$InsertProductRequestDtoUseCaseFromJson(
         Map<String, dynamic> json) =>
     InsertProductRequestDtoUseCase(
-      ProductName: json['ProductName'] as String?,
-      ProductId: json['ProductId'] as String?,
-      ProductGroupId: json['ProductGroupId'] as String?,
-      BrandId: json['BrandId'] as String?,
-      BrandName: json['BrandName'] as String?,
-      ProductPackWeight: json['ProductPackWeight'] as int?,
-      ProductPackLength: json['ProductPackLength'] as int?,
-      ProductPackWidth: json['ProductPackWidth'] as int?,
-      ProductPackHeight: json['ProductPackHeight'] as int?,
-      ProductPackWeightType: json['ProductPackWeightType'] as int?,
-      Description: json['Description'] as String?,
-      Original: json['Original'] as bool? ?? false,
-      Sections: (json['Sections'] as List<dynamic>?)
+      productName: json['productName'] as String?,
+      productId: json['productId'] as String?,
+      productGroupId: json['productGroupId'] as String?,
+      brandId: json['brandId'] as String?,
+      brandName: json['brandName'] as String?,
+      productPackWeight: json['productPackWeight'] as int?,
+      productPackLength: json['productPackLength'] as int?,
+      productPackWidth: json['productPackWidth'] as int?,
+      productPackHeight: json['productPackHeight'] as int?,
+      productPackWeightType: json['productPackWeightType'] as int?,
+      description: json['description'] as String?,
+      original: json['original'] as bool? ?? false,
+      sections: (json['sections'] as List<dynamic>?)
           ?.map((e) => SectionOfInsertProductRequestDtoUseCase.fromJson(
               e as Map<String, dynamic>))
           .toList(),
@@ -30,27 +30,27 @@ InsertProductRequestDtoUseCase _$InsertProductRequestDtoUseCaseFromJson(
 Map<String, dynamic> _$InsertProductRequestDtoUseCaseToJson(
         InsertProductRequestDtoUseCase instance) =>
     <String, dynamic>{
-      'ProductName': instance.ProductName,
-      'ProductId': instance.ProductId,
-      'ProductGroupId': instance.ProductGroupId,
-      'BrandId': instance.BrandId,
-      'BrandName': instance.BrandName,
-      'ProductPackWeight': instance.ProductPackWeight,
-      'ProductPackLength': instance.ProductPackLength,
-      'ProductPackWidth': instance.ProductPackWidth,
-      'ProductPackHeight': instance.ProductPackHeight,
-      'ProductPackWeightType': instance.ProductPackWeightType,
-      'Description': instance.Description,
-      'Original': instance.Original,
-      'Sections': instance.Sections,
+      'productName': instance.productName,
+      'productId': instance.productId,
+      'productGroupId': instance.productGroupId,
+      'brandId': instance.brandId,
+      'brandName': instance.brandName,
+      'productPackWeight': instance.productPackWeight,
+      'productPackLength': instance.productPackLength,
+      'productPackWidth': instance.productPackWidth,
+      'productPackHeight': instance.productPackHeight,
+      'productPackWeightType': instance.productPackWeightType,
+      'description': instance.description,
+      'original': instance.original,
+      'sections': instance.sections,
     };
 
 SectionOfInsertProductRequestDtoUseCase
     _$SectionOfInsertProductRequestDtoUseCaseFromJson(
             Map<String, dynamic> json) =>
         SectionOfInsertProductRequestDtoUseCase(
-          SpecId: json['SpecId'] as String?,
-          Specs: (json['Specs'] as List<dynamic>?)
+          specId: json['specId'] as String?,
+          specs: (json['specs'] as List<dynamic>?)
               ?.map((e) =>
                   DataOfSectionOfInsertProductRequestDtoUseCase.fromJson(
                       e as Map<String, dynamic>))
@@ -60,23 +60,23 @@ SectionOfInsertProductRequestDtoUseCase
 Map<String, dynamic> _$SectionOfInsertProductRequestDtoUseCaseToJson(
         SectionOfInsertProductRequestDtoUseCase instance) =>
     <String, dynamic>{
-      'SpecId': instance.SpecId,
-      'Specs': instance.Specs,
+      'specId': instance.specId,
+      'specs': instance.specs,
     };
 
 DataOfSectionOfInsertProductRequestDtoUseCase
     _$DataOfSectionOfInsertProductRequestDtoUseCaseFromJson(
             Map<String, dynamic> json) =>
         DataOfSectionOfInsertProductRequestDtoUseCase(
-          InputType: json['InputType'] as String?,
-          SpecItemId: json['SpecItemId'] as String?,
-          Value: json['Value'],
+          inputType: json['inputType'] as String?,
+          specItemId: json['specItemId'] as String?,
+          value: json['value'],
         );
 
 Map<String, dynamic> _$DataOfSectionOfInsertProductRequestDtoUseCaseToJson(
         DataOfSectionOfInsertProductRequestDtoUseCase instance) =>
     <String, dynamic>{
-      'InputType': instance.InputType,
-      'SpecItemId': instance.SpecItemId,
-      'Value': instance.Value,
+      'inputType': instance.inputType,
+      'specItemId': instance.specItemId,
+      'value': instance.value,
     };

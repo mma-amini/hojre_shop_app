@@ -16,6 +16,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'controllers/home.controller.dart';
 
 class HomeScreen extends GetView<HomeController> {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,183 +36,171 @@ class HomeScreen extends GetView<HomeController> {
                   child: ExpandablePanel(
                     controller: controller.expandableController,
                     header: userBarWidget(),
-                    expanded: Container(
-                      child: Column(
-                        children: [
-                          const Divider(
-                            color: Colors.white,
+                    expanded: Column(
+                      children: [
+                        const Divider(
+                          color: Colors.white,
+                        ),
+                        CheckboxListTile(
+                          value: true,
+                          onChanged: (value) {
+                            // controller.startApiRequestMoneySystem();
+                          },
+                          title: const AutoSizeText(
+                            "کیف پول سیستمی فعال باشد؟",
+                            maxLines: 1,
+                            minFontSize: 8.0,
+                            maxFontSize: 14.0,
+                            style: TextStyle(color: Colors.white),
                           ),
-                          CheckboxListTile(
-                            value: true,
-                            onChanged: (value) {
-                              // controller.startApiRequestMoneySystem();
-                            },
-                            title: const AutoSizeText(
-                              "کیف پول سیستمی فعال باشد؟",
-                              maxLines: 1,
-                              minFontSize: 8.0,
-                              maxFontSize: 14.0,
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            subtitle: const AutoSizeText(
-                              "کیف پول سیستمی فعال است",
-                              style: TextStyle(fontSize: 12.0, color: Colors.white),
-                            ),
+                          subtitle: const AutoSizeText(
+                            "کیف پول سیستمی فعال است",
+                            style: TextStyle(fontSize: 12.0, color: Colors.white),
                           ),
-                          const Divider(
-                            color: Colors.white,
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Text(
-                                    "حجره فروشگاه دار - نسخه: ${Brain.appVersion}",
-                                    style: const TextStyle(
-                                      fontSize: 12.0,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Visibility(
-                                visible: !kIsWeb,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        child: InkWell(
-                                          onTap: () {
-                                            // controller.startApiApplicationUpdate(showLoading: true);
-                                            controller.updateLocale();
-                                          },
-                                          child: const Icon(
-                                            Icons.system_update_alt,
-                                            size: 16.0,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10.0,
-                                      child: VerticalDivider(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    onTap: () {
-                                      Get.changeTheme(
-                                        Get.isDarkMode
-                                            ? ThemeData(
-                                                brightness: Brightness.light,
-                                                fontFamily: "Vazir Reg",
-                                              )
-                                            : ThemeData(
-                                                brightness: Brightness.dark,
-                                                fontFamily: "Vazir Reg",
-                                              ),
-                                      );
-                                      Future.delayed(const Duration(milliseconds: 250)).then((value) async {
-                                        var appTheme = "";
-                                        if (Get.isDarkMode) {
-                                          appTheme = "DARK";
-                                        } else {
-                                          appTheme = "LIGHT";
-                                        }
-                                        SharedPreferences prefs = await SharedPreferences.getInstance();
-                                        prefs.setString("APP_THEME", appTheme);
-                                        Brain.appTheme = appTheme;
-                                      });
-
-                                      controller.justUpdate();
-                                    },
-                                    child: Container(
-                                      child: const Icon(
-                                        FontAwesome5.moon,
-                                        color: Colors.white,
-                                        size: 16.0,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                                child: VerticalDivider(
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "حجره فروشگاه دار - نسخه: ${Brain.appVersion}",
+                                style: const TextStyle(
+                                  fontSize: 12.0,
                                   color: Colors.white,
                                 ),
                               ),
-                              Visibility(
-                                visible: kDebugMode,
-                                child: Row(
-                                  children: [
-                                    Material(
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        onTap: () {
-                                          Get.toNamed(Routes.DEVELOPER);
-                                        },
-                                        child: Container(
-                                          child: const Icon(
-                                            Icons.developer_mode,
-                                            color: Colors.white,
-                                            size: 16,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10.0,
-                                      child: VerticalDivider(
+                            ),
+                            Visibility(
+                              visible: !kIsWeb,
+                              child: Row(
+                                children: [
+                                  Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                        // controller.startApiApplicationUpdate(showLoading: true);
+                                        controller.updateLocale();
+                                      },
+                                      child: const Icon(
+                                        Icons.system_update_alt,
+                                        size: 16.0,
                                         color: Colors.white,
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    onTap: () {
-                                      AwesomeDialog(
-                                        context: Get.context!,
-                                        animType: AnimType.SCALE,
-                                        dialogType: DialogType.WARNING,
-                                        body: Text(
-                                          LocaleKeys.screen_home_are_you_sure_you_want_to_sign_out.tr,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                        btnOkText: LocaleKeys.buttons_yes.tr,
-                                        btnOkOnPress: () {
-                                          Brain.logout();
-                                        },
-                                        btnCancelText: LocaleKeys.buttons_no.tr,
-                                        btnCancelOnPress: () {},
-                                      ).show();
-                                    },
-                                    child: const Icon(
-                                      FontAwesome.logout,
+                                  ),
+                                  const SizedBox(
+                                    height: 10.0,
+                                    child: VerticalDivider(
                                       color: Colors.white,
-                                      size: 16.0,
                                     ),
                                   ),
+                                ],
+                              ),
+                            ),
+                            Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () {
+                                  Get.changeTheme(
+                                    Get.isDarkMode
+                                        ? ThemeData(
+                                            brightness: Brightness.light,
+                                            fontFamily: "Vazir Reg",
+                                          )
+                                        : ThemeData(
+                                            brightness: Brightness.dark,
+                                            fontFamily: "Vazir Reg",
+                                          ),
+                                  );
+                                  Future.delayed(const Duration(milliseconds: 250)).then((value) async {
+                                    var appTheme = "";
+                                    if (Get.isDarkMode) {
+                                      appTheme = "DARK";
+                                    } else {
+                                      appTheme = "LIGHT";
+                                    }
+                                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                                    prefs.setString("APP_THEME", appTheme);
+                                    Brain.appTheme = appTheme;
+                                  });
+
+                                  controller.justUpdate();
+                                },
+                                child: const Icon(
+                                  FontAwesome5.moon,
+                                  color: Colors.white,
+                                  size: 16.0,
                                 ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10.0,
+                              child: VerticalDivider(
+                                color: Colors.white,
+                              ),
+                            ),
+                            Visibility(
+                              visible: kDebugMode,
+                              child: Row(
+                                children: [
+                                  Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(Routes.DEVELOPER);
+                                      },
+                                      child: const Icon(
+                                        Icons.developer_mode,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10.0,
+                                    child: VerticalDivider(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  onTap: () {
+                                    AwesomeDialog(
+                                      context: Get.context!,
+                                      animType: AnimType.SCALE,
+                                      dialogType: DialogType.WARNING,
+                                      body: Text(
+                                        LocaleKeys.screen_home_are_you_sure_you_want_to_sign_out.tr,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      btnOkText: LocaleKeys.buttons_yes.tr,
+                                      btnOkOnPress: () {
+                                        Brain.logout();
+                                      },
+                                      btnCancelText: LocaleKeys.buttons_no.tr,
+                                      btnCancelOnPress: () {},
+                                    ).show();
+                                  },
+                                  child: const Icon(
+                                    FontAwesome.logout,
+                                    color: Colors.white,
+                                    size: 16.0,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                     hasIcon: false,
                   ),

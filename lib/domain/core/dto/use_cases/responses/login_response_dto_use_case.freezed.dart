@@ -21,16 +21,16 @@ LoginResponseDtoUseCase _$LoginResponseDtoUseCaseFromJson(
 
 /// @nodoc
 mixin _$LoginResponseDtoUseCase {
-  String? get UserId => throw _privateConstructorUsedError;
-  String? get Username => throw _privateConstructorUsedError;
-  String? get FirstName => throw _privateConstructorUsedError;
-  String? get LastName => throw _privateConstructorUsedError;
-  String? get ShopId => throw _privateConstructorUsedError;
-  String? get ShopName => throw _privateConstructorUsedError;
-  String? get AccessToken => throw _privateConstructorUsedError;
-  String? get RefreshToken => throw _privateConstructorUsedError;
-  String? get TokenType => throw _privateConstructorUsedError;
-  int? get ExpiresIn => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
+  String? get shopId => throw _privateConstructorUsedError;
+  String? get shopName => throw _privateConstructorUsedError;
+  String? get accessToken => throw _privateConstructorUsedError;
+  String? get refreshToken => throw _privateConstructorUsedError;
+  String? get tokenType => throw _privateConstructorUsedError;
+  int? get expiresIn => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,16 +44,16 @@ abstract class $LoginResponseDtoUseCaseCopyWith<$Res> {
           $Res Function(LoginResponseDtoUseCase) then) =
       _$LoginResponseDtoUseCaseCopyWithImpl<$Res>;
   $Res call(
-      {String? UserId,
-      String? Username,
-      String? FirstName,
-      String? LastName,
-      String? ShopId,
-      String? ShopName,
-      String? AccessToken,
-      String? RefreshToken,
-      String? TokenType,
-      int? ExpiresIn});
+      {String? userId,
+      String? username,
+      String? firstName,
+      String? lastName,
+      String? shopId,
+      String? shopName,
+      String? accessToken,
+      String? refreshToken,
+      String? tokenType,
+      int? expiresIn});
 }
 
 /// @nodoc
@@ -67,57 +67,57 @@ class _$LoginResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? UserId = freezed,
-    Object? Username = freezed,
-    Object? FirstName = freezed,
-    Object? LastName = freezed,
-    Object? ShopId = freezed,
-    Object? ShopName = freezed,
-    Object? AccessToken = freezed,
-    Object? RefreshToken = freezed,
-    Object? TokenType = freezed,
-    Object? ExpiresIn = freezed,
+    Object? userId = freezed,
+    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? shopId = freezed,
+    Object? shopName = freezed,
+    Object? accessToken = freezed,
+    Object? refreshToken = freezed,
+    Object? tokenType = freezed,
+    Object? expiresIn = freezed,
   }) {
     return _then(_value.copyWith(
-      UserId: UserId == freezed
-          ? _value.UserId
-          : UserId // ignore: cast_nullable_to_non_nullable
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String?,
-      Username: Username == freezed
-          ? _value.Username
-          : Username // ignore: cast_nullable_to_non_nullable
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      FirstName: FirstName == freezed
-          ? _value.FirstName
-          : FirstName // ignore: cast_nullable_to_non_nullable
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
-      LastName: LastName == freezed
-          ? _value.LastName
-          : LastName // ignore: cast_nullable_to_non_nullable
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      ShopId: ShopId == freezed
-          ? _value.ShopId
-          : ShopId // ignore: cast_nullable_to_non_nullable
+      shopId: shopId == freezed
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
               as String?,
-      ShopName: ShopName == freezed
-          ? _value.ShopName
-          : ShopName // ignore: cast_nullable_to_non_nullable
+      shopName: shopName == freezed
+          ? _value.shopName
+          : shopName // ignore: cast_nullable_to_non_nullable
               as String?,
-      AccessToken: AccessToken == freezed
-          ? _value.AccessToken
-          : AccessToken // ignore: cast_nullable_to_non_nullable
+      accessToken: accessToken == freezed
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      RefreshToken: RefreshToken == freezed
-          ? _value.RefreshToken
-          : RefreshToken // ignore: cast_nullable_to_non_nullable
+      refreshToken: refreshToken == freezed
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      TokenType: TokenType == freezed
-          ? _value.TokenType
-          : TokenType // ignore: cast_nullable_to_non_nullable
+      tokenType: tokenType == freezed
+          ? _value.tokenType
+          : tokenType // ignore: cast_nullable_to_non_nullable
               as String?,
-      ExpiresIn: ExpiresIn == freezed
-          ? _value.ExpiresIn
-          : ExpiresIn // ignore: cast_nullable_to_non_nullable
+      expiresIn: expiresIn == freezed
+          ? _value.expiresIn
+          : expiresIn // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -131,16 +131,16 @@ abstract class _$$_LoginResponseDtoUseCaseCopyWith<$Res>
       __$$_LoginResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? UserId,
-      String? Username,
-      String? FirstName,
-      String? LastName,
-      String? ShopId,
-      String? ShopName,
-      String? AccessToken,
-      String? RefreshToken,
-      String? TokenType,
-      int? ExpiresIn});
+      {String? userId,
+      String? username,
+      String? firstName,
+      String? lastName,
+      String? shopId,
+      String? shopName,
+      String? accessToken,
+      String? refreshToken,
+      String? tokenType,
+      int? expiresIn});
 }
 
 /// @nodoc
@@ -157,57 +157,57 @@ class __$$_LoginResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? UserId = freezed,
-    Object? Username = freezed,
-    Object? FirstName = freezed,
-    Object? LastName = freezed,
-    Object? ShopId = freezed,
-    Object? ShopName = freezed,
-    Object? AccessToken = freezed,
-    Object? RefreshToken = freezed,
-    Object? TokenType = freezed,
-    Object? ExpiresIn = freezed,
+    Object? userId = freezed,
+    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? shopId = freezed,
+    Object? shopName = freezed,
+    Object? accessToken = freezed,
+    Object? refreshToken = freezed,
+    Object? tokenType = freezed,
+    Object? expiresIn = freezed,
   }) {
     return _then(_$_LoginResponseDtoUseCase(
-      UserId: UserId == freezed
-          ? _value.UserId
-          : UserId // ignore: cast_nullable_to_non_nullable
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String?,
-      Username: Username == freezed
-          ? _value.Username
-          : Username // ignore: cast_nullable_to_non_nullable
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String?,
-      FirstName: FirstName == freezed
-          ? _value.FirstName
-          : FirstName // ignore: cast_nullable_to_non_nullable
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
-      LastName: LastName == freezed
-          ? _value.LastName
-          : LastName // ignore: cast_nullable_to_non_nullable
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      ShopId: ShopId == freezed
-          ? _value.ShopId
-          : ShopId // ignore: cast_nullable_to_non_nullable
+      shopId: shopId == freezed
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
               as String?,
-      ShopName: ShopName == freezed
-          ? _value.ShopName
-          : ShopName // ignore: cast_nullable_to_non_nullable
+      shopName: shopName == freezed
+          ? _value.shopName
+          : shopName // ignore: cast_nullable_to_non_nullable
               as String?,
-      AccessToken: AccessToken == freezed
-          ? _value.AccessToken
-          : AccessToken // ignore: cast_nullable_to_non_nullable
+      accessToken: accessToken == freezed
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      RefreshToken: RefreshToken == freezed
-          ? _value.RefreshToken
-          : RefreshToken // ignore: cast_nullable_to_non_nullable
+      refreshToken: refreshToken == freezed
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      TokenType: TokenType == freezed
-          ? _value.TokenType
-          : TokenType // ignore: cast_nullable_to_non_nullable
+      tokenType: tokenType == freezed
+          ? _value.tokenType
+          : tokenType // ignore: cast_nullable_to_non_nullable
               as String?,
-      ExpiresIn: ExpiresIn == freezed
-          ? _value.ExpiresIn
-          : ExpiresIn // ignore: cast_nullable_to_non_nullable
+      expiresIn: expiresIn == freezed
+          ? _value.expiresIn
+          : expiresIn // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -217,44 +217,44 @@ class __$$_LoginResponseDtoUseCaseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
   _$_LoginResponseDtoUseCase(
-      {this.UserId,
-      this.Username,
-      this.FirstName,
-      this.LastName,
-      this.ShopId,
-      this.ShopName,
-      this.AccessToken,
-      this.RefreshToken,
-      this.TokenType,
-      this.ExpiresIn});
+      {this.userId,
+      this.username,
+      this.firstName,
+      this.lastName,
+      this.shopId,
+      this.shopName,
+      this.accessToken,
+      this.refreshToken,
+      this.tokenType,
+      this.expiresIn});
 
   factory _$_LoginResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>
       _$$_LoginResponseDtoUseCaseFromJson(json);
 
   @override
-  final String? UserId;
+  final String? userId;
   @override
-  final String? Username;
+  final String? username;
   @override
-  final String? FirstName;
+  final String? firstName;
   @override
-  final String? LastName;
+  final String? lastName;
   @override
-  final String? ShopId;
+  final String? shopId;
   @override
-  final String? ShopName;
+  final String? shopName;
   @override
-  final String? AccessToken;
+  final String? accessToken;
   @override
-  final String? RefreshToken;
+  final String? refreshToken;
   @override
-  final String? TokenType;
+  final String? tokenType;
   @override
-  final int? ExpiresIn;
+  final int? expiresIn;
 
   @override
   String toString() {
-    return 'LoginResponseDtoUseCase(UserId: $UserId, Username: $Username, FirstName: $FirstName, LastName: $LastName, ShopId: $ShopId, ShopName: $ShopName, AccessToken: $AccessToken, RefreshToken: $RefreshToken, TokenType: $TokenType, ExpiresIn: $ExpiresIn)';
+    return 'LoginResponseDtoUseCase(userId: $userId, username: $username, firstName: $firstName, lastName: $lastName, shopId: $shopId, shopName: $shopName, accessToken: $accessToken, refreshToken: $refreshToken, tokenType: $tokenType, expiresIn: $expiresIn)';
   }
 
   @override
@@ -262,34 +262,34 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoginResponseDtoUseCase &&
-            const DeepCollectionEquality().equals(other.UserId, UserId) &&
-            const DeepCollectionEquality().equals(other.Username, Username) &&
-            const DeepCollectionEquality().equals(other.FirstName, FirstName) &&
-            const DeepCollectionEquality().equals(other.LastName, LastName) &&
-            const DeepCollectionEquality().equals(other.ShopId, ShopId) &&
-            const DeepCollectionEquality().equals(other.ShopName, ShopName) &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.lastName, lastName) &&
+            const DeepCollectionEquality().equals(other.shopId, shopId) &&
+            const DeepCollectionEquality().equals(other.shopName, shopName) &&
             const DeepCollectionEquality()
-                .equals(other.AccessToken, AccessToken) &&
+                .equals(other.accessToken, accessToken) &&
             const DeepCollectionEquality()
-                .equals(other.RefreshToken, RefreshToken) &&
-            const DeepCollectionEquality().equals(other.TokenType, TokenType) &&
-            const DeepCollectionEquality().equals(other.ExpiresIn, ExpiresIn));
+                .equals(other.refreshToken, refreshToken) &&
+            const DeepCollectionEquality().equals(other.tokenType, tokenType) &&
+            const DeepCollectionEquality().equals(other.expiresIn, expiresIn));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(UserId),
-      const DeepCollectionEquality().hash(Username),
-      const DeepCollectionEquality().hash(FirstName),
-      const DeepCollectionEquality().hash(LastName),
-      const DeepCollectionEquality().hash(ShopId),
-      const DeepCollectionEquality().hash(ShopName),
-      const DeepCollectionEquality().hash(AccessToken),
-      const DeepCollectionEquality().hash(RefreshToken),
-      const DeepCollectionEquality().hash(TokenType),
-      const DeepCollectionEquality().hash(ExpiresIn));
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(firstName),
+      const DeepCollectionEquality().hash(lastName),
+      const DeepCollectionEquality().hash(shopId),
+      const DeepCollectionEquality().hash(shopName),
+      const DeepCollectionEquality().hash(accessToken),
+      const DeepCollectionEquality().hash(refreshToken),
+      const DeepCollectionEquality().hash(tokenType),
+      const DeepCollectionEquality().hash(expiresIn));
 
   @JsonKey(ignore: true)
   @override
@@ -306,40 +306,40 @@ class _$_LoginResponseDtoUseCase implements _LoginResponseDtoUseCase {
 
 abstract class _LoginResponseDtoUseCase implements LoginResponseDtoUseCase {
   factory _LoginResponseDtoUseCase(
-      {final String? UserId,
-      final String? Username,
-      final String? FirstName,
-      final String? LastName,
-      final String? ShopId,
-      final String? ShopName,
-      final String? AccessToken,
-      final String? RefreshToken,
-      final String? TokenType,
-      final int? ExpiresIn}) = _$_LoginResponseDtoUseCase;
+      {final String? userId,
+      final String? username,
+      final String? firstName,
+      final String? lastName,
+      final String? shopId,
+      final String? shopName,
+      final String? accessToken,
+      final String? refreshToken,
+      final String? tokenType,
+      final int? expiresIn}) = _$_LoginResponseDtoUseCase;
 
   factory _LoginResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_LoginResponseDtoUseCase.fromJson;
 
   @override
-  String? get UserId => throw _privateConstructorUsedError;
+  String? get userId;
   @override
-  String? get Username => throw _privateConstructorUsedError;
+  String? get username;
   @override
-  String? get FirstName => throw _privateConstructorUsedError;
+  String? get firstName;
   @override
-  String? get LastName => throw _privateConstructorUsedError;
+  String? get lastName;
   @override
-  String? get ShopId => throw _privateConstructorUsedError;
+  String? get shopId;
   @override
-  String? get ShopName => throw _privateConstructorUsedError;
+  String? get shopName;
   @override
-  String? get AccessToken => throw _privateConstructorUsedError;
+  String? get accessToken;
   @override
-  String? get RefreshToken => throw _privateConstructorUsedError;
+  String? get refreshToken;
   @override
-  String? get TokenType => throw _privateConstructorUsedError;
+  String? get tokenType;
   @override
-  int? get ExpiresIn => throw _privateConstructorUsedError;
+  int? get expiresIn;
   @override
   @JsonKey(ignore: true)
   _$$_LoginResponseDtoUseCaseCopyWith<_$_LoginResponseDtoUseCase>

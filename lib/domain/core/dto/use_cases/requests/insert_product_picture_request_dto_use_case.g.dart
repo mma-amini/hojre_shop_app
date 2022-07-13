@@ -10,19 +10,19 @@ InsertProductPictureRequestDtoUseCase
     _$InsertProductPictureRequestDtoUseCaseFromJson(
             Map<String, dynamic> json) =>
         InsertProductPictureRequestDtoUseCase(
-          Id: json['Id'] as String?,
-          ProductId: json['ProductId'] as String?,
-          IsMain: json['IsMain'] as bool?,
-          IsUploaded: json['IsUploaded'] as bool?,
-          Sort: json['Sort'] as int?,
+          id: json['id'] as String?,
+          productId: json['productId'] as String?,
+          isMain: json['isMain'] as bool?,
+          isUploaded: json['isUploaded'] as bool?,
+          sort: json['sort'] as int?,
         );
 
 Map<String, dynamic> _$InsertProductPictureRequestDtoUseCaseToJson(
         InsertProductPictureRequestDtoUseCase instance) =>
     <String, dynamic>{
-      'Id': instance.Id,
-      'ProductId': instance.ProductId,
-      'IsMain': instance.IsMain,
-      'IsUploaded': instance.IsUploaded,
-      'Sort': instance.Sort,
+      'id': instance.id,
+      'productId': instance.productId,
+      'isMain': instance.isMain,
+      'isUploaded': instance.isUploaded,
+      'sort': instance.sort,
     };

@@ -12,7 +12,7 @@ class RefreshTokenUseCase implements IRefreshTokenUseCase {
   RefreshTokenUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, LoginResponseDtoUseCase>> Handler({Dio? params}) async {
+  Future<Either<Failure, LoginResponseDtoUseCase>> handler({Dio? params}) async {
     return await repository.refreshToken(dio: params!)!;
   }
 }

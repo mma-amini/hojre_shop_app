@@ -6,16 +6,16 @@ part 'login_response_dto_use_case.g.dart';
 @freezed
 class LoginResponseDtoUseCase with _$LoginResponseDtoUseCase {
   factory LoginResponseDtoUseCase({
-    String? UserId,
-    String? Username,
-    String? FirstName,
-    String? LastName,
-    String? ShopId,
-    String? ShopName,
-    String? AccessToken,
-    String? RefreshToken,
-    String? TokenType,
-    int? ExpiresIn,
+    String? userId,
+    String? username,
+    String? firstName,
+    String? lastName,
+    String? shopId,
+    String? shopName,
+    String? accessToken,
+    String? refreshToken,
+    String? tokenType,
+    int? expiresIn,
   }) = _LoginResponseDtoUseCase;
 
   factory LoginResponseDtoUseCase.fromJson(Map<String, dynamic> json) => _$LoginResponseDtoUseCaseFromJson(json);

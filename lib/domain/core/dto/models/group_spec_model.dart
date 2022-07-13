@@ -7,9 +7,9 @@ part 'group_spec_model.g.dart';
 
 @JsonSerializable()
 class VMGroupSpec extends Equatable {
-  List<VMSpecItem>? Items;
-  String? Name;
-  String? SpecId;
+  List<VMSpecItem>? items;
+  String? name;
+  String? specId;
 
   @JsonKey(ignore: true)
   TextEditingController? searchTextController = TextEditingController();
@@ -18,9 +18,9 @@ class VMGroupSpec extends Equatable {
   List<VMSpecItem>? searchResult = List<VMSpecItem>.empty(growable: true);
 
   VMGroupSpec({
-    this.Items,
-    this.Name,
-    this.SpecId,
+    this.items,
+    this.name,
+    this.specId,
     this.searchResult,
     this.searchTextController,
   }) {
@@ -35,24 +35,24 @@ class VMGroupSpec extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        Items,
-        Name,
-        SpecId,
+        items,
+        name,
+        specId,
       ];
 }
 
 @JsonSerializable()
 class VMSpecItem extends Equatable {
-  String? InputName;
-  String? InputTitle;
-  String? Name;
-  String? SpecItemId;
-  List<VMSpecValue>? Values;
-  VMSpecValue? SelectedItem;
-  List<VMSpecValue>? SelectedItems;
-  String? TypedText;
-  bool? BooleanValue;
-  bool? IsRequired = false;
+  String? inputName;
+  String? inputTitle;
+  String? name;
+  String? specItemId;
+  List<VMSpecValue>? values;
+  VMSpecValue? selectedItem;
+  List<VMSpecValue>? selectedItems;
+  String? typedText;
+  bool? booleanValue;
+  bool? isRequired = false;
 
   @JsonKey(ignore: true)
   FocusNode textNode = FocusNode();
@@ -64,7 +64,7 @@ class VMSpecItem extends Equatable {
   TextEditingController searchTextController = TextEditingController();
 
   get type {
-    switch (InputName) {
+    switch (inputName) {
       case "COLOR":
         return SpecificationType.COLOR;
       case "SELECTABLE":
@@ -89,16 +89,16 @@ class VMSpecItem extends Equatable {
   }
 
   VMSpecItem({
-    this.InputName,
-    this.InputTitle,
-    this.Name,
-    this.SpecItemId,
-    this.Values,
-    this.SelectedItem,
-    this.SelectedItems,
-    this.TypedText,
-    this.BooleanValue,
-    this.IsRequired,
+    this.inputName,
+    this.inputTitle,
+    this.name,
+    this.specItemId,
+    this.values,
+    this.selectedItem,
+    this.selectedItems,
+    this.typedText,
+    this.booleanValue,
+    this.isRequired,
   });
 
   factory VMSpecItem.fromJson(Map<String, dynamic> json) => _$VMSpecItemFromJson(json);
@@ -108,24 +108,24 @@ class VMSpecItem extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        InputName,
-        InputTitle,
-        Name,
-        SpecItemId,
-        Values,
+        inputName,
+        inputTitle,
+        name,
+        specItemId,
+        values,
       ];
 }
 
 @JsonSerializable()
 class VMSpecValue extends Equatable {
-  String? SpecValueId;
-  String? Title;
-  String? Value;
+  String? specValueId;
+  String? title;
+  String? value;
 
   @JsonKey(ignore: true)
   bool isNew;
 
-  VMSpecValue({this.SpecValueId, this.Title, this.Value, this.isNew = false});
+  VMSpecValue({this.specValueId, this.title, this.value, this.isNew = false});
 
   factory VMSpecValue.fromJson(Map<String, dynamic> json) => _$VMSpecValueFromJson(json);
 
@@ -134,7 +134,9 @@ class VMSpecValue extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        SpecValueId,
-        Title,
+        specValueId,
+        title,
+        value,
+        isNew,
       ];
 }

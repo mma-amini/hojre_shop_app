@@ -7,17 +7,17 @@ part of 'token_model.dart';
 // **************************************************************************
 
 VMToken _$VMTokenFromJson(Map<String, dynamic> json) => VMToken(
-      AccessToken: json['AccessToken'] as String?,
-      RefreshToken: json['RefreshToken'] as String?,
-      TokenType: json['TokenType'] as String?,
-      ExpiresIn: json['ExpiresIn'] as int?,
-      ExpiresOn: json['ExpiresOn'] as int?,
+      accessToken: json['accessToken'] as String?,
+      refreshToken: json['refreshToken'] as String?,
+      tokenType: json['tokenType'] as String?,
+      expiresIn: json['expiresIn'] as int?,
+      expiresOn: json['expiresOn'] as int?,
     );
 
 Map<String, dynamic> _$VMTokenToJson(VMToken instance) => <String, dynamic>{
-      'AccessToken': instance.AccessToken,
-      'RefreshToken': instance.RefreshToken,
-      'TokenType': instance.TokenType,
-      'ExpiresIn': instance.ExpiresIn,
-      'ExpiresOn': instance.ExpiresOn,
+      'accessToken': instance.accessToken,
+      'refreshToken': instance.refreshToken,
+      'tokenType': instance.tokenType,
+      'expiresIn': instance.expiresIn,
+      'expiresOn': instance.expiresOn,
     };

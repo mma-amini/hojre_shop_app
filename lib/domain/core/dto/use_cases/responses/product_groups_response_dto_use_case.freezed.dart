@@ -21,10 +21,10 @@ ProductGroupsResponseDtoUseCase _$ProductGroupsResponseDtoUseCaseFromJson(
 
 /// @nodoc
 mixin _$ProductGroupsResponseDtoUseCase {
-  String? get CategoryId => throw _privateConstructorUsedError;
-  String? get ParentId => throw _privateConstructorUsedError;
-  String? get CategoryName => throw _privateConstructorUsedError;
-  String? get Picture => throw _privateConstructorUsedError;
+  String? get categoryId => throw _privateConstructorUsedError;
+  String? get parentId => throw _privateConstructorUsedError;
+  String? get categoryName => throw _privateConstructorUsedError;
+  String? get picture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,10 +39,10 @@ abstract class $ProductGroupsResponseDtoUseCaseCopyWith<$Res> {
           $Res Function(ProductGroupsResponseDtoUseCase) then) =
       _$ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>;
   $Res call(
-      {String? CategoryId,
-      String? ParentId,
-      String? CategoryName,
-      String? Picture});
+      {String? categoryId,
+      String? parentId,
+      String? categoryName,
+      String? picture});
 }
 
 /// @nodoc
@@ -56,27 +56,27 @@ class _$ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? CategoryId = freezed,
-    Object? ParentId = freezed,
-    Object? CategoryName = freezed,
-    Object? Picture = freezed,
+    Object? categoryId = freezed,
+    Object? parentId = freezed,
+    Object? categoryName = freezed,
+    Object? picture = freezed,
   }) {
     return _then(_value.copyWith(
-      CategoryId: CategoryId == freezed
-          ? _value.CategoryId
-          : CategoryId // ignore: cast_nullable_to_non_nullable
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String?,
-      ParentId: ParentId == freezed
-          ? _value.ParentId
-          : ParentId // ignore: cast_nullable_to_non_nullable
+      parentId: parentId == freezed
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
               as String?,
-      CategoryName: CategoryName == freezed
-          ? _value.CategoryName
-          : CategoryName // ignore: cast_nullable_to_non_nullable
+      categoryName: categoryName == freezed
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
               as String?,
-      Picture: Picture == freezed
-          ? _value.Picture
-          : Picture // ignore: cast_nullable_to_non_nullable
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -91,10 +91,10 @@ abstract class _$$_ProductGroupsResponseDtoUseCaseCopyWith<$Res>
       __$$_ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? CategoryId,
-      String? ParentId,
-      String? CategoryName,
-      String? Picture});
+      {String? categoryId,
+      String? parentId,
+      String? categoryName,
+      String? picture});
 }
 
 /// @nodoc
@@ -112,27 +112,27 @@ class __$$_ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? CategoryId = freezed,
-    Object? ParentId = freezed,
-    Object? CategoryName = freezed,
-    Object? Picture = freezed,
+    Object? categoryId = freezed,
+    Object? parentId = freezed,
+    Object? categoryName = freezed,
+    Object? picture = freezed,
   }) {
     return _then(_$_ProductGroupsResponseDtoUseCase(
-      CategoryId: CategoryId == freezed
-          ? _value.CategoryId
-          : CategoryId // ignore: cast_nullable_to_non_nullable
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String?,
-      ParentId: ParentId == freezed
-          ? _value.ParentId
-          : ParentId // ignore: cast_nullable_to_non_nullable
+      parentId: parentId == freezed
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
               as String?,
-      CategoryName: CategoryName == freezed
-          ? _value.CategoryName
-          : CategoryName // ignore: cast_nullable_to_non_nullable
+      categoryName: categoryName == freezed
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
               as String?,
-      Picture: Picture == freezed
-          ? _value.Picture
-          : Picture // ignore: cast_nullable_to_non_nullable
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -143,24 +143,24 @@ class __$$_ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
 class _$_ProductGroupsResponseDtoUseCase
     implements _ProductGroupsResponseDtoUseCase {
   _$_ProductGroupsResponseDtoUseCase(
-      {this.CategoryId, this.ParentId, this.CategoryName, this.Picture});
+      {this.categoryId, this.parentId, this.categoryName, this.picture});
 
   factory _$_ProductGroupsResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =>
       _$$_ProductGroupsResponseDtoUseCaseFromJson(json);
 
   @override
-  final String? CategoryId;
+  final String? categoryId;
   @override
-  final String? ParentId;
+  final String? parentId;
   @override
-  final String? CategoryName;
+  final String? categoryName;
   @override
-  final String? Picture;
+  final String? picture;
 
   @override
   String toString() {
-    return 'ProductGroupsResponseDtoUseCase(CategoryId: $CategoryId, ParentId: $ParentId, CategoryName: $CategoryName, Picture: $Picture)';
+    return 'ProductGroupsResponseDtoUseCase(categoryId: $categoryId, parentId: $parentId, categoryName: $categoryName, picture: $picture)';
   }
 
   @override
@@ -169,21 +169,21 @@ class _$_ProductGroupsResponseDtoUseCase
         (other.runtimeType == runtimeType &&
             other is _$_ProductGroupsResponseDtoUseCase &&
             const DeepCollectionEquality()
-                .equals(other.CategoryId, CategoryId) &&
-            const DeepCollectionEquality().equals(other.ParentId, ParentId) &&
+                .equals(other.categoryId, categoryId) &&
+            const DeepCollectionEquality().equals(other.parentId, parentId) &&
             const DeepCollectionEquality()
-                .equals(other.CategoryName, CategoryName) &&
-            const DeepCollectionEquality().equals(other.Picture, Picture));
+                .equals(other.categoryName, categoryName) &&
+            const DeepCollectionEquality().equals(other.picture, picture));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(CategoryId),
-      const DeepCollectionEquality().hash(ParentId),
-      const DeepCollectionEquality().hash(CategoryName),
-      const DeepCollectionEquality().hash(Picture));
+      const DeepCollectionEquality().hash(categoryId),
+      const DeepCollectionEquality().hash(parentId),
+      const DeepCollectionEquality().hash(categoryName),
+      const DeepCollectionEquality().hash(picture));
 
   @JsonKey(ignore: true)
   @override
@@ -201,22 +201,22 @@ class _$_ProductGroupsResponseDtoUseCase
 abstract class _ProductGroupsResponseDtoUseCase
     implements ProductGroupsResponseDtoUseCase {
   factory _ProductGroupsResponseDtoUseCase(
-      {final String? CategoryId,
-      final String? ParentId,
-      final String? CategoryName,
-      final String? Picture}) = _$_ProductGroupsResponseDtoUseCase;
+      {final String? categoryId,
+      final String? parentId,
+      final String? categoryName,
+      final String? picture}) = _$_ProductGroupsResponseDtoUseCase;
 
   factory _ProductGroupsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_ProductGroupsResponseDtoUseCase.fromJson;
 
   @override
-  String? get CategoryId => throw _privateConstructorUsedError;
+  String? get categoryId;
   @override
-  String? get ParentId => throw _privateConstructorUsedError;
+  String? get parentId;
   @override
-  String? get CategoryName => throw _privateConstructorUsedError;
+  String? get categoryName;
   @override
-  String? get Picture => throw _privateConstructorUsedError;
+  String? get picture;
   @override
   @JsonKey(ignore: true)
   _$$_ProductGroupsResponseDtoUseCaseCopyWith<

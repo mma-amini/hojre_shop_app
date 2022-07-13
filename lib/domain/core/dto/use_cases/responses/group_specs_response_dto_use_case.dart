@@ -6,9 +6,9 @@ part 'group_specs_response_dto_use_case.g.dart';
 @freezed
 class GroupSpecsResponseDtoUseCase with _$GroupSpecsResponseDtoUseCase {
   factory GroupSpecsResponseDtoUseCase({
-    List<ItemOfGroupSpecsResponseDtoUseCase>? Items,
-    String? Name,
-    String? SpecId,
+    List<ItemOfGroupSpecsResponseDtoUseCase>? items,
+    String? name,
+    String? specId,
   }) = _GroupSpecsResponseDtoUseCase;
 
   factory GroupSpecsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>
@@ -18,11 +18,11 @@ class GroupSpecsResponseDtoUseCase with _$GroupSpecsResponseDtoUseCase {
 @freezed
 class ItemOfGroupSpecsResponseDtoUseCase with _$ItemOfGroupSpecsResponseDtoUseCase {
   factory ItemOfGroupSpecsResponseDtoUseCase({
-    String? InputName,
-    String? InputTitle,
-    String? Name,
-    String? SpecItemId,
-    List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? Values,
+    String? inputName,
+    String? inputTitle,
+    String? name,
+    String? specItemId,
+    List<ValueOfItemOfGroupSpecsResponseDtoUseCase>? values,
   }) = _ItemOfGroupSpecsResponseDtoUseCase;
 
   factory ItemOfGroupSpecsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>
@@ -32,8 +32,8 @@ class ItemOfGroupSpecsResponseDtoUseCase with _$ItemOfGroupSpecsResponseDtoUseCa
 @freezed
 class ValueOfItemOfGroupSpecsResponseDtoUseCase with _$ValueOfItemOfGroupSpecsResponseDtoUseCase {
   factory ValueOfItemOfGroupSpecsResponseDtoUseCase({
-    String? SpecValueId,
-    String? Title,
+    String? specValueId,
+    String? title,
   }) = _ValueOfItemOfGroupSpecsResponseDtoUseCase;
 
   factory ValueOfItemOfGroupSpecsResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>

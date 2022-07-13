@@ -12,7 +12,7 @@ class ProductGroupsUseCase implements IProductGroupsUseCase {
   ProductGroupsUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, List<ProductGroupsResponseDtoUseCase>>> Handler({NoParams? params}) async {
+  Future<Either<Failure, List<ProductGroupsResponseDtoUseCase>>> handler({NoParams? params}) async {
     return await repository.productCategories()!;
   }
 }

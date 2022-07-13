@@ -45,8 +45,6 @@ class LoginController extends GetxController {
   updateLocale() {
     var locale = Get.locale;
 
-    print(locale);
-
     if (locale.toString() == "fa_IR") {
       Get.updateLocale(const Locale('en', 'US'));
     } else {
@@ -61,13 +59,13 @@ class LoginController extends GetxController {
     CheckUserRequestDtoUseCase checkUserRequestDtoUseCase =
         CheckUserRequestDtoUseCase(phoneNumber: userTextController.text);
 
-    var result = await iCheckUserUseCase.Handler(params: checkUserRequestDtoUseCase);
+    var result = await iCheckUserUseCase.handler(params: checkUserRequestDtoUseCase);
 
     updateLoading(isLoading: false);
     var data = result.getOrElse(() => CheckUserResponseDtoUseCase());
 
-    if ((data.Code ?? "").isNotEmpty) {
-      clientSecret.value = data.ClientSecret ?? "";
+    if ((data.code ?? "").isNotEmpty) {
+      clientSecret.value = data.clientSecret ?? "";
       updateIsLogin(isLogin: true);
     }
   }
@@ -75,34 +73,34 @@ class LoginController extends GetxController {
   startApiLogin() async {
     updateLoading(isLoading: true);
     LoginRequestDtoUseCase loginResponseDtoUseCase = LoginRequestDtoUseCase(
-        phoneNumber: userTextController.text, Code: passwordTextController.text, ClientSecret: clientSecret.value);
+        phoneNumber: userTextController.text, code: passwordTextController.text, clientSecret: clientSecret.value);
 
-    var result = await iLoginUseCase.Handler(params: loginResponseDtoUseCase);
+    var result = await iLoginUseCase.handler(params: loginResponseDtoUseCase);
 
     updateLoading(isLoading: false);
     var data = result.getOrElse(() => LoginResponseDtoUseCase());
 
     VMAccount account = VMAccount(
-      UserId: data.UserId,
-      FirstName: data.FirstName,
-      LastName: data.LastName,
-      Username: data.Username,
-      ShopId: data.ShopId,
-      ShopName: data.ShopName,
-      ClientSecret: clientSecret.value,
+      userId: data.userId,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      username: data.userId,
+      shopId: data.shopId,
+      shopName: data.shopName,
+      clientSecret: clientSecret.value,
     );
 
     VMToken token = VMToken(
-      TokenType: data.TokenType,
-      AccessToken: data.AccessToken,
-      RefreshToken: data.RefreshToken,
-      ExpiresIn: data.ExpiresIn,
+      tokenType: data.tokenType,
+      accessToken: data.accessToken,
+      refreshToken: data.refreshToken,
+      expiresIn: data.expiresIn,
     );
 
     await LocalDataSourceImpl.saveAccount(account);
     await LocalDataSourceImpl.saveToken(token);
 
-    if ((Brain.account.UserId ?? "").isNotEmpty && (Brain.token.AccessToken ?? "").isNotEmpty) {
+    if ((Brain.account.userId ?? "").isNotEmpty && (Brain.token.accessToken ?? "").isNotEmpty) {
       Get.offAllNamed(Routes.HOME);
     }
   }

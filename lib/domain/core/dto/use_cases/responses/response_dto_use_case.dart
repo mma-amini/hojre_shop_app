@@ -8,9 +8,9 @@ part 'response_dto_use_case.g.dart';
 @freezed
 class ResponseDtoUseCase with _$ResponseDtoUseCase {
   factory ResponseDtoUseCase({
-    int? StatusCode,
-    MessageDtoUseCase? Message,
-    dynamic? Content,
+    int? statusCode,
+    MessageDtoUseCase? message,
+    dynamic? content,
   }) = _ResponseDtoUseCase;
 
   factory ResponseDtoUseCase.fromJson(Map<String, dynamic> json) => _$ResponseDtoUseCaseFromJson(json);

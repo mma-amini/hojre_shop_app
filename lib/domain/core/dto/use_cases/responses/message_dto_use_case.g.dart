@@ -8,13 +8,13 @@ part of 'message_dto_use_case.dart';
 
 _$_MessageDtoUseCase _$$_MessageDtoUseCaseFromJson(Map<String, dynamic> json) =>
     _$_MessageDtoUseCase(
-      Text: json['Text'] as String?,
-      ShowType: json['ShowType'] as String?,
+      text: json['text'] as String?,
+      showType: json['showType'] as String?,
     );
 
 Map<String, dynamic> _$$_MessageDtoUseCaseToJson(
         _$_MessageDtoUseCase instance) =>
     <String, dynamic>{
-      'Text': instance.Text,
-      'ShowType': instance.ShowType,
+      'text': instance.text,
+      'showType': instance.showType,
     };

@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'controllers/developer.controller.dart';
 
 class DeveloperScreen extends GetView<DeveloperController> {
+  const DeveloperScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -11,11 +13,11 @@ class DeveloperScreen extends GetView<DeveloperController> {
       builder: (_) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Developer'),
+            title: const Text('Developer'),
             centerTitle: true,
           ),
           body: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Form(
               key: controller.formKey,
               child: ListView(
@@ -35,14 +37,14 @@ class DeveloperScreen extends GetView<DeveloperController> {
                           onPressed: () {
                             controller.updateDomain();
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.check,
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16.0,
                   )
                 ],

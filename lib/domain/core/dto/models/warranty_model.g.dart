@@ -7,14 +7,14 @@ part of 'warranty_model.dart';
 // **************************************************************************
 
 VMWarranty _$VMWarrantyFromJson(Map<String, dynamic> json) => VMWarranty(
-      Id: json['Id'] as String?,
-      WarrantName: json['WarrantName'] as String?,
-      WarrantDescription: json['WarrantDescription'] as String?,
+      id: json['id'] as String?,
+      warrantName: json['warrantName'] as String?,
+      warrantDescription: json['warrantDescription'] as String?,
     );
 
 Map<String, dynamic> _$VMWarrantyToJson(VMWarranty instance) =>
     <String, dynamic>{
-      'Id': instance.Id,
-      'WarrantName': instance.WarrantName,
-      'WarrantDescription': instance.WarrantDescription,
+      'id': instance.id,
+      'warrantName': instance.warrantName,
+      'warrantDescription': instance.warrantDescription,
     };

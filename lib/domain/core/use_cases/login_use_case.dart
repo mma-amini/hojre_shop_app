@@ -12,7 +12,7 @@ class LoginUseCase implements ILoginUseCase {
   LoginUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, LoginResponseDtoUseCase>> Handler({LoginRequestDtoUseCase? params}) async {
+  Future<Either<Failure, LoginResponseDtoUseCase>> handler({LoginRequestDtoUseCase? params}) async {
     return await repository.login(loginRequestDtoUseCase: params!)!;
   }
 }

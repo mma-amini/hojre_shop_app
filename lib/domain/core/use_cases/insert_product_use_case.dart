@@ -12,7 +12,7 @@ class InsertProductUseCase implements IInsertProductUseCase {
   InsertProductUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, InsertProductResponseDtoUseCase>> Handler({InsertProductRequestDtoUseCase? params}) async {
+  Future<Either<Failure, InsertProductResponseDtoUseCase>> handler({InsertProductRequestDtoUseCase? params}) async {
     return await repository.insertProduct(insertProductRequestDtoUseCase: params!)!;
   }
 }

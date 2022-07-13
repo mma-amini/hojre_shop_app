@@ -9,51 +9,51 @@ part of 'product_desing_response_dto_use_case.dart';
 _$_ProductDesignResponseDtoUseCase _$$_ProductDesignResponseDtoUseCaseFromJson(
         Map<String, dynamic> json) =>
     _$_ProductDesignResponseDtoUseCase(
-      Id: json['Id'] as String?,
-      ShopId: json['ShopId'] as String?,
-      ProductId: json['ProductId'] as String?,
-      Warranty: json['Warranty'] == null
+      id: json['id'] as String?,
+      shopId: json['shopId'] as String?,
+      productId: json['productId'] as String?,
+      warranty: json['warranty'] == null
           ? null
           : WarrantyOfProductDesignResponseDtoUseCase.fromJson(
-              json['Warranty'] as Map<String, dynamic>),
-      DesignName: json['DesignName'] as String?,
-      Barcode: json['Barcode'] as String?,
-      Price: json['Price'] as num?,
-      OffPrice: json['OffPrice'] as num?,
-      IsReady: json['IsReady'] as bool?,
-      ReadyDay: json['ReadyDay'] as int?,
-      ReadyHour: json['ReadyHour'] as int?,
+              json['warranty'] as Map<String, dynamic>),
+      designName: json['designName'] as String?,
+      barcode: json['barcode'] as String?,
+      price: json['price'] as num?,
+      offPrice: json['offPrice'] as num?,
+      isReady: json['isReady'] as bool?,
+      readyDay: json['readyDay'] as int?,
+      readyHour: json['readyHour'] as int?,
     );
 
 Map<String, dynamic> _$$_ProductDesignResponseDtoUseCaseToJson(
         _$_ProductDesignResponseDtoUseCase instance) =>
     <String, dynamic>{
-      'Id': instance.Id,
-      'ShopId': instance.ShopId,
-      'ProductId': instance.ProductId,
-      'Warranty': instance.Warranty,
-      'DesignName': instance.DesignName,
-      'Barcode': instance.Barcode,
-      'Price': instance.Price,
-      'OffPrice': instance.OffPrice,
-      'IsReady': instance.IsReady,
-      'ReadyDay': instance.ReadyDay,
-      'ReadyHour': instance.ReadyHour,
+      'id': instance.id,
+      'shopId': instance.shopId,
+      'productId': instance.productId,
+      'warranty': instance.warranty,
+      'designName': instance.designName,
+      'barcode': instance.barcode,
+      'price': instance.price,
+      'offPrice': instance.offPrice,
+      'isReady': instance.isReady,
+      'readyDay': instance.readyDay,
+      'readyHour': instance.readyHour,
     };
 
 _$_WarrantyOfProductDesignResponseDtoUseCase
     _$$_WarrantyOfProductDesignResponseDtoUseCaseFromJson(
             Map<String, dynamic> json) =>
         _$_WarrantyOfProductDesignResponseDtoUseCase(
-          Id: json['Id'] as String?,
-          WarrantName: json['WarrantName'] as String?,
-          WarrantDescription: json['WarrantDescription'] as String?,
+          id: json['id'] as String?,
+          warrantName: json['warrantName'] as String?,
+          warrantDescription: json['warrantDescription'] as String?,
         );
 
 Map<String, dynamic> _$$_WarrantyOfProductDesignResponseDtoUseCaseToJson(
         _$_WarrantyOfProductDesignResponseDtoUseCase instance) =>
     <String, dynamic>{
-      'Id': instance.Id,
-      'WarrantName': instance.WarrantName,
-      'WarrantDescription': instance.WarrantDescription,
+      'id': instance.id,
+      'warrantName': instance.warrantName,
+      'warrantDescription': instance.warrantDescription,
     };

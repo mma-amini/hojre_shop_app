@@ -5,13 +5,13 @@ part 'token_model.g.dart';
 
 @JsonSerializable()
 class VMToken extends Equatable {
-  final String? AccessToken;
-  final String? RefreshToken;
-  final String? TokenType;
-  final int? ExpiresIn;
-  final int? ExpiresOn;
+  final String? accessToken;
+  final String? refreshToken;
+  final String? tokenType;
+  final int? expiresIn;
+  final int? expiresOn;
 
-  const VMToken({this.AccessToken, this.RefreshToken, this.TokenType, this.ExpiresIn, this.ExpiresOn});
+  const VMToken({this.accessToken, this.refreshToken, this.tokenType, this.expiresIn, this.expiresOn});
 
   factory VMToken.fromJson(Map<String, dynamic> json) => _$VMTokenFromJson(json);
 
@@ -20,10 +20,10 @@ class VMToken extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        AccessToken,
-        AccessToken,
-        TokenType,
-        ExpiresIn,
-        ExpiresOn,
+        accessToken,
+        accessToken,
+        tokenType,
+        expiresIn,
+        expiresOn,
       ];
 }

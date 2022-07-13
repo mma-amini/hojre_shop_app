@@ -6,7 +6,7 @@ part 'insert_product_response_dto_use_case.g.dart';
 @freezed
 class InsertProductResponseDtoUseCase with _$InsertProductResponseDtoUseCase {
   factory InsertProductResponseDtoUseCase({
-    String? ProductId,
+    String? productId,
   }) = _InsertProductResponseDtoUseCase;
 
   factory InsertProductResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>

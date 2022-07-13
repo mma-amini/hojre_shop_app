@@ -12,7 +12,7 @@ class ShopProductsUseCase implements IShopProductsUseCase {
   ShopProductsUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, List<ShopProductsResponseDtoUseCase>>> Handler({ShopProductsRequestDtoUseCase? params}) async {
+  Future<Either<Failure, List<ShopProductsResponseDtoUseCase>>> handler({ShopProductsRequestDtoUseCase? params}) async {
     return await repository.shopProducts(shopProductsRequestDtoUseCase: params!)!;
   }
 }

@@ -9,34 +9,34 @@ part 'product_model.g.dart';
 
 @JsonSerializable()
 class VMProduct extends Equatable {
-  int? ApprovedProductDesignsCount;
-  VMBrand? Brand;
-  String? Description;
-  bool? IsActive;
-  bool? IsOriginal;
-  int? NotApprovedProductDesignsCount;
-  String? PackingDimensions;
-  double? PackingWeight;
-  List<VMProductPicture>? Pictures;
-  String? Picture;
-  String? ProductDimensions;
-  String? ProductId;
-  String? ProductName;
-  double? ProductWeight;
+  int? approvedProductDesignsCount;
+  VMBrand? brand;
+  String? description;
+  bool? isActive;
+  bool? isOriginal;
+  int? notApprovedProductDesignsCount;
+  String? packingDimensions;
+  double? packingWeight;
+  List<VMProductPicture>? pictures;
+  String? picture;
+  String? productDimensions;
+  String? productId;
+  String? productName;
+  double? productWeight;
 
   VMProduct(
-      {this.Brand,
-      this.Description,
-      this.IsActive,
-      this.IsOriginal,
-      this.PackingDimensions,
-      this.PackingWeight,
-      this.Pictures,
-      this.Picture,
-      this.ProductDimensions,
-      this.ProductId,
-      this.ProductName,
-      this.ProductWeight});
+      {this.brand,
+      this.description,
+      this.isActive,
+      this.isOriginal,
+      this.packingDimensions,
+      this.packingWeight,
+      this.pictures,
+      this.picture,
+      this.productDimensions,
+      this.productId,
+      this.productName,
+      this.productWeight});
 
   factory VMProduct.fromJson(Map<String, dynamic> json) => _$VMProductFromJson(json);
 
@@ -45,27 +45,27 @@ class VMProduct extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        Brand,
-        Description,
-        IsActive,
-        IsOriginal,
-        PackingDimensions,
-        PackingWeight,
-        Pictures,
-        Picture,
-        ProductDimensions,
-        ProductId,
-        ProductName,
-        ProductWeight,
+        brand,
+        description,
+        isActive,
+        isOriginal,
+        packingDimensions,
+        packingWeight,
+        pictures,
+        picture,
+        productDimensions,
+        productId,
+        productName,
+        productWeight,
       ];
 }
 
 @JsonSerializable()
 class VMProductPicture extends Equatable {
-  bool? IsMain;
-  String? Picture;
+  bool? isMain;
+  String? picture;
 
-  VMProductPicture({this.IsMain, this.Picture});
+  VMProductPicture({this.isMain, this.picture});
 
   factory VMProductPicture.fromJson(Map<String, dynamic> json) => _$VMProductPictureFromJson(json);
 
@@ -74,8 +74,8 @@ class VMProductPicture extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        IsMain,
-        Picture,
+        isMain,
+        picture,
       ];
 }
 

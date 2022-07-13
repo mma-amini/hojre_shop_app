@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../config.dart';
@@ -9,7 +8,7 @@ import 'routes.dart';
 
 class EnvironmentsBadge extends StatelessWidget {
   final Widget child;
-  const EnvironmentsBadge({required this.child});
+  const EnvironmentsBadge({required this.child, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var env = ConfigEnvironments.getEnvironments()['env'];
@@ -28,37 +27,37 @@ class Nav {
   static List<GetPage> routes = [
     GetPage(
       name: Routes.HOME,
-      page: () => HomeScreen(),
+      page: () => const HomeScreen(),
       binding: HomeControllerBinding(),
     ),
     GetPage(
       name: Routes.LOGIN,
-      page: () => LoginScreen(),
+      page: () => const LoginScreen(),
       binding: LoginControllerBinding(),
     ),
     GetPage(
       name: Routes.PRODUCT_MANAGER,
-      page: () => ProductManagerScreen(),
+      page: () => const ProductManagerScreen(),
       binding: ProductManagerControllerBinding(),
     ),
     GetPage(
       name: Routes.ADD_PRODUCT,
-      page: () => AddProductScreen(),
+      page: () => const AddProductScreen(),
       binding: AddProductControllerBinding(),
     ),
     GetPage(
       name: Routes.PRODUCT_DESIGN_MANAGER,
-      page: () => ProductDesignManagerScreen(),
+      page: () => const ProductDesignManagerScreen(),
       binding: ProductDesignManagerControllerBinding(),
     ),
     GetPage(
       name: Routes.PHOTO_EDIT,
-      page: () => PhotoEditScreen(),
+      page: () => const PhotoEditScreen(),
       binding: PhotoEditControllerBinding(),
     ),
     GetPage(
       name: Routes.DEVELOPER,
-      page: () => DeveloperScreen(),
+      page: () => const DeveloperScreen(),
       binding: DeveloperControllerBinding(),
     ),
   ];

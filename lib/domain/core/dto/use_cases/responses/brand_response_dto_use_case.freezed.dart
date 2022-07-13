@@ -21,9 +21,9 @@ BrandResponseDtoUseCase _$BrandResponseDtoUseCaseFromJson(
 
 /// @nodoc
 mixin _$BrandResponseDtoUseCase {
-  String? get Id => throw _privateConstructorUsedError;
-  String? get Name => throw _privateConstructorUsedError;
-  String? get Picture => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get picture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $BrandResponseDtoUseCaseCopyWith<$Res> {
   factory $BrandResponseDtoUseCaseCopyWith(BrandResponseDtoUseCase value,
           $Res Function(BrandResponseDtoUseCase) then) =
       _$BrandResponseDtoUseCaseCopyWithImpl<$Res>;
-  $Res call({String? Id, String? Name, String? Picture});
+  $Res call({String? id, String? name, String? picture});
 }
 
 /// @nodoc
@@ -50,22 +50,22 @@ class _$BrandResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? Id = freezed,
-    Object? Name = freezed,
-    Object? Picture = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? picture = freezed,
   }) {
     return _then(_value.copyWith(
-      Id: Id == freezed
-          ? _value.Id
-          : Id // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      Name: Name == freezed
-          ? _value.Name
-          : Name // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      Picture: Picture == freezed
-          ? _value.Picture
-          : Picture // ignore: cast_nullable_to_non_nullable
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -78,7 +78,7 @@ abstract class _$$_BrandResponseDtoUseCaseCopyWith<$Res>
           $Res Function(_$_BrandResponseDtoUseCase) then) =
       __$$_BrandResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
-  $Res call({String? Id, String? Name, String? Picture});
+  $Res call({String? id, String? name, String? picture});
 }
 
 /// @nodoc
@@ -95,22 +95,22 @@ class __$$_BrandResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? Id = freezed,
-    Object? Name = freezed,
-    Object? Picture = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? picture = freezed,
   }) {
     return _then(_$_BrandResponseDtoUseCase(
-      Id: Id == freezed
-          ? _value.Id
-          : Id // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      Name: Name == freezed
-          ? _value.Name
-          : Name // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      Picture: Picture == freezed
-          ? _value.Picture
-          : Picture // ignore: cast_nullable_to_non_nullable
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -119,21 +119,21 @@ class __$$_BrandResponseDtoUseCaseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_BrandResponseDtoUseCase implements _BrandResponseDtoUseCase {
-  _$_BrandResponseDtoUseCase({this.Id, this.Name, this.Picture});
+  _$_BrandResponseDtoUseCase({this.id, this.name, this.picture});
 
   factory _$_BrandResponseDtoUseCase.fromJson(Map<String, dynamic> json) =>
       _$$_BrandResponseDtoUseCaseFromJson(json);
 
   @override
-  final String? Id;
+  final String? id;
   @override
-  final String? Name;
+  final String? name;
   @override
-  final String? Picture;
+  final String? picture;
 
   @override
   String toString() {
-    return 'BrandResponseDtoUseCase(Id: $Id, Name: $Name, Picture: $Picture)';
+    return 'BrandResponseDtoUseCase(id: $id, name: $name, picture: $picture)';
   }
 
   @override
@@ -141,18 +141,18 @@ class _$_BrandResponseDtoUseCase implements _BrandResponseDtoUseCase {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_BrandResponseDtoUseCase &&
-            const DeepCollectionEquality().equals(other.Id, Id) &&
-            const DeepCollectionEquality().equals(other.Name, Name) &&
-            const DeepCollectionEquality().equals(other.Picture, Picture));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.picture, picture));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(Id),
-      const DeepCollectionEquality().hash(Name),
-      const DeepCollectionEquality().hash(Picture));
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(picture));
 
   @JsonKey(ignore: true)
   @override
@@ -169,19 +169,19 @@ class _$_BrandResponseDtoUseCase implements _BrandResponseDtoUseCase {
 
 abstract class _BrandResponseDtoUseCase implements BrandResponseDtoUseCase {
   factory _BrandResponseDtoUseCase(
-      {final String? Id,
-      final String? Name,
-      final String? Picture}) = _$_BrandResponseDtoUseCase;
+      {final String? id,
+      final String? name,
+      final String? picture}) = _$_BrandResponseDtoUseCase;
 
   factory _BrandResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_BrandResponseDtoUseCase.fromJson;
 
   @override
-  String? get Id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get Name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get Picture => throw _privateConstructorUsedError;
+  String? get picture;
   @override
   @JsonKey(ignore: true)
   _$$_BrandResponseDtoUseCaseCopyWith<_$_BrandResponseDtoUseCase>

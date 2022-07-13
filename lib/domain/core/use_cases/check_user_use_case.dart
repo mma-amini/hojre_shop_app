@@ -12,7 +12,7 @@ class CheckUserUseCase implements ICheckUserUseCase {
   CheckUserUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, CheckUserResponseDtoUseCase>> Handler({CheckUserRequestDtoUseCase? params}) async {
+  Future<Either<Failure, CheckUserResponseDtoUseCase>> handler({CheckUserRequestDtoUseCase? params}) async {
     return await repository.checkUser(checkUserRequestDtoUseCase: params!)!;
   }
 }

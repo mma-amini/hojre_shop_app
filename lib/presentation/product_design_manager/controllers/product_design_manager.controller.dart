@@ -23,9 +23,7 @@ class ProductDesignManagerController extends GetxController {
   void onInit() {
     var parData = Get.parameters;
 
-    if (parData != null) {
-      productId.value = (parData["productId"] != null ? parData["productId"] : "")!;
-    }
+    productId.value = parData["productId"] ?? "";
     super.onInit();
   }
 
@@ -54,7 +52,7 @@ class ProductDesignManagerController extends GetxController {
   startApiProductDesigns() async {
     updateLoading(isLoading: true);
     await iProductDesignsUseCase!
-        .Handler(params: ProductDesignRequestDtoUseCase(ProductId: productId.value))
+        .handler(params: ProductDesignRequestDtoUseCase(productId: productId.value))
         .then((response) {
       updateLoading(isLoading: false);
       refreshController.refreshCompleted();

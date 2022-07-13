@@ -22,7 +22,6 @@ class HomeController extends GetxController {
     initPlatformState();
   }
 
-
   @override
   void onClose() {}
 
@@ -80,7 +79,7 @@ class HomeController extends GetxController {
     if (checkUser) {
       return FadeInImage(
         placeholder: const AssetImage("assets/media/images/profile_icon.png"),
-        image: NetworkImage("${Brain.baseDomain}/profile/${Brain.account.UserId}.jpg"),
+        image: NetworkImage("${Brain.baseDomain}/profile/${Brain.account.userId}.jpg"),
         height: 60,
         width: 60,
         fit: BoxFit.cover,
@@ -96,8 +95,8 @@ class HomeController extends GetxController {
   }
 
   setUserFullName() {
-    if ((Brain.account.UserId ?? "").isNotEmpty) {
-      return "${Brain.account.FirstName!} ${Brain.account.LastName!}";
+    if ((Brain.account.userId ?? "").isNotEmpty) {
+      return "${Brain.account.firstName!} ${Brain.account.lastName!}";
     } else {
       return "یار";
     }
@@ -105,10 +104,10 @@ class HomeController extends GetxController {
 
   setUserShopName() {
     // Conditions
-    var checkSection = (Brain.account.ShopName ?? "").isNotEmpty;
+    var checkSection = (Brain.account.shopName ?? "").isNotEmpty;
 
     if (checkSection) {
-      return Brain.account.ShopName;
+      return Brain.account.shopName;
     } else {
       return "فروشگاه حجره";
     }

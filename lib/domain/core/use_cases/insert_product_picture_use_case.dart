@@ -12,7 +12,7 @@ class InsertProductPictureUseCase implements IInsertProductPictureUseCase {
   InsertProductPictureUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, NoParams>> Handler({InsertProductPictureRequestDtoUseCase? params}) async {
+  Future<Either<Failure, NoParams>> handler({InsertProductPictureRequestDtoUseCase? params}) async {
     return await repository.insertProductImage(insertProductPictureRequestDtoUseCase: params!)!;
   }
 }

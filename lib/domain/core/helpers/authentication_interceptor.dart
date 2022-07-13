@@ -41,17 +41,17 @@ class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
   }
 
   getRefreshToken() {
-    var checkToken = (Brain.token.AccessToken ?? "").isNotEmpty;
+    var checkToken = (Brain.token.accessToken ?? "").isNotEmpty;
 
-    return checkToken ? Brain.token.RefreshToken : "";
+    return checkToken ? Brain.token.refreshToken : "";
   }
 
   @override
   Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    if ((Brain.token.AccessToken ?? "").isEmpty) {
+    if ((Brain.token.accessToken ?? "").isEmpty) {
       options.headers["authorization"] = "";
     } else {
-      options.headers["authorization"] = "${Brain.token.TokenType} ${Brain.token.AccessToken}";
+      options.headers["authorization"] = "${Brain.token.tokenType} ${Brain.token.accessToken}";
     }
 
     if (options.data != null) {
@@ -69,53 +69,51 @@ class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
   }
 
   @override
-  Future onError(DioError error, ErrorInterceptorHandler handler) async {
+  Future onError(DioError err, ErrorInterceptorHandler handler) async {
     // Conditions
-    var checkError = error.response == null || error.response!.statusCode == null;
+    var checkError = err.response == null || err.response!.statusCode == null;
 
     if (checkError) {
-      return super.onError(error, handler);
+      return super.onError(err, handler);
     }
 
     return await _lock.synchronized(() async {
-      int responseCode = error.response!.statusCode!;
+      int responseCode = err.response!.statusCode!;
       if (responseCode == 401) {
-        if ((Brain.token.AccessToken ?? "").isNotEmpty) {
-          bool checkTokenTime = (Brain.token.ExpiresOn ?? 0) > DateTime.now().millisecondsSinceEpoch;
+        if ((Brain.token.accessToken ?? "").isNotEmpty) {
+          bool checkTokenTime = (Brain.token.expiresOn ?? 0) > DateTime.now().millisecondsSinceEpoch;
 
           if (checkTokenTime) {
-            RequestOptions options = error.response!.requestOptions;
-            options.headers["authorization"] = "${Brain.token.TokenType} ${Brain.token.AccessToken}";
+            RequestOptions options = err.response!.requestOptions;
+            options.headers["authorization"] = "${Brain.token.tokenType} ${Brain.token.accessToken}";
 
             return _mainDio.fetch(options).then((r) => handler.resolve(r), onError: (e) => handler.reject(e));
           } else {
-            _mainDio.lock();
-            RequestOptions options = error.response!.requestOptions;
+            RequestOptions options = err.response!.requestOptions;
 
             var result = await RemoteDataSourceImpl().refreshToken(dio: _dio);
 
-            if (result.AccessToken != null && (result.AccessToken ?? "").isNotEmpty) {
+            if (result.accessToken != null && (result.accessToken ?? "").isNotEmpty) {
               var newToken = result;
 
-              int expiresOn = DateTime.now().add(Duration(seconds: newToken.ExpiresIn ?? 0)).millisecondsSinceEpoch;
+              int expiresOn = DateTime.now().add(Duration(seconds: newToken.expiresIn ?? 0)).millisecondsSinceEpoch;
 
               VMToken token = VMToken(
-                AccessToken: newToken.AccessToken,
-                RefreshToken: newToken.RefreshToken,
-                TokenType: newToken.TokenType,
-                ExpiresIn: newToken.ExpiresIn,
-                ExpiresOn: expiresOn,
+                accessToken: newToken.accessToken,
+                refreshToken: newToken.refreshToken,
+                tokenType: newToken.tokenType,
+                expiresIn: newToken.expiresIn,
+                expiresOn: expiresOn,
               );
 
-              await Brain.storageService.deleteByProperty(StorageServiceTables.TABLE_TOKEN).then((value) async {
+              await Brain.storageService.deleteByProperty(StorageServiceTables.tableToken).then((value) async {
                 await Brain.storageService
-                    .insert(data: token.toJson(), storageServiceTables: StorageServiceTables.TABLE_TOKEN);
+                    .insert(data: token.toJson(), storageServiceTables: StorageServiceTables.tableToken);
               });
 
               Brain.token = token;
 
-              options.headers["authorization"] = "${newToken.TokenType} ${newToken.AccessToken}";
-              _mainDio.unlock();
+              options.headers["authorization"] = "${newToken.tokenType} ${newToken.accessToken}";
               return _mainDio.fetch(options).then((r) => handler.resolve(r), onError: (e) => handler.reject(e));
             } else {
               logout();
@@ -125,13 +123,12 @@ class AuthenticationInterceptor extends QueuedInterceptorsWrapper {
           logout();
         }
       }
-      return super.onError(error, handler);
+      return super.onError(err, handler);
     });
   }
 
   void logout() {
     _mainDio.options.headers["authorization"] = "";
-    _mainDio.unlock();
 
     Brain.logout();
   }

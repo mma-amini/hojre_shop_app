@@ -7,55 +7,55 @@ part of 'product_model.dart';
 // **************************************************************************
 
 VMProduct _$VMProductFromJson(Map<String, dynamic> json) => VMProduct(
-      Brand: json['Brand'] == null
+      brand: json['brand'] == null
           ? null
-          : VMBrand.fromJson(json['Brand'] as Map<String, dynamic>),
-      Description: json['Description'] as String?,
-      IsActive: json['IsActive'] as bool?,
-      IsOriginal: json['IsOriginal'] as bool?,
-      PackingDimensions: json['PackingDimensions'] as String?,
-      PackingWeight: (json['PackingWeight'] as num?)?.toDouble(),
-      Pictures: (json['Pictures'] as List<dynamic>?)
+          : VMBrand.fromJson(json['brand'] as Map<String, dynamic>),
+      description: json['description'] as String?,
+      isActive: json['isActive'] as bool?,
+      isOriginal: json['isOriginal'] as bool?,
+      packingDimensions: json['packingDimensions'] as String?,
+      packingWeight: (json['packingWeight'] as num?)?.toDouble(),
+      pictures: (json['pictures'] as List<dynamic>?)
           ?.map((e) => VMProductPicture.fromJson(e as Map<String, dynamic>))
           .toList(),
-      Picture: json['Picture'] as String?,
-      ProductDimensions: json['ProductDimensions'] as String?,
-      ProductId: json['ProductId'] as String?,
-      ProductName: json['ProductName'] as String?,
-      ProductWeight: (json['ProductWeight'] as num?)?.toDouble(),
+      picture: json['picture'] as String?,
+      productDimensions: json['productDimensions'] as String?,
+      productId: json['productId'] as String?,
+      productName: json['productName'] as String?,
+      productWeight: (json['productWeight'] as num?)?.toDouble(),
     )
-      ..ApprovedProductDesignsCount =
-          json['ApprovedProductDesignsCount'] as int?
-      ..NotApprovedProductDesignsCount =
-          json['NotApprovedProductDesignsCount'] as int?;
+      ..approvedProductDesignsCount =
+          json['approvedProductDesignsCount'] as int?
+      ..notApprovedProductDesignsCount =
+          json['notApprovedProductDesignsCount'] as int?;
 
 Map<String, dynamic> _$VMProductToJson(VMProduct instance) => <String, dynamic>{
-      'ApprovedProductDesignsCount': instance.ApprovedProductDesignsCount,
-      'Brand': instance.Brand,
-      'Description': instance.Description,
-      'IsActive': instance.IsActive,
-      'IsOriginal': instance.IsOriginal,
-      'NotApprovedProductDesignsCount': instance.NotApprovedProductDesignsCount,
-      'PackingDimensions': instance.PackingDimensions,
-      'PackingWeight': instance.PackingWeight,
-      'Pictures': instance.Pictures,
-      'Picture': instance.Picture,
-      'ProductDimensions': instance.ProductDimensions,
-      'ProductId': instance.ProductId,
-      'ProductName': instance.ProductName,
-      'ProductWeight': instance.ProductWeight,
+      'approvedProductDesignsCount': instance.approvedProductDesignsCount,
+      'brand': instance.brand,
+      'description': instance.description,
+      'isActive': instance.isActive,
+      'isOriginal': instance.isOriginal,
+      'notApprovedProductDesignsCount': instance.notApprovedProductDesignsCount,
+      'packingDimensions': instance.packingDimensions,
+      'packingWeight': instance.packingWeight,
+      'pictures': instance.pictures,
+      'picture': instance.picture,
+      'productDimensions': instance.productDimensions,
+      'productId': instance.productId,
+      'productName': instance.productName,
+      'productWeight': instance.productWeight,
     };
 
 VMProductPicture _$VMProductPictureFromJson(Map<String, dynamic> json) =>
     VMProductPicture(
-      IsMain: json['IsMain'] as bool?,
-      Picture: json['Picture'] as String?,
+      isMain: json['isMain'] as bool?,
+      picture: json['picture'] as String?,
     );
 
 Map<String, dynamic> _$VMProductPictureToJson(VMProductPicture instance) =>
     <String, dynamic>{
-      'IsMain': instance.IsMain,
-      'Picture': instance.Picture,
+      'isMain': instance.isMain,
+      'picture': instance.picture,
     };
 
 VMSendProductPicture _$VMSendProductPictureFromJson(

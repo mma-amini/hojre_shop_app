@@ -1,5 +1,5 @@
 enum StorageServiceTables {
-  TABLE_USER,
-  TABLE_TOKEN,
-  TABLE_ADDRESS,
+  tableUser,
+  tableToken,
+  tableAddress,
 }

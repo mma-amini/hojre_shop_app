@@ -7,18 +7,18 @@ part 'insert_product_picture_request_dto_use_case.g.dart';
 
 @JsonSerializable()
 class InsertProductPictureRequestDtoUseCase extends Equatable {
-  String? Id;
-  String? ProductId;
+  String? id;
+  String? productId;
 
   @JsonKey(ignore: true)
-  Uint8List? PickedFile;
+  Uint8List? pickedFile;
 
-  bool? IsMain = false;
-  bool? IsUploaded = false;
-  int? Sort = 0;
+  bool? isMain = false;
+  bool? isUploaded = false;
+  int? sort = 0;
 
   InsertProductPictureRequestDtoUseCase(
-      {this.Id, this.ProductId, this.PickedFile, this.IsMain, this.IsUploaded, this.Sort});
+      {this.id, this.productId, this.pickedFile, this.isMain, this.isUploaded, this.sort});
 
   factory InsertProductPictureRequestDtoUseCase.fromJson(Map<String, dynamic> json) =>
       _$InsertProductPictureRequestDtoUseCaseFromJson(json);
@@ -28,10 +28,10 @@ class InsertProductPictureRequestDtoUseCase extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        Id,
-        ProductId,
-        IsMain,
-        IsUploaded,
-        Sort,
+        id,
+        productId,
+        isMain,
+        isUploaded,
+        sort,
       ];
 }

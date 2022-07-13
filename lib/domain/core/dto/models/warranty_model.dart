@@ -5,14 +5,14 @@ part 'warranty_model.g.dart';
 
 @JsonSerializable()
 class VMWarranty extends Equatable {
-  String? Id;
-  String? WarrantName;
-  String? WarrantDescription;
+  String? id;
+  String? warrantName;
+  String? warrantDescription;
 
   VMWarranty({
-    this.Id,
-    this.WarrantName,
-    this.WarrantDescription,
+    this.id,
+    this.warrantName,
+    this.warrantDescription,
   });
 
   factory VMWarranty.fromJson(Map<String, dynamic> json) => _$VMWarrantyFromJson(json);
@@ -22,8 +22,8 @@ class VMWarranty extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        Id,
-        WarrantName,
-        WarrantDescription,
+        id,
+        warrantName,
+        warrantDescription,
       ];
 }

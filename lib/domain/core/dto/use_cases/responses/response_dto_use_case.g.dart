@@ -9,17 +9,17 @@ part of 'response_dto_use_case.dart';
 _$_ResponseDtoUseCase _$$_ResponseDtoUseCaseFromJson(
         Map<String, dynamic> json) =>
     _$_ResponseDtoUseCase(
-      StatusCode: json['StatusCode'] as int?,
-      Message: json['Message'] == null
+      statusCode: json['statusCode'] as int?,
+      message: json['message'] == null
           ? null
-          : MessageDtoUseCase.fromJson(json['Message'] as Map<String, dynamic>),
-      Content: json['Content'],
+          : MessageDtoUseCase.fromJson(json['message'] as Map<String, dynamic>),
+      content: json['content'],
     );
 
 Map<String, dynamic> _$$_ResponseDtoUseCaseToJson(
         _$_ResponseDtoUseCase instance) =>
     <String, dynamic>{
-      'StatusCode': instance.StatusCode,
-      'Message': instance.Message,
-      'Content': instance.Content,
+      'statusCode': instance.statusCode,
+      'message': instance.message,
+      'content': instance.content,
     };

@@ -21,7 +21,7 @@ InsertProductResponseDtoUseCase _$InsertProductResponseDtoUseCaseFromJson(
 
 /// @nodoc
 mixin _$InsertProductResponseDtoUseCase {
-  String? get ProductId => throw _privateConstructorUsedError;
+  String? get productId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $InsertProductResponseDtoUseCaseCopyWith<$Res> {
           InsertProductResponseDtoUseCase value,
           $Res Function(InsertProductResponseDtoUseCase) then) =
       _$InsertProductResponseDtoUseCaseCopyWithImpl<$Res>;
-  $Res call({String? ProductId});
+  $Res call({String? productId});
 }
 
 /// @nodoc
@@ -49,12 +49,12 @@ class _$InsertProductResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? ProductId = freezed,
+    Object? productId = freezed,
   }) {
     return _then(_value.copyWith(
-      ProductId: ProductId == freezed
-          ? _value.ProductId
-          : ProductId // ignore: cast_nullable_to_non_nullable
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -68,7 +68,7 @@ abstract class _$$_InsertProductResponseDtoUseCaseCopyWith<$Res>
           $Res Function(_$_InsertProductResponseDtoUseCase) then) =
       __$$_InsertProductResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
-  $Res call({String? ProductId});
+  $Res call({String? productId});
 }
 
 /// @nodoc
@@ -86,12 +86,12 @@ class __$$_InsertProductResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? ProductId = freezed,
+    Object? productId = freezed,
   }) {
     return _then(_$_InsertProductResponseDtoUseCase(
-      ProductId: ProductId == freezed
-          ? _value.ProductId
-          : ProductId // ignore: cast_nullable_to_non_nullable
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -101,18 +101,18 @@ class __$$_InsertProductResponseDtoUseCaseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_InsertProductResponseDtoUseCase
     implements _InsertProductResponseDtoUseCase {
-  _$_InsertProductResponseDtoUseCase({this.ProductId});
+  _$_InsertProductResponseDtoUseCase({this.productId});
 
   factory _$_InsertProductResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =>
       _$$_InsertProductResponseDtoUseCaseFromJson(json);
 
   @override
-  final String? ProductId;
+  final String? productId;
 
   @override
   String toString() {
-    return 'InsertProductResponseDtoUseCase(ProductId: $ProductId)';
+    return 'InsertProductResponseDtoUseCase(productId: $productId)';
   }
 
   @override
@@ -120,13 +120,13 @@ class _$_InsertProductResponseDtoUseCase
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_InsertProductResponseDtoUseCase &&
-            const DeepCollectionEquality().equals(other.ProductId, ProductId));
+            const DeepCollectionEquality().equals(other.productId, productId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(ProductId));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(productId));
 
   @JsonKey(ignore: true)
   @override
@@ -143,14 +143,14 @@ class _$_InsertProductResponseDtoUseCase
 
 abstract class _InsertProductResponseDtoUseCase
     implements InsertProductResponseDtoUseCase {
-  factory _InsertProductResponseDtoUseCase({final String? ProductId}) =
+  factory _InsertProductResponseDtoUseCase({final String? productId}) =
       _$_InsertProductResponseDtoUseCase;
 
   factory _InsertProductResponseDtoUseCase.fromJson(Map<String, dynamic> json) =
       _$_InsertProductResponseDtoUseCase.fromJson;
 
   @override
-  String? get ProductId => throw _privateConstructorUsedError;
+  String? get productId;
   @override
   @JsonKey(ignore: true)
   _$$_InsertProductResponseDtoUseCaseCopyWith<

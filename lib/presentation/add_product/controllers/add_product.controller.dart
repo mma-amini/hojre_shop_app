@@ -17,9 +17,11 @@ import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/request_dto_us
 import 'package:hojre_shop_app/domain/core/dto/use_cases/responses/response_dto_use_case_exports.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
 import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_brands_use_case.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_group_specs_use_case.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_insert_product_picture_use_case.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_insert_product_use_case.dart';
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups_use_case.dart';
-import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case_exports.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
 import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 import 'package:image_picker/image_picker.dart';
@@ -153,7 +155,7 @@ class AddProductController extends GetxController {
   searchOnProductGroupsList({required String value}) {
     tempProductGroupsList.clear();
     for (var element in productGroupsList) {
-      if (element.CategoryName!.contains(value)) {
+      if (element.categoryName!.contains(value)) {
         tempProductGroupsList.add(element);
       }
     }
@@ -161,12 +163,13 @@ class AddProductController extends GetxController {
   }
 
   updateCurrentStep({required int step}) {
-    this.currentStep.update((val) {
-      this.currentStep.value = step;
+    currentStep.update((val) {
+      currentStep.value = step;
     });
   }
 
   updateGroupSpecsList({required List<VMGroupSpec> groupSpecsList}) {
+    this.groupSpecsList.clear();
     this.groupSpecsList.obs.update((val) {
       this.groupSpecsList.addAll(groupSpecsList);
     });
@@ -194,8 +197,8 @@ class AddProductController extends GetxController {
   }
 
   updateImagesList({required VMSendProductPicture image}) {
-    this.imagesList.obs.update((val) {
-      this.imagesList.add(image);
+    imagesList.obs.update((val) {
+      imagesList.add(image);
     });
   }
 
@@ -259,9 +262,9 @@ class AddProductController extends GetxController {
   }
 
   launchCameraHelpURL() async {
-    const url = 'https://3soot.ir/Guide/ShopProductPhoto';
-    if (await canLaunch(url)) {
-      await launch(url);
+    var url = Uri(path: 'https://3soot.ir/Guide/ShopProductPhoto');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
     } else {
       throw 'Could not launch $url';
     }
@@ -269,7 +272,7 @@ class AddProductController extends GetxController {
 
   openCameraDialog({bool isMainImage = false}) async {
     //Conditions
-    var checkProductID = (sendProduct.value.ProductId ?? "").isNotEmpty;
+    var checkProductID = (sendProduct.value.productId ?? "").isNotEmpty;
 
     if (checkProductID) {
       ShowMessage.getSnackBar(
@@ -284,7 +287,7 @@ class AddProductController extends GetxController {
         barrierLabel: "Barrier",
         barrierDismissible: true,
         barrierColor: Colors.black.withOpacity(0.5),
-        transitionDuration: Duration(milliseconds: 270),
+        transitionDuration: const Duration(milliseconds: 270),
         context: Get.context!,
         pageBuilder: (_, __, ___) {
           return Align(
@@ -292,6 +295,11 @@ class AddProductController extends GetxController {
             child: Container(
               width: 250,
               height: 120,
+              margin: const EdgeInsets.only(
+                bottom: 50,
+                left: 12,
+                right: 12,
+              ),
               child: SizedBox.expand(
                 child: Scaffold(
                   backgroundColor: Colors.transparent,
@@ -303,15 +311,15 @@ class AddProductController extends GetxController {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Text(
                             LocaleKeys.screen_add_product_select_input.tr,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 14.0,
                               fontFamily: 'Vazir Bold',
                             ),
                           ),
-                          SizedBox(height: 20.0),
+                          const SizedBox(height: 20.0),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -323,12 +331,10 @@ class AddProductController extends GetxController {
                                 },
                                 child: Column(
                                   children: [
-                                    Container(
-                                      child: Icon(
-                                        Icons.camera_alt,
-                                        size: 35.0,
-                                        color: Colors.blue,
-                                      ),
+                                    const Icon(
+                                      Icons.camera_alt,
+                                      size: 35.0,
+                                      color: Colors.blue,
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(4.0),
@@ -337,7 +343,7 @@ class AddProductController extends GetxController {
                                         minFontSize: 8.0,
                                         maxLines: 2,
                                         wrapWords: true,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 12.0,
                                           fontFamily: 'Vazir Bold',
                                         ),
@@ -347,7 +353,7 @@ class AddProductController extends GetxController {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 50.0,
                               ),
                               InkWell(
@@ -357,12 +363,10 @@ class AddProductController extends GetxController {
                                 },
                                 child: Column(
                                   children: [
-                                    Container(
-                                      child: Icon(
-                                        Icons.photo,
-                                        size: 35.0,
-                                        color: Colors.blue,
-                                      ),
+                                    const Icon(
+                                      Icons.photo,
+                                      size: 35.0,
+                                      color: Colors.blue,
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(4.0),
@@ -371,7 +375,7 @@ class AddProductController extends GetxController {
                                         minFontSize: 8.0,
                                         maxLines: 2,
                                         wrapWords: true,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 12.0,
                                           fontFamily: 'Vazir Bold',
                                         ),
@@ -389,18 +393,14 @@ class AddProductController extends GetxController {
                   ),
                 ),
               ),
-              margin: EdgeInsets.only(
-                bottom: 50,
-                left: 12,
-                right: 12,
-              ),
             ),
           );
         },
         transitionBuilder: (_, anim, __, child) {
           var curve = Curves.easeInOutCirc;
           return SlideTransition(
-            position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).chain(CurveTween(curve: curve)).animate(anim),
+            position:
+                Tween(begin: const Offset(0, 1), end: const Offset(0, 0)).chain(CurveTween(curve: curve)).animate(anim),
             child: child,
           );
         },
@@ -464,93 +464,87 @@ class AddProductController extends GetxController {
                   return true;
                 });
               },
-              child: Container(
-                child: Column(
-                  children: [
-                    Container(
-                      child: TextFormField(
-                        controller: productGroupsDialogSearchController,
-                        style: const TextStyle(fontSize: 12.0),
-                        decoration: InputDecoration(
-                          labelText: LocaleKeys.general_search.tr,
-                          alignLabelWithHint: true,
-                          contentPadding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                        ),
-                        onChanged: (value) {
-                          tempProductGroupsList.clear();
-                          for (var element in productGroupsList) {
-                            if (element.CategoryName!.contains(value)) {
-                              tempProductGroupsList.add(element);
-                            }
-                          }
-                          update();
-                        },
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: productGroupsDialogSearchController,
+                    style: const TextStyle(fontSize: 12.0),
+                    decoration: InputDecoration(
+                      labelText: LocaleKeys.general_search.tr,
+                      alignLabelWithHint: true,
+                      contentPadding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(15.0),
                       ),
                     ),
-                    const Divider(),
-                    SizedBox(
-                      height: 200.0,
-                      child: ListView.builder(
-                        itemCount: productGroupsDialogSearchController.text.isNotEmpty
-                            ? tempProductGroupsList.length
-                            : productGroupsList.length,
-                        itemBuilder: (context, index) {
-                          var item = productGroupsDialogSearchController.text.isNotEmpty
-                              ? tempProductGroupsList[index]
-                              : productGroupsList[index];
-                          return Column(
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  updateCategory(category: item);
-                                  productGroupsDialogSearchController.text = "";
-                                  startApiGroupSpecs();
-                                  Get.back();
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Center(
-                                    child: Text(
-                                      "${item.CategoryName}",
-                                      style: const TextStyle(fontSize: 12.0),
-                                    ),
+                    onChanged: (value) {
+                      tempProductGroupsList.clear();
+                      for (var element in productGroupsList) {
+                        if (element.categoryName!.contains(value)) {
+                          tempProductGroupsList.add(element);
+                        }
+                      }
+                      update();
+                    },
+                  ),
+                  const Divider(),
+                  SizedBox(
+                    height: 200.0,
+                    child: ListView.builder(
+                      itemCount: productGroupsDialogSearchController.text.isNotEmpty
+                          ? tempProductGroupsList.length
+                          : productGroupsList.length,
+                      itemBuilder: (context, index) {
+                        var item = productGroupsDialogSearchController.text.isNotEmpty
+                            ? tempProductGroupsList[index]
+                            : productGroupsList[index];
+                        return Column(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                updateCategory(category: item);
+                                productGroupsDialogSearchController.text = "";
+                                startApiGroupSpecs();
+                                Get.back();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Text(
+                                    "${item.categoryName}",
+                                    style: const TextStyle(fontSize: 12.0),
                                   ),
                                 ),
                               ),
-                              const Divider()
-                            ],
-                          );
-                        },
-                      ),
+                            ),
+                            const Divider()
+                          ],
+                        );
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );
         },
       ),
       actions: [
-        Container(
-          child: InkWell(
-            onTap: () {
-              productGroupsDialogSearchController.text = "";
-              Get.back(
-                closeOverlays: true,
-              );
-            },
-            child: Container(
-              width: Get.context!.width,
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Text(
-                  LocaleKeys.buttons_close.tr,
-                  style: const TextStyle(color: Colors.blue),
-                ),
+        InkWell(
+          onTap: () {
+            productGroupsDialogSearchController.text = "";
+            Get.back(
+              closeOverlays: true,
+            );
+          },
+          child: Container(
+            width: Get.context!.width,
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                LocaleKeys.buttons_close.tr,
+                style: const TextStyle(color: Colors.blue),
               ),
             ),
           ),
@@ -561,9 +555,9 @@ class AddProductController extends GetxController {
   }
 
   unFocus() {
-    focusNodesList.forEach((element) {
+    for (var element in focusNodesList) {
       element.unfocus();
-    });
+    }
     update();
   }
 
@@ -576,14 +570,14 @@ class AddProductController extends GetxController {
     form.save();
 
     // Conditions
-    var checkProductID = (sendProduct.value.ProductId ?? "").isNotEmpty;
+    var checkProductID = (sendProduct.value.productId ?? "").isNotEmpty;
 
     var checkPackageDimensions = productPackLengthController.text.isEmpty ||
         productPackWidthController.text.isEmpty ||
         productPackHeightController.text.isEmpty;
     var checkPackageWeight = productWeightController.text.isEmpty || int.parse(productWeightController.text) < 0;
 
-    if (image == null && isMain) {
+    if (image.value.file == null && isMain) {
       ShowMessage.getSnackBar(message: "تصویر اصلی انتخاب نشده است", type: MessageType.ERROR);
       return;
     }
@@ -593,31 +587,31 @@ class AddProductController extends GetxController {
       return;
     } else if (isBrand.value == 1) {
       LogHelper.printLog(data: "Brand: B");
-      if (selectedBrand.value.Name == null || selectedBrand.value.Name!.isEmpty) {
+      if (selectedBrand.value.name == null || selectedBrand.value.name!.isEmpty) {
         ShowMessage.getSnackBar(message: "برند را انتخاب نمایید", type: MessageType.ERROR);
         return;
       }
 
-      sendProduct.value.BrandName = selectedBrand.value.Name != null ? selectedBrand.value.Name : null;
-      sendProduct.value.BrandId = selectedBrand.value.Id != null ? selectedBrand.value.Id : null;
+      sendProduct.value.brandName = selectedBrand.value.name;
+      sendProduct.value.brandId = selectedBrand.value.id;
     }
 
     if (isOriginal.value == 2) {
       ShowMessage.getSnackBar(message: "وضعیت اصالت کالا را مشخص نمایید", type: MessageType.ERROR);
       return;
     } else {
-      sendProduct.value.Original = isOriginal.value == 1 ? true : false;
+      sendProduct.value.original = isOriginal.value == 1 ? true : false;
     }
 
     if (checkPackageWeight) {
       ShowMessage.getSnackBar(message: "وزن کالا وارد نشده است.", type: MessageType.ERROR);
       return;
     } else {
-      if (packWeightType == null) {
+      if (packWeightType.value == null) {
         ShowMessage.getSnackBar(message: "نوع وزن کالا انتخاب نشده است.", type: MessageType.ERROR);
         return;
       }
-      sendProduct.value.ProductPackWeight = packWeightType == 0
+      sendProduct.value.productPackWeight = packWeightType == 0
           ? int.parse(productWeightController.text)
           : int.parse(productWeightController.text) * 1000;
     }
@@ -626,32 +620,32 @@ class AddProductController extends GetxController {
       ShowMessage.getSnackBar(message: "ابعاد کالا وارد نشده است.", type: MessageType.ERROR);
       return;
     } else {
-      sendProduct.value.ProductPackLength = int.parse(productPackLengthController.text);
-      sendProduct.value.ProductPackWidth = int.parse(productPackWidthController.text);
-      sendProduct.value.ProductPackHeight = int.parse(productPackHeightController.text);
+      sendProduct.value.productPackLength = int.parse(productPackLengthController.text);
+      sendProduct.value.productPackWidth = int.parse(productPackWidthController.text);
+      sendProduct.value.productPackHeight = int.parse(productPackHeightController.text);
     }
 
-    sendProduct.value.ProductName = productNameController.text;
-    sendProduct.value.Description = productDescriptionController.text;
-    sendProduct.value.ProductGroupId = category.value.CategoryId;
+    sendProduct.value.productName = productNameController.text;
+    sendProduct.value.description = productDescriptionController.text;
+    sendProduct.value.productGroupId = category.value.categoryId;
 
     List<SectionOfInsertProductRequestDtoUseCase> sectionsList =
         List<SectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
 
     for (var schema in groupSpecsList) {
       SectionOfInsertProductRequestDtoUseCase section = SectionOfInsertProductRequestDtoUseCase();
-      section.SpecId = schema.SpecId;
+      section.specId = schema.specId;
       List<DataOfSectionOfInsertProductRequestDtoUseCase> sendSpecificationsList =
           List<DataOfSectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
-      for (var specification in schema.Items!) {
+      for (var specification in schema.items!) {
         DataOfSectionOfInsertProductRequestDtoUseCase sendSpecification =
             DataOfSectionOfInsertProductRequestDtoUseCase();
 
         // Conditions
-        var checkValue = (specification.IsRequired ?? false) && sendSpecification.Value == null;
+        var checkValue = (specification.isRequired ?? false) && sendSpecification.value == null;
 
-        sendSpecification.InputType = specification.InputTitle;
-        sendSpecification.SpecItemId = specification.SpecItemId;
+        sendSpecification.inputType = specification.inputTitle;
+        sendSpecification.specItemId = specification.specItemId;
 
         switch (specification.type) {
           case SpecificationType.COLOR:
@@ -659,79 +653,79 @@ class AddProductController extends GetxController {
 
           case SpecificationType.SELECTABLE:
             // Conditions
-            var checkSelectedItem = specification.SelectedItem == null;
+            var checkSelectedItem = specification.selectedItem == null;
 
             if (checkSelectedItem) {
-              sendSpecification.Value = null;
+              sendSpecification.value = null;
             } else {
-              sendSpecification.Value = specification.SelectedItem;
+              sendSpecification.value = specification.selectedItem;
             }
             break;
 
           case SpecificationType.TEXT_INPUT:
-            sendSpecification.Value = specification.TypedText;
+            sendSpecification.value = specification.typedText;
             break;
 
           case SpecificationType.NUMBER_INPUT:
-            sendSpecification.Value = specification.TypedText;
+            sendSpecification.value = specification.typedText;
             break;
 
           case SpecificationType.BOOL:
-            sendSpecification.Value = specification.BooleanValue != null ? specification.BooleanValue : null;
+            sendSpecification.value = specification.booleanValue;
             break;
 
           case SpecificationType.MULTI_SELECT:
             // Conditions
-            var checkSelectedItems = specification.SelectedItems == null || specification.SelectedItems!.isEmpty;
+            var checkSelectedItems = specification.selectedItems == null || specification.selectedItems!.isEmpty;
 
             if (checkSelectedItems) {
-              sendSpecification.Value = null;
+              sendSpecification.value = null;
             } else {
               List<VMSpecValue> valuesList = List<VMSpecValue>.empty(growable: true);
-              for (var item in specification.SelectedItems!) {
+              for (var item in specification.selectedItems!) {
                 if (item.isNew) {
-                  item.SpecValueId = null;
+                  item.specValueId = null;
                 }
                 valuesList.add(item);
               }
-              sendSpecification.Value = valuesList;
+              sendSpecification.value = valuesList;
             }
             break;
 
           case SpecificationType.WEIGHT:
-            sendSpecification.Value = specification.TypedText;
+            sendSpecification.value = specification.typedText;
             break;
 
           case SpecificationType.DIMENSION:
-            sendSpecification.Value = specification.TypedText;
+            sendSpecification.value = specification.typedText;
             break;
         }
 
         if (checkValue) {
           ShowMessage.getSnackBar(
-              message: "مشخصه ${specification.Name} در افزودن مشخصات تعیین نشده است.", type: MessageType.ERROR);
+              message: "مشخصه ${specification.name} در افزودن مشخصات تعیین نشده است.", type: MessageType.ERROR);
           return;
         }
 
         sendSpecificationsList.add(sendSpecification);
       }
-      section.Specs = List<DataOfSectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
-      section.Specs!.addAll(sendSpecificationsList);
+      section.specs = List<DataOfSectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
+      section.specs!.addAll(sendSpecificationsList);
       sectionsList.add(section);
     }
 
-    sendProduct.value.Sections = List<SectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
-    sendProduct.value.Sections!.addAll(sectionsList);
+    sendProduct.value.sections = List<SectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
+    sendProduct.value.sections!.addAll(sectionsList);
 
-    sendProduct.value.Sections!.forEach((element) {
-      LogHelper.printLog(data: "element: ${element.SpecId}");
+    for (var element in sendProduct.value.sections!) {
+      LogHelper.printLog(data: "element: ${element.specId}");
 
-      element.Specs!.forEach((element2) {
-        LogHelper.printLog(data: "element 2: ${element2.InputType}");
+      for (var element2 in element.specs!) {
+        LogHelper.printLog(data: "element 2: ${element2.inputType}");
 
-        LogHelper.printLog(data: "Value: ${element2.Value}");
-      });
-    });
+        LogHelper.printLog(data: "Value: ${element2.value}");
+      }
+    }
 
     if (!checkProductID) {
       startApiInsertProduct();
@@ -751,7 +745,7 @@ class AddProductController extends GetxController {
 
     for (var picture in picturesList) {
       // Conditions
-      var uploadCheck = picture.IsUploaded == false;
+      var uploadCheck = picture.isUploaded == false;
 
       if (uploadCheck) {
         await startApiInsertProductPicture(insertProductPictureRequestDtoUseCase: picture);
@@ -760,7 +754,7 @@ class AddProductController extends GetxController {
 
     for (var pic in picturesList) {
       // Conditions
-      var uploadCheck = pic.IsUploaded == false;
+      var uploadCheck = pic.isUploaded == false;
 
       if (uploadCheck) {
         allPicturesIsUploaded = false;
@@ -776,7 +770,7 @@ class AddProductController extends GetxController {
 
   startApiProductGroups() async {
     updateLoading(isLoading: true);
-    await iProductGroupsUseCase.Handler().then((response) {
+    await iProductGroupsUseCase.handler().then((response) {
       updateLoading(isLoading: false);
       var data = response.getOrElse(() => []);
 
@@ -784,10 +778,10 @@ class AddProductController extends GetxController {
 
       for (var element in data) {
         VMProductGroup productGroup = VMProductGroup(
-          CategoryId: element.CategoryId,
-          CategoryName: element.CategoryName,
-          Picture: element.Picture,
-          ParentId: element.ParentId,
+          categoryId: element.categoryId,
+          categoryName: element.categoryName,
+          picture: element.picture,
+          parentId: element.parentId,
         );
 
         tempProductGroupsList.add(productGroup);
@@ -803,7 +797,8 @@ class AddProductController extends GetxController {
   startApiGroupSpecs() async {
     updateLoading(isLoading: true);
 
-    await iGroupSpecsUseCase.Handler(params: GroupSpecsRequestDtoUseCase(categoryId: category.value.CategoryId ?? ""))
+    await iGroupSpecsUseCase
+        .handler(params: GroupSpecsRequestDtoUseCase(categoryId: category.value.categoryId ?? ""))
         .then((response) {
       updateLoading(isLoading: false);
       var data = response.getOrElse(() => []);
@@ -827,7 +822,7 @@ class AddProductController extends GetxController {
 
   startApiGetBrands({required String keyword}) async {
     updateBrandLoading(isBrandLoading: true);
-    await iBrandsUseCase.Handler(params: BrandsRequestDtoUseCase(keyword: keyword)).then((response) {
+    await iBrandsUseCase.handler(params: BrandsRequestDtoUseCase(keyword: keyword)).then((response) {
       updateBrandLoading(isBrandLoading: false);
       var data = response.getOrElse(() => []);
 
@@ -850,32 +845,32 @@ class AddProductController extends GetxController {
 
   startApiInsertProduct() async {
     updateLoading(isLoading: true);
-    await iInsertProductUseCase.Handler(params: sendProduct.value).then((response) {
+    await iInsertProductUseCase.handler(params: sendProduct.value).then((response) {
       var result = response.getOrElse(() => InsertProductResponseDtoUseCase());
-      this.productId.value = result.ProductId ?? "";
+      productId.value = result.productId ?? "";
 
-      this.picturesList.clear();
-      var mainImageName = Uuid().v4();
+      picturesList.clear();
+      var mainImageName = const Uuid().v4();
       InsertProductPictureRequestDtoUseCase mainPicture = InsertProductPictureRequestDtoUseCase(
-        Sort: 0,
-        IsMain: true,
-        IsUploaded: false,
-        PickedFile: this.image.value.pickedFile,
-        Id: mainImageName,
-        ProductId: this.productId.value,
+        sort: 0,
+        isMain: true,
+        isUploaded: false,
+        pickedFile: image.value.pickedFile,
+        id: mainImageName,
+        productId: productId.value,
       );
       picturesList.add(mainPicture);
 
       var picSort = 1;
       for (var image in imagesList) {
-        var name = Uuid().v4();
+        var name = const Uuid().v4();
         InsertProductPictureRequestDtoUseCase picture = InsertProductPictureRequestDtoUseCase(
-          Sort: picSort,
-          IsMain: false,
-          IsUploaded: false,
-          PickedFile: image.pickedFile,
-          Id: name,
-          ProductId: this.productId.value,
+          sort: picSort,
+          isMain: false,
+          isUploaded: false,
+          pickedFile: image.pickedFile,
+          id: name,
+          productId: productId.value,
         );
         picturesList.add(picture);
         picSort++;
@@ -890,10 +885,10 @@ class AddProductController extends GetxController {
 
   startApiInsertProductPicture(
       {required InsertProductPictureRequestDtoUseCase insertProductPictureRequestDtoUseCase}) async {
-    await iInsertProductPictureUseCase.Handler(params: insertProductPictureRequestDtoUseCase).then((response) {
+    await iInsertProductPictureUseCase.handler(params: insertProductPictureRequestDtoUseCase).then((response) {
       for (var pic in picturesList) {
-        if (pic.Id!.toLowerCase() == insertProductPictureRequestDtoUseCase.Id!.toLowerCase()) {
-          pic.IsUploaded = true;
+        if (pic.id!.toLowerCase() == insertProductPictureRequestDtoUseCase.id!.toLowerCase()) {
+          pic.isUploaded = true;
         }
       }
     }).catchError((error) {
