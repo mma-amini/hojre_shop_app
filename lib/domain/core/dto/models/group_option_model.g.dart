@@ -1,51 +1,53 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'group_spec_model.dart';
+part of 'group_option_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-VMGroupSpec _$VMGroupSpecFromJson(Map<String, dynamic> json) => VMGroupSpec(
+VMGroupOption _$VMGroupOptionFromJson(Map<String, dynamic> json) =>
+    VMGroupOption(
       items: (json['items'] as List<dynamic>?)
-          ?.map((e) => VMSpecItem.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => VMOptionItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] as String?,
-      specId: json['specId'] as String?,
+      id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$VMGroupSpecToJson(VMGroupSpec instance) =>
+Map<String, dynamic> _$VMGroupOptionToJson(VMGroupOption instance) =>
     <String, dynamic>{
       'items': instance.items,
       'name': instance.name,
-      'specId': instance.specId,
+      'id': instance.id,
     };
 
-VMSpecItem _$VMSpecItemFromJson(Map<String, dynamic> json) => VMSpecItem(
+VMOptionItem _$VMOptionItemFromJson(Map<String, dynamic> json) => VMOptionItem(
       inputName: json['inputName'] as String?,
       inputTitle: json['inputTitle'] as String?,
       name: json['name'] as String?,
-      specItemId: json['specItemId'] as String?,
+      id: json['id'] as String?,
       values: (json['values'] as List<dynamic>?)
-          ?.map((e) => VMSpecValue.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => VMOptionValue.fromJson(e as Map<String, dynamic>))
           .toList(),
       selectedItem: json['selectedItem'] == null
           ? null
-          : VMSpecValue.fromJson(json['selectedItem'] as Map<String, dynamic>),
+          : VMOptionValue.fromJson(
+              json['selectedItem'] as Map<String, dynamic>),
       selectedItems: (json['selectedItems'] as List<dynamic>?)
-          ?.map((e) => VMSpecValue.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => VMOptionValue.fromJson(e as Map<String, dynamic>))
           .toList(),
       typedText: json['typedText'] as String?,
       booleanValue: json['booleanValue'] as bool?,
       isRequired: json['isRequired'] as bool?,
     );
 
-Map<String, dynamic> _$VMSpecItemToJson(VMSpecItem instance) =>
+Map<String, dynamic> _$VMOptionItemToJson(VMOptionItem instance) =>
     <String, dynamic>{
       'inputName': instance.inputName,
       'inputTitle': instance.inputTitle,
       'name': instance.name,
-      'specItemId': instance.specItemId,
+      'id': instance.id,
       'values': instance.values,
       'selectedItem': instance.selectedItem,
       'selectedItems': instance.selectedItems,
@@ -54,15 +56,16 @@ Map<String, dynamic> _$VMSpecItemToJson(VMSpecItem instance) =>
       'isRequired': instance.isRequired,
     };
 
-VMSpecValue _$VMSpecValueFromJson(Map<String, dynamic> json) => VMSpecValue(
-      specValueId: json['specValueId'] as String?,
+VMOptionValue _$VMOptionValueFromJson(Map<String, dynamic> json) =>
+    VMOptionValue(
+      id: json['id'] as String?,
       title: json['title'] as String?,
       value: json['value'] as String?,
     );
 
-Map<String, dynamic> _$VMSpecValueToJson(VMSpecValue instance) =>
+Map<String, dynamic> _$VMOptionValueToJson(VMOptionValue instance) =>
     <String, dynamic>{
-      'specValueId': instance.specValueId,
+      'id': instance.id,
       'title': instance.title,
       'value': instance.value,
     };

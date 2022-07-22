@@ -20,7 +20,7 @@ VMProduct _$VMProductFromJson(Map<String, dynamic> json) => VMProduct(
           .toList(),
       picture: json['picture'] as String?,
       productDimensions: json['productDimensions'] as String?,
-      productId: json['productId'] as String?,
+      id: json['id'] as String?,
       productName: json['productName'] as String?,
       productWeight: (json['productWeight'] as num?)?.toDouble(),
     )
@@ -41,7 +41,7 @@ Map<String, dynamic> _$VMProductToJson(VMProduct instance) => <String, dynamic>{
       'pictures': instance.pictures,
       'picture': instance.picture,
       'productDimensions': instance.productDimensions,
-      'productId': instance.productId,
+      'id': instance.id,
       'productName': instance.productName,
       'productWeight': instance.productWeight,
     };

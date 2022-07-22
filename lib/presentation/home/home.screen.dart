@@ -325,24 +325,27 @@ class HomeScreen extends GetView<HomeController> {
                   height: 8.0,
                 ),
                 Wrap(),
-                controller.isLoading.value
-                    ? Container(
-                        color: const Color.fromARGB(50, 255, 255, 255),
-                        child: SpinKitCircle(
-                          itemBuilder: (BuildContext context, int index) {
-                            return DecoratedBox(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: index.isEven ? Colors.lightBlueAccent : Colors.yellow,
-                              ),
-                            );
-                          },
-                        ),
-                      )
-                    : Container()
               ],
             ),
           ),
+          Obx(() {
+            return Visibility(
+              visible: controller.isLoading.value,
+              child: Container(
+                color: const Color.fromARGB(50, 255, 255, 255),
+                child: SpinKitCircle(
+                  itemBuilder: (BuildContext context, int index) {
+                    return DecoratedBox(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: index.isEven ? Colors.lightBlueAccent : Colors.yellow,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+          })
         ],
       ),
     );
@@ -370,11 +373,21 @@ class HomeScreen extends GetView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(controller.setUserFullName(),
-                style: const TextStyle(color: Colors.white, fontFamily: "Vazir Med", fontSize: 18.0)),
+            Text(
+              controller.setUserFullName(),
+              style: const TextStyle(
+                color: Colors.white,
+                fontFamily: "Vazir Med",
+                fontSize: 18.0,
+              ),
+            ),
             Text(
               controller.setUserShopName(),
-              style: const TextStyle(color: Colors.white, fontFamily: "Vazir Med", fontSize: 12.0),
+              style: const TextStyle(
+                color: Colors.white,
+                fontFamily: "Vazir Med",
+                fontSize: 12.0,
+              ),
             ),
           ],
         ),

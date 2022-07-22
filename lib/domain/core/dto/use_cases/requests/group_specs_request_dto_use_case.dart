@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
-class GroupSpecsRequestDtoUseCase extends Equatable {
+class GroupOptionsRequestDtoUseCase extends Equatable {
   final String categoryId;
 
-  const GroupSpecsRequestDtoUseCase({required this.categoryId});
+  const GroupOptionsRequestDtoUseCase({required this.categoryId});
 
   @override
   // TODO: implement props

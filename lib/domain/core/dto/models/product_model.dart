@@ -20,7 +20,7 @@ class VMProduct extends Equatable {
   List<VMProductPicture>? pictures;
   String? picture;
   String? productDimensions;
-  String? productId;
+  String? id;
   String? productName;
   double? productWeight;
 
@@ -34,7 +34,7 @@ class VMProduct extends Equatable {
       this.pictures,
       this.picture,
       this.productDimensions,
-      this.productId,
+      this.id,
       this.productName,
       this.productWeight});
 
@@ -54,7 +54,7 @@ class VMProduct extends Equatable {
         pictures,
         picture,
         productDimensions,
-        productId,
+        id,
         productName,
         productWeight,
       ];

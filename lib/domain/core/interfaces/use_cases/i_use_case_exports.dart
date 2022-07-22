@@ -8,4 +8,5 @@ export 'i_login_use_case.dart';
 export 'i_product_designs_use_case.dart';
 export 'i_product_groups_use_case.dart';
 export 'i_refresh_token_use_case.dart';
+export 'i_shop_info_use_case.dart';
 export 'i_shop_products_use_case.dart';

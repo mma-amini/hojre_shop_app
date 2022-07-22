@@ -78,12 +78,12 @@ class ProductManagerController extends GetxController {
 
       List<VMProductGroup> tempProductGroupsList = List<VMProductGroup>.empty(growable: true);
 
-      VMProductGroup emptyGroup = VMProductGroup(categoryName: "همه گروه ها", categoryId: "");
+      VMProductGroup emptyGroup = VMProductGroup(categoryName: "همه گروه ها", id: "");
       tempProductGroupsList.add(emptyGroup);
 
       for (var element in data) {
         VMProductGroup productGroup = VMProductGroup(
-          categoryId: element.categoryId,
+          id: element.id,
           categoryName: element.categoryName,
           picture: element.picture,
           parentId: element.parentId,
@@ -101,7 +101,7 @@ class ProductManagerController extends GetxController {
   startApiShopProducts() async {
     updateLoading(isLoading: true);
     await iShopProductsUseCase
-        .handler(params: ShopProductsRequestDtoUseCase(categoryId: selectedCategory.value.categoryId ?? ""))
+        .handler(params: ShopProductsRequestDtoUseCase(categoryId: selectedCategory.value.id ?? ""))
         .then((response) {
       updateLoading(isLoading: false);
       refreshController.refreshCompleted();

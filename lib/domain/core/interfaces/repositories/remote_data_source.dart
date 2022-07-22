@@ -34,8 +34,8 @@ abstract class RemoteDataSource {
   /// Calls the method http-get https://server.com/api/v1/shop/groupSpecs endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
-  Future<List<GroupSpecsResponseDtoUseCase>> groupSpecs(
-      {required GroupSpecsRequestDtoUseCase groupSpecsRequestDtoUseCase});
+  Future<List<GroupOptionsResponseDtoUseCase>> groupOptions(
+      {required GroupOptionsRequestDtoUseCase groupOptionsRequestDtoUseCase});
 
   /// Calls the method http-get https://server.com/api/v1/shop/productDesigns endpoint.
   ///
@@ -59,4 +59,9 @@ abstract class RemoteDataSource {
   /// Throws a [ServerException] for all error codes.
   Future<NoParams> insertProductImages(
       {required InsertProductPictureRequestDtoUseCase insertProductPictureRequestDtoUseCase});
+
+  /// Calls the method http-get https://server.com/api/v1/shop/shopInfo endpoint.
+  ///
+  /// Throws a [ServerException] for all error codes.
+  Future<ResponseDtoUseCase> shopInfo();
 }

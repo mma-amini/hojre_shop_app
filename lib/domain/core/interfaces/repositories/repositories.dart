@@ -18,8 +18,8 @@ abstract class Repository {
   Future<Either<Failure, List<ShopProductsResponseDtoUseCase>>>? shopProducts(
       {required ShopProductsRequestDtoUseCase shopProductsRequestDtoUseCase});
 
-  Future<Either<Failure, List<GroupSpecsResponseDtoUseCase>>>? groupSpecs(
-      {required GroupSpecsRequestDtoUseCase groupSpecsRequestDtoUseCase});
+  Future<Either<Failure, List<GroupOptionsResponseDtoUseCase>>>? groupOptions(
+      {required GroupOptionsRequestDtoUseCase groupOptionsRequestDtoUseCase});
 
   Future<Either<Failure, List<ProductDesignResponseDtoUseCase>>>? productDesigns(
       {required ProductDesignRequestDtoUseCase productDesignRequestDtoUseCase});
@@ -32,4 +32,6 @@ abstract class Repository {
 
   Future<Either<Failure, NoParams>>? insertProductImage(
       {required InsertProductPictureRequestDtoUseCase insertProductPictureRequestDtoUseCase});
+
+  Future<Either<Failure, ResponseDtoUseCase>>? shopInfo();
 }

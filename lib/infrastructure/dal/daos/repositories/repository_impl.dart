@@ -74,10 +74,11 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, List<GroupSpecsResponseDtoUseCase>>>? groupSpecs(
-      {required GroupSpecsRequestDtoUseCase groupSpecsRequestDtoUseCase}) async {
+  Future<Either<Failure, List<GroupOptionsResponseDtoUseCase>>>? groupOptions(
+      {required GroupOptionsRequestDtoUseCase groupOptionsRequestDtoUseCase}) async {
     try {
-      var result = await baseRemoteDataSource.groupSpecs(groupSpecsRequestDtoUseCase: groupSpecsRequestDtoUseCase);
+      var result =
+          await baseRemoteDataSource.groupOptions(groupOptionsRequestDtoUseCase: groupOptionsRequestDtoUseCase);
 
       return Right(result);
     } on ServerException {
@@ -129,6 +130,17 @@ class RepositoryImpl implements Repository {
     try {
       var result = await baseRemoteDataSource.insertProductImages(
           insertProductPictureRequestDtoUseCase: insertProductPictureRequestDtoUseCase);
+
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, ResponseDtoUseCase>>? shopInfo() async {
+    try {
+      var result = await baseRemoteDataSource.shopInfo();
 
       return Right(result);
     } on ServerException {

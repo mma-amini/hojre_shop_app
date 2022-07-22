@@ -194,12 +194,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<List<GroupSpecsResponseDtoUseCase>> groupSpecs(
-      {required GroupSpecsRequestDtoUseCase groupSpecsRequestDtoUseCase}) async {
-    var body = {"categoryId": groupSpecsRequestDtoUseCase.categoryId};
+  Future<List<GroupOptionsResponseDtoUseCase>> groupOptions(
+      {required GroupOptionsRequestDtoUseCase groupOptionsRequestDtoUseCase}) async {
+    var body = {"categoryId": groupOptionsRequestDtoUseCase.categoryId};
     var result = await Brain.dio
         .get(
-      "${Brain.baseDomain}${Api.GROUP_SPECS_API}",
+      "${Brain.baseDomain}${Api.GROUP_OPTIONS_API}",
       queryParameters: body,
       options: Options(
         headers: headers(),
@@ -210,10 +210,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       checkMessage(messageDtoUseCase: apiResult.message);
       List<dynamic> arrayData = apiResult.content;
 
-      List<GroupSpecsResponseDtoUseCase> dataList = List<GroupSpecsResponseDtoUseCase>.empty(growable: true);
+      List<GroupOptionsResponseDtoUseCase> dataList = List<GroupOptionsResponseDtoUseCase>.empty(growable: true);
 
       for (var json in arrayData) {
-        GroupSpecsResponseDtoUseCase groupSpecsResponseDtoUseCase = GroupSpecsResponseDtoUseCase.fromJson(json);
+        GroupOptionsResponseDtoUseCase groupSpecsResponseDtoUseCase = GroupOptionsResponseDtoUseCase.fromJson(json);
 
         dataList.add(groupSpecsResponseDtoUseCase);
       }
@@ -221,7 +221,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return dataList;
     }).catchError((error) {
       LogHelper.printLog(data: error);
-      List<GroupSpecsResponseDtoUseCase> dataList = List<GroupSpecsResponseDtoUseCase>.empty(growable: true);
+      List<GroupOptionsResponseDtoUseCase> dataList = List<GroupOptionsResponseDtoUseCase>.empty(growable: true);
       return dataList;
     });
 
@@ -350,6 +350,27 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     }).catchError((error) {
       LogHelper.printLog(data: error);
       return NoParams();
+    });
+
+    return result;
+  }
+
+  @override
+  Future<ResponseDtoUseCase> shopInfo() async {
+    var result = await Brain.dio
+        .get(
+      "${Brain.baseDomain}${Api.SHOP_INFO_API}",
+      options: Options(
+        headers: headers(),
+      ),
+    )
+        .then((response) {
+      var apiResult = ResponseDtoUseCase.fromJson(response.data);
+      checkMessage(messageDtoUseCase: apiResult.message);
+      return apiResult;
+    }).catchError((error) {
+      LogHelper.printLog(data: error);
+      return ResponseDtoUseCase();
     });
 
     return result;

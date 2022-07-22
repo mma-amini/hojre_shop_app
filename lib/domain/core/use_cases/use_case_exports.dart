@@ -7,4 +7,5 @@ export 'login_use_case.dart';
 export 'product_designs_use_case.dart';
 export 'product_groups_use_case.dart';
 export 'refresh_token_use_case.dart';
+export 'shop_info_use_case.dart';
 export 'shop_products_use_case.dart';

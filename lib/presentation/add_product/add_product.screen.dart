@@ -7,9 +7,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/enums/message_type.dart';
-import 'package:hojre_shop_app/domain/core/dto/enums/spec_type.dart';
+import 'package:hojre_shop_app/domain/core/dto/enums/option_type.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/brand_model.dart';
-import 'package:hojre_shop_app/domain/core/dto/models/group_spec_model.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/group_option_model.dart';
 import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
 import 'package:hojre_shop_app/presentation/widgets/awesom_dialog/awesome_dialog.dart';
@@ -38,7 +38,7 @@ class AddProductScreen extends GetView<AddProductController> {
           ),
           body: Obx(() {
             return Visibility(
-              visible: (controller.category.value.categoryId ?? "").isNotEmpty,
+              visible: (controller.category.value.id ?? "").isNotEmpty,
               child: Container(
                 padding: const EdgeInsets.all(16.0),
                 child: Form(
@@ -1004,9 +1004,9 @@ class AddProductScreen extends GetView<AddProductController> {
       content: ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: controller.groupSpecsList.length,
+        itemCount: controller.groupOptionsList.length,
         itemBuilder: (context, index) {
-          var item = controller.groupSpecsList[index];
+          var item = controller.groupOptionsList[index];
           return Column(
             children: [
               ExpandablePanel(
@@ -1110,9 +1110,9 @@ class AddProductScreen extends GetView<AddProductController> {
                               spcItem.selectedItem != null && spcItem.selectedItem!.value != null;
 
                           switch (spcItem.type) {
-                            case SpecificationType.COLOR:
+                            case OptionType.COLOR:
                               return Container();
-                            case SpecificationType.SELECTABLE:
+                            case OptionType.SELECTABLE:
                               return Column(
                                 children: [
                                   TextField(
@@ -1128,7 +1128,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                       ),
                                     ),
                                     onTap: () {
-                                      List<VMSpecValue> tempData = List<VMSpecValue>.empty(growable: true);
+                                      List<VMOptionValue> tempData = List<VMOptionValue>.empty(growable: true);
 
                                       tempData.addAll(spcItem.values!);
 
@@ -1186,9 +1186,9 @@ class AddProductScreen extends GetView<AddProductController> {
                                                           child: IconButton(
                                                             icon: const Icon(Icons.add),
                                                             onPressed: () {
-                                                              VMSpecValue spcData = VMSpecValue(
+                                                              VMOptionValue spcData = VMOptionValue(
                                                                   title: spcItem.searchTextController.text,
-                                                                  specValueId: null,
+                                                                  id: null,
                                                                   value: spcItem.searchTextController.text);
                                                               spcItem.searchTextController.text = "";
                                                               spcItem.searchTextNode.unfocus();
@@ -1260,7 +1260,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                   const Divider(),
                                 ],
                               );
-                            case SpecificationType.TEXT_INPUT:
+                            case OptionType.TEXT_INPUT_SINGLE:
                               return Column(
                                 children: [
                                   TextField(
@@ -1277,11 +1277,34 @@ class AddProductScreen extends GetView<AddProductController> {
                                     onChanged: (value) {
                                       spcItem.typedText = spcItem.textController.text;
                                     },
+                                    maxLines: 1,
                                   ),
                                   const Divider(),
                                 ],
                               );
-                            case SpecificationType.BOOL:
+                            case OptionType.TEXT_INPUT_MULTI:
+                              return Column(
+                                children: [
+                                  TextField(
+                                    focusNode: spcItem.textNode,
+                                    controller: spcItem.textController,
+                                    decoration: InputDecoration(
+                                      labelText: spcItem.name,
+                                      alignLabelWithHint: true,
+                                      border: OutlineInputBorder(
+                                        borderSide: const BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                    onChanged: (value) {
+                                      spcItem.typedText = spcItem.textController.text;
+                                    },
+                                    maxLines: null,
+                                  ),
+                                  const Divider(),
+                                ],
+                              );
+                            case OptionType.BOOL:
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -1334,7 +1357,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                   const Divider(),
                                 ],
                               );
-                            case SpecificationType.NUMBER_INPUT:
+                            case OptionType.NUMBER_INPUT:
                               return Column(
                                 children: [
                                   TextField(
@@ -1361,7 +1384,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                   const Divider(),
                                 ],
                               );
-                            case SpecificationType.MULTI_SELECT:
+                            case OptionType.MULTI_SELECT:
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -1369,13 +1392,10 @@ class AddProductScreen extends GetView<AddProductController> {
                                     autovalidate: spcItem.isRequired!,
                                     addedData: true,
                                     addedDataFunction: (value) {
-                                      VMSpecValue spcData = VMSpecValue(
-                                          specValueId: value["value"],
-                                          title: value["text"],
-                                          value: value["value"],
-                                          isNew: true);
+                                      VMOptionValue spcData = VMOptionValue(
+                                          id: value["value"], title: value["text"], value: value["value"], isNew: true);
                                       spcItem.values!.add(spcData);
-                                      spcItem.selectedItems ??= List<VMSpecValue>.empty(growable: true);
+                                      spcItem.selectedItems ??= List<VMOptionValue>.empty(growable: true);
 
                                       spcItem.selectedItems!.add(spcData);
                                       controller.justUpdate();
@@ -1392,7 +1412,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                         (muIndex) => {
                                               "Title": spcItem.values![muIndex].title,
                                               "Value": spcItem.values![muIndex].value,
-                                              "SpecValueId": spcItem.values![muIndex].specValueId
+                                              "SpecValueId": spcItem.values![muIndex].id
                                             }).toList(),
                                     textField: "Title",
                                     valueField: "SpecValueId",
@@ -1400,7 +1420,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                     required: spcItem.isRequired,
                                     initialValue: spcItem.selectedItems != null
                                         ? List.generate(spcItem.selectedItems!.length,
-                                            (muIndex) => spcItem.selectedItems![muIndex].specValueId).toList()
+                                            (muIndex) => spcItem.selectedItems![muIndex].id).toList()
                                         : null,
                                     saveButtonText: LocaleKeys.buttons_confirm.tr,
                                     cancelButtonText: LocaleKeys.buttons_cancel.tr,
@@ -1418,13 +1438,13 @@ class AddProductScreen extends GetView<AddProductController> {
                                         }
                                       }
 
-                                      spcItem.selectedItems = List<VMSpecValue>.empty(growable: true);
+                                      spcItem.selectedItems = List<VMOptionValue>.empty(growable: true);
 
                                       for (String? val in tempList) {
                                         for (var item in spcItem.values!) {
                                           // Conditions
                                           var checkSpecificationTypeItemId =
-                                              val!.toLowerCase() == item.specValueId!.toLowerCase();
+                                              val!.toLowerCase() == item.id!.toLowerCase();
                                           if (checkSpecificationTypeItemId) {
                                             spcItem.selectedItems!.add(item);
                                           }
@@ -1436,7 +1456,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                   const Divider(),
                                 ],
                               );
-                            case SpecificationType.WEIGHT:
+                            case OptionType.WEIGHT:
                               return Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1564,7 +1584,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                   const Divider(),
                                 ],
                               );
-                            case SpecificationType.DIMENSION:
+                            case OptionType.DIMENSION:
                               return Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1733,9 +1753,9 @@ class AddProductScreen extends GetView<AddProductController> {
                                   const Divider(),
                                 ],
                               );
-                            case SpecificationType.FILE_DOC:
+                            case OptionType.FILE_DOC:
                               return Container();
-                            case SpecificationType.FILE_PIC:
+                            case OptionType.FILE_PIC:
                               return Container();
                             default:
                               return Container();

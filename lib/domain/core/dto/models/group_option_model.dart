@@ -1,55 +1,55 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:hojre_shop_app/domain/core/dto/enums/spec_type.dart';
+import 'package:hojre_shop_app/domain/core/dto/enums/option_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'group_spec_model.g.dart';
+part 'group_option_model.g.dart';
 
 @JsonSerializable()
-class VMGroupSpec extends Equatable {
-  List<VMSpecItem>? items;
+class VMGroupOption extends Equatable {
+  List<VMOptionItem>? items;
   String? name;
-  String? specId;
+  String? id;
 
   @JsonKey(ignore: true)
   TextEditingController? searchTextController = TextEditingController();
 
   @JsonKey(ignore: true)
-  List<VMSpecItem>? searchResult = List<VMSpecItem>.empty(growable: true);
+  List<VMOptionItem>? searchResult = List<VMOptionItem>.empty(growable: true);
 
-  VMGroupSpec({
+  VMGroupOption({
     this.items,
     this.name,
-    this.specId,
+    this.id,
     this.searchResult,
     this.searchTextController,
   }) {
     searchTextController = TextEditingController();
-    searchResult = List<VMSpecItem>.empty(growable: true);
+    searchResult = List<VMOptionItem>.empty(growable: true);
   }
 
-  factory VMGroupSpec.fromJson(Map<String, dynamic> json) => _$VMGroupSpecFromJson(json);
+  factory VMGroupOption.fromJson(Map<String, dynamic> json) => _$VMGroupOptionFromJson(json);
 
-  Map<String, dynamic> toJson() => _$VMGroupSpecToJson(this);
+  Map<String, dynamic> toJson() => _$VMGroupOptionToJson(this);
 
   @override
   // TODO: implement props
   List<Object?> get props => [
         items,
         name,
-        specId,
+        id,
       ];
 }
 
 @JsonSerializable()
-class VMSpecItem extends Equatable {
+class VMOptionItem extends Equatable {
   String? inputName;
   String? inputTitle;
   String? name;
-  String? specItemId;
-  List<VMSpecValue>? values;
-  VMSpecValue? selectedItem;
-  List<VMSpecValue>? selectedItems;
+  String? id;
+  List<VMOptionValue>? values;
+  VMOptionValue? selectedItem;
+  List<VMOptionValue>? selectedItems;
   String? typedText;
   bool? booleanValue;
   bool? isRequired = false;
@@ -66,33 +66,35 @@ class VMSpecItem extends Equatable {
   get type {
     switch (inputName) {
       case "COLOR":
-        return SpecificationType.COLOR;
+        return OptionType.COLOR;
       case "SELECTABLE":
-        return SpecificationType.SELECTABLE;
-      case "TEXT_INPUT":
-        return SpecificationType.TEXT_INPUT;
+        return OptionType.SELECTABLE;
+      case "TEXT_INPUT_SINGLE":
+        return OptionType.TEXT_INPUT_SINGLE;
+      case "TEXT_INPUT_MULTI":
+        return OptionType.TEXT_INPUT_MULTI;
       case "NUMBER_INPUT":
-        return SpecificationType.NUMBER_INPUT;
+        return OptionType.NUMBER_INPUT;
       case "BOOL":
-        return SpecificationType.BOOL;
+        return OptionType.BOOL;
       case "MULTI_SELECT":
-        return SpecificationType.MULTI_SELECT;
+        return OptionType.MULTI_SELECT;
       case "WEIGHT":
-        return SpecificationType.WEIGHT;
+        return OptionType.WEIGHT;
       case "DIMENSION":
-        return SpecificationType.DIMENSION;
+        return OptionType.DIMENSION;
       case "FILE_DOC":
-        return SpecificationType.FILE_DOC;
+        return OptionType.FILE_DOC;
       case "FILE_PIC":
-        return SpecificationType.FILE_PIC;
+        return OptionType.FILE_PIC;
     }
   }
 
-  VMSpecItem({
+  VMOptionItem({
     this.inputName,
     this.inputTitle,
     this.name,
-    this.specItemId,
+    this.id,
     this.values,
     this.selectedItem,
     this.selectedItems,
@@ -101,9 +103,9 @@ class VMSpecItem extends Equatable {
     this.isRequired,
   });
 
-  factory VMSpecItem.fromJson(Map<String, dynamic> json) => _$VMSpecItemFromJson(json);
+  factory VMOptionItem.fromJson(Map<String, dynamic> json) => _$VMOptionItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$VMSpecItemToJson(this);
+  Map<String, dynamic> toJson() => _$VMOptionItemToJson(this);
 
   @override
   // TODO: implement props
@@ -111,30 +113,30 @@ class VMSpecItem extends Equatable {
         inputName,
         inputTitle,
         name,
-        specItemId,
+        id,
         values,
       ];
 }
 
 @JsonSerializable()
-class VMSpecValue extends Equatable {
-  String? specValueId;
+class VMOptionValue extends Equatable {
+  String? id;
   String? title;
   String? value;
 
   @JsonKey(ignore: true)
   bool isNew;
 
-  VMSpecValue({this.specValueId, this.title, this.value, this.isNew = false});
+  VMOptionValue({this.id, this.title, this.value, this.isNew = false});
 
-  factory VMSpecValue.fromJson(Map<String, dynamic> json) => _$VMSpecValueFromJson(json);
+  factory VMOptionValue.fromJson(Map<String, dynamic> json) => _$VMOptionValueFromJson(json);
 
-  Map<String, dynamic> toJson() => _$VMSpecValueToJson(this);
+  Map<String, dynamic> toJson() => _$VMOptionValueToJson(this);
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-        specValueId,
+        id,
         title,
         value,
         isNew,

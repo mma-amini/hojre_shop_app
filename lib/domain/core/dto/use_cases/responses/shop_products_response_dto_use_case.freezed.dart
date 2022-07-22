@@ -34,7 +34,7 @@ mixin _$ShopProductsResponseDtoUseCase {
       throw _privateConstructorUsedError;
   String? get picture => throw _privateConstructorUsedError;
   String? get productDimensions => throw _privateConstructorUsedError;
-  String? get productId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String? get productName => throw _privateConstructorUsedError;
   double? get productWeight => throw _privateConstructorUsedError;
 
@@ -62,7 +62,7 @@ abstract class $ShopProductsResponseDtoUseCaseCopyWith<$Res> {
       List<PictureOfShopProductsResponseDtoUseCase>? pictures,
       String? picture,
       String? productDimensions,
-      String? productId,
+      String? id,
       String? productName,
       double? productWeight});
 
@@ -91,7 +91,7 @@ class _$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     Object? pictures = freezed,
     Object? picture = freezed,
     Object? productDimensions = freezed,
-    Object? productId = freezed,
+    Object? id = freezed,
     Object? productName = freezed,
     Object? productWeight = freezed,
   }) {
@@ -140,9 +140,9 @@ class _$ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
           ? _value.productDimensions
           : productDimensions // ignore: cast_nullable_to_non_nullable
               as String?,
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       productName: productName == freezed
           ? _value.productName
@@ -188,7 +188,7 @@ abstract class _$$_ShopProductsResponseDtoUseCaseCopyWith<$Res>
       List<PictureOfShopProductsResponseDtoUseCase>? pictures,
       String? picture,
       String? productDimensions,
-      String? productId,
+      String? id,
       String? productName,
       double? productWeight});
 
@@ -222,7 +222,7 @@ class __$$_ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
     Object? pictures = freezed,
     Object? picture = freezed,
     Object? productDimensions = freezed,
-    Object? productId = freezed,
+    Object? id = freezed,
     Object? productName = freezed,
     Object? productWeight = freezed,
   }) {
@@ -271,9 +271,9 @@ class __$$_ShopProductsResponseDtoUseCaseCopyWithImpl<$Res>
           ? _value.productDimensions
           : productDimensions // ignore: cast_nullable_to_non_nullable
               as String?,
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       productName: productName == freezed
           ? _value.productName
@@ -303,7 +303,7 @@ class _$_ShopProductsResponseDtoUseCase
       final List<PictureOfShopProductsResponseDtoUseCase>? pictures,
       this.picture,
       this.productDimensions,
-      this.productId,
+      this.id,
       this.productName,
       this.productWeight})
       : _pictures = pictures;
@@ -342,7 +342,7 @@ class _$_ShopProductsResponseDtoUseCase
   @override
   final String? productDimensions;
   @override
-  final String? productId;
+  final String? id;
   @override
   final String? productName;
   @override
@@ -350,7 +350,7 @@ class _$_ShopProductsResponseDtoUseCase
 
   @override
   String toString() {
-    return 'ShopProductsResponseDtoUseCase(approvedProductDesignsCount: $approvedProductDesignsCount, brand: $brand, description: $description, isActive: $isActive, isOriginal: $isOriginal, notApprovedProductDesignsCount: $notApprovedProductDesignsCount, packingDimensions: $packingDimensions, packingWeight: $packingWeight, pictures: $pictures, picture: $picture, productDimensions: $productDimensions, productId: $productId, productName: $productName, productWeight: $productWeight)';
+    return 'ShopProductsResponseDtoUseCase(approvedProductDesignsCount: $approvedProductDesignsCount, brand: $brand, description: $description, isActive: $isActive, isOriginal: $isOriginal, notApprovedProductDesignsCount: $notApprovedProductDesignsCount, packingDimensions: $packingDimensions, packingWeight: $packingWeight, pictures: $pictures, picture: $picture, productDimensions: $productDimensions, id: $id, productName: $productName, productWeight: $productWeight)';
   }
 
   @override
@@ -378,7 +378,7 @@ class _$_ShopProductsResponseDtoUseCase
             const DeepCollectionEquality().equals(other.picture, picture) &&
             const DeepCollectionEquality()
                 .equals(other.productDimensions, productDimensions) &&
-            const DeepCollectionEquality().equals(other.productId, productId) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.productName, productName) &&
             const DeepCollectionEquality()
@@ -400,7 +400,7 @@ class _$_ShopProductsResponseDtoUseCase
       const DeepCollectionEquality().hash(_pictures),
       const DeepCollectionEquality().hash(picture),
       const DeepCollectionEquality().hash(productDimensions),
-      const DeepCollectionEquality().hash(productId),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(productName),
       const DeepCollectionEquality().hash(productWeight));
 
@@ -430,7 +430,7 @@ abstract class _ShopProductsResponseDtoUseCase
       final List<PictureOfShopProductsResponseDtoUseCase>? pictures,
       final String? picture,
       final String? productDimensions,
-      final String? productId,
+      final String? id,
       final String? productName,
       final double? productWeight}) = _$_ShopProductsResponseDtoUseCase;
 
@@ -460,7 +460,7 @@ abstract class _ShopProductsResponseDtoUseCase
   @override
   String? get productDimensions;
   @override
-  String? get productId;
+  String? get id;
   @override
   String? get productName;
   @override

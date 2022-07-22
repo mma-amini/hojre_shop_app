@@ -8,9 +8,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/enums/message_type.dart';
-import 'package:hojre_shop_app/domain/core/dto/enums/spec_type.dart';
+import 'package:hojre_shop_app/domain/core/dto/enums/option_type.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/brand_model.dart';
-import 'package:hojre_shop_app/domain/core/dto/models/group_spec_model.dart';
+import 'package:hojre_shop_app/domain/core/dto/models/group_option_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_group_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/use_cases/requests/request_dto_use_case_exports.dart';
@@ -87,8 +87,8 @@ class AddProductController extends GetxController {
   List<FocusNode> focusNodesList = List<FocusNode>.empty(growable: true);
   List<VMProductGroup> tempProductGroupsList = List<VMProductGroup>.empty(growable: true);
   final productGroupsList = List<VMProductGroup>.empty(growable: true).obs;
-  final groupSpecsList = List<VMGroupSpec>.empty(growable: true).obs;
-  final allSpc = List<VMSpecItem>.empty(growable: true).obs;
+  final groupOptionsList = List<VMGroupOption>.empty(growable: true).obs;
+  final allOptions = List<VMOptionItem>.empty(growable: true).obs;
   final brandsList = List<VMBrand>.empty(growable: true).obs;
   final imagesList = List<VMSendProductPicture>.empty(growable: true).obs;
   final picturesList = List<InsertProductPictureRequestDtoUseCase>.empty(growable: true).obs;
@@ -168,10 +168,10 @@ class AddProductController extends GetxController {
     });
   }
 
-  updateGroupSpecsList({required List<VMGroupSpec> groupSpecsList}) {
-    this.groupSpecsList.clear();
-    this.groupSpecsList.obs.update((val) {
-      this.groupSpecsList.addAll(groupSpecsList);
+  updateGroupOptionsList({required List<VMGroupOption> groupOptionsList}) {
+    this.groupOptionsList.clear();
+    this.groupOptionsList.obs.update((val) {
+      this.groupOptionsList.addAll(groupOptionsList);
     });
   }
 
@@ -505,7 +505,7 @@ class AddProductController extends GetxController {
                               onTap: () {
                                 updateCategory(category: item);
                                 productGroupsDialogSearchController.text = "";
-                                startApiGroupSpecs();
+                                startApiGroupOptions();
                                 Get.back();
                               },
                               child: Container(
@@ -627,14 +627,14 @@ class AddProductController extends GetxController {
 
     sendProduct.value.productName = productNameController.text;
     sendProduct.value.description = productDescriptionController.text;
-    sendProduct.value.productGroupId = category.value.categoryId;
+    sendProduct.value.productGroupId = category.value.id;
 
     List<SectionOfInsertProductRequestDtoUseCase> sectionsList =
         List<SectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
 
-    for (var schema in groupSpecsList) {
+    for (var schema in groupOptionsList) {
       SectionOfInsertProductRequestDtoUseCase section = SectionOfInsertProductRequestDtoUseCase();
-      section.specId = schema.specId;
+      section.specId = schema.id;
       List<DataOfSectionOfInsertProductRequestDtoUseCase> sendSpecificationsList =
           List<DataOfSectionOfInsertProductRequestDtoUseCase>.empty(growable: true);
       for (var specification in schema.items!) {
@@ -645,13 +645,13 @@ class AddProductController extends GetxController {
         var checkValue = (specification.isRequired ?? false) && sendSpecification.value == null;
 
         sendSpecification.inputType = specification.inputTitle;
-        sendSpecification.specItemId = specification.specItemId;
+        sendSpecification.specItemId = specification.id;
 
         switch (specification.type) {
-          case SpecificationType.COLOR:
+          case OptionType.COLOR:
             break;
 
-          case SpecificationType.SELECTABLE:
+          case OptionType.SELECTABLE:
             // Conditions
             var checkSelectedItem = specification.selectedItem == null;
 
@@ -662,29 +662,29 @@ class AddProductController extends GetxController {
             }
             break;
 
-          case SpecificationType.TEXT_INPUT:
+          case OptionType.TEXT_INPUT_SINGLE:
             sendSpecification.value = specification.typedText;
             break;
 
-          case SpecificationType.NUMBER_INPUT:
+          case OptionType.NUMBER_INPUT:
             sendSpecification.value = specification.typedText;
             break;
 
-          case SpecificationType.BOOL:
+          case OptionType.BOOL:
             sendSpecification.value = specification.booleanValue;
             break;
 
-          case SpecificationType.MULTI_SELECT:
+          case OptionType.MULTI_SELECT:
             // Conditions
             var checkSelectedItems = specification.selectedItems == null || specification.selectedItems!.isEmpty;
 
             if (checkSelectedItems) {
               sendSpecification.value = null;
             } else {
-              List<VMSpecValue> valuesList = List<VMSpecValue>.empty(growable: true);
+              List<VMOptionValue> valuesList = List<VMOptionValue>.empty(growable: true);
               for (var item in specification.selectedItems!) {
                 if (item.isNew) {
-                  item.specValueId = null;
+                  item.id = null;
                 }
                 valuesList.add(item);
               }
@@ -692,11 +692,11 @@ class AddProductController extends GetxController {
             }
             break;
 
-          case SpecificationType.WEIGHT:
+          case OptionType.WEIGHT:
             sendSpecification.value = specification.typedText;
             break;
 
-          case SpecificationType.DIMENSION:
+          case OptionType.DIMENSION:
             sendSpecification.value = specification.typedText;
             break;
         }
@@ -778,7 +778,7 @@ class AddProductController extends GetxController {
 
       for (var element in data) {
         VMProductGroup productGroup = VMProductGroup(
-          categoryId: element.categoryId,
+          id: element.id,
           categoryName: element.categoryName,
           picture: element.picture,
           parentId: element.parentId,
@@ -794,26 +794,26 @@ class AddProductController extends GetxController {
     });
   }
 
-  startApiGroupSpecs() async {
+  startApiGroupOptions() async {
     updateLoading(isLoading: true);
 
     await iGroupSpecsUseCase
-        .handler(params: GroupSpecsRequestDtoUseCase(categoryId: category.value.categoryId ?? ""))
+        .handler(params: GroupOptionsRequestDtoUseCase(categoryId: category.value.id ?? ""))
         .then((response) {
       updateLoading(isLoading: false);
       var data = response.getOrElse(() => []);
 
-      List<VMGroupSpec> tempGroupSpecsList = List<VMGroupSpec>.empty(growable: true);
+      List<VMGroupOption> tempGroupOptionsList = List<VMGroupOption>.empty(growable: true);
 
       for (var element in data) {
         var js = json.encode(element);
         Map<String, dynamic> jsData = json.decode(js);
-        VMGroupSpec groupSpec = VMGroupSpec.fromJson(jsData);
+        VMGroupOption groupSpec = VMGroupOption.fromJson(jsData);
 
-        tempGroupSpecsList.add(groupSpec);
+        tempGroupOptionsList.add(groupSpec);
       }
 
-      updateGroupSpecsList(groupSpecsList: tempGroupSpecsList);
+      updateGroupOptionsList(groupOptionsList: tempGroupOptionsList);
     }).catchError((error) {
       updateLoading(isLoading: false);
       LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);

@@ -21,7 +21,7 @@ ProductGroupsResponseDtoUseCase _$ProductGroupsResponseDtoUseCaseFromJson(
 
 /// @nodoc
 mixin _$ProductGroupsResponseDtoUseCase {
-  String? get categoryId => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String? get parentId => throw _privateConstructorUsedError;
   String? get categoryName => throw _privateConstructorUsedError;
   String? get picture => throw _privateConstructorUsedError;
@@ -39,10 +39,7 @@ abstract class $ProductGroupsResponseDtoUseCaseCopyWith<$Res> {
           $Res Function(ProductGroupsResponseDtoUseCase) then) =
       _$ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>;
   $Res call(
-      {String? categoryId,
-      String? parentId,
-      String? categoryName,
-      String? picture});
+      {String? id, String? parentId, String? categoryName, String? picture});
 }
 
 /// @nodoc
@@ -56,15 +53,15 @@ class _$ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? categoryId = freezed,
+    Object? id = freezed,
     Object? parentId = freezed,
     Object? categoryName = freezed,
     Object? picture = freezed,
   }) {
     return _then(_value.copyWith(
-      categoryId: categoryId == freezed
-          ? _value.categoryId
-          : categoryId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       parentId: parentId == freezed
           ? _value.parentId
@@ -91,10 +88,7 @@ abstract class _$$_ProductGroupsResponseDtoUseCaseCopyWith<$Res>
       __$$_ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? categoryId,
-      String? parentId,
-      String? categoryName,
-      String? picture});
+      {String? id, String? parentId, String? categoryName, String? picture});
 }
 
 /// @nodoc
@@ -112,15 +106,15 @@ class __$$_ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? categoryId = freezed,
+    Object? id = freezed,
     Object? parentId = freezed,
     Object? categoryName = freezed,
     Object? picture = freezed,
   }) {
     return _then(_$_ProductGroupsResponseDtoUseCase(
-      categoryId: categoryId == freezed
-          ? _value.categoryId
-          : categoryId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       parentId: parentId == freezed
           ? _value.parentId
@@ -143,14 +137,14 @@ class __$$_ProductGroupsResponseDtoUseCaseCopyWithImpl<$Res>
 class _$_ProductGroupsResponseDtoUseCase
     implements _ProductGroupsResponseDtoUseCase {
   _$_ProductGroupsResponseDtoUseCase(
-      {this.categoryId, this.parentId, this.categoryName, this.picture});
+      {this.id, this.parentId, this.categoryName, this.picture});
 
   factory _$_ProductGroupsResponseDtoUseCase.fromJson(
           Map<String, dynamic> json) =>
       _$$_ProductGroupsResponseDtoUseCaseFromJson(json);
 
   @override
-  final String? categoryId;
+  final String? id;
   @override
   final String? parentId;
   @override
@@ -160,7 +154,7 @@ class _$_ProductGroupsResponseDtoUseCase
 
   @override
   String toString() {
-    return 'ProductGroupsResponseDtoUseCase(categoryId: $categoryId, parentId: $parentId, categoryName: $categoryName, picture: $picture)';
+    return 'ProductGroupsResponseDtoUseCase(id: $id, parentId: $parentId, categoryName: $categoryName, picture: $picture)';
   }
 
   @override
@@ -168,8 +162,7 @@ class _$_ProductGroupsResponseDtoUseCase
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductGroupsResponseDtoUseCase &&
-            const DeepCollectionEquality()
-                .equals(other.categoryId, categoryId) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.parentId, parentId) &&
             const DeepCollectionEquality()
                 .equals(other.categoryName, categoryName) &&
@@ -180,7 +173,7 @@ class _$_ProductGroupsResponseDtoUseCase
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(categoryId),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(parentId),
       const DeepCollectionEquality().hash(categoryName),
       const DeepCollectionEquality().hash(picture));
@@ -201,7 +194,7 @@ class _$_ProductGroupsResponseDtoUseCase
 abstract class _ProductGroupsResponseDtoUseCase
     implements ProductGroupsResponseDtoUseCase {
   factory _ProductGroupsResponseDtoUseCase(
-      {final String? categoryId,
+      {final String? id,
       final String? parentId,
       final String? categoryName,
       final String? picture}) = _$_ProductGroupsResponseDtoUseCase;
@@ -210,7 +203,7 @@ abstract class _ProductGroupsResponseDtoUseCase
       _$_ProductGroupsResponseDtoUseCase.fromJson;
 
   @override
-  String? get categoryId;
+  String? get id;
   @override
   String? get parentId;
   @override

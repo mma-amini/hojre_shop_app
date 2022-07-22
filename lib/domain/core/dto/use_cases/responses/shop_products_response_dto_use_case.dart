@@ -17,7 +17,7 @@ class ShopProductsResponseDtoUseCase with _$ShopProductsResponseDtoUseCase {
     List<PictureOfShopProductsResponseDtoUseCase>? pictures,
     String? picture,
     String? productDimensions,
-    String? productId,
+    String? id,
     String? productName,
     double? productWeight,
   }) = _ShopProductsResponseDtoUseCase;

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/helpers/brain.dart';
 import 'package:hojre_shop_app/domain/core/helpers/log_helper.dart';
+import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_use_case_exports.dart';
 import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 import 'package:hojre_shop_app/presentation/widgets/expandable.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
@@ -16,10 +17,15 @@ class HomeController extends GetxController {
 
   ExpandableController expandableController = ExpandableController();
 
+  IShopInfoUseCase? iShopInfoUseCase;
+
+  HomeController({this.iShopInfoUseCase});
+
   @override
   void onInit() {
     super.onInit();
     initPlatformState();
+    startApiShopInfo();
   }
 
   @override
@@ -124,9 +130,19 @@ class HomeController extends GetxController {
 
   /****************************************/
   /**************** Routes ****************/
-  /// **************************************/
+  /****************************************/
 
   goToProductManagerPage() {
     Get.toNamed(Routes.PRODUCT_MANAGER);
+  }
+
+  startApiShopInfo() async {
+    updateLoading(isLoading: true);
+    await iShopInfoUseCase!.handler().then((response) {
+      updateLoading(isLoading: false);
+    }).catchError((error) {
+      updateLoading(isLoading: false);
+      LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
+    });
   }
 }

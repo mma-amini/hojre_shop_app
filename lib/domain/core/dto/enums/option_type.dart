@@ -1,7 +1,8 @@
-enum SpecificationType {
+enum OptionType {
   COLOR,
   SELECTABLE,
-  TEXT_INPUT,
+  TEXT_INPUT_SINGLE,
+  TEXT_INPUT_MULTI,
   BOOL,
   NUMBER_INPUT,
   MULTI_SELECT,

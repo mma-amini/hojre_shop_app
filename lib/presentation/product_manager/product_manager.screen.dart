@@ -185,7 +185,7 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
                                     Get.toNamed(
                                       Routes.PRODUCT_DESIGN_MANAGER,
                                       parameters: {
-                                        "productId": item.productId ?? "",
+                                        "productId": item.id ?? "",
                                       },
                                     );
                                   },

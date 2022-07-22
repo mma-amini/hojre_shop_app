@@ -8,7 +8,7 @@ part of 'product_group_model.dart';
 
 VMProductGroup _$VMProductGroupFromJson(Map<String, dynamic> json) =>
     VMProductGroup(
-      categoryId: json['categoryId'] as String?,
+      id: json['id'] as String?,
       parentId: json['parentId'] as String?,
       categoryName: json['categoryName'] as String?,
       picture: json['picture'] as String?,
@@ -16,7 +16,7 @@ VMProductGroup _$VMProductGroupFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$VMProductGroupToJson(VMProductGroup instance) =>
     <String, dynamic>{
-      'categoryId': instance.categoryId,
+      'id': instance.id,
       'parentId': instance.parentId,
       'categoryName': instance.categoryName,
       'picture': instance.picture,
