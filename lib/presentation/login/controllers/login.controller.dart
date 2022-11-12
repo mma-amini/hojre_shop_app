@@ -12,8 +12,10 @@ import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_login_use_case
 import 'package:hojre_shop_app/infrastructure/dal/daos/data_sources/local_data_source_impl.dart';
 import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 
+import '../../widgets/loading_view/controller/loading_view.controller.dart';
+
 class LoginController extends GetxController {
-  final isLoading = false.obs, isLogin = false.obs;
+  final isLogin = false.obs;
 
   final clientSecret = "".obs;
 
@@ -22,6 +24,8 @@ class LoginController extends GetxController {
   TextEditingController userTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
 
+  final loadingWidgetController = Get.put(LoadingViewWidgetController());
+
   ICheckUserUseCase iCheckUserUseCase;
   ILoginUseCase iLoginUseCase;
 
@@ -29,12 +33,6 @@ class LoginController extends GetxController {
 
   @override
   void onClose() {}
-
-  updateLoading({required bool isLoading}) {
-    this.isLoading.update((val) {
-      this.isLoading.value = isLoading;
-    });
-  }
 
   updateIsLogin({required bool isLogin}) {
     this.isLogin.update((val) {
@@ -55,13 +53,12 @@ class LoginController extends GetxController {
   }
 
   startApiCheckUser() async {
-    updateLoading(isLoading: true);
-    CheckUserRequestDtoUseCase checkUserRequestDtoUseCase =
-        CheckUserRequestDtoUseCase(phoneNumber: userTextController.text);
+    loadingWidgetController.showLoading.value = true;
+    CheckUserRequestDtoUseCase checkUserRequestDtoUseCase = CheckUserRequestDtoUseCase(phoneNumber: userTextController.text);
 
     var result = await iCheckUserUseCase.handler(params: checkUserRequestDtoUseCase);
 
-    updateLoading(isLoading: false);
+    loadingWidgetController.showLoading.value = false;
     var data = result.getOrElse(() => CheckUserResponseDtoUseCase());
 
     if ((data.code ?? "").isNotEmpty) {
@@ -71,13 +68,13 @@ class LoginController extends GetxController {
   }
 
   startApiLogin() async {
-    updateLoading(isLoading: true);
-    LoginRequestDtoUseCase loginResponseDtoUseCase = LoginRequestDtoUseCase(
-        phoneNumber: userTextController.text, code: passwordTextController.text, clientSecret: clientSecret.value);
+    loadingWidgetController.showLoading.value = true;
+    LoginRequestDtoUseCase loginResponseDtoUseCase =
+        LoginRequestDtoUseCase(phoneNumber: userTextController.text, code: passwordTextController.text, clientSecret: clientSecret.value);
 
     var result = await iLoginUseCase.handler(params: loginResponseDtoUseCase);
 
-    updateLoading(isLoading: false);
+    loadingWidgetController.showLoading.value = false;
     var data = result.getOrElse(() => LoginResponseDtoUseCase());
 
     VMAccount account = VMAccount(

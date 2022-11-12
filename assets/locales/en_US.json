@@ -10,6 +10,7 @@
       "pass_text_field_hint": "Password",
       "forget_pass": "I forgot my password",
       "enter_sms_code": "Enter the SMS code",
+      "enter_user_name": "Please enter your username",
       "buttons": {
         "login": "Login",
         "check_user": "Check User"

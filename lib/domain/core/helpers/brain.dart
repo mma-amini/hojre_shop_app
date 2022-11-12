@@ -24,12 +24,12 @@ class Brain {
   static late StorageService storageService;
   static late Dio dio;
   static bool showBottomPanel = false;
-  static String appTheme = "LIGHT";
   static String appName = "";
   static String packageName = "";
   static String application = "tech.hadish.shop";
   static Map<String, dynamic> deviceData = {};
   static String deviceId = "";
+  static final isDarkMode = false.obs;
 
   static checkUser() {
     if ((Brain.account.userId ?? "").isNotEmpty && (Brain.token.accessToken ?? "").isNotEmpty) {
@@ -72,7 +72,7 @@ class Brain {
       'tags': build.tags,
       'type': build.type,
       'isPhysicalDevice': build.isPhysicalDevice,
-      'androidId': build.androidId,
+      'androidId': build.id,
       'systemFeatures': build.systemFeatures,
     };
   }

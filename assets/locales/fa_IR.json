@@ -10,6 +10,7 @@
       "pass_text_field_hint": "رمز عبور",
       "forget_pass": "رمز عبور را فراموش کردم",
       "enter_sms_code": "کد پیامک شده را وارد نمایید",
+      "enter_user_name": "نام کاربری خود را وارد نمایید",
       "buttons": {
         "login": "ورود",
         "check_user": "بررسی کاربر"

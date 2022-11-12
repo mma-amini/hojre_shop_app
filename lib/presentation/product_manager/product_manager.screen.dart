@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:hojre_shop_app/generated/assets.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
 import 'package:hojre_shop_app/infrastructure/navigation/routes.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -78,9 +79,8 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
                                       height: 30.0,
                                       width: 30.0,
                                       child: CachedNetworkImage(
-                                        placeholder: (context, url) => Image.asset(
-                                          "assets/media/images/hojre_shop_management_logo.png",
-                                        ),
+                                        placeholder: (context, url) => Image.asset(Assets.imagesHojreShopManagementLogo),
+                                        errorWidget: (context, url, error) => Image.asset(Assets.imagesHojreShopManagementLogo),
                                         imageUrl: item.picture ?? "",
                                         fit: BoxFit.cover,
                                       ),
@@ -217,9 +217,8 @@ class ProductManagerScreen extends GetView<ProductManagerController> {
                                               child: AspectRatio(
                                                 aspectRatio: 1.0,
                                                 child: CachedNetworkImage(
-                                                  placeholder: (context, url) => Image.asset(
-                                                    "assets/media/images/product.jpg",
-                                                  ),
+                                                  placeholder: (context, url) => Image.asset(Assets.imagesProduct),
+                                                  errorWidget: (context, url, error) => Image.asset(Assets.imagesProduct),
                                                   imageUrl: item.picture ?? "",
                                                   fit: BoxFit.fitHeight,
                                                 ),

@@ -20,6 +20,7 @@ class LocaleKeys {
       'screen_login_pass_text_field_hint';
   static const screen_login_forget_pass = 'screen_login_forget_pass';
   static const screen_login_enter_sms_code = 'screen_login_enter_sms_code';
+  static const screen_login_enter_user_name = 'screen_login_enter_user_name';
   static const screen_login_buttons_login = 'screen_login_buttons_login';
   static const screen_login_buttons_check_user =
       'screen_login_buttons_check_user';
@@ -138,6 +139,7 @@ class Locales {
     'screen_login_pass_text_field_hint': 'Password',
     'screen_login_forget_pass': 'I forgot my password',
     'screen_login_enter_sms_code': 'Enter the SMS code',
+    'screen_login_enter_user_name': 'Please enter your username',
     'screen_login_buttons_login': 'Login',
     'screen_login_buttons_check_user': 'Check User',
     'screen_home_products_management': 'Products',
@@ -224,6 +226,7 @@ class Locales {
     'screen_login_pass_text_field_hint': 'رمز عبور',
     'screen_login_forget_pass': 'رمز عبور را فراموش کردم',
     'screen_login_enter_sms_code': 'کد پیامک شده را وارد نمایید',
+    'screen_login_enter_user_name': 'نام کاربری خود را وارد نمایید',
     'screen_login_buttons_login': 'ورود',
     'screen_login_buttons_check_user': 'بررسی کاربر',
     'screen_home_products_management': 'کالاها',

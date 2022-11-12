@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SelectionModal extends StatefulWidget {
   @override
@@ -117,7 +118,8 @@ class _SelectionModalState extends State<SelectionModal> {
     return AppBar(
       leading: Container(),
       elevation: 0.0,
-      title: Text(widget.title!, style: TextStyle(fontSize: 16.0, fontFamily: "IRANSans")),
+      title: Text(widget.title!,
+          style: TextStyle(fontSize: 16.0, fontFamily: "IRANSans")),
       actions: <Widget>[
         IconButton(
           icon: Icon(
@@ -133,89 +135,128 @@ class _SelectionModalState extends State<SelectionModal> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: <Widget>[
-          widget.filterable! ? _buildSearchText() : new SizedBox(),
-          Expanded(
-            child: _optionsList(),
-          ),
-          _currentlySelectedOptions(),
-          Container(
-            color: widget.buttonBarColor ?? Colors.grey.shade600,
-            child:
-                ButtonBar(alignment: MainAxisAlignment.spaceBetween, mainAxisSize: MainAxisSize.max, children: <Widget>[
-              ButtonTheme(
-                height: 50.0,
-                child: RaisedButton.icon(
-                  label: Text(
-                    widget.cancelButtonText ?? 'لغو',
-                    style: TextStyle(fontFamily: "IRANSans", fontSize: 14.0),
+    return Column(
+      children: <Widget>[
+        widget.filterable! ? _buildSearchText() : new SizedBox(),
+        Expanded(
+          child: _optionsList(),
+        ),
+        _currentlySelectedOptions(),
+        Container(
+          color: widget.buttonBarColor ?? Colors.grey.shade600,
+          child: ButtonBar(
+              alignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                ButtonTheme(
+                  height: 50.0,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context, null);
+                    },
+                    child: Container(
+                      color: Colors.red,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Icon(
+                              widget.cancelButtonIcon ?? Icons.clear,
+                              size: 20.0,
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              widget.cancelButtonText ?? 'لغو',
+                              style: TextStyle(
+                                  fontFamily: "IRANSans",
+                                  fontSize: 14.0,
+                                  color: widget.cancelButtonTextColor),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                  icon: Icon(
-                    widget.cancelButtonIcon ?? Icons.clear,
-                    size: 20.0,
-                  ),
-                  color: widget.cancelButtonColor ?? Colors.grey.shade100,
-                  textColor: widget.cancelButtonTextColor,
-                  onPressed: () {
-                    Navigator.pop(context, null);
-                  },
                 ),
-              ),
-              ButtonTheme(
-                height: 50.0,
-                child: RaisedButton.icon(
-                  label: Text(
-                    widget.saveButtonText ?? 'تائید',
-                    style: TextStyle(fontFamily: "IRANSans", fontSize: 14.0),
+                ButtonTheme(
+                  height: 50.0,
+                  child: InkWell(
+                    onTap: _localDataSourceWithState
+                                .where((item) => item['checked'])
+                                .length >
+                            widget.maxLength!
+                        ? null
+                        : () {
+                            var selectedValuesObjectList =
+                                _localDataSourceWithState
+                                    .where((item) => item['checked'])
+                                    .toList();
+                            var selectedValues = [];
+                            selectedValuesObjectList.forEach((item) {
+                              selectedValues.add(item['value']);
+                            });
+                            Navigator.pop(context, selectedValues);
+                          },
+                    child: Container(
+                      color: widget.saveButtonColor ??
+                          Theme.of(context).primaryColor,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Icon(
+                              widget.cancelButtonIcon ?? Icons.clear,
+                              size: 20.0,
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              widget.saveButtonText ?? 'تائید',
+                              style: TextStyle(
+                                  fontFamily: "IRANSans",
+                                  fontSize: 14.0,
+                                  color: widget.saveButtonTextColor ??
+                                      Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                  icon: Icon(
-                    widget.saveButtonIcon ?? Icons.save,
-                    size: 20.0,
-                  ),
-                  color: widget.saveButtonColor ?? Theme.of(context).primaryColor,
-                  textColor: widget.saveButtonTextColor ?? Colors.white,
-                  onPressed: _localDataSourceWithState.where((item) => item['checked']).length > widget.maxLength!
-                      ? null
-                      : () {
-                          var selectedValuesObjectList =
-                              _localDataSourceWithState.where((item) => item['checked']).toList();
-                          var selectedValues = [];
-                          selectedValuesObjectList.forEach((item) {
-                            selectedValues.add(item['value']);
-                          });
-                          Navigator.pop(context, selectedValues);
-                        },
                 ),
-              )
-            ]),
-          )
-        ],
-      ),
+              ]),
+        )
+      ],
     );
   }
 
   Widget _currentlySelectedOptions() {
     List<Widget> selectedOptions = [];
 
-    var selectedValuesObjectList = _localDataSourceWithState.where((item) => item['checked']).toList();
+    var selectedValuesObjectList =
+        _localDataSourceWithState.where((item) => item['checked']).toList();
     var selectedValues = [];
     selectedValuesObjectList.forEach((item) {
       selectedValues.add(item['value']);
     });
     selectedValues.forEach((item) {
-      var existingItem = _localDataSourceWithState.singleWhere((itm) => itm['value'] == item, orElse: () => null);
+      var existingItem = _localDataSourceWithState
+          .singleWhere((itm) => itm['value'] == item, orElse: () => null);
       selectedOptions.add(Chip(
         label: new Container(
-          constraints: new BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 80.0),
+          constraints: new BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width - 80.0),
           child: Text(
             existingItem['text'],
             overflow: TextOverflow.ellipsis,
             style: TextStyle(fontFamily: "IRANSans", fontSize: 14.0),
           ),
         ),
-        deleteButtonTooltipMessage: widget.deleteButtonTooltipText ?? 'Tap to delete this item',
+        deleteButtonTooltipMessage:
+            widget.deleteButtonTooltipText ?? 'Tap to delete this item',
         deleteIcon: widget.deleteIcon as Widget? ?? Icon(Icons.cancel),
         deleteIconColor: widget.deleteIconColor ?? Colors.grey,
         onDeleted: () {
@@ -236,7 +277,8 @@ class _SelectionModalState extends State<SelectionModal> {
                   widget.selectedOptionsInfoText ??
                       'انتخاب‌های شما ${selectedOptions.length} مورد (جهت حذف تاچ نمائید)', // use languageService here
                   style: TextStyle(
-                      color: widget.selectedOptionsInfoTextColor ?? Colors.black87,
+                      color:
+                          widget.selectedOptionsInfoTextColor ?? Colors.black87,
                       fontWeight: FontWeight.bold,
                       fontFamily: "IRANSans",
                       fontSize: 14.0),
@@ -272,7 +314,10 @@ class _SelectionModalState extends State<SelectionModal> {
                       item['text'],
                       overflow: TextOverflow.ellipsis,
                       maxLines: 5,
-                      style: TextStyle(fontFamily: "IRANSans", fontWeight: FontWeight.bold, fontSize: 14.0),
+                      style: TextStyle(
+                          fontFamily: "IRANSans",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14.0),
                     ),
                     Padding(padding: EdgeInsets.all(4.0)),
                     Text(
@@ -331,17 +376,20 @@ class _SelectionModalState extends State<SelectionModal> {
                         ),
                         filled: true,
                         hintText: widget.searchBoxHintText ?? "جستجو...",
-                        hintStyle: TextStyle(fontFamily: "IRANSans", fontSize: 14.0),
+                        hintStyle:
+                            TextStyle(fontFamily: "IRANSans", fontSize: 14.0),
                         suffix: SizedBox(
                             height: 25.0,
                             child: IconButton(
-                              icon: widget.searchBoxIcon as Widget? ?? Icon(Icons.clear),
+                              icon: widget.searchBoxIcon as Widget? ??
+                                  Icon(Icons.clear),
                               onPressed: () {
                                 _controller.clear();
                                 searchOperation('');
                               },
                               padding: EdgeInsets.all(0.0),
-                              tooltip: widget.searchBoxToolTipText ?? 'پاک کردن',
+                              tooltip:
+                                  widget.searchBoxToolTipText ?? 'پاک کردن',
                             ))),
                   ),
                 ),
@@ -393,10 +441,12 @@ class _SelectionModalState extends State<SelectionModal> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Container(
+      height: 400.0,
+      width: Get.width,
       key: globalKey,
-      appBar: _buildAppBar(context) as PreferredSizeWidget?,
-      body: _buildBody(context),
+      // appBar: _buildAppBar(context) as PreferredSizeWidget?,
+      child: _buildBody(context),
     );
   }
 

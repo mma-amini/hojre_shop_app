@@ -12,7 +12,6 @@ import 'package:hojre_shop_app/domain/core/dto/models/brand_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/group_option_model.dart';
 import 'package:hojre_shop_app/domain/core/helpers/show_message.dart';
 import 'package:hojre_shop_app/generated/locales.g.dart';
-import 'package:hojre_shop_app/presentation/widgets/awesom_dialog/awesome_dialog.dart';
 import 'package:hojre_shop_app/presentation/widgets/custom_input_format.dart';
 import 'package:hojre_shop_app/presentation/widgets/expandable.dart';
 import 'package:hojre_shop_app/presentation/widgets/main_app_bar/main_app_bar.dart';
@@ -58,22 +57,22 @@ class AddProductScreen extends GetView<AddProductController> {
                           ),
                           IconButton(
                             onPressed: () {
-                              AwesomeDialog(
-                                context: Get.context!,
-                                body: Text(
-                                  LocaleKeys
-                                      .screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost
-                                      .tr,
-                                  textAlign: TextAlign.center,
-                                ),
-                                dismissOnTouchOutside: false,
-                                btnOkText: LocaleKeys.buttons_confirm.tr,
-                                btnOkOnPress: () {
-                                  controller.openProductGroupsDialog();
-                                },
-                                btnCancelText: LocaleKeys.buttons_cancel.tr,
-                                btnCancelOnPress: () {},
-                              ).show();
+                              // AwesomeDialog(
+                              //   context: Get.context!,
+                              //   body: Text(
+                              //     LocaleKeys
+                              //         .screen_add_product_if_the_product_group_is_changed_the_entered_properties_will_be_lost
+                              //         .tr,
+                              //     textAlign: TextAlign.center,
+                              //   ),
+                              //   dismissOnTouchOutside: false,
+                              //   btnOkText: LocaleKeys.buttons_confirm.tr,
+                              //   btnOkOnPress: () {
+                              //     controller.openProductGroupsDialog();
+                              //   },
+                              //   btnCancelText: LocaleKeys.buttons_cancel.tr,
+                              //   btnCancelOnPress: () {},
+                              // ).show();
                             },
                             icon: const Icon(
                               FontAwesome.edit,
@@ -163,8 +162,7 @@ class AddProductScreen extends GetView<AddProductController> {
                               controller.onFormSaved(isMain: true);
                             } else {
                               ShowMessage.snackBar(
-                                message:
-                                    LocaleKeys.screen_add_product_fields_error_enter_all_the_required_information.tr,
+                                message: LocaleKeys.screen_add_product_fields_error_enter_all_the_required_information.tr,
                                 type: MessageType.ERROR,
                                 context: context,
                               );
@@ -311,28 +309,28 @@ class AddProductScreen extends GetView<AddProductController> {
                                     left: 5.0,
                                     child: InkWell(
                                       onTap: () {
-                                        AwesomeDialog(
-                                                context: Get.context!,
-                                                animType: AnimType.SCALE,
-                                                dialogType: DialogType.WARNING,
-                                                body: Padding(
-                                                  padding: const EdgeInsets.all(3.0),
-                                                  child: Center(
-                                                      child: Text(
-                                                    LocaleKeys
-                                                        .screen_add_product_are_you_sure_you_want_to_delete_this_image
-                                                        .tr,
-                                                    style: const TextStyle(fontSize: 14.0),
-                                                    textAlign: TextAlign.center,
-                                                  )),
-                                                ),
-                                                btnOkText: LocaleKeys.buttons_yes.tr,
-                                                btnOkOnPress: () {
-                                                  // controller.removeMainImage();
-                                                },
-                                                btnCancelText: LocaleKeys.buttons_no.tr,
-                                                btnCancelOnPress: () {})
-                                            .show();
+                                        // AwesomeDialog(
+                                        //         context: Get.context!,
+                                        //         animType: AnimType.SCALE,
+                                        //         dialogType: DialogType.WARNING,
+                                        //         body: Padding(
+                                        //           padding: const EdgeInsets.all(3.0),
+                                        //           child: Center(
+                                        //               child: Text(
+                                        //             LocaleKeys
+                                        //                 .screen_add_product_are_you_sure_you_want_to_delete_this_image
+                                        //                 .tr,
+                                        //             style: const TextStyle(fontSize: 14.0),
+                                        //             textAlign: TextAlign.center,
+                                        //           )),
+                                        //         ),
+                                        //         btnOkText: LocaleKeys.buttons_yes.tr,
+                                        //         btnOkOnPress: () {
+                                        //           // controller.removeMainImage();
+                                        //         },
+                                        //         btnCancelText: LocaleKeys.buttons_no.tr,
+                                        //         btnCancelOnPress: () {})
+                                        //     .show();
                                       },
                                       child: const Icon(
                                         Icons.remove_circle,
@@ -396,29 +394,29 @@ class AddProductScreen extends GetView<AddProductController> {
                                     left: 2.0,
                                     child: InkWell(
                                       onTap: () {
-                                        AwesomeDialog(
-                                                context: Get.context!,
-                                                animType: AnimType.SCALE,
-                                                dialogType: DialogType.WARNING,
-                                                body: Padding(
-                                                  padding: const EdgeInsets.all(3.0),
-                                                  child: Center(
-                                                      child: Text(
-                                                    LocaleKeys
-                                                        .screen_add_product_are_you_sure_you_want_to_delete_this_image
-                                                        .tr,
-                                                    style: const TextStyle(fontSize: 14.0),
-                                                    textAlign: TextAlign.center,
-                                                  )),
-                                                ),
-                                                btnOkText: LocaleKeys.buttons_yes.tr,
-                                                btnOkOnPress: () {
-                                                  // controller.removeImageFromImagesList(
-                                                  //     image: image);
-                                                },
-                                                btnCancelText: LocaleKeys.buttons_no.tr,
-                                                btnCancelOnPress: () {})
-                                            .show();
+                                        // AwesomeDialog(
+                                        //         context: Get.context!,
+                                        //         animType: AnimType.SCALE,
+                                        //         dialogType: DialogType.WARNING,
+                                        //         body: Padding(
+                                        //           padding: const EdgeInsets.all(3.0),
+                                        //           child: Center(
+                                        //               child: Text(
+                                        //             LocaleKeys
+                                        //                 .screen_add_product_are_you_sure_you_want_to_delete_this_image
+                                        //                 .tr,
+                                        //             style: const TextStyle(fontSize: 14.0),
+                                        //             textAlign: TextAlign.center,
+                                        //           )),
+                                        //         ),
+                                        //         btnOkText: LocaleKeys.buttons_yes.tr,
+                                        //         btnOkOnPress: () {
+                                        //           // controller.removeImageFromImagesList(
+                                        //           //     image: image);
+                                        //         },
+                                        //         btnCancelText: LocaleKeys.buttons_no.tr,
+                                        //         btnCancelOnPress: () {})
+                                        //     .show();
                                       },
                                       child: const Icon(
                                         Icons.remove_circle,
@@ -641,8 +639,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                         child: IconButton(
                                           icon: const Icon(Icons.add),
                                           onPressed: () {
-                                            VMBrand brand =
-                                                VMBrand(id: null, name: controller.searchBrandController.text);
+                                            VMBrand brand = VMBrand(id: null, name: controller.searchBrandController.text);
                                             controller.selectedBrand.value = brand;
                                             controller.productBrandController.text = brand.name!;
                                             controller.searchBrandController.text = "";
@@ -757,8 +754,7 @@ class AddProductScreen extends GetView<AddProductController> {
               // Conditions
               var checkValue = value == null || value.isEmpty;
               var checkWeight = !checkValue &&
-                  (int.parse(controller.productPackLengthController.text) < 1 ||
-                      int.parse(controller.productPackLengthController.text) > 1000);
+                  (int.parse(controller.productPackLengthController.text) < 1 || int.parse(controller.productPackLengthController.text) > 1000);
 
               if (checkValue) {
                 return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
@@ -780,10 +776,7 @@ class AddProductScreen extends GetView<AddProductController> {
             textAlignVertical: TextAlignVertical.center,
             textAlign: TextAlign.left,
             keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-              LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-            ],
+            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)],
             decoration: InputDecoration(
               labelText: LocaleKeys.screen_add_product_fields_name_length_cm.tr,
               hintText: "0",
@@ -802,8 +795,7 @@ class AddProductScreen extends GetView<AddProductController> {
               // Conditions
               var checkValue = value == null || value.isEmpty;
               var checkWeight = !checkValue &&
-                  (int.parse(controller.productPackWidthController.text) < 1 ||
-                      int.parse(controller.productPackWidthController.text) > 1000);
+                  (int.parse(controller.productPackWidthController.text) < 1 || int.parse(controller.productPackWidthController.text) > 1000);
 
               if (checkValue) {
                 return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
@@ -826,10 +818,7 @@ class AddProductScreen extends GetView<AddProductController> {
             textAlignVertical: TextAlignVertical.center,
             textAlign: TextAlign.left,
             keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-              LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-            ],
+            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)],
             decoration: InputDecoration(
               labelText: LocaleKeys.screen_add_product_fields_name_width_cm.tr,
               hintText: "0",
@@ -848,8 +837,7 @@ class AddProductScreen extends GetView<AddProductController> {
               // Conditions
               var checkValue = value == null || value.isEmpty;
               var checkWeight = !checkValue &&
-                  (int.parse(controller.productPackHeightController.text) < 1 ||
-                      int.parse(controller.productPackHeightController.text) > 1000);
+                  (int.parse(controller.productPackHeightController.text) < 1 || int.parse(controller.productPackHeightController.text) > 1000);
 
               if (checkValue) {
                 return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
@@ -872,10 +860,7 @@ class AddProductScreen extends GetView<AddProductController> {
             textAlignVertical: TextAlignVertical.center,
             textAlign: TextAlign.left,
             keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-              LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-            ],
+            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)],
             decoration: InputDecoration(
               labelText: LocaleKeys.screen_add_product_fields_name_height_cm.tr,
               hintText: "0",
@@ -947,8 +932,7 @@ class AddProductScreen extends GetView<AddProductController> {
               // Conditions
               var checkValue = value == null || value.isEmpty;
               var checkWeight = !checkValue &&
-                  (int.parse(controller.productWeightController.text) < 1 ||
-                      int.parse(controller.productWeightController.text) > 1000);
+                  (int.parse(controller.productWeightController.text) < 1 || int.parse(controller.productWeightController.text) > 1000);
 
               if (checkValue) {
                 return LocaleKeys.screen_add_product_fields_error_general_error.trParams(
@@ -971,10 +955,7 @@ class AddProductScreen extends GetView<AddProductController> {
             textAlignVertical: TextAlignVertical.center,
             textAlign: TextAlign.left,
             keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-              LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)
-            ],
+            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LimitNumberInputFormatter(minNumber: 1, maxNumber: 1000)],
             decoration: InputDecoration(
               labelText: LocaleKeys.screen_add_product_package_weight.tr,
               hintText: "0",
@@ -1106,8 +1087,7 @@ class AddProductScreen extends GetView<AddProductController> {
                           var spcItem = item.searchResult!.isNotEmpty ? item.searchResult![ind] : item.items![ind];
 
                           // Conditions
-                          var checkSpcItemSelectedItem =
-                              spcItem.selectedItem != null && spcItem.selectedItem!.value != null;
+                          var checkSpcItemSelectedItem = spcItem.selectedItem != null && spcItem.selectedItem!.value != null;
 
                           switch (spcItem.type) {
                             case OptionType.COLOR:
@@ -1392,8 +1372,8 @@ class AddProductScreen extends GetView<AddProductController> {
                                     autovalidate: spcItem.isRequired!,
                                     addedData: true,
                                     addedDataFunction: (value) {
-                                      VMOptionValue spcData = VMOptionValue(
-                                          id: value["value"], title: value["text"], value: value["value"], isNew: true);
+                                      VMOptionValue spcData =
+                                          VMOptionValue(id: value["value"], title: value["text"], value: value["value"], isNew: true);
                                       spcItem.values!.add(spcData);
                                       spcItem.selectedItems ??= List<VMOptionValue>.empty(growable: true);
 
@@ -1419,8 +1399,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                     filterable: true,
                                     required: spcItem.isRequired,
                                     initialValue: spcItem.selectedItems != null
-                                        ? List.generate(spcItem.selectedItems!.length,
-                                            (muIndex) => spcItem.selectedItems![muIndex].id).toList()
+                                        ? List.generate(spcItem.selectedItems!.length, (muIndex) => spcItem.selectedItems![muIndex].id).toList()
                                         : null,
                                     saveButtonText: LocaleKeys.buttons_confirm.tr,
                                     cancelButtonText: LocaleKeys.buttons_cancel.tr,
@@ -1443,8 +1422,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                       for (String? val in tempList) {
                                         for (var item in spcItem.values!) {
                                           // Conditions
-                                          var checkSpecificationTypeItemId =
-                                              val!.toLowerCase() == item.id!.toLowerCase();
+                                          var checkSpecificationTypeItemId = val!.toLowerCase() == item.id!.toLowerCase();
                                           if (checkSpecificationTypeItemId) {
                                             spcItem.selectedItems!.add(item);
                                           }
@@ -1558,9 +1536,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                           onTap: () {
                                             if (controller.productWeightType.value == null) {
                                               ShowMessage.getSnackBar(
-                                                message: LocaleKeys
-                                                    .screen_add_product_fields_error_first_determine_the_type_of_weight
-                                                    .tr,
+                                                message: LocaleKeys.screen_add_product_fields_error_first_determine_the_type_of_weight.tr,
                                                 type: MessageType.WARNING,
                                               );
                                             }
@@ -1624,15 +1600,12 @@ class AddProductScreen extends GetView<AddProductController> {
                                             ),
                                           ),
                                           onChanged: (value) {
-                                            var length = controller.productLengthController.text.isNotEmpty
-                                                ? controller.productLengthController.text
-                                                : "";
-                                            var width = controller.productWidthController.text.isNotEmpty
-                                                ? controller.productWidthController.text
-                                                : "";
-                                            var height = controller.productHeightController.text.isNotEmpty
-                                                ? controller.productHeightController.text
-                                                : "";
+                                            var length =
+                                                controller.productLengthController.text.isNotEmpty ? controller.productLengthController.text : "";
+                                            var width =
+                                                controller.productWidthController.text.isNotEmpty ? controller.productWidthController.text : "";
+                                            var height =
+                                                controller.productHeightController.text.isNotEmpty ? controller.productHeightController.text : "";
 
                                             var lengthString = length.isNotEmpty ? length : "";
                                             var widthString = width.isNotEmpty
@@ -1673,15 +1646,12 @@ class AddProductScreen extends GetView<AddProductController> {
                                             ),
                                           ),
                                           onChanged: (value) {
-                                            var length = controller.productLengthController.text.isNotEmpty
-                                                ? controller.productLengthController.text
-                                                : "";
-                                            var width = controller.productWidthController.text.isNotEmpty
-                                                ? controller.productWidthController.text
-                                                : "";
-                                            var height = controller.productHeightController.text.isNotEmpty
-                                                ? controller.productHeightController.text
-                                                : "";
+                                            var length =
+                                                controller.productLengthController.text.isNotEmpty ? controller.productLengthController.text : "";
+                                            var width =
+                                                controller.productWidthController.text.isNotEmpty ? controller.productWidthController.text : "";
+                                            var height =
+                                                controller.productHeightController.text.isNotEmpty ? controller.productHeightController.text : "";
 
                                             var lengthString = length.isNotEmpty ? length : "";
                                             var widthString = width.isNotEmpty
@@ -1722,15 +1692,12 @@ class AddProductScreen extends GetView<AddProductController> {
                                             ),
                                           ),
                                           onChanged: (value) {
-                                            var length = controller.productLengthController.text.isNotEmpty
-                                                ? controller.productLengthController.text
-                                                : "";
-                                            var width = controller.productWidthController.text.isNotEmpty
-                                                ? controller.productWidthController.text
-                                                : "";
-                                            var height = controller.productHeightController.text.isNotEmpty
-                                                ? controller.productHeightController.text
-                                                : "";
+                                            var length =
+                                                controller.productLengthController.text.isNotEmpty ? controller.productLengthController.text : "";
+                                            var width =
+                                                controller.productWidthController.text.isNotEmpty ? controller.productWidthController.text : "";
+                                            var height =
+                                                controller.productHeightController.text.isNotEmpty ? controller.productHeightController.text : "";
 
                                             var lengthString = length.isNotEmpty ? length : "";
                                             var widthString = width.isNotEmpty
