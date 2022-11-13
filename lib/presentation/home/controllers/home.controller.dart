@@ -15,8 +15,6 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 import '../../widgets/loading_view/controller/loading_view.controller.dart';
 
 class HomeController extends GetxController {
-  final isLoading = false.obs;
-
   ExpandableController expandableController = ExpandableController();
 
   IShopInfoUseCase? iShopInfoUseCase;
@@ -62,12 +60,6 @@ class HomeController extends GetxController {
 
     LogHelper.printLog(data: "Device ID: ${Brain.deviceId}");
     update();
-  }
-
-  updateLoading({required bool isLoading}) {
-    this.isLoading.update((val) {
-      this.isLoading.value = isLoading;
-    });
   }
 
   updateLocale() {
@@ -141,11 +133,11 @@ class HomeController extends GetxController {
   }
 
   startApiShopInfo() async {
-    updateLoading(isLoading: true);
+    loadingWidgetController.showLoading.value = true;
     await iShopInfoUseCase!.handler().then((response) {
-      updateLoading(isLoading: false);
+      loadingWidgetController.showLoading.value = false;
     }).catchError((error) {
-      updateLoading(isLoading: false);
+      loadingWidgetController.showLoading.value = false;
       LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
     });
   }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_group_model.dart';
 import 'package:hojre_shop_app/domain/core/dto/models/product_model.dart';
@@ -9,16 +10,20 @@ import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_product_groups
 import 'package:hojre_shop_app/domain/core/interfaces/use_cases/i_shop_products_use_case.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../widgets/loading_view/controller/loading_view.controller.dart';
+
 class ProductManagerController extends GetxController {
-  final isLoading = false.obs;
   bool loadData = false;
 
   int skip = 0;
 
+  TextEditingController searchTextEditingController = TextEditingController();
   RefreshController refreshController = RefreshController(initialRefresh: false);
   final selectedCategory = VMProductGroup().obs;
   IProductGroupsUseCase iProductGroupsUseCase;
   IShopProductsUseCase iShopProductsUseCase;
+
+  final loadingWidgetController = Get.put(LoadingViewWidgetController());
 
   final productGroupsList = List<VMProductGroup>.empty(growable: true).obs;
   final shopProductsList = List<VMProduct>.empty(growable: true).obs;
@@ -35,12 +40,6 @@ class ProductManagerController extends GetxController {
 
   @override
   void onClose() {}
-
-  updateLoading({required bool isLoading}) {
-    this.isLoading.update((val) {
-      this.isLoading.value = isLoading;
-    });
-  }
 
   updateProductGroupsList({required List<VMProductGroup> productGroupsList}) {
     this.productGroupsList.obs.update((val) {
@@ -99,11 +98,9 @@ class ProductManagerController extends GetxController {
   }
 
   startApiShopProducts() async {
-    updateLoading(isLoading: true);
-    await iShopProductsUseCase
-        .handler(params: ShopProductsRequestDtoUseCase(categoryId: selectedCategory.value.id ?? ""))
-        .then((response) {
-      updateLoading(isLoading: false);
+    loadingWidgetController.showLoading.value = true;
+    await iShopProductsUseCase.handler(params: ShopProductsRequestDtoUseCase(categoryId: selectedCategory.value.id ?? "")).then((response) {
+      loadingWidgetController.showLoading.value = false;
       refreshController.refreshCompleted();
       refreshController.loadComplete();
 
@@ -122,7 +119,7 @@ class ProductManagerController extends GetxController {
       updateShopProductsList(shopProductsList: tempShopProductsList);
     }).catchError((error) {
       LogHelper.printLog(data: error, logHelperType: LogHelperType.ERROR);
-      updateLoading(isLoading: false);
+      loadingWidgetController.showLoading.value = false;
       refreshController.refreshCompleted();
       refreshController.loadComplete();
     });
