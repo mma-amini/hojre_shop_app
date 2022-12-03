@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../domain/core/dto/enums/message_type.dart';
+import '../../../domain/core/dto/models/product_model.dart';
 import '../../../generated/locales.g.dart';
 import '../../widgets/base_dialog.dart';
 import '../controllers/add_product.controller.dart';
@@ -16,9 +17,6 @@ class AddProductImageStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var checkImage = controller.image.value.pickedFile != null;
-    var checkImageList = controller.imagesList.isEmpty;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -57,6 +55,7 @@ class AddProductImageStep extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.0),
                   onTap: () {
                     controller.openCameraDialog(isMainImage: true);
+                    var checkImage = controller.image.value.pickedFile != null;
                     if (checkImage) {
                       // controller.goToPhotoPreview(isMainImage: true);
                     } else {
@@ -65,71 +64,74 @@ class AddProductImageStep extends StatelessWidget {
                   },
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Container(
-                      height: 170,
-                      width: 170,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 1.0),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: checkImage
-                          ? Stack(
-                              children: [
-                                Obx(() {
-                                  return ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: ExtendedImage.memory(
-                                      controller.image.value.pickedFile!,
-                                      fit: BoxFit.contain,
-                                      enableLoadState: true,
+                    child: Obx(() {
+                      return Container(
+                        height: 170,
+                        width: 170,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 1.0),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: controller.image.value.pickedFile != null
+                            ? Stack(
+                                children: [
+                                  Obx(() {
+                                    return ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: ExtendedImage.memory(
+                                        controller.image.value.pickedFile!,
+                                        fit: BoxFit.contain,
+                                        enableLoadState: true,
+                                      ),
+                                    );
+                                  }),
+                                  Positioned(
+                                    bottom: 5.0,
+                                    left: 5.0,
+                                    child: InkWell(
+                                      onTap: () {
+                                        BaseDialog(
+                                          messageType: MessageType.WARNING,
+                                          btnOkText: LocaleKeys.buttons_yes.tr,
+                                          btnOkOnTap: () {
+                                            controller.image.value = VMSendProductPicture();
+                                            Get.back();
+                                          },
+                                          btnCancelText: LocaleKeys.buttons_no.tr,
+                                          btnCancelOnTap: () {
+                                            Get.back();
+                                          },
+                                          massage: LocaleKeys.screen_add_product_are_you_sure_you_want_to_delete_this_image.tr,
+                                        ).showBaseDialog();
+                                      },
+                                      child: const Icon(
+                                        Icons.remove_circle,
+                                        color: Colors.red,
+                                      ),
                                     ),
-                                  );
-                                }),
-                                Positioned(
-                                  bottom: 5.0,
-                                  left: 5.0,
-                                  child: InkWell(
-                                    onTap: () {
-                                      BaseDialog(
-                                        messageType: MessageType.WARNING,
-                                        btnOkText: LocaleKeys.buttons_yes.tr,
-                                        btnOkOnTap: () {
-                                          // controller.removeMainImage();
-                                        },
-                                        btnCancelText: LocaleKeys.buttons_no.tr,
-                                        btnCancelOnTap: () {
-                                          Get.back();
-                                        },
-                                        massage: LocaleKeys.screen_add_product_are_you_sure_you_want_to_delete_this_image.tr,
-                                      ).showBaseDialog();
-                                    },
-                                    child: const Icon(
-                                      Icons.remove_circle,
-                                      color: Colors.red,
-                                    ),
+                                  )
+                                ],
+                              )
+                            : Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.image,
+                                    size: 50.0,
+                                    color: Colors.grey,
                                   ),
-                                )
-                              ],
-                            )
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.image,
-                                  size: 50.0,
-                                  color: Colors.grey,
-                                ),
-                                const SizedBox(
-                                  height: 8.0,
-                                ),
-                                Text(
-                                  LocaleKeys.screen_add_product_choose_main_picture.tr,
-                                  style: const TextStyle(fontSize: 12.0),
-                                ),
-                              ],
-                            ),
-                    ),
+                                  const SizedBox(
+                                    height: 8.0,
+                                  ),
+                                  Text(
+                                    LocaleKeys.screen_add_product_choose_main_picture.tr,
+                                    style: const TextStyle(fontSize: 12.0),
+                                  ),
+                                ],
+                              ),
+                      );
+                    }),
                   ),
                 ),
                 const SizedBox(
@@ -215,12 +217,15 @@ class AddProductImageStep extends StatelessWidget {
                           ),
                         ),
                       ),
-                      checkImageList
-                          ? const SizedBox(
-                              width: 83,
-                              height: 83,
-                            )
-                          : Container()
+                      Obx(() {
+                        return Visibility(
+                          visible: controller.imagesList.isEmpty,
+                          child: const SizedBox(
+                            width: 83,
+                            height: 83,
+                          ),
+                        );
+                      })
                     ],
                   );
                 })

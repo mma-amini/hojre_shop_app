@@ -19,9 +19,11 @@ class CategoryNameWidget extends StatelessWidget {
       children: [
         SetTitleWidget(title: "${LocaleKeys.screen_add_product_product_group.tr}:"),
         Expanded(
-          child: Text(
-            controller.category.value.categoryName ?? "",
-          ),
+          child: Obx(() {
+            return Text(
+              controller.category.value.categoryName ?? "",
+            );
+          }),
         ),
         const SizedBox(
           width: 8.0,

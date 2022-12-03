@@ -32,17 +32,19 @@ class AddProductBasicSpecificationStep extends StatelessWidget {
         SizedBox(
           height: 35.0,
           child: Center(
-            child: ToggleButtons(
-              isSelected: controller.isOriginalList,
-              borderRadius: BorderRadius.circular(10.0),
-              onPressed: (index) {
-                controller.updateIsOriginal(index: index);
-              },
-              children: const [
-                SizedBox(width: 150, child: Center(child: Text("کالا اصلی است"))),
-                SizedBox(width: 150, child: Center(child: Text("کالا اصلی نیست"))),
-              ],
-            ),
+            child: Obx(() {
+              return ToggleButtons(
+                isSelected: controller.isOriginalList,
+                borderRadius: BorderRadius.circular(10.0),
+                onPressed: (index) {
+                  controller.updateIsOriginal(index: index);
+                },
+                children: const [
+                  SizedBox(width: 150, child: Center(child: Text("کالا اصلی است"))),
+                  SizedBox(width: 150, child: Center(child: Text("کالا اصلی نیست"))),
+                ],
+              );
+            }),
           ),
         ),
         const SizedBox(
@@ -93,184 +95,189 @@ class AddProductBasicSpecificationStep extends StatelessWidget {
         SizedBox(
           height: 35.0,
           child: Center(
-            child: ToggleButtons(
-              isSelected: controller.isBrandList,
-              borderRadius: BorderRadius.circular(10.0),
-              onPressed: (index) {
-                controller.updateIsBrand(index: index);
-              },
-              children: const [
-                SizedBox(width: 150, child: Center(child: Text("برند دارد"))),
-                SizedBox(width: 150, child: Center(child: Text("برند ندارد"))),
-              ],
-            ),
+            child: Obx(() {
+              return ToggleButtons(
+                isSelected: controller.isBrandList,
+                borderRadius: BorderRadius.circular(10.0),
+                onPressed: (index) {
+                  controller.updateIsBrand(index: index);
+                },
+                children: const [
+                  SizedBox(width: 150, child: Center(child: Text("برند دارد"))),
+                  SizedBox(width: 150, child: Center(child: Text("برند ندارد"))),
+                ],
+              );
+            }),
           ),
         ),
-        Visibility(
-          visible: controller.isBrand.value == 1,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 16.0,
-              ),
-              TextField(
-                focusNode: controller.brandNode,
-                controller: controller.productBrandController,
-                readOnly: true,
-                decoration: InputDecoration(
-                  labelText: LocaleKeys.screen_add_product_brand.tr,
-                  alignLabelWithHint: true,
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  suffixIcon: controller.productBrandController.text.isNotEmpty
-                      ? IconButton(
-                          onPressed: () {
-                            controller.removeBrand();
-                          },
-                          icon: const Icon(
-                            Icons.clear,
-                          ),
-                        )
-                      : const SizedBox(),
+        Obx(() {
+          return Visibility(
+            visible: controller.isBrand.value == 1,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 16.0,
                 ),
-                onTap: () {
-                  List<VMBrand> tempData = List<VMBrand>.empty(growable: true);
+                TextField(
+                  focusNode: controller.brandNode,
+                  controller: controller.productBrandController,
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    labelText: LocaleKeys.screen_add_product_brand.tr,
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    suffixIcon: controller.productBrandController.text.isNotEmpty
+                        ? IconButton(
+                            onPressed: () {
+                              controller.removeBrand();
+                            },
+                            icon: const Icon(
+                              Icons.clear,
+                            ),
+                          )
+                        : const SizedBox(),
+                  ),
+                  onTap: () {
+                    List<VMBrand> tempData = List<VMBrand>.empty(growable: true);
 
-                  Get.defaultDialog(
-                      title: LocaleKeys.screen_add_product_brand_selection.tr,
-                      content: GetBuilder(
-                        init: controller,
-                        builder: (dynamic _) {
-                          return SizedBox(
-                            width: Get.width,
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: 40.0,
-                                        child: TextField(
-                                          controller: controller.searchBrandController,
-                                          decoration: InputDecoration(
-                                            labelText: LocaleKeys.general_search.tr,
-                                            alignLabelWithHint: true,
-                                            border: OutlineInputBorder(
-                                              borderSide: const BorderSide(color: Colors.grey),
-                                              borderRadius: BorderRadius.circular(8.0),
+                    Get.defaultDialog(
+                        title: LocaleKeys.screen_add_product_brand_selection.tr,
+                        content: GetBuilder(
+                          init: controller,
+                          builder: (dynamic _) {
+                            return SizedBox(
+                              width: Get.width,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 40.0,
+                                          child: TextField(
+                                            controller: controller.searchBrandController,
+                                            decoration: InputDecoration(
+                                              labelText: LocaleKeys.general_search.tr,
+                                              alignLabelWithHint: true,
+                                              border: OutlineInputBorder(
+                                                borderSide: const BorderSide(color: Colors.grey),
+                                                borderRadius: BorderRadius.circular(8.0),
+                                              ),
+                                              contentPadding: const EdgeInsets.all(8.0),
                                             ),
-                                            contentPadding: const EdgeInsets.all(8.0),
+                                            onChanged: (value) async {
+                                              await controller.startApiGetBrands(keyword: value);
+                                              tempData.clear();
+                                              tempData.addAll(controller.brandsList);
+                                              controller.justUpdate();
+                                            },
                                           ),
-                                          onChanged: (value) async {
-                                            await controller.startApiGetBrands(keyword: value);
-                                            tempData.clear();
-                                            tempData.addAll(controller.brandsList);
-                                            controller.justUpdate();
-                                          },
                                         ),
                                       ),
-                                    ),
-                                    Visibility(
-                                      visible: tempData.isEmpty && controller.searchBrandController.text.isNotEmpty,
-                                      child: IconButton(
-                                        icon: const Icon(Icons.add),
-                                        onPressed: () {
-                                          VMBrand brand = VMBrand(id: null, name: controller.searchBrandController.text);
-                                          controller.selectedBrand.value = brand;
-                                          controller.productBrandController.text = brand.name!;
-                                          controller.searchBrandController.text = "";
-                                          controller.unFocus();
-                                          Get.back();
-                                        },
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                const Divider(),
-                                SizedBox(
-                                  width: Get.width,
-                                  height: 200.0,
-                                  child: Stack(
-                                    children: [
-                                      ListView.builder(
-                                        itemCount: tempData.length,
-                                        itemBuilder: (context, index) {
-                                          var item = tempData[index];
-                                          return Column(
-                                            children: [
-                                              InkWell(
-                                                borderRadius: BorderRadius.circular(8.0),
-                                                onTap: () {
-                                                  controller.searchBrandController.text = "";
-                                                  controller.selectedBrand.value = item;
-                                                  controller.productBrandController.text = item.name!;
-                                                  controller.unFocus();
-                                                  Get.back();
-                                                },
-                                                child: Container(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: Center(
-                                                    child: Text(item.name!),
-                                                  ),
-                                                ),
-                                              ),
-                                              const Divider(),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                      controller.isBrandLoading.value
-                                          ? Container(
-                                              height: 200.0,
-                                              color: const Color.fromARGB(150, 0, 0, 0),
-                                              child: SpinKitCircle(
-                                                itemBuilder: (BuildContext context, int index) {
-                                                  return DecoratedBox(
-                                                    decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      color: index.isEven ? Colors.lightBlueAccent : Colors.yellow,
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                            )
-                                          : Container()
+                                      Visibility(
+                                        visible: tempData.isEmpty && controller.searchBrandController.text.isNotEmpty,
+                                        child: IconButton(
+                                          icon: const Icon(Icons.add),
+                                          onPressed: () {
+                                            VMBrand brand = VMBrand(id: null, name: controller.searchBrandController.text);
+                                            controller.selectedBrand.value = brand;
+                                            controller.productBrandController.text = brand.name!;
+                                            controller.searchBrandController.text = "";
+                                            controller.unFocus();
+                                            Get.back();
+                                          },
+                                        ),
+                                      )
                                     ],
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                      actions: [
-                        SizedBox(
-                          width: Get.width,
-                          child: InkWell(
-                            onTap: () {
-                              controller.searchBrandController.text = "";
-                              controller.unFocus();
-                              Get.back();
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              child: const Center(
-                                child: Text(
-                                  "بستن",
-                                  style: TextStyle(fontSize: 13.0),
+                                  const Divider(),
+                                  SizedBox(
+                                    width: Get.width,
+                                    height: 200.0,
+                                    child: Stack(
+                                      children: [
+                                        ListView.builder(
+                                          itemCount: tempData.length,
+                                          itemBuilder: (context, index) {
+                                            var item = tempData[index];
+                                            return Column(
+                                              children: [
+                                                InkWell(
+                                                  borderRadius: BorderRadius.circular(8.0),
+                                                  onTap: () {
+                                                    controller.searchBrandController.text = "";
+                                                    controller.selectedBrand.value = item;
+                                                    controller.productBrandController.text = item.name!;
+                                                    controller.unFocus();
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: Center(
+                                                      child: Text(item.name!),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const Divider(),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                        Visibility(
+                                          visible: controller.isBrandLoading.value,
+                                          child: Container(
+                                            height: 200.0,
+                                            color: const Color.fromARGB(150, 0, 0, 0),
+                                            child: SpinKitCircle(
+                                              itemBuilder: (BuildContext context, int index) {
+                                                return DecoratedBox(
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: index.isEven ? Colors.lightBlueAccent : Colors.yellow,
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                        actions: [
+                          SizedBox(
+                            width: Get.width,
+                            child: InkWell(
+                              onTap: () {
+                                controller.searchBrandController.text = "";
+                                controller.unFocus();
+                                Get.back();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Center(
+                                  child: Text(
+                                    "بستن",
+                                    style: TextStyle(fontSize: 13.0),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ]);
-                },
-              ),
-            ],
-          ),
-        ),
+                        ]);
+                  },
+                ),
+              ],
+            ),
+          );
+        }),
         const SizedBox(
           height: 16.0,
         ),
@@ -433,34 +440,36 @@ class AddProductBasicSpecificationStep extends StatelessWidget {
               width: 1.0,
             ),
           ),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton<int>(
-              items: const [
-                DropdownMenuItem<int>(
-                  value: 0,
-                  child: Text(
-                    "گرم",
+          child: Obx(() {
+            return DropdownButtonHideUnderline(
+              child: DropdownButton<int>(
+                items: const [
+                  DropdownMenuItem<int>(
+                    value: 0,
+                    child: Text(
+                      "گرم",
+                    ),
                   ),
-                ),
-                DropdownMenuItem<int>(
-                  value: 1,
-                  child: Text(
-                    "کیلوگرم",
+                  DropdownMenuItem<int>(
+                    value: 1,
+                    child: Text(
+                      "کیلوگرم",
+                    ),
                   ),
+                ],
+                onChanged: (int? value) {
+                  controller.packWeightType.value = value;
+                },
+                hint: Text(
+                  LocaleKeys.screen_add_product_fields_name_type_of_weight.tr,
                 ),
-              ],
-              onChanged: (int? value) {
-                controller.updatePackWeightType(packWeightType: value!);
-              },
-              hint: Text(
-                LocaleKeys.screen_add_product_fields_name_type_of_weight.tr,
+                value: controller.packWeightType.value,
+                onTap: () {
+                  controller.unFocus();
+                },
               ),
-              value: controller.packWeightType.value,
-              onTap: () {
-                controller.unFocus();
-              },
-            ),
-          ),
+            );
+          }),
         ),
         const SizedBox(
           height: 16.0,

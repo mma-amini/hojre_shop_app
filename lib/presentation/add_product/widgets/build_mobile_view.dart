@@ -21,28 +21,30 @@ class BuildMobileView extends StatelessWidget {
           Get.back();
         },
       ),
-      body: Visibility(
-        visible: (controller.category.value.id ?? "").isNotEmpty,
-        child: Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: controller.formKey,
-            child: ListView(
-              children: [
-                CategoryNameWidget(key: Key("CategoryNameWidget mobile")),
-                const SizedBox(
-                  height: 16.0,
-                ),
-                AddProductStepper(key: Key("AddProductStepper mobile")),
-                const SizedBox(
-                  height: 16.0,
-                ),
-                SubmitButton(key: Key("SubmitButton mobile")),
-              ],
+      body: Obx(() {
+        return Visibility(
+          visible: (controller.category.value.id ?? "").isNotEmpty,
+          child: Container(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: controller.formKey,
+              child: ListView(
+                children: [
+                  CategoryNameWidget(key: Key("CategoryNameWidget mobile")),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  AddProductStepper(key: Key("AddProductStepper mobile")),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  SubmitButton(key: Key("SubmitButton mobile")),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

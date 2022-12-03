@@ -142,8 +142,9 @@ class BaseDialog extends StatelessWidget {
           onPressed: () {
             if (btnCancelOnTap != null) {
               btnCancelOnTap!.call();
+            } else {
+              Get.back();
             }
-            Get.back();
           },
           child: Text(
             btnCancelText,
